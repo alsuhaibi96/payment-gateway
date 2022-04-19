@@ -1,0 +1,827 @@
+:root
+{
+    --green:#27ae60;
+    --black:#192a56;
+    --light-color:#666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0,0 , 0, 0.1);
+    --white-smook:whitesmoke;
+}
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .5s linear;
+}
+html
+{
+    scroll-padding-top: 5.5rem;
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
+}
+body
+{
+    background-color: var(--main-color);
+    font-family: 'Cairo', sans-serif;
+}
+section
+{
+    padding: 2rem 9%;
+}
+h1,h2,h3,h4,p
+{
+    letter-spacing: -0.7px;
+}
+section:nth-child(even)
+{
+    background: #eee;
+  
+}
+.btn
+{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--black);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    padding: 0.8rem 3rem;
+}
+.btn:hover
+{
+    background: var(--green);
+    letter-spacing: .1rem;
+}
+.sub-heading
+{
+    text-align: center;
+    color: var(--green);
+    font-size: 2rem;
+    padding-top: 1rem;
+
+}
+.heading
+{
+    text-align: center;
+    color: var(--black);
+    font-size: 3rem;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+
+}
+
+
+/*start header section */
+header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+header .logo
+{
+    color: var(--black);
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+header .logo i
+{
+    color: var(--green);
+}
+header .navbar a
+{
+    font-size: 1.7rem;
+    border-radius: 0.5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+
+}
+header .navbar a:hover,header .navbar a.active
+{
+    background: var(--green);
+    color: #fff;
+
+}
+header .icon i,
+header .icon a
+{
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--black);
+    border-radius: 50%;
+    background: #eee;
+}
+header .icon i:hover,
+header .icon a:hover
+{
+    color: #fff;
+    background: var(--green);
+    transform: rotate(360deg);
+}
+header .icon #menu-bars
+{
+    display: none;
+}
+/*end header section */
+/*start search form*/
+#search-form
+{
+    position: fixed;
+    left: 0px;
+    top: -110%;
+    width: 100%;
+    height: 100%;
+    z-index: 1004;
+    background-color: rgba(0,0 , 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+#search-form.active
+{
+    top: 0%;
+}
+#search-form #search-box
+{
+    width: 500px;
+    border-bottom: 1px solid #fff;
+    padding: 1rem 1rem;
+    font-size: 3rem;
+    color: #fff;
+    background: none;
+}
+#search-form #search-box::placeholder
+{
+    color: #fff;
+}
+#search-form #search-box::-webkit-search-cancel-button
+{
+    appearance: none;
+}
+#search-form label
+{
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    padding: 1rem;
+}
+#search-form label:hover
+{
+    color: var(--green);
+}
+#search-form #close
+{
+    position: absolute;
+    top: 8rem;
+    right: 3rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: 3rem;
+
+}
+/*end search form*/
+/*start home section*/
+section.home
+{
+    padding: 0;
+}
+.home .home-slider .slide
+{
+    
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 9rem;
+}
+.home .home-slider .slide .content
+{
+    flex:1 1 45rem;
+    letter-spacing: -0.8px;
+}
+.home .home-slider .slide .content h2
+{
+    text-align: center;
+    
+    padding: 2rem;
+    font-size: 3.5rem;
+    color: white;
+}
+.home .home-slider .slide .content p.para
+{
+    text-align: center;
+    color: #fff;
+    font-size: 1.8rem;
+}
+.home .home-slider .slide .image
+{
+    flex: 1 1 45rem;
+}
+.home .home-slider .slide .image img
+{
+    width: 100%;
+}
+.home .home-slider .slide .content span
+{
+    color: var(--green);
+    font-size: 2.5rem;
+
+}
+.swiper .wrapper .zero
+{
+    background: url('../images/Stacked\ Wave.svg');
+    background-size: cover;
+    background-position: center center;
+}
+.swiper .wrapper .one
+{
+    background: url('../images/Polygon\ Luminary.svg');
+    background-size: cover;
+    background-position: center center;
+}
+.swiper .wrapper .two
+{
+    background: url('../images/Stock\ Chart.svg');
+    background-size: cover;
+    background-position: center center;
+}
+.swiper .wrapper .three
+{
+    background: url('../images/Icon\ Grid.svg');
+    background-size: cover;
+    background-position: center center;
+}
+.home .home-slider .slide .content h3
+{
+    color: var(--black);
+    font-size: 7rem;
+}
+.home .home-slider .slide .content p
+{
+    color: var(--light-color);
+    font-size: 2.2rem;
+    padding: .5rem 0;
+    line-height: 1.5;
+}
+.swiper-pagination-bullet-active
+{
+    background: var(--green);
+}
+
+/*end home section*/
+/*start dishes  section*/
+.dishes .box-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(28rem,1fr));
+    gap: 1.5rem;
+}
+.dishes .box-container .box
+{
+    padding: 2.5rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    border: .1rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.dishes .box-container .box a.fa-heart,
+.dishes .box-container .box a.fa-eye
+{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    position: absolute;
+    line-height: 4rem;
+    top: 1.5rem;
+    left: 4.5rem;
+    background: #eee;
+    color: var(--black);
+    font-size: 2rem;
+}
+.dishes .box-container .box a.fa-heart:hover,
+.dishes .box-container .box a.fa-eye:hover
+{
+    background: var(--green);
+    color: var(--white-smook);
+}
+.dishes .box-container .box a.fa-heart
+{
+    left: -4.5rem;
+}
+.dishes .box-container .box a.fa-eye
+{
+    right: -4.5rem;
+}
+.dishes .box-container .box:hover a.fa-heart
+{
+    left: 4.5rem;
+}
+.dishes .box-container .box:hover a.fa-eye
+{
+    right: 4.5rem;
+}
+.dishes .box-container .box img
+{
+    height: 17rem;
+    margin: 1rem 0;
+}
+.dishes .box-container .box h3
+{
+    color: var(--black);
+    font-size: 2.5rem;
+}
+.dishes .box-container .box .stars
+{
+    padding: 1rem 0;
+}
+.dishes .box-container .box .stars i
+{
+    font-size: 1.7rem;
+    color: var(--green);
+}
+.dishes .box-container .box span
+{
+    font-weight: bolder;
+    color: var(--green);
+    margin-left: 1rem;
+    font-size: 2.5rem;
+}
+
+
+/*end dishes section*/
+/*start about section*/
+.about .logo
+{
+    color: var(--black);
+    font-size: 3.5rem;
+    font-weight: bolder;
+    display: block;
+    text-align: center;
+}
+.about .logo i
+{
+    color: var(--green);
+}
+.about a
+{
+    border-radius: 0.5rem;
+    padding: .3rem 1.5rem;
+    color: var(--light-color);
+
+}
+.about .sub-head
+{
+    font-size: 1.6rem;
+    text-align: center;
+    color: var(--green);
+    margin-top: -1.5rem;
+}
+
+.about .row
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+.about .row .image
+{
+    flex: 1 1 45rem;
+
+}
+.about .row .image img
+{
+    width: 100%;
+}
+.about .row .content
+{
+    flex: 1 1 45rem;
+
+}
+.about .row .content h3
+{
+    font-size: 4rem;
+    color: var(--black);
+    padding: .5rem 0;
+}
+.about .row .content p
+{
+    color: var(--light-color);
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    line-height: 2;
+}
+.about .row .content .icon-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: .5rem;
+    padding: 1rem 0;
+}
+.about .row .content .icon-container .icons
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: #eee;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    padding: 1.5rem 1rem;
+    flex: 1 1 17rem;
+    border-radius: 0.5rem;
+}
+
+.about .row .content .icon-container .icons i
+{
+    font-size: 2.5rem;
+    color: var(--green);
+
+
+}
+.about .row .content .icon-container .icons span
+{
+    font-size: 1.5rem;
+    color: var(--black);
+    
+
+}
+.about .row .content .icon-container .btn
+{
+   
+}
+/*end about section*/
+/*start menu section*/
+.menu .box-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));
+    grid-gap: 1.5rem;
+}
+.menu .box-container .box
+{
+    background: #fff;
+    border-radius: .5rem;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    box-shadow: var(--box-shadow);
+}
+.menu .box-container .box .image
+{
+    height: 25rem;
+    width: 100%;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+
+}
+.menu .box-container .box .image img
+{
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+.menu .box-container .box .image a
+{
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
+    border-radius: 50%;
+    background: #fff;
+    right: 2.5rem;
+    top: 2.5rem;
+    text-align: center;
+    color: var(--black);
+    font-size: 2rem;
+}
+.menu .box-container .box .image a:hover
+{
+    background: #eee;
+    color: var(--green);
+}
+.menu .box-container .box .content
+{
+    padding: 2rem;
+    padding-top: 0;
+}
+.menu .box-container .box .content .stars
+{
+    padding-bottom: 1rem;
+
+}
+.menu .box-container .box .content .stars i
+{
+    font-size: 1.7rem;
+    color: var(--green);
+}
+.menu .box-container .box .content h3
+{
+    color: var(--black);
+    font-size: 2.5rem;
+}
+.menu .box-container .box .content p
+{
+    color: var(--light-color);
+    font-size: 1.7rem;
+    padding: 0.5rem 0;
+    line-height: 1.5;
+}
+.menu .box-container .box .content .price
+{
+    color: var(--green);
+    margin-right: 1rem;
+    font-size: 2.5rem;
+}
+/*end menu section*/
+/*start review section*/
+.review .slide
+{
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    border: .1rem solid rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    position: relative;
+}
+.review .slide .fa-quote-right
+{
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: #ccc;
+
+}
+.review .slide .user
+{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding-bottom: 1.5rem;
+}
+.review .slide .user img
+{
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.review .slide .user h3
+{
+    color: var(--black);
+    font-size: 2rem;
+    padding-bottom: .5rem;
+}
+.review .slide .user i
+{
+    font-size: 1.3rem;
+    color: var(--green);
+}
+.review .slide p
+{
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--light-color);
+}
+/*end review section*/
+/*start order section*/
+.order form
+{
+    max-width: 90rem;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: .1rem solid rgba(0, 0, 0, .2);
+    background: #fff;
+    padding: 1.5rem;
+    margin: 0 auto;
+
+}
+.order form .inputBox
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.order form .inputBox .input
+{
+    width: 49%;
+}
+.order form .inputBox .input span
+{
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+.order form .inputBox .input input,
+.order form .inputBox .input .textarea
+{
+    background: #eee;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+    margin-bottom: 1rem;
+    width: 100%;
+    resize: none;
+}
+.order form .inputBox .input input:focus,
+.order form .inputBox .input .textarea:focus
+{
+    border: .1rem solid var(--green);
+
+}
+.order form .inputBox .input input .textarea
+{
+    width: 100%;
+    resize: none;
+}
+.order form .inputBox .input iframe
+{
+    width: 100%;
+    height: 80%;
+    border: 0.1rem solid var(--green);
+}
+.order form .btn
+{
+    margin-top: 0;
+}
+/*end order section*/
+/*start footer section*/
+.footer
+{
+
+}  
+.footer .fotterBox
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(25rem,1fr));
+    gap: 1.5rem;
+}
+.footer .fotterBox .Box h3
+{
+    padding: 0.5rem 0;
+    font-size: 2.5rem;
+    color: var(--black);
+    
+}
+.footer .fotterBox .Box a
+{
+    display: block;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+.footer .fotterBox .Box a:hover
+{
+    color: var(--green);
+    text-decoration: underline;
+}
+.footer-content
+{
+    box-shadow: var(--box-shadow);
+    border: 0.1rem solid rgba(0, 0, 0, .2);
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    padding: 2rem 0.5rem;
+}
+.footer-content p
+{
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--black);
+    font-weight: bolder;
+}
+
+/*end footer section*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*media queries*/
+@media(max-width:991px)
+{
+    html
+    {
+        font-size: 55%;
+    }
+    header
+    {
+        padding: 1rem 2rem;
+    }
+    section
+    {
+        padding: 2rem;
+    }
+}
+@media(max-width:768px)
+{
+    header .icon #menu-bars
+    {
+        display: inline-block;
+    }
+    header .navbar
+    {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        border-bottom: .1rem solid rgba(0, 0, 0, .2);
+        padding: 1rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    header .navbar.active
+    {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+   
+    header .navbar a
+    {
+        display: block;
+        padding: 1.5rem;
+        margin: 1rem;
+        font-size: 2rem;
+        background: #eee;
+
+    }
+    #search-form #search-box
+    {
+        width: 90%;
+        margin: 0 1rem;
+    }
+    .home .home-slider .slide .content h3
+    {
+        color: var(--black);
+        font-size: 5rem;
+    }
+    .footer-content p
+    {
+        font-size: 1.7rem;
+    }
+
+}
+
+@media(max-width:450px)
+{
+    html
+    {
+        font-size: 50%;
+    }
+    .dishes .box-container .box img
+    {
+        height: auto;
+        width: 100%;
+    }
+    .order form .inputBox .input
+    {
+        width: 100%;
+    }
+}
+
+

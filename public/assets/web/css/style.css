@@ -394,10 +394,7 @@ section.home
     
 
 }
-.about .row .content .icon-container .btn
-{
-   
-}
+
 /*end about section*/
 
 /*start review customer section*/
@@ -454,10 +451,7 @@ section.home
 /*end review customers section*/
 
 /*start footer section*/
-.footer
-{
-
-}  
+ 
 .footer .fotterBox
 {
     display: grid;

@@ -20,10 +20,3 @@ Route::get('/yemenpay', function () {
     return view('website/index');
 });
 
-Route::get('/login', function () {
-    return view('website/login');
-}) -> name('login');
-
-Route::get('/register', function () {
-    return view('website/register');
-}) -> name('register');

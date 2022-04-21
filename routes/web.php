@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('website/index');
 });
 Route::get('/yemenpay', function () {
     return view('website/index');
 });
-Route::get('/document', function () {
-    return view('website/docs');
-});
+

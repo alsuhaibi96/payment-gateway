@@ -647,4 +647,26 @@ a {
     display: none;
   }
 }
+header .icon i,
+header .icon a
+{
+  
+    cursor: pointer;
+    margin-left: 1rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #000;
+    border-radius: 50%;
+   
+}
+header .icon i:hover,
+header .icon a:hover
+{
+    color: #fff;
+    background:green;
+    transform: rotate(360deg);
+}
 

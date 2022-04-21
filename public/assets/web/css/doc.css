@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: "remixicon";
-    src: url(0ce5a0963f12796fd6519609bb1c6890.eot); 
+    src: url(../fonts/0ce5a0963f12796fd6519609bb1c6890.eot); 
     src: url(0ce5a0963f12796fd6519609bb1c6890.eot#iefix) format('embedded-opentype'), 
-    url(0013a6cfa15f00904a86206c9c617bee.woff2) format("woff2"),
-    url(181d6900228ac67127c4349e7a28eb83.woff) format("woff"),
-    url(8afaaea613027bc16a750ca138f6f3f2.ttf) format('truetype'),
-    url(7759d392b554ae6d18d78718e46a4591.svg#remixicon) format('svg'); 
+    url(../fonts/0013a6cfa15f00904a86206c9c617bee.woff2) format("woff2"),
+    url(../fonts/181d6900228ac67127c4349e7a28eb83.woff) format("woff"),
+    url(../fonts/8afaaea613027bc16a750ca138f6f3f2.ttf) format('truetype'),
+    url(../fonts/7759d392b554ae6d18d78718e46a4591.svg) format('svg'); 
     font-display: swap;
 }
 
@@ -648,4 +648,3 @@ a {
   }
 }
 
-/*# sourceMappingURL=main.css.map*/

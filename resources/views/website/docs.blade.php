@@ -259,7 +259,7 @@
         <div class="overlay"></div>
       </div>
     </div>
-    <script src="{{url('assets/web/js/doc.js')}}"></script>
+    <script src="/public/assets/web/js/doc.js"></script>
   </body>
   
   

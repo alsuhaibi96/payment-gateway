@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\API\APIPaymentController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -98,3 +99,16 @@ Route::group([
     Route::post('/refresh', [UserController::class, 'refresh']);
     Route::get('/user-profile', [UserController::class, 'userProfile']);    
 });
+
+
+Route::group([
+    'middleware' => 'api',
+  //  'prefix' => 'payments',
+    
+], function () {
+
+
+    Route::get('/allPayments' , [APIPaymentController::class,'allPayments']);
+});
+
+

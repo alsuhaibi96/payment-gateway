@@ -27,7 +27,7 @@
     <header>
         <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="#dashboard">انشاء حساب</a>
+            <a  href="{{ route('register'); }}">انشاء حساب</a>
             <a class="active" href="#home">تسجيل الدخول</a>
             <a  href="#home"> الرجوع للرئيسية</a>
             

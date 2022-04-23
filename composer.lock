@@ -5496,12 +5496,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
-                "reference": "0e7b35c4f25fcdc7bc02e49966e41c9ee67b2ff1"
+                "reference": "feafb135e1ac4e64deb2100e28d3261033a2190f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/0e7b35c4f25fcdc7bc02e49966e41c9ee67b2ff1",
-                "reference": "0e7b35c4f25fcdc7bc02e49966e41c9ee67b2ff1",
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/feafb135e1ac4e64deb2100e28d3261033a2190f",
+                "reference": "feafb135e1ac4e64deb2100e28d3261033a2190f",
                 "shasum": ""
             },
             "require": {
@@ -5574,7 +5574,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-04-12T10:12:30+00:00"
+            "time": "2022-04-22T08:22:05+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

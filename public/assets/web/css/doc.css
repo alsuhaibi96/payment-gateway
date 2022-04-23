@@ -670,3 +670,62 @@ header .icon a:hover
     transform: rotate(360deg);
 }
 
+/*start search form*/
+#search-form
+{
+    position: fixed;
+    left: 0px;
+    top: -110%;
+    width: 100%;
+    height: 100%;
+    z-index: 1004;
+    background-color: rgba(0,0 , 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+#search-form.active
+{
+    top: 0%;
+}
+#search-form #search-box
+{
+    width: 500px;
+    border-bottom: 1px solid #fff;
+    padding: 1rem 1rem;
+    font-size: 3rem;
+    color: #fff;
+    background: none;
+}
+#search-form #search-box::placeholder
+{
+    color: #fff;
+}
+#search-form #search-box::-webkit-search-cancel-button
+{
+    appearance: none;
+}
+#search-form label
+{
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    padding: 1rem;
+}
+#search-form label:hover
+{
+    color: var(--green);
+}
+#search-form #close
+{
+    position: absolute;
+    top: 8rem;
+    right: 3rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: 3rem;
+
+}
+/*end search form*/
+/* table */

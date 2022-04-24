@@ -9,12 +9,55 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Role;
+
 class UserController extends Controller
 {
     use general_trait;
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        // $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
+
+   /**
+     * Display registeration view ( customer or merchant)
+     * 
+     */
+    public function viewRegisteration(){
+        return view('website.registeration');
+ 
+    }
+ 
+ /**
+    *  Check for user radio input if 1 register as a merchant if not register as a customer
+    */
+    public function viewRegisterationPage(Request $request){
+        
+        if(($request->radio1)==1)
+        return  redirect()->route('merchant_register');
+        return  redirect()->route('customer_register');
+               
+       }
+
+       /**
+     * Display register view
+     * @return \Illuminate\Http\Response;
+     */
+    public function viewMerchantRegister(){
+        return view('website/merchant/add_merchant');
+    }
+    
+    /**
+     * Display register view
+     * @return \Illuminate\Http\Response;
+     */
+    public function viewCustomerRegister(){
+        return view('website/customer/add_customer');
+    }
+
+
+
+     
+
     public function login(Request $request){
         try{
             $rules=[
@@ -45,11 +88,11 @@ class UserController extends Controller
         
     }
     /**
-     * Register a User.
+     * Register a User (admin , merchant , customer).
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request) {
+    public function register(Request $request ) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -59,9 +102,12 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         $user = User::create(array_merge(
-                    $validator->validated(),
+                $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
+         
+       $user->attachRole('Customer');
+                
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user

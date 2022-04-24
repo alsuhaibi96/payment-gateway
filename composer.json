@@ -11,6 +11,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "santigarcor/laratrust": "^7.1",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

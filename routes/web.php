@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
 
@@ -46,6 +47,7 @@ Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
 Route::get('/save_user',[AuthController::class,'register'])->name('save_user');
 
 
+   
 
 
 /**

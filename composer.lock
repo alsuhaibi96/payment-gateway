@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e854d9f1da232bce5f4c437fe392d624",
+    "content-hash": "f652fb5177ee4b246111463c0d62d7c7",
     "packages": [{
             "name": "asm89/stack-cors",
             "version": "v2.1.1",
@@ -2964,77 +2964,6 @@
             "time": "2022-03-27T21:42:02+00:00"
         },
         {
-            "name": "santigarcor/laratrust",
-            "version": "7.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/santigarcor/laratrust.git",
-                "reference": "8a18c70bb1ced09baed361b68c432b0bedb74f16"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/8a18c70bb1ced09baed361b68c432b0bedb74f16",
-                "reference": "8a18c70bb1ced09baed361b68c432b0bedb74f16",
-                "shasum": ""
-            },
-            "require": {
-                "kkszymanowski/traitor": "^1.0",
-                "laravel/framework": "~6.0|~7.0|~8.0|^9.0",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3.2",
-                "orchestra/testbench": "4.*|5.*|6.*|7.*",
-                "phpunit/phpunit": "^7.5.15|^8.4|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laratrust\\LaratrustServiceProvider"
-                    ],
-                    "aliases": {
-                        "Laratrust": "Laratrust\\LaratrustFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laratrust\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [{
-                "name": "Santiago Garcia",
-                "homepage": "http://santigarcor.me"
-            }],
-            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
-            "keywords": [
-                "Teams",
-                "acl",
-                "authorization",
-                "laratrust",
-                "laravel",
-                "multiusers",
-                "permissions",
-                "php",
-                "rbac",
-                "roles"
-            ],
-            "support": {
-                "issues": "https://github.com/santigarcor/laratrust/issues",
-                "source": "https://github.com/santigarcor/laratrust/tree/7.1.0"
-            },
-            "funding": [{
-                "url": "https://github.com/santigarcor",
-                "type": "github"
-            }],
-            "time": "2022-03-04T15:28:43+00:00"
-        },
-        {
             "name": "stella-maris/clock",
             "version": "0.1.4",
             "source": {
@@ -5416,16 +5345,14 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
-                "reference": "feafb135e1ac4e64deb2100e28d3261033a2190f"
+                "reference": "0e7b35c4f25fcdc7bc02e49966e41c9ee67b2ff1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/feafb135e1ac4e64deb2100e28d3261033a2190f",
-                "reference": "feafb135e1ac4e64deb2100e28d3261033a2190f"
-
-
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/0e7b35c4f25fcdc7bc02e49966e41c9ee67b2ff1",
+                "reference": "0e7b35c4f25fcdc7bc02e49966e41c9ee67b2ff1",
+                "shasum": ""
             },
-
             "require": {
                 "illuminate/auth": "^5.2|^6|^7|^8|^9",
                 "illuminate/contracts": "^5.2|^6|^7|^8|^9",
@@ -5492,12 +5419,7 @@
                 "url": "https://www.patreon.com/seantymon",
                 "type": "patreon"
             }],
-
-
-
-
-            "time": "2022-04-22T08:22:05+00:00"
-
+            "time": "2022-04-12T10:12:30+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -8105,9 +8027,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-
     "plugin-api-version": "2.3.0"
-
-
-
 }

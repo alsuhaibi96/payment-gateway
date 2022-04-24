@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Settings\SettingController;
+use App\Http\Controllers\user\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Register and sign in routes 
+ */
+
+ Route::get('/user/register',[UserController::class,'viewRegisteration'])->name('registeration');
+ Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
+ Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
+ Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
+ 
+
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/yemenpay', function () {
     return view('website/index');
 });
+
+
+
+/**
+ * Adding roles for the authentication and users
+ * You should go to this route every time the database data are lost
+ */
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);

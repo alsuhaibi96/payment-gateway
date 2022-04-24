@@ -140,7 +140,7 @@ header .icon a:hover
 }
 header .icon #menu-bars
 {
-    display: none;
+    /*display: none;*/
 }
 /*end header section */
 /*start search form*/

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> تسجيل الدخول</title>
+    <title>YEMEN pay</title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -27,43 +27,38 @@
     <header>
         <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="#dashboard">انشاء حساب</a>
-            <a class="active" href="#home">تسجيل الدخول</a>
-            <a  href="#home"> الرجوع للرئيسية</a>
-            
+            <a  href="#dashboard">لوحة التحكم</a>
+            <a class="active" href="#home">الرئيسية</a>
+            <a href="#about">من نحن</a>
+            <a href="#customer"> عملائنا</a>
+            <a href="#contact">التواصل</a>
+            <a href="#documentation">Docs</a>
+            <a href="#language">English</a>
         </nav>
         <div class="icon">
-            <i class="fas fa-bars toogle" id="menu-bars"></i>
-            
+             <i class="fas fa-bars toogle" id="menu-bars"></i> 
+            <i class="fas fa-search" id="search-icon"></i>
+          <i class="fas fa-right-to-bracket" style="color: #192a56;">
+            <a href="{{ route('login') }}">  </a>
+            </i>
         </div>
     </header>
     <!--end header section-->
-    <!--start signIn form-->
-    <section class="login-form container justify-content-center pt-4 pb-4">
-      <div class="row section-header text-center p-4">
-        <div class="col-12">
-            <h2> تسجيل الدخول</h2>
-        </div>
-      </div>
-      <form class="login-form row container g-3">
-      @csrf
-        
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label"> البريد الالكتروني</label>
-          <input placeholder="البريد الالكتروني" type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">كلمة المرور</label>
-          <input placeholder="كلمة المرور " type="password" class="form-control" id="inputEmail4">
-          <a href="#"> نسيت كلمة المرور ؟ </a>
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn login-btn">تسجيل الدخول</button>
-        </div><hr>
-      </form>
+    <!--start search form-->
+    <form action="#" id="search-form">
+        <input type="search" placeholder="أبحث ...." name="" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    </form>
+    <!--end search form-->
 
-    </section>
-    <!--end login form-->
+
+    @yield('content')
+
+
+    <footer class="footer-content">
+        <p>جميع الحقوق محفوظة &copy; 2022 YEMEN $ Pay  </p>
+    </footer>
 
     <!--start footer section -->
 

@@ -19,6 +19,19 @@ Route::get('/', function () {
 Route::get('/yemenpay', function () {
     return view('website/index');
 });
+Route::get('/about-us', function () {
+    return view('website/about');
+});
+Route::get('/contuct-us', function () {
+    return view('website/contuct');
+});
+Route::get('/user-profile', function () {
+    return view('website/user_profile');
+});
+Route::get('/login', function () {
+    return view('website/login');
+});
+// docs pages
 Route::get('/document', function () {
     return view('docs/docs');
 });

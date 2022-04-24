@@ -72,7 +72,7 @@
                         <span>7/24 خدمة</span>
                         <i class="fas fa-headset"></i>
                     </div>
-                    <a class="btn" href="#">أعرف اكثر</a>
+                    <a class="btn" href="/about-us">أعرف اكثر</a>
                 </div>
 
             </div>

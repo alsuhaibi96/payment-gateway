@@ -387,12 +387,21 @@ section.home
 
 
 }
+
 .about .row .content .icon-container .icons span
 {
     font-size: 1.5rem;
     color: var(--black);
     
 
+}
+.icons i{
+    font-size: 2.5rem;
+    color: var(--green);  
+}
+.icons span{
+    font-size: 1.5rem;
+    color: var(--black); 
 }
 
 /*end about section*/
@@ -492,6 +501,12 @@ section.home
     color: var(--black);
     font-weight: bolder;
 }
+/* about page style */
+/* section header of about page */
+.blue-dark{
+    background-color: #192a56;
+}
+
 
 /*end footer section*/
 /* start signIn form*/
@@ -633,5 +648,8 @@ section:nth-child(even).login-form
         width: 100%;
     }
 }
-
+/* user profile style */
+.rounded-circle{
+    width: 15rem;
+}
 

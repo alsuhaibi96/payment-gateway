@@ -43,7 +43,7 @@
 
       <div class="row section-header text-center p-4">
         <div class="col-12">
-            <h2> تسجيل الدخول</h2>
+            <h2 class="display-1 fw-bold"> تسجيل الدخول</h2>
         </div>
       </div>
 
@@ -71,21 +71,14 @@
       <form autocomplete="off" class="login-form row container g-3" action="{{ route('custom_login') }}" method="GET">
       @csrf
         
-        <div class="col-md-12">
-          <label for="" class="form-label"> البريد الالكتروني</label>
-          <input autocomplete="off" value ="" name="email" type="email" class="form-control
-           @error('email') is-invalid @enderror" id="">
-          @error('email')
-                      <span class="error invalid-feedback">{{ $message }}</span>                                 
-          @enderror
+        <div class="mb-3 w-50 fs-3">
+          <label for="inputPassword4" class="form-label"> البريد الالكتروني</label>
+          <input placeholder="البريد الالكتروني" type="email" class="form-control fs-3" id="inputEmail4">
         </div>
-        <div class="col-md-12">
+        
+        <div class="mb-3 w-50 fs-3">
           <label for="inputEmail4" class="form-label">كلمة المرور</label>
-          <input placeholder="كلمة المرور " type="password" name="password" class="form-control
-          @error('password') is-invalid @enderror" id="">
-          @error('password')
-                      <span class="error invalid-feedback">{{ $message }}</span>                                 
-          @enderror
+          <input placeholder="كلمة المرور " type="password" class="form-control fs-3" id="inputEmail4">
           <a href="#"> نسيت كلمة المرور ؟ </a>
         </div>
         <div class="col-12">

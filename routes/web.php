@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContuctMe;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +24,16 @@ Route::get('/yemenpay', function () {
 Route::get('/about-us', function () {
     return view('website/about');
 });
-Route::get('/contuct-us', function () {
+// contuct form
+Route::get('/contuct', function (){
     return view('website/contuct');
+});
+Route::post('/contuct', function (){
+    $data=request(['name','email','subject','message']);
+    Mail::to('roor3hakimi@gmail.com')->send(new ContuctMe($data));
+    return  redirect('/contuct')
+    ->with('flash','تم الارسال بنجاح');
+    
 });
 Route::get('/user-profile', function () {
     return view('website/user_profile');

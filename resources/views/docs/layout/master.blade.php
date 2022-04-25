@@ -44,7 +44,7 @@
             >
            
           </div>
-          <span> <a href="" style="color: #999; margin:20px;">back to home</a></span>
+          <span> <a href="{{ route('index'); }}" style="color: #999; margin:20px;">back to home</a></span>
          
           <div class="sidebar-content">
             <nav class="menu open-current-submenu">

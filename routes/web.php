@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContuctMe;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Settings\SettingController;
+use App\Http\Controllers\user\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +19,20 @@ use App\Mail\ContuctMe;
 |
 */
 
+/**
+ * Register and sign in routes 
+ */
+
+ Route::get('/user/register',[UserController::class,'viewRegisteration'])->name('registeration');
+ Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
+ Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
+ Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
+ 
+
 Route::get('/', function () {
     return view('website/index');
 });
-Route::get('/yemenpay', function () {
-    return view('website/index');
-});
+
 Route::get('/about-us', function () {
     return view('website/about');
 });
@@ -38,10 +50,19 @@ Route::post('/contuct', function (){
 Route::get('/user-profile', function () {
     return view('website/user_profile');
 });
-Route::get('/login', function () {
-    return view('website/login');
-});
-// docs pages
+
+
+
+
+
+/**
+ * Adding roles for the authentication and users
+ * You should go to this route every time the database data are lost
+ */
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+
+
+
 Route::get('/document', function () {
     return view('docs/docs');
 });
@@ -93,3 +114,4 @@ Route::get('/retrieve-customer', function () {
 Route::get('/retrieve-payment', function () {
     return view('docs/retrieve_payment');
 });
+

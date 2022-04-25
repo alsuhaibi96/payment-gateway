@@ -44,7 +44,7 @@
     <!--start about us-->
     <section class="about" id="about">
         
-        <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
+        <a href="#" class="logo">WASL Pay<i class="fas fa-wallet"></i></a>
         <h1 class="sub-head"> من نحن</h1>
         
         <div class="row">

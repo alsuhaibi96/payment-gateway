@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YEMEN pay</title>
+    <title> Wasl Pay</title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -25,14 +25,16 @@
 <body>
     <!--start header section-->
     <header>
-        <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
+        <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
             <a  href="#dashboard">لوحة التحكم</a>
             <a class="active" href="/yemenpay">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>
+
             <a href="/contuct-us">التواصل</a>
             <a href="/document">Docs</a>
+
             <a href="#language">English</a>
         </nav>
          <div class="icon">
@@ -57,7 +59,7 @@
 
 
     <footer class="footer-content">
-        <p>جميع الحقوق محفوظة &copy; 2022 YEMEN $ Pay  </p>
+        <p>جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT  </p>
     </footer>
 
     <!--start footer section -->

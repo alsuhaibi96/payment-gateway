@@ -24,8 +24,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('order_id');
             $table->timestamps();
 
-            $table->foreign('client_reference_id')->references('id')->on('merchants'); // refers to merchants
-            $table->foreign('customer_id')->references('id')->on('users'); // users or customers
+            // $table->foreign('client_reference_id')->references('id')->on('merchants'); // refers to merchants
+            // $table->foreign('customer_id')->references('id')->on('users'); // users or customers
         });
     }
 

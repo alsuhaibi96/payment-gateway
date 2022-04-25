@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>انشاء حساب</title>
+    <title> تسجيل الدخول</title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -25,11 +25,12 @@
 <body>
     <!--start header section-->
     <header>
-        <a href="#" class="logo">merchant <i class="fas fa-wallet"></i></a>
+        <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="#dashboard" class="active">انشاء حساب</a>
-            <a class="" href="#home">تسجيل الدخول</a>
+            <a  href="{{ route('register'); }}">انشاء حساب</a>
+            <a class="active" href="#home">تسجيل الدخول</a>
             <a  href="#home"> الرجوع للرئيسية</a>
+            
         </nav>
         <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>
@@ -38,35 +39,57 @@
     </header>
     <!--end header section-->
     <!--start signIn form-->
-    <section class="login-form container justify-content-center pt-4 pb-4 col-8">
+    <section class="login-form container justify-content-center pt-4 pb-4 col-6">
+
       <div class="row section-header text-center p-4">
         <div class="col-12">
-            <h2>إنشاء حساب جديد</h2>
+            <h2> تسجيل الدخول</h2>
         </div>
       </div>
-      <form class="login-form row container g-3" action="{{ route('register') }}" method="POST" enctype="multipart/form-data" >
+
+      <div class=" mb-0">
+        @if(session()->has('success'))
+
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>نجاح!</strong>     {{ session()->get('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      
+      
+  @endif
+
+  @if(session()->has('message'))
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>فشل!</strong>     {{ session()->get('message') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  
+  
+@endif
+</div>
+      <form autocomplete="off" class="login-form row container g-3" action="{{ route('custom_login') }}" method="GET">
       @csrf
-        <div class="col-md-6">
-          <label for="name" class="form-label">الاسم الكامل</label>
-          <input name="name" placeholder="الاسم الكامل" type="text" class="form-control" id="">
+        
+        <div class="col-md-12">
+          <label for="" class="form-label"> البريد الالكتروني</label>
+          <input autocomplete="off" value ="" name="email" type="email" class="form-control
+           @error('email') is-invalid @enderror" id="">
+          @error('email')
+                      <span class="error invalid-feedback">{{ $message }}</span>                                 
+          @enderror
         </div>
-     
-       
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label"> البريد الالكتروني</label>
-          <input name="email" placeholder="البريد الالكتروني" type="email" class="form-control" id="inputEmail4">
-        </div>
-       
-        <div class="col-md-6">
+        <div class="col-md-12">
           <label for="inputEmail4" class="form-label">كلمة المرور</label>
-          <input name="password" placeholder="كلمة المرور " type="password" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">تاكيد كلمة المرور</label>
-          <input name="password_confirmation" placeholder="تاكيد كلمة المرور" type="password" class="form-control" id="inputEmail4">
+          <input placeholder="كلمة المرور " type="password" name="password" class="form-control
+          @error('password') is-invalid @enderror" id="">
+          @error('password')
+                      <span class="error invalid-feedback">{{ $message }}</span>                                 
+          @enderror
+          <a href="#"> نسيت كلمة المرور ؟ </a>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn login-btn">إنشاء حساب جديد</button>
+          <button type="submit" class="btn login-btn">تسجيل الدخول</button>
         </div><hr>
       </form>
 

@@ -19,11 +19,20 @@ use App\Http\Controllers\user\UserController;
 /**
  * Register and sign in routes 
  */
-
  Route::get('/user/register',[UserController::class,'viewRegisteration'])->name('registeration');
  Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
  Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
  Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
+ 
+/**
+ * register customrs and merchants
+ */
+Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
+Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
+
+Route::get('/user/login',[UserController::class,'viewLogin'])->name('view_login');
+Route::get('/login',[UserController::class,'customLogin'])->name('custom_login');
+
  
 
 Route::get('/', function () {
@@ -33,23 +42,12 @@ Route::get('/', function () {
 
 
 
-Route::get('/login', function () {
-    return view('website/login');
-}) -> name('login');
 
 Route::get('/docs', function () {
-    return view('website/docs');
+    return view('docs/docs');
 }) -> name('docs');
 
-Route::get('/register', function () {
-    return view('website/register');
-}) -> name('register');
 
-Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
-Route::get('/save_user',[AuthController::class,'register'])->name('save_user');
-
-
-   
 
 
 /**

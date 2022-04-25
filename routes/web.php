@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContuctMe;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
@@ -30,26 +33,26 @@ Route::get('/', function () {
     return view('website/index');
 });
 
+Route::get('/about-us', function () {
+    return view('website/about');
+});
+// contuct form
+Route::get('/contuct', function (){
+    return view('website/contuct');
+});
+Route::post('/contuct', function (){
+    $data=request(['name','email','subject','message']);
+    Mail::to('roor3hakimi@gmail.com')->send(new ContuctMe($data));
+    return  redirect('/contuct')
+    ->with('flash','تم الارسال بنجاح');
+    
+});
+Route::get('/user-profile', function () {
+    return view('website/user_profile');
+});
 
 
 
-Route::get('/login', function () {
-    return view('website/login');
-}) -> name('login');
-
-Route::get('/docs', function () {
-    return view('website/docs');
-}) -> name('docs');
-
-Route::get('/register', function () {
-    return view('website/register');
-}) -> name('register');
-
-Route::post('/save_user',[AuthController::class,'register'])->name('save_user');
-Route::get('/save_user',[AuthController::class,'register'])->name('save_user');
-
-
-   
 
 
 /**
@@ -57,6 +60,7 @@ Route::get('/save_user',[AuthController::class,'register'])->name('save_user');
  * You should go to this route every time the database data are lost
  */
 Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+
 
 
 Route::get('/document', function () {

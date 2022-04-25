@@ -5,23 +5,35 @@
  <section class=" mt-5 container justify-content-center pt-4 pb-4 d-flex justify-content-around">
      <div >
     <div class="row section-header text-center p-4">
+      @if (session('flash'))
+      <p style="color: green" class="display-1">{{ session('flash') }}</p>
+        
+      @endif
       <div class="col-12">
           <h2 class="display-1 mt-5 fw-bold">  تواصل معنا</h2>
       </div>
     </div>
-    <form class=" row container g-3 fs-3">
+    <form class=" row container g-3 fs-3" action="/contuct" method="POST">
+      @csrf
    
-      
+      <div class="mb-3 ">
+        <label for="inputPassword4" class="form-label"> اسمك</label>
+        <input placeholder="اسمك" type="text" class="form-control p-3 fs-3" id="inputUsername4" name="name">
+      </div>
       <div class="mb-3 ">
         <label for="inputPassword4" class="form-label"> البريد الالكتروني</label>
-        <input placeholder="البريد الالكتروني" type="email" class="form-control p-3 fs-3" id="inputEmail4">
+        <input placeholder="البريد الالكتروني" type="email" class="form-control p-3 fs-3" id="inputEmail4" name="email">
+      </div>
+      <div class="mb-3 ">
+        <label for="inputPassword4" class="form-label"> الموضوع</label>
+        <input placeholder="..." type="text" class="form-control p-3 fs-3" id="inputSubject4" name="subject">
       </div>
       <div class="mb-3">
         <label for="inputEmail4" class="form-label">اكتب رسالة</label>
-        <textarea name="" id="" cols="30" rows="10" class="form-control p-3 fs-3" placeholder="اكتب هنا..."></textarea>
+        <textarea name="message" id="" cols="30" rows="10" class="form-control p-3 fs-3" placeholder="اكتب هنا..."></textarea>
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-success"> ارسال</button>
+        <input type="submit" class="btn btn-success" value="ارسال"> 
       </div><hr>
     </form>
     </div>

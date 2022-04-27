@@ -35,6 +35,9 @@ Route::get('/adderss', function (){
 Route::get('/card-info', function (){
     return view('website/customer/card_info');
 });
+Route::get('/buisness-info', function (){
+    return view('website/customer/buisness_info');
+});
  
 /**
  * register customrs and merchants

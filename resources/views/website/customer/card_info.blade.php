@@ -48,12 +48,12 @@
        
          <div class="row">
 
-          <div class="col-md-3 text-center">
+          <div class="col-md-6 text-center">
             <label for="name" class="form-label fs-3">رقم بطاقة الائتمان</label>
             <input name="card" placeholder="رقم بطاقة الائتمان" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <label for="name" class="form-label fs-3">نوع البطاقة</label>
           <select class="form-select form-control fs-3" aria-label="Default select example">
             <option selected>select your card type</option>
@@ -62,17 +62,17 @@
             <option value="3">cac bank</option>
           </select>
         </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <label for="name" class="form-label fs-3">تاريخ الانتهاء</label>
             <input name="date" placeholder="تاريخ الانتهاء" type="date" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <label for="name" class="form-label fs-3">رمز الحماية</label>
             <input name="code" placeholder="رمز الحماية" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <label for="name" class="form-label fs-3">عنوان وصول الفواتير</label>
             <input name="billing" placeholder="عنوان وصول الفواتير" type="text" class="form-control fs-3 ">
                                            

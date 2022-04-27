@@ -1,5 +1,4 @@
-@extends('layouts.master')
-
+@extends('website.layouts.master');
 @section('content')
     
     <!--start home section-->

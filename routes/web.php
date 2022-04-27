@@ -28,7 +28,7 @@ use App\Http\Controllers\user\UserController;
 
 Route::get('/', function () {
     return view('website/index');
-});
+})->name('index');
 
 
 
@@ -38,7 +38,7 @@ Route::get('/login', function () {
 }) -> name('login');
 
 Route::get('/docs', function () {
-    return view('website/docs');
+    return view('docs/docs');
 }) -> name('docs');
 
 Route::get('/register', function () {
@@ -107,7 +107,16 @@ Route::get('/retrieve-checkout', function () {
 Route::get('/retrieve-customer', function () {
     return view('docs/retrieve_customer');
 });
+
 Route::get('/retrieve-payment', function () {
     return view('docs/retrieve_payment');
 });
 
+Route::get('/dashboard', function(){
+   //    return view('website/login');
+
+    // Check after login if user is Admin or Merchant or Customer , then show its dashboard
+    // if it was a customer
+
+    return view('customer_dashboard/home');
+})->name('dashboard');

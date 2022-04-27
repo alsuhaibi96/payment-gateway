@@ -1,4 +1,4 @@
-@extends('master')
+@extends('docs.layout.master')
 
 @section('content')
  <!--start contuct form-->

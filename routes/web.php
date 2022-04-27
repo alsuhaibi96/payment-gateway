@@ -32,6 +32,9 @@ use App\Http\Controllers\user\UserController;
 Route::get('/adderss', function (){
     return view('website/customer/name_adderss');
 });
+Route::get('/card-info', function (){
+    return view('website/customer/card_info');
+});
  
 /**
  * register customrs and merchants

@@ -26,10 +26,18 @@ use App\Http\Controllers\user\UserController;
  Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
  Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
  Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
+ Route::get('/moblie-conf', function (){
+    return view('website/customer/moblie_conf');
+});
+Route::get('/adderss', function (){
+    return view('website/customer/name_adderss');
+});
  
 /**
  * register customrs and merchants
  */
+
+
 Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
 Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 

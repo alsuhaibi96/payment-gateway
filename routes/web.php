@@ -137,3 +137,14 @@ Route::get('/retrieve-payment', function () {
     return view('docs/retrieve_payment');
 });
 
+
+
+/* Customer Dashboard Routes */
+Route::get('/dashboard', function(){
+    //    return view('website/login');
+ 
+     // Check after login if user is Admin or Merchant or Customer , then show its dashboard
+     // if it was a customer
+ 
+     return view('customer_dashboard/home');
+ })->name('dashboard');

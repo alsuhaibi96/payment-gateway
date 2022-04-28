@@ -27,7 +27,7 @@
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="#dashboard">لوحة التحكم</a>
+            <a  href="{{  route('dashboard'); }}">لوحة التحكم</a>
             <a class="active" href="/yemenpay">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>

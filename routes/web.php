@@ -20,7 +20,7 @@ use App\Http\Controllers\user\UserController;
 */
 
 /**
- * Register and sign in routes 
+ * Register and sign in routes
  */
  Route::get('/user/register',[UserController::class,'viewRegisteration'])->name('registeration');
  Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
@@ -38,7 +38,7 @@ Route::get('/card-info', function (){
 Route::get('/buisness-info', function (){
     return view('website/customer/buisness_info');
 });
- 
+
 /**
  * register customrs and merchants
  */
@@ -50,7 +50,7 @@ Route::post('/merchant/register', [UserController::class,'createMerchant'])->nam
 Route::get('/user/login',[UserController::class,'viewLogin'])->name('view_login');
 Route::get('/login',[UserController::class,'customLogin'])->name('custom_login');
 
- 
+
 
 Route::get('/', function () {
     return view('website/index');
@@ -68,7 +68,7 @@ Route::post('/contuct', function (){
     Mail::to('roor3hakimi@gmail.com')->send(new ContuctMe($data));
     return  redirect('/contuct')
     ->with('flash','تم الارسال بنجاح');
-    
+
 });
 Route::get('/user-profile', function () {
     return view('website/user_profile');
@@ -142,9 +142,14 @@ Route::get('/retrieve-payment', function () {
 /* Customer Dashboard Routes */
 Route::get('/dashboard', function(){
     //    return view('website/login');
- 
+
      // Check after login if user is Admin or Merchant or Customer , then show its dashboard
      // if it was a customer
- 
+
      return view('customer_dashboard/home');
  })->name('dashboard');
+
+
+ Route::get('/dashboard/invoice' , function(){
+     return view('customer_dashboard/invoice');
+ })->name('invoice');

@@ -36,7 +36,7 @@ Route::get('/card-info', function (){
     return view('website/customer/card_info');
 });
 Route::get('/buisness-info', function (){
-    return view('website/customer/buisness_info');
+    return view('website/merchant/buisness_info');
 });
 
 /**

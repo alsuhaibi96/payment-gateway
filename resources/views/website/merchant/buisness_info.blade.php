@@ -48,38 +48,38 @@
        
          <div class="row">
 
-          <div class="col-md-3 text-center">
+          <div class="col-md-6 ">
             <label for="name" class="form-label fs-3">الاسم التجاري</label>
             <input name="first_name" placeholder="الاسم القانوني الأول " type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3 text-center">
+          <div class="col-md-6 text-center mt-5">
             
             <input name="second_name" placeholder="الاسم القانوني الثاني " type="text" class="form-control fs-3 ">
                                            
           </div>
          
-          <div class="col-md-3">
+          <div class="col-md-6">
             <label for="name" class="form-label fs-3">رقم العمل</label>
             <input name="phone" placeholder="رقم العمل" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
-            <label for="name" class="form-label fs-3">عنوان العمل</label>
+          <div class="col-md-6">
+            <label for="name" class="form-label fs-3">المدينة/عنوان العمل</label>
             <input name="adderss" placeholder="عنوان العمل" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
-           
+          <div class="col-md-6">
+            <label for="name" class="form-label fs-3">المنطقة/عنوان العمل</label>
             <input name="city" placeholder="المدينة" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
-           
+          <div class="col-md-6">
+            <label for="name" class="form-label fs-3">المحافظة/عنوان العمل</label>
             <input name="province" placeholder="المدينة" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <label for="name" class="form-label fs-3">الرمز البريدي</label>
             <input name="adderss" placeholder="الرمز البريدي" type="text" class="form-control fs-3 ">
                                            

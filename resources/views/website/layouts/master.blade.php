@@ -27,19 +27,19 @@
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="{{  route('dashboard'); }}">لوحة التحكم</a>
-            <a class="active" href="/yemenpay">الرئيسية</a>
+           
+            <a class="active" href="/">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>
 
-            <a href="/contuct-us">التواصل</a>
+            <a href="/contuct">التواصل</a>
             <a href="/document">Docs</a>
 
-            <a href="#language">English</a>
+           
         </nav>
          <div class="icon">
              <i class="fas fa-bars toogle" id="menu-bars"></i> 
-            <i class="fas fa-search" id="search-icon"></i>
+           
           <i class="fas fa-right-to-bracket" style="color: #192a56;">
             <a href="{{ route('registeration') }}">  </a>
             </i>

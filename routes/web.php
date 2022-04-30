@@ -28,6 +28,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
  Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
  Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
  Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
+ 
+ 
  Route::get('/moblie-conf', function (){
     return view('website/customer/moblie_conf');
 });
@@ -77,8 +79,8 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
     // Route::get('logout', [UserController::class, 'logout'])->name('logout');
       
     // /* New Added Routes */
-    // Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
-    // Route::get('/account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify'); 
+    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
+    Route::get('/account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify'); 
 
 Route::get('/about-us', function () {
     return view('website/about');

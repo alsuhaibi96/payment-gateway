@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> تسجيل الدخول</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -12,7 +13,7 @@
     <!--google font library-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap" 
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap"
     rel="stylesheet">
     <!--font icon-->
     <link rel="stylesheet" href="{{url('assets/web/css/all.min.css')}}"/>
@@ -25,16 +26,16 @@
 <body>
     <!--start header section-->
     <header>
-        <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
+        <a href="#" class="logo"> Wasl $ Pay <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="{{ route('register'); }}">انشاء حساب</a>
-            <a class="active" href="#home">تسجيل الدخول</a>
-            <a  href="#home"> الرجوع للرئيسية</a>
-            
+            <a  href="{{ route('registeration'); }}">انشاء حساب</a>
+            <a class="active" href="#">تسجيل الدخول</a>
+            <a  href="{{ route('index'); }}"> الرجوع للرئيسية</a>
+
         </nav>
         <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>
-            
+
         </div>
     </header>
     <!--end header section-->
@@ -43,7 +44,7 @@
 
       <div class="row section-header text-center p-4">
         <div class="col-12">
-            <h2 class="display-1 fw-bold"> تسجيل الدخول</h2>
+            <h2 class="display-3 fw-bold"> تسجيل الدخول</h2>
         </div>
       </div>
 
@@ -54,8 +55,8 @@
           <strong>نجاح!</strong>     {{ session()->get('success') }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-      
-      
+
+
   @endif
 
   @if(session()->has('message'))
@@ -64,18 +65,18 @@
       <strong>فشل!</strong>     {{ session()->get('message') }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  
-  
+
+
 @endif
 </div>
       <form autocomplete="off" class="login-form row container g-3" action="{{ route('custom_login') }}" method="GET">
       @csrf
-        
+
         <div class="mb-3 w-50 fs-3">
           <label for="inputPassword4" class="form-label"> البريد الالكتروني</label>
           <input placeholder="البريد الالكتروني" type="email" class="form-control fs-3" id="inputEmail4">
         </div>
-        
+
         <div class="mb-3 w-50 fs-3">
           <label for="inputEmail4" class="form-label">كلمة المرور</label>
           <input placeholder="كلمة المرور " type="password" class="form-control fs-3" id="inputEmail4">

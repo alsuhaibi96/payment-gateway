@@ -22,16 +22,30 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 */
 
 /**
- * Register and sign in routes 
+ * Register and sign in routes
  */
  Route::get('/user/register',[UserController::class,'viewRegisteration'])->name('registeration');
  Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
  Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
  Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
- 
+ Route::get('/moblie-conf', function (){
+    return view('website/customer/moblie_conf');
+});
+Route::get('/adderss', function (){
+    return view('website/customer/name_adderss');
+});
+Route::get('/card-info', function (){
+    return view('website/customer/card_info');
+});
+Route::get('/buisness-info', function (){
+    return view('website/merchant/buisness_info');
+});
+
 /**
  * register customrs and merchants
  */
+
+
 Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
 Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 
@@ -40,7 +54,7 @@ Route::get('/user/login',[UserController::class,'viewLogin'])->name('view_login'
 Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
 
 
- 
+
 
 Route::get('/', function () {
     return view('website/index');
@@ -74,13 +88,31 @@ Route::post('/contuct', function (){
     Mail::to('roor3hakimi@gmail.com')->send(new ContuctMe($data));
     return  redirect('/contuct')
     ->with('flash','تم الارسال بنجاح');
-    
-});
-Route::get('/user-profile', function () {
-    return view('website/user_profile');
+
 });
 
 
+/*
+profile settings
+*/ 
+Route::get('/settings', function () {
+    return view('website/user_profile/settings');
+});
+Route::get('/security', function () {
+    return view('website/user_profile/security');
+});
+Route::get('/privacy', function () {
+    return view('website/user_profile/privacy');
+});
+Route::get('/payment', function () {
+    return view('website/user_profile/payments');
+});
+Route::get('/notifications', function () {
+    return view('website/user_profile/notifications');
+});
+Route::get('/summery', function () {
+    return view('website/user_profile/dashboard');
+});
 
 
 /**
@@ -144,3 +176,18 @@ Route::get('/retrieve-payment', function () {
 });
 
 
+
+/* Customer Dashboard Routes */
+Route::get('/dashboard', function(){
+    //    return view('website/login');
+
+     // Check after login if user is Admin or Merchant or Customer , then show its dashboard
+     // if it was a customer
+
+     return view('customer_dashboard/home');
+ })->name('dashboard');
+
+
+ Route::get('/dashboard/invoice' , function(){
+     return view('customer_dashboard/invoice');
+ })->name('invoice');

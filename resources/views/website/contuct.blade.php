@@ -1,4 +1,4 @@
-@extends('layouts/master');
+@extends('website.layouts.master')
 
 @section('content')
  <!--start contuct form-->

@@ -22,32 +22,32 @@ class UserController extends Controller
 
    /**
      * Display registeration view ( customer or merchant)
-     * 
+     *
      */
     public function viewRegisteration(){
         return view('website.register.registeration');
- 
+
     }
- 
-    
+
+
    /**
      * Display login view ( customer or merchant)
-     * 
+     *
      */
     public function viewLogin(){
         return view('website.login.login');
- 
+
     }
- 
+
  /**
     *  Check for user radio input if 1 register as a merchant if not register as a customer
     */
     public function viewRegisterationPage(Request $request){
-        
+
         if(($request->radio1)==1)
         return  redirect()->route('customer_register');
         return  redirect()->route('merchant_register');
-               
+
        }
 
        /**
@@ -57,7 +57,7 @@ class UserController extends Controller
     public function viewMerchantRegister(){
         return view('website/merchant/register_merchant');
     }
-    
+
     /**
      * Display register view
      * @return \Illuminate\Http\Response;
@@ -68,24 +68,24 @@ class UserController extends Controller
 
 
 
-     
+
    /** create customer method
-    * 
+    *
     */
     public function createCustomer(Request $request){
         return  $this->registerMerchantOrCustomer($request,'Customer');
       }
-  
+
    /** create Merchant method
-      * 
+      *
       */
       public function createMerchant(Request $request){
           return  $this->registerMerchantOrCustomer($request,'Merchant');
         }
-  
-  
+
+
           /** Create Merchant or Customer method
-      * 
+      *
       */
       public function registerMerchantOrCustomer (Request $request , $roleName){
           Validator::Validate($request->all(),[
@@ -95,32 +95,32 @@ class UserController extends Controller
               'email'=>['email','required','min:3','unique:users,email'],
               'password'=>['required','min:5','same:confirm_password'],
 
-  
+
           ],[
-              
+
               'email.unique'=>'There is an email in the table',
               'confirm_password.same'=>'password do not match',
-  
+
           ]);
-  
+
           $user=new User();
           $user->first_name=$request->input('firstName');
           $user->middle_name=$request->input('middleName');
           $user->last_name=$request->input('lastName');
           $user->email=$request->input('email');
           $user->password= Hash::make($request->password);
-         
-          
+
+
           if($user->save())
         $user->attachRole($roleName);
           return redirect()->route('view_login')
-          ->with(['success'=>' 
-          قم بتسجيل الدخول !          
+          ->with(['success'=>'
+          قم بتسجيل الدخول !
           ']);
-    
+
           return back()->with(['error'=>'خطأ في التسجيل']);
       }
-  
+
 
          /**
           * login as a merchant or customer
@@ -130,34 +130,34 @@ class UserController extends Controller
             Validator::validate($request->all(),[
                 'email'=>['email','required','min:3','max:50'],
                 'password'=>['required','min:5']
-    
-    
+
+
             ],[
                 'email.required'=>'This field is required',
-                'password.required'=>'This field is required', 
-               
-            ]);
-    
-            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1])){
-    
-                
-                if(Auth::user()->hasRole('Merchant'))
-                return dd('heelo Merchant');
+                'password.required'=>'This field is required',
 
-                
-            
+            ]);
+
+            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1])){
+
+
+                if(Auth::user()->hasRole('Merchant'))
+                return view('merchant_dashboard/home');
+
+
+
                 if(Auth::user()->hasRole('Customer'))
-                return dd('heelo customer');
-    
-            
+                return view('customer_dashboard/home');
+
+
             }
             else {
                 return redirect()->route('login')->with(['message'=>
-    'تأكد من إدخال بياناتك بشكل صحيح'  
-    
+    'تأكد من إدخال بياناتك بشكل صحيح'
+
             ]);
             }
-                   
+
               }
             public function login(Request $request){
         try{
@@ -179,14 +179,14 @@ class UserController extends Controller
             $user=Auth::guard('api')->user();
             $user->api_token=$token;
             return $this->returnData('user',$user);
-            
+
 
         }
         catch(\Exception $ex){
             return $this->returnError($ex->getCode(),$ex->getMessage());
 
         }
-        
+
     }
     /**
      * Register a User (customer) - API.
@@ -208,9 +208,9 @@ class UserController extends Controller
                 $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
-         
+
        $user->attachRole('Customer');
-                
+
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user

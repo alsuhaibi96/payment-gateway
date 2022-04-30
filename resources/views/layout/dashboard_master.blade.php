@@ -6,9 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
+
     <title> Wasl Pay</title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
@@ -74,16 +72,21 @@
     <!-- BEGIN: Header-->
     <div class="header-navbar-shadow"></div>
     <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
-        <div class="navbar-wrapper">
+        <div class="navbar-wrapper bg-white">
             <div class="navbar-container content">
                 <div class="navbar-collapse" id="navbar-mobile">
                     <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
+
+
+
                         <ul class="nav navbar-nav">
                             <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="javascript:void(0);"><i class="ficon bx bx-menu"></i></a></li>
                         </ul>
                         <ul class="nav navbar-nav">
 
                         </ul>
+                        @yield('header')
+
                     </div>
                     <ul class="nav navbar-nav float-right">
 
@@ -157,81 +160,52 @@
                             </div>
                         </li>
                     </ul>
+
+
                 </div>
             </div>
         </div>
     </nav>
     <!-- END: Header-->
 
+        <!-- BEGIN: Main Menu-->
+        <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true" id="main-menu">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav flex-row">
+                    <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
+                        <a href="#" class="logo">
+                            <h4>
+                                <i class="fas fa-wallet"></i>
 
-    <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true" id="main-menu">
-        <div class="navbar-header">
-            <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
-                    <a href="#" class="logo">
-                        <h4>
-                            <i class="fas fa-wallet"></i>
+                                WASL PAY
+                            </h4>
 
-                            WASL PAY
-                        </h4>
-
-                    </a>
-                    </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
-            </ul>
-        </div>
-        <div class="shadow-bottom"></div>
-        <div class="main-menu-content">
-            <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-danger badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
-                        </li>
-                        <li class="active"><a class="d-flex align-items-center" href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" navigation-header text-truncate"><span data-i18n="Apps">خدماتنا</span>
-                </li>
-                <li class=" nav-item"><a href="#"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-                </li>
-                <li class=" nav-item"><a href="#"> <i class="fas fa-money-bill"></i>  <span class="menu-title text-truncate" data-i18n="Chat">المدفوعات - Payments</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{ route('invoice'); }}">  <i class="fas fa-file-invoice-dollar"></i>  <span class="menu-title text-truncate" data-i18n="Todo">الفواتير - Invoice</span></a>
-                </li>
-                <li class=" nav-item"><a href="#">  <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Calendar">إعدادات - Settings </span></a>
-                </li>
-
-
-
-
-                <li class=" navigation-header text-truncate"><span data-i18n="UI Elements"> العمليات </span>
-                </li>
-
-                <li class=" nav-item"><a href="#"> <i class="fas fa-circle-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
-                </li>
-                <li class=" nav-item"><a href="#"> <i class="fas fa-circle-minus">  </i> <span class="menu-title text-truncate" data-i18n="Icons">سحب رصيد </span></a>
-                </li>
-                <li class=" nav-item"><a href="#"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
-                </li>
-                <li class=" nav-item"><a href="#"> <i class="fas fa-money-check-alt"></i> <span class="menu-title text-truncate" data-i18n="Widgets">إيداع إلى حساب</span><span class="badge badge-light-primary badge-pill badge-round float-right ml-auto">New</span></a>
-                </li>
-
-
-                <li class=" navigation-header text-truncate"><span data-i18n="Forms &amp; Tables">الدعم الفني</span>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> الإبلاغ عن مشكلة</span></a>
-                </li>
-        </div>
-    </div>
-    <!-- END: Main Menu-->
-
-
-
+                        </a>
+                        </a></li>
+                    <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+                </ul>
+            </div>
+            <div class="shadow-bottom"></div>
+            <div class="main-menu-content">
+                <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-danger badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
+                            </li>
+                            <li class="active"><a class="d-flex align-items-center" href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                            </li>
+                        </ul>
+                    </li>
 
     @yield('content')
 
+        <!-- BEGIN: Footer-->
+        <footer class="footer footer-static footer-light">
+            <p class="clearfix mb-0"><span class="float-left d-inline-block">2022 &copy; Wasl Team</span><span class="float-right d-sm-inline-block d-none">Made with<i class="bx bxs-heart pink mx-50 font-small-3"></i>by<a class="text-uppercase" href="#WaslTeam.com" target="_blank"> Wasl Team</a></span>
+                <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
+            </p>
+        </footer>
+        <!-- END: Footer-->
 
 
     <!-- BEGIN: Vendor JS-->

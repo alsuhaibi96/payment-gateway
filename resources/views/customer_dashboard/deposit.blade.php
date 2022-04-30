@@ -3,10 +3,11 @@
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
-   إضافة رصيد
+    إيداع إلى حساب
     </b>
 </span>
 @endsection
+
 
 @section('content')
 
@@ -22,13 +23,14 @@
                 <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                 </li>
 
-                <li class="active nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-circle-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
+
+                <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-circle-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                 </li>
                 <li class=" nav-item"><a href="{{ route('withdraw') }}"> <i class="fas fa-circle-minus">  </i> <span class="menu-title text-truncate" data-i18n="Icons">سحب رصيد </span></a>
                 </li>
                 <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
                 </li>
-                <li class=" nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-money-check-alt"></i> <span class="menu-title text-truncate" data-i18n="Widgets">إيداع إلى حساب</span><span class="badge badge-light-primary badge-pill badge-round float-right ml-auto">New</span></a>
+                <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-money-check-alt"></i> <span class="menu-title text-truncate" data-i18n="Widgets">إيداع إلى حساب</span><span class="badge badge-light-primary badge-pill badge-round float-right ml-auto">New</span></a>
                 </li>
 
                 <li class=" navigation-header text-truncate"><span data-i18n="Forms &amp; Tables">الدعم الفني</span>

@@ -139,19 +139,31 @@ Route::get('/retrieve-payment', function () {
 
 
 
-/* Customer Dashboard Routes */
+/*********** Customer Dashboard Routes *************/
 Route::get('/customer_dashboard', function(){
      return view('customer_dashboard/home');
- })->name('customer_dashboard');
+ })->name('home');
 
- Route::get('/customer_dashboard/add_balance', function(){
+Route::get('/customer_dashboard/add_balance', function(){
     return view('customer_dashboard/addBalance');
 })->name('addBalance');
 
+Route::get('/customer_dashboard/withdraw', function(){
+    return view('customer_dashboard/withdraw');
+})->name('withdraw');
+
+Route::get('/customer_dashboard/transfer', function(){
+    return view('customer_dashboard/transfer');
+})->name('transfer');
+
+Route::get('/customer_dashboard/deposit', function(){
+    return view('customer_dashboard/deposit');
+})->name('deposit');
 
 
 
- /* Merchant Dashboard Routes*/
+
+ /********** Merchant Dashboard Routes *************/
  Route::get('/merchant_dashboard', function(){
     return view('merchant_dashboard/home');
 })->name('merchant_dashboard');

@@ -112,7 +112,7 @@ class UserController extends Controller
          
           
           if($user->save())
-        $user->attachRole($roleName);
+           $user->attachRole($roleName);
           return redirect()->route('view_login')
           ->with(['success'=>' 
           قم بتسجيل الدخول !          
@@ -138,7 +138,7 @@ class UserController extends Controller
                
             ]);
     
-            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1])){
+            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
     
                 
                 if(Auth::user()->hasRole('Merchant'))
@@ -152,7 +152,7 @@ class UserController extends Controller
             
             }
             else {
-                return redirect()->route('login')->with(['message'=>
+                return redirect()->route('view_login')->with(['message'=>
     'تأكد من إدخال بياناتك بشكل صحيح'  
     
             ]);

@@ -7,7 +7,9 @@ use App\Mail\ContuctMe;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
+	
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,13 +36,31 @@ Route::post('/customer/register', [UserController::class,'createCustomer'])->nam
 Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 
 Route::get('/user/login',[UserController::class,'viewLogin'])->name('view_login');
-Route::get('/login',[UserController::class,'customLogin'])->name('custom_login');
+
+Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
+
 
  
 
 Route::get('/', function () {
     return view('website/index');
 });
+
+/**
+ * Reset password & verity email
+ * 
+ */
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+
+   /**
+    * Verification Routes
+    */
+
+
 
 Route::get('/about-us', function () {
     return view('website/about');
@@ -122,4 +142,5 @@ Route::get('/retrieve-customer', function () {
 Route::get('/retrieve-payment', function () {
     return view('docs/retrieve_payment');
 });
+
 

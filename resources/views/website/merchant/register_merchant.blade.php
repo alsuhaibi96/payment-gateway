@@ -28,7 +28,7 @@
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
             <a  href="#dashboard" class="active">انشاء حساب</a>
-            <a class="" href="#home">تسجيل الدخول</a>
+            <a class="" href="{{ route('view_login') }}">تسجيل الدخول</a>
             <a  href="#home"> الرجوع للرئيسية</a>
         </nav>
         <div class="icon">

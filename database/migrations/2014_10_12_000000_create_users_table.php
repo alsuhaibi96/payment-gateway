@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->boolean('verified')->default(false);
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });

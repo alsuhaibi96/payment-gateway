@@ -27,7 +27,7 @@
     <header>
         <a href="#" class="logo">YEMEN $ Pay <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="{{ route('register'); }}">انشاء حساب</a>
+            <a  href="{{ route('registeration'); }}">انشاء حساب</a>
             <a class="active" href="#home">تسجيل الدخول</a>
             <a  href="#home"> الرجوع للرئيسية</a>
             
@@ -67,19 +67,21 @@
   
   
 @endif
+
 </div>
-      <form autocomplete="off" class="login-form row container g-3" action="{{ route('custom_login') }}" method="GET">
+      <form autocomplete="off" class="login-form row container g-3" action="{{route('customLogin')}}" method="POST">
+
       @csrf
         
         <div class="mb-3 w-50 fs-3">
           <label for="inputPassword4" class="form-label"> البريد الالكتروني</label>
-          <input placeholder="البريد الالكتروني" type="email" class="form-control fs-3" id="inputEmail4">
+          <input name="email" placeholder="البريد الالكتروني" type="email" class="form-control fs-3" id="inputEmail4">
         </div>
         
         <div class="mb-3 w-50 fs-3">
           <label for="inputEmail4" class="form-label">كلمة المرور</label>
-          <input placeholder="كلمة المرور " type="password" class="form-control fs-3" id="inputEmail4">
-          <a href="#"> نسيت كلمة المرور ؟ </a>
+          <input name="password" placeholder="كلمة المرور " type="password" class="form-control fs-3" id="inputEmail4">
+          <a href="{{ route('forget.password.get') }}"> نسيت كلمة المرور ؟ </a>
         </div>
         <div class="col-12">
           <button type="submit" class="btn login-btn">تسجيل الدخول</button>

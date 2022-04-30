@@ -80,7 +80,7 @@
                 </div>
                 <div class="mt-30" data-v-e9c818fa="">
                     <button type="submit" type="button" id="register_btn" disabled="disabled" class=" col-4 p-1 up-btn  rounded-3 m-auto  up-btn-primary width-md up-btn-block" data-v-e9c818fa="">انشاء حساب </button>
-                    <p class="mb-0 mt-3 mb-2" data-v-e9c818fa="">Already have an account? <a href="" data-v-e9c818fa="">
+                    <p class="mb-0 mt-3 mb-2" data-v-e9c818fa="">Already have an account? <a href="{{ route('view_login') }}" data-v-e9c818fa="">
           Log In
         </a></p>
                 </div>

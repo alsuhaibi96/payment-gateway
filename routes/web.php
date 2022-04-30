@@ -36,7 +36,7 @@ Route::get('/card-info', function (){
     return view('website/customer/card_info');
 });
 Route::get('/buisness-info', function (){
-    return view('website/customer/buisness_info');
+    return view('website/merchant/buisness_info');
 });
 
 /**
@@ -70,11 +70,29 @@ Route::post('/contuct', function (){
     ->with('flash','تم الارسال بنجاح');
 
 });
-Route::get('/user-profile', function () {
-    return view('website/user_profile');
+
+
+/*
+profile settings
+*/ 
+Route::get('/settings', function () {
+    return view('website/user_profile/settings');
 });
-
-
+Route::get('/security', function () {
+    return view('website/user_profile/security');
+});
+Route::get('/privacy', function () {
+    return view('website/user_profile/privacy');
+});
+Route::get('/payment', function () {
+    return view('website/user_profile/payments');
+});
+Route::get('/notifications', function () {
+    return view('website/user_profile/notifications');
+});
+Route::get('/summery', function () {
+    return view('website/user_profile/dashboard');
+});
 
 
 /**

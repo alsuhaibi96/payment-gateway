@@ -652,4 +652,54 @@ section:nth-child(even).login-form
 .rounded-circle{
     width: 15rem;
 }
+/* user profile style */
+.head{
+    margin-top: 20px;
+     
+     background-color: var(--black);
+     color: #fff;
+     padding: 1rem 7%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+    
+     box-shadow: var(--box-shadow);
+ 
+ }
+ .head .navbar a
+ {
+     font-size: 1.7rem;
+     border-radius: 0.5rem;
+     padding: .5rem 1.5rem;
+     color: #fff;
+ 
+ }
+ .head .icon i,
+ .head .icon a
+ {
+     cursor: pointer;
+     margin-left: .5rem;
+     height: 4.5rem;
+     line-height: 4.5rem;
+     width: 4.5rem;
+     text-align: center;
+     font-size: 1.7rem;
+     color: var(--black);
+     border-radius: 50%;
+     background: #eee;
+ }
+ .head .icon i:hover,
+ .head .icon a:hover
+ {
+     color: #000;
+     background: var(--green);
+     transform: rotate(360deg);
+ }
+ .head .icon #menu-bars
+ {
+     display: none;
+ }
+ section{
+     background-color: #eee;
+ }
 

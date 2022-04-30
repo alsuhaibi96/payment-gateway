@@ -26,15 +26,7 @@
     <!--start header section-->
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
-        <nav class="navbar" id="menu">
-            <a  href="#dashboard" class="active">انشاء حساب</a>
-            <a class="" href="#home">تسجيل الدخول</a>
-            <a  href="#home"> الرجوع للرئيسية</a>
-        </nav>
-        <div class="icon">
-            <i class="fas fa-bars toogle" id="menu-bars"></i>
-            
-        </div>
+        
     </header>
     <!--end header section-->
     <!--start signIn form-->
@@ -53,18 +45,10 @@
             <input name="card" placeholder="رقم بطاقة الائتمان" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-6">
-            <label for="name" class="form-label fs-3">نوع البطاقة</label>
-          <select class="form-select form-control fs-3" aria-label="Default select example">
-            <option selected>select your card type</option>
-            <option value="1">master</option>
-            <option value="2">union</option>
-            <option value="3">cac bank</option>
-          </select>
-        </div>
+         
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">تاريخ الانتهاء</label>
-            <input name="date" placeholder="تاريخ الانتهاء" type="date" class="form-control fs-3 ">
+            <input name="date" placeholder="تاريخ الانتهاء" type="text" class="form-control fs-3 ">
                                            
           </div>
           <div class="col-md-6">

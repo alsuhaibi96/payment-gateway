@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('website.layouts.master')
   
 @section('content')
 <section class=" mt-5 container justify-content-center pt-5 justify-content-around">

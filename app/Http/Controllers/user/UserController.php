@@ -11,7 +11,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\auth\UserVerify;
 use App\Models\Role;
+use Illuminate\Support\Str;
+use Mail;
 
 class UserController extends Controller
 {
@@ -109,18 +112,74 @@ class UserController extends Controller
           $user->last_name=$request->input('lastName');
           $user->email=$request->input('email');
           $user->password= Hash::make($request->password);
-         
+
+          $token = Str::random(64);
           
           if($user->save())
+
            $user->attachRole($roleName);
-          return redirect()->route('view_login')
-          ->with(['success'=>' 
-          قم بتسجيل الدخول !          
-          ']);
+           UserVerify::create([
+            'user_id' => $user->id, 
+            'token' => $token
+          ]);
+
+      Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Email Verification Mail');
+        });
+       
+       
+      return redirect()->route("dashboard_view")->withSuccess('Great! You have Successfully loggedin');
+        //   return redirect()->route('login')
+        //   ->with(['success'=>' 
+        //   قم بتسجيل الدخول !          
+        //   ']);
     
-          return back()->with(['error'=>'خطأ في التسجيل']);
+        //   return back()->with(['error'=>'خطأ في التسجيل']);
       }
   
+
+       /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function verifyAccount($token)
+    {
+        $verifyUser = UserVerify::where('token', $token)->first();
+  
+        $message = 'Sorry your email cannot be identified.';
+  
+        if(!is_null($verifyUser) ){
+            $user = $verifyUser->user;
+              
+            if(!$user->is_email_verified) {
+                $verifyUser->user->is_email_verified = 1;
+                $verifyUser->user->save();
+                $message = "Your e-mail is verified. You can now login.";
+            } else {
+                $message = "Your e-mail is already verified. You can now login.";
+            }
+        }
+  
+      return redirect()->route('login')->with(['message'=>
+    $message
+              ]);
+    }
+
+       /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function dashboard()
+    {
+        if(Auth::check()){
+            return view('dashboard');
+        }
+  
+        return redirect()->route("login")->with('message', 'no accesss');
+    }
 
          /**
           * login as a merchant or customer
@@ -142,52 +201,56 @@ class UserController extends Controller
     
                 
                 if(Auth::user()->hasRole('Merchant'))
-                return dd('heelo Merchant');
+                return dd('merchant');
 
                 
             
-                if(Auth::user()->hasRole('Customer'))
-                return dd('heelo customer');
+                if(Auth::user()->hasRole('Customer'));
+                return dd('customer');
+
+              
     
             
             }
             else {
-                return redirect()->route('view_login')->with(['message'=>
+                return redirect()->route('login')->with(['message'=>
     'تأكد من إدخال بياناتك بشكل صحيح'  
     
             ]);
             }
                    
               }
-            public function login(Request $request){
-        try{
-            $rules=[
-                'email' => 'required|email',
-                'password' => 'required|string|min:6',
-            ];
 
-            $validator = Validator::make($request->all(), $rules);
-            $credentials=$request->only(['email','password']);
-            $token=Auth::guard('api')->attempt($credentials);
-            if ($validator->fails()) {
-                $code=$this->returnCodeAccordingToInput($validator);
-                return $this->returnValidationError($code,$validator);
-            }
-            if (! $token) {
-                return $this->returnError('401','بيانات الدخول غير صحيحة');
-            }
-            $user=Auth::guard('api')->user();
-            $user->api_token=$token;
-            return $this->returnData('user',$user);
+
+    //         public function login(Request $request){
+    //     try{
+    //         $rules=[
+    //             'email' => 'required|email',
+    //             'password' => 'required|string|min:6',
+    //         ];
+
+    //         $validator = Validator::make($request->all(), $rules);
+    //         $credentials=$request->only(['email','password']);
+    //         $token=Auth::guard('api')->attempt($credentials);
+    //         if ($validator->fails()) {
+    //             $code=$this->returnCodeAccordingToInput($validator);
+    //             return $this->returnValidationError($code,$validator);
+    //         }
+    //         if (! $token) {
+    //             return $this->returnError('401','بيانات الدخول غير صحيحة');
+    //         }
+    //         $user=Auth::guard('api')->user();
+    //         $user->api_token=$token;
+    //         return $this->returnData('user',$user);
             
 
-        }
-        catch(\Exception $ex){
-            return $this->returnError($ex->getCode(),$ex->getMessage());
+    //     }
+    //     catch(\Exception $ex){
+    //         return $this->returnError($ex->getCode(),$ex->getMessage());
 
-        }
+    //     }
         
-    }
+    // }
     /**
      * Register a User (customer) - API.
      *
@@ -222,9 +285,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    // public function logout() {
+    //     auth()->logout();
+    //     return response()->json(['message' => 'User successfully signed out']);
+    // }
+
+    
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
     public function logout() {
-        auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        Session::flush();
+        Auth::logout();
+  
+        return Redirect('login');
     }
     /**
      * Refresh a token.

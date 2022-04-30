@@ -28,7 +28,7 @@
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
             <a  href="#dashboard" class="active">انشاء حساب</a>
-            <a class="" href="{{ route('view_login') }}">تسجيل الدخول</a>
+            <a class="" href="{{ route('login') }}">تسجيل الدخول</a>
             <a  href="#home"> الرجوع للرئيسية</a>
         </nav>
         <div class="icon">
@@ -62,7 +62,7 @@
        
           <div class="col-md-3">
             <label for="name" class="form-label">اللقب</label>
-            <input name="lastName" placeholder="اللقب" type="text" class="form-control @error('lastName') is-invalid @enderror" id="">
+            <input name="lastName" placeholder="اللقب" type="text" class="form-control @error('lastName') is-invalid @enderror" id="" value="{{ old('lastName') }}">
             @error('lastName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
          </div>

@@ -58,6 +58,7 @@ Route::post('/login',[UserController::class,'customLogin'])->name('customLogin')
 
 
 
+
 Route::get('/', function () {
     return view('website/index');
 });
@@ -76,11 +77,11 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
     * Verification Routes
     */
 
-    // Route::get('logout', [UserController::class, 'logout'])->name('logout');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
       
     // /* New Added Routes */
-    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
-    Route::get('/account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify'); 
+ Route::get('user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
+ Route::get('account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify'); 
 
 Route::get('/about-us', function () {
     return view('website/about');
@@ -103,7 +104,8 @@ profile settings
 */ 
 Route::get('/settings', function () {
     return view('website/user_profile/settings');
-});
+})->name('user_profile');
+
 Route::get('/security', function () {
     return view('website/user_profile/security');
 });

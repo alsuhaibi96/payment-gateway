@@ -113,9 +113,10 @@ class UserController extends Controller
           $user->email=$request->input('email');
           $user->password= Hash::make($request->password);
 
-          $token = Str::random(64);
+         
           
           if($user->save())
+          $token = Str::random(64);
 
            $user->attachRole($roleName);
            UserVerify::create([
@@ -129,7 +130,7 @@ class UserController extends Controller
         });
        
        
-      return redirect()->route("dashboard_view")->withSuccess('Great! You have Successfully loggedin');
+      return redirect()->route("login")->with(['success'=>'تم إرسال رسالة تأكيد لحسابك على الايميل!']);
         //   return redirect()->route('login')
         //   ->with(['success'=>' 
         //   قم بتسجيل الدخول !          
@@ -156,13 +157,13 @@ class UserController extends Controller
             if(!$user->is_email_verified) {
                 $verifyUser->user->is_email_verified = 1;
                 $verifyUser->user->save();
-                $message = "Your e-mail is verified. You can now login.";
+                $message = "تم تأكيد ايميلك , يمكنك تسجيل الدخول";
             } else {
-                $message = "Your e-mail is already verified. You can now login.";
+                $message = "تم تأكيد ايميلك من قبل , قم بتسجيل الدخول!";
             }
         }
   
-      return redirect()->route('login')->with(['message'=>
+      return redirect()->route('login')->with(['success'=>
     $message
               ]);
     }
@@ -197,27 +198,30 @@ class UserController extends Controller
                
             ]);
     
-            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-    
-                
+            if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1,'is_email_verified'=>1])){
+            
                 if(Auth::user()->hasRole('Merchant'))
-                return dd('merchant');
-
+                return redirect()->route('dashboard');
                 
             
-                if(Auth::user()->hasRole('Customer'));
-                return dd('customer');
-
-              
+                if(Auth::user()->hasRole('Customer'))
+                return redirect()->route('user_profile');
+               
+             
     
             
             }
-            else {
+            else if(!Auth::attempt(['is_email_verified'=>1])){
                 return redirect()->route('login')->with(['message'=>
-    'تأكد من إدخال بياناتك بشكل صحيح'  
+           'قم بتأكيد الايميل !'  
     
             ]);
             }
+
+            else
+                return redirect()->route('login')->with(['message'=>
+          'تأكد من إدخال بياناتك بشكل صحيح'   ]);
+    
                    
               }
 

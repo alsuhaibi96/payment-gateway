@@ -11,7 +11,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\auth\UserVerify;
 
 
-class User extends Authenticatable implements JWTSubject,MustVerifyEmail
+class User extends Authenticatable implements JWTSubject
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
@@ -63,9 +63,5 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
     public function getJWTCustomClaims() {
         return [];
     }
-    public function verifyUser()
-{
-  return $this->hasOne(UserVerify::class);
-
-}
+   
 }

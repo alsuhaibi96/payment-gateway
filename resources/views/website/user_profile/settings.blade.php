@@ -22,9 +22,7 @@
     <nav class="navbar ">
   
                 <a class="active" href="#">لوحة التحكم</a>
-                <a  href="#">إرسال</a>
-                <a href="#">المحفظة</a>
-                <a href="#"> الانشطة</a>
+              
     
                 <a href="#">المساعدة</a>
               
@@ -48,9 +46,7 @@
                 <a  href="/settings">حسابي</a>
                 <a href="/security">الامان</a>
                 <a href="/privacy">خصوصية البيانات</a>
-                <a href="/payment"> المدفوعات</a>
-    
-                <a href="#">الاشعارات</a>
+               
                
     </nav>
 

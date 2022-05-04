@@ -112,24 +112,9 @@ Route::get('/security', function () {
 Route::get('/privacy', function () {
     return view('website/user_profile/privacy');
 });
-Route::get('/payment', function () {
-    return view('website/user_profile/payments');
-});
-Route::get('/notifications', function () {
-    return view('website/user_profile/notifications');
-});
-Route::get('/summery', function () {
-    return view('website/user_profile/dashboard');
-});
-Route::get('/send', function () {
-    return view('website/user_profile/sendMoney');
-});
-Route::get('/transfer', function () {
-    return view('website/user_profile/transfer');
-});
-Route::get('/activity', function () {
-    return view('website/user_profile/activity');
-});
+
+
+
 
 
 /**

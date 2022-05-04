@@ -23,9 +23,7 @@
     <nav class="navbar ">
   
                 <a class="active" href="#">لوحة التحكم</a>
-                <a  href="#">إرسال</a>
-                <a href="#">المحفظة</a>
-                <a href="#"> الانشطة</a>
+               
     
                 <a href="#">المساعدة</a>
               

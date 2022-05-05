@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,9 @@
             text-decoration: none;
             text-transform: uppercase;
         }
+        html{
+            direction: rtl;
+        }
 
         .container {
             min-height: 100vh;
@@ -39,6 +42,10 @@
             padding: 20px;
             width: 600px;
             padding-top: 160px;
+        }
+        .info .name
+        {
+            color: #fff;
         }
 
         .container form .inputBox {
@@ -199,17 +206,16 @@
                     @foreach ($invoice_data as $item )
                     <tr>
                         
-                        <p class="name">رقم الطلب :{{ $item->invoice_referance}}</p>
-                       
-                       
-                        المشتريات :
-                       @foreach ($products as $product  )
-                       <p class="name">{{ $product->product_name
-                    }}</p>
-                       @endforeach
+                        <p class="name">رقم الطلب :  {{ $item->invoice_referance}}</p>
+                       <!-- @foreach ($products as $product  )
+                        <p class="name">المشتريات  :  {{ $product->product_name}}</p>
+
+                       @endforeach -->
                      
-                        <p class="name">{{ $item->total_amout}} الاجمالي :</p>
-                        <p class="name">{{ $item->currency}}العملة :</p>
+                        
+                        <p class="name">الأجمالي  :  {{ $item->total_amout}}</p>
+                        <p class="name">العملة  :  {{ $item->currency}}</p>
+                       
                         
                     </tr>
                     @endforeach
@@ -291,7 +297,13 @@
                     <input type="text" maxlength="4" class="cvv-input">
                 </div>
             </div>
-            <input type="submit" value="submit" class="submit-btn">
+            <div class="inputBox" style="justify-content: space-between; display:flex;text-align:center;gap:10px;">
+            @foreach ($invoice_data as $item )
+                <a href="{{$item->next_url}}" class="submit-btn">pay</a>
+                <a href="{{$item->cancel_url}}" class="submit-btn">cancel</a>
+            @endforeach
+
+            </div>
         </form>
 
     </div>

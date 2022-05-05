@@ -61,7 +61,7 @@ Route::get('/buisness-info', function (){
 /* Index Routes */
 Route::get('/', function () {
     return view('website/index');
-});
+})->name('index');
 
 /**
  * Reset password & verity email

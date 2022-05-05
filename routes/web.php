@@ -34,8 +34,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
  * register customrs and merchants
  */
 
-Route::post('/customer/signup', [UserController::class,'createCustomer'])->name('register_customer');
-Route::post('/merchant/signup', [UserController::class,'createMerchant'])->name('register_merchant');
+Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
+Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
 Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
 

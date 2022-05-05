@@ -23,20 +23,7 @@ class checkoutController extends Controller
     
     use general_trait;
     public function payment_order(Request $request){
-        // try{
-        //     $this->validate($request,[
-        //         'secret_key'=>'required',
-        //         'public_key'=>'required',
-        //         'products'=>'required',
-        //         'total_amout'=>'required',
-        //         'currency'=>'required',
     
-        //     ]);
-
-        // }
-        // catch(ValidationException $e){
-        //     return response()->json($e->validator->errors(),422);
-        // }
         
         $info=array('refrence_id'=>1,'products'=>[array('id'=>1,'name'=>'laptop','quantity'=>2,'unint_amount'=>3000),array('id'=>3,'name'=>'laptop','quantity'=>5,'unint_amount'=>100)]);
         $private_key=$request->header('private_key');
@@ -112,7 +99,7 @@ class checkoutController extends Controller
             $products_unit_amounts=array_column($products,'unit_amount');
     
            
-            $product_model_obj=new Products();
+           
     
             for($i=0;$i<count($products_ids);$i++){
     
@@ -128,6 +115,7 @@ class checkoutController extends Controller
        
     
             }
+            
             Products::insert($productsArr);
             return $this->returnData('invoice',$invoice,'invoice created successfuly');
 
@@ -141,19 +129,10 @@ class checkoutController extends Controller
     }
     public function do_payment($invoice_referance){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->get();
-        // $products=DB::table('products')
-        // ->join('orders_invoices','products.invoice_id',
-        // '=','orders_invoices.id');
+    
 
         $products = Orders_invoice::find(1)->productsGet;
-        //  foreach($products as $pro){
-        //      dd($pro->product_name);
-        //  }
-
- 
-     
-        // return $invoice_data;
-        // dd($products->product_name);
+   
 
         return view('paymentView.paymentView' ,compact('invoice_data','products'));
 

@@ -100,13 +100,14 @@
 
     <script>
         
-document.getElementById('client_radio').onclick = function() {
-    console.log("hi");
-    document.getElementById('register_btn').disabled = false;
-}
-document.getElementById('freelancer_radio').onclick = function() {
-    document.getElementById('register_btn').disabled = false;
-}
-        </script>
+        document.getElementById('client_radio').onclick = function() {
+            console.log("hi");
+            document.getElementById('register_btn').disabled = false;
+        }
+        document.getElementById('freelancer_radio').onclick = function() {
+            document.getElementById('register_btn').disabled = false;
+        }
+                </script>
+        
 </body>
 </html>

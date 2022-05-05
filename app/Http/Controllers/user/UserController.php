@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\general_trait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\bank_account;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -113,12 +114,23 @@ class UserController extends Controller
           $user->email=$request->input('email');
           $user->password= Hash::make($request->password);
 
+          $user->public_key=$this->generate_string(25);
+          $user->private_key=$this->generate_string(50);
+
+          $user->save();
+
+          $bank_account = new bank_account();
+          $bank_account->user_id = $user->id;
+          $bank_account->balance = 10000000.00;
+          $bank_account->account_number=$this->generate_string(10);
+          $bank_account->save();
+         
          
           
           if($user->save())
           $token = Str::random(64);
+          $user->attachRole($roleName);
 
-           $user->attachRole($roleName);
            UserVerify::create([
             'user_id' => $user->id, 
             'token' => $token
@@ -211,16 +223,16 @@ class UserController extends Controller
     
             
             }
-            else if(!Auth::attempt(['is_email_verified'=>1])){
-                return redirect()->route('login')->with(['message'=>
-           'قم بتأكيد الايميل !'  
+        //     else if(!Auth::attempt(['email'=>$request->email,'is_email_verified'=>1])){
+        //         return redirect()->route('login')->with(['message'=>
+        //    'قم بتأكيد الايميل !'  
     
-            ]);
-            }
+        //     ]);
+        //     }
 
             else
                 return redirect()->route('login')->with(['message'=>
-          'تأكد من إدخال بياناتك بشكل صحيح'   ]);
+          ' تأكد من إدخال بياناتك بشكل صحيح او قم بتأكيد الايميل'   ]);
     
                    
               }
@@ -336,5 +348,16 @@ class UserController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
+    }
+    public function generate_string($strength = 16) {
+        $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $input_length = strlen($input);
+        $random_string = '';
+        for($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+     
+        return $random_string;
     }
 }

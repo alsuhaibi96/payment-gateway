@@ -29,7 +29,20 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
  Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
  Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
  
- 
+
+/**
+ * register customrs and merchants
+ */
+
+Route::post('/customer/signup', [UserController::class,'createCustomer'])->name('register_customer');
+Route::post('/merchant/signup', [UserController::class,'createMerchant'])->name('register_merchant');
+Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
+Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
+
+
+
+
+
  Route::get('/moblie-conf', function (){
     return view('website/customer/moblie_conf');
 });
@@ -42,20 +55,6 @@ Route::get('/card-info', function (){
 Route::get('/buisness-info', function (){
     return view('website/merchant/buisness_info');
 });
-
-/**
- * register customrs and merchants
- */
-
-
-Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
-Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
-
-Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
-
-Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
-
-
 
 
 
@@ -82,6 +81,7 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
     // /* New Added Routes */
  Route::get('user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
  Route::get('account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify'); 
+ 
 
 Route::get('/about-us', function () {
     return view('website/about');
@@ -122,7 +122,6 @@ Route::get('/privacy', function () {
  * You should go to this route every time the database data are lost
  */
 Route::get('/generate_roles',[SettingController::class,'generateRoles']);
-
 
 
 Route::get('/document', function () {

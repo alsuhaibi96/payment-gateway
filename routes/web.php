@@ -93,7 +93,7 @@ Route::get('/contuct', function (){
 });
 Route::post('/contuct', function (){
     $data=request(['name','email','subject','message']);
-    Mail::to('roor3hakimi@gmail.com')->send(new ContuctMe($data));
+    Mail::to('waslpayment@gmail.com')->send(new ContuctMe($data));
     return  redirect('/contuct')
     ->with('flash','تم الارسال بنجاح');
 

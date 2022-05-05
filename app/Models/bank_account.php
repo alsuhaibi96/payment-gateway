@@ -12,4 +12,7 @@ class bank_account extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function Credit_cards(){
+        return $this->hasOne('App\Models\Credit_cards','bank_accounts_id');
+    }
 }

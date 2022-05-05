@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\api\test\checkoutValidatorController;
 use App\Models\Orders_invoice;
 use App\Http\Traits\general_trait;
+use App\Models\bank_account;
 use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ use App\Models\Products;
 
 
 use Dotenv\Exception\ValidationException;
-
+use Illuminate\Support\Facades\Redirect;
 
 class checkoutController extends Controller
 
@@ -54,7 +55,7 @@ class checkoutController extends Controller
         {
             return $this->returnError('408',"تاكد من كتابة البيانات بشكل صحيح");
         }
-         return response($this->create_order($info),200);
+        //  return response($this->create_order($info),200);
 
     }
     public function generate_string($strength = 16) {
@@ -72,10 +73,10 @@ class checkoutController extends Controller
         $merchant_data=User::where('private_key',$private_key)->first();
         $feedback=array("invoice_referance"=>$this->generate_string(10),"expires_on"=>date("h:i:s a m/d/Y",strtotime('+24 hours')));
         $order_invoice_url=
-        array("success_url"=>"http://localhost:8000/api/test/merchant/do_payment_order/".
+        array("next_url"=>"http://localhost:8000/api/test/merchant/do_payment_order/".
         $feedback['invoice_referance'],
-        "cancel_url"=>"http://localhost:8000/api/test/merchant/cancel_payment_order/".
-        $feedback['invoice_referance']."/cancel_payment");
+        "cancel_next_url"=>"http://localhost:8000/api/test/merchant/cancel_payment_order/".
+        $feedback['invoice_referance']);
 
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
         $invoice=new Orders_invoice();
@@ -86,6 +87,8 @@ class checkoutController extends Controller
         $invoice->order_reference=$orders['order_reference'];
         $invoice->total_amout=$orders['total_amout'];
         $invoice->currency=$orders['currency'];
+        $invoice->next_url=$orders['next_url'];
+        $invoice->cancel_next_url=$orders['cancel_next_url'];
         $invoice->success_url=$orders['success_url'];
         $invoice->cancel_url=$orders['cancel_url'];
 
@@ -98,25 +101,28 @@ class checkoutController extends Controller
             $products_quantity=array_column($products,'quantity');
             $products_unit_amounts=array_column($products,'unit_amount');
     
+            
            
-           
+
     
             for($i=0;$i<count($products_ids);$i++){
     
-                $productsArr[] = [
+                $productsArr = array(
                     'product_id' =>$products_ids[$i],
                     'product_name'=> $products_names[$i],
                     'quantity'=> $products_quantity[$i],
                     'unit_amount'=> $products_unit_amounts[$i],
                     'invoice_id'=>  $invoice->id,
 
-                ];
+                );
     
        
     
             }
             
             Products::insert($productsArr);
+            
+            
             return $this->returnData('invoice',$invoice,'invoice created successfuly');
 
         }
@@ -133,8 +139,55 @@ class checkoutController extends Controller
 
         $products = Orders_invoice::find(1)->productsGet;
    
+     
 
         return view('paymentView.paymentView' ,compact('invoice_data','products'));
 
+    }
+    public function cancel_payment($invoice_referance){
+        $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->first();
+        
+       
+
+        if(!$invoice_data){
+            // return $this->returnData('delete sone',$data->id,"delete");
+             return $this->returnError('4070','هذا الطلب قد تم حذفة من قبل');
+        }
+        else
+        {
+            $data=Orders_invoice::find($invoice_data->id);
+            $cancel_url=$invoice_data->cancel_url;
+            $data->delete();
+            $success_deleted_msg= $this->returnSuccess('تم حذف الطلب بنجاح');
+            return Redirect::away($cancel_url);
+            
+            
+
+        }     
+        
+
+        
+
+    }
+    public function Financial_processing(Request $request){
+        $validated = $request->validate([
+            'card_number' => 'required|unique|max:10',
+            'card_holder' => 'required',
+            'expiration_mm' => 'required|date',
+            'expiration_yy' => 'required|date',
+            'cvv' => 'required|unique|max:4',
+        ]);
+        $public_key=$request->header('public_key');
+        $card_number=$request->input('card_number');
+        $card_holder=$request->input('card_holder');
+        $expiration_mm=$request->input('expiration_mm');
+        $expiration_yy=$request->input('expiration_yy');
+        $cvv=$request->input('cvv');
+        
+
+
+    }
+    public function get_acounts(){
+        return bank_account::find(1)->Credit_cards;
     }
 }

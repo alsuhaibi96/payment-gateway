@@ -79,6 +79,8 @@ Route::group([
 ], function () {
     Route::post('/merchant/payment_order', [checkoutController::class, 'payment_order'])->name('payment_order');
     Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
+    Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
+    Route::get('acounts',[checkoutController::class,'get_acounts']);
       
 });
 

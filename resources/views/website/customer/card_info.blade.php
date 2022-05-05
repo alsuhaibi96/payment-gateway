@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب</title>
+    <title>wasel pay</title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -48,22 +48,26 @@
          
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">تاريخ الانتهاء</label>
-            <input name="date" placeholder="تاريخ الانتهاء" type="text" class="form-control fs-3 ">
+            <input name="date" placeholder="MM/YY" type="text" inputmode="numeric" aria-label="Card expiration date" class="form-control fs-3 ">
                                            
           </div>
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">رمز الحماية</label>
-            <input name="code" placeholder="رمز الحماية" type="text" class="form-control fs-3 ">
+            <input name="code" placeholder="CVV" type="text" class="form-control fs-3 ">
                                            
           </div>
           <div class="col-md-6">
-            <label for="name" class="form-label fs-3">عنوان وصول الفواتير</label>
-            <input name="billing" placeholder="عنوان وصول الفواتير" type="text" class="form-control fs-3 ">
+            <label for="name" class="form-label fs-3">الاسم على البطاقة</label>
+            <input name="billing" placeholder="اسمك الكامل" type="text" class="form-control fs-3 ">
                                            
           </div>
+          
         
           <div class="col-12">
             <button type="submit" class="btn login-btn">الموافقة و إنشاء حساب</button>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn login-btn">الغاء</button>
           </div><hr>
         </form>
     </section>

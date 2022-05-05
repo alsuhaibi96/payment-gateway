@@ -86,6 +86,7 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
  Route::get('account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify');
 
 
+
 Route::get('/about-us', function () {
     return view('website/about');
 });
@@ -181,17 +182,35 @@ Route::get('/retrieve-payment', function () {
 
 
 
-/* Customer Dashboard Routes */
-Route::get('/dashboard', function(){
-    //    return view('website/login');
-
-     // Check after login if user is Admin or Merchant or Customer , then show its dashboard
-     // if it was a customer
-
+/*********** Customer Dashboard Routes *************/
+Route::get('/customer_dashboard', function(){
      return view('customer_dashboard/home');
- })->name('dashboard');
+ })->name('home');
+
+Route::get('/customer_dashboard/add_balance', function(){
+    return view('customer_dashboard/addBalance');
+})->name('addBalance');
+
+Route::get('/customer_dashboard/withdraw', function(){
+    return view('customer_dashboard/withdraw');
+})->name('withdraw');
+
+Route::get('/customer_dashboard/transfer', function(){
+    return view('customer_dashboard/transfer');
+})->name('transfer');
+
+Route::get('/customer_dashboard/deposit', function(){
+    return view('customer_dashboard/deposit');
+})->name('deposit');
 
 
- Route::get('/dashboard/invoice' , function(){
-     return view('customer_dashboard/invoice');
+
+
+ /********** Merchant Dashboard Routes *************/
+ Route::get('/merchant_dashboard', function(){
+    return view('merchant_dashboard/home');
+})->name('merchant_dashboard');
+
+ Route::get('/merchant_dashboard/invoice' , function(){
+     return view('merchant_dashboard/invoice');
  })->name('invoice');

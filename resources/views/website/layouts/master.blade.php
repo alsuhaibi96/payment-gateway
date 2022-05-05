@@ -12,7 +12,7 @@
     <!--google font library-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap" 
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap"
     rel="stylesheet">
     <!--font icon-->
     <link rel="stylesheet" href="{{url('assets/web/css/all.min.css')}}"/>
@@ -27,25 +27,20 @@
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-           
-            <a class="active" href="/">الرئيسية</a>
+            <a class="border ml-50" href="{{ route('login') }}">لوحة التحكم</a>
+            <a class="active" href="#">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>
 
-            <a href="/contuct">التواصل</a>
+            <a href="/contuct-us">التواصل</a>
             <a href="/document">Docs</a>
-
-           
         </nav>
          <div class="icon">
-             <i class="fas fa-bars toogle" id="menu-bars"></i> 
-           
-          <i class="fas fa-right-to-bracket" style="color: #192a56;">
-            <a href="{{ route('registeration') }}">  </a>
-            </i>
+            <i class="fas fa-bars toogle" id="menu-bars"></i>
+            <i class="fas fa-search" id="search-icon"></i>
         </div>
-        
-        </div> 
+
+        </div>
     </header>
     <!--end header section-->
     <!--start search form-->

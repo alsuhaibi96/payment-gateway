@@ -48,14 +48,14 @@
        
          <div class="row">
 
-          <div class="col-md-3 text-center">
+          <div class="col-md-6 text-center">
             <label for="name" class="form-label fs-3">دولتك</label>
             <input name="country" placeholder="الدولة" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-3 ">
+          <div class="col-md-6 ">
             <label for="name" class="form-label fs-3">ميلادك</label>
-            <input name="birth" placeholder="ميلادك" type="date" class="form-control fs-3 ">
+            <input name="birth" placeholder="MM/YYYY/dd" type="text" class="form-control fs-3 ">
                                            
           </div>
           <div class="col-md-3">

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
+use App\Models\auth\UserVerify;
+
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -25,6 +27,7 @@ class User extends Authenticatable implements JWTSubject
         'last_name',
         'email',
         'password',
+        'is_email_verified'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -60,4 +63,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [];
     }
+    public function bank_account(){
+        return $this->belongsTo(bank_account::class);
+    }
+    public function orders_invoice(){
+        return $this->hasMany(Orders_invoice::class);
+    }
+   
 }

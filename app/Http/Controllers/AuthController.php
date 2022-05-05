@@ -47,4 +47,13 @@ class AuthController extends Controller
        // return back()->with(['error'=>'can not create user']);
 
     }
+
+
+//     public function checkEmail()
+// {
+//     $curl ="https://api.emailable.com/v1/verify?email=waslpayment@gmail.com&api_key=live_cdcd64d593048655172f";
+//    return response($curl);
+
+// }
+
 }

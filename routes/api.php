@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\API\APIPaymentController;
+use App\Http\Controllers\api\test\checkoutController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -69,46 +70,60 @@ use Illuminate\Support\Facades\Route;
 //     });	
 // 	Route::post('/login', [UserController::class, 'login']);	
 // });
+
+
+// ----------------------------- testApi routes ------------------------------//
 Route::group([
-    'middleware' => 'api',
-], function () {
-    Route::group(['prefix' => 'admin','namespace'=>'Admin'],function(){
-        Route::post('/login', [AdminController::class, 'login']);
-
-    });
-    Route::group(['prefix' => 'user'],function(){
-        Route::post('/login', [UserController::class, 'login']);
-
-    });
-    
-    Route::post('/register', [AdminController::class, 'register']);
-    Route::post('/logout', [AdminController::class, 'logout']);
-    Route::post('/refresh', [AdminController::class, 'refresh']);
-    Route::get('/user-profile', [AdminController::class, 'userProfile']);    
-});
-
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'user',
+    'prefix' => 'test',
     
 ], function () {
-    Route::post('/login', [UserController::class, 'login']);
-    Route::post('/register', [UserController::class, 'register'])->name('register');
-    Route::post('/logout', [UserController::class, 'logout']);
-    Route::post('/refresh', [UserController::class, 'refresh']);
-    Route::get('/user-profile', [UserController::class, 'userProfile']);    
+    Route::post('/merchant/payment_order', [checkoutController::class, 'payment_order'])->name('payment_order');
+    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
+    Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
+    Route::get('acounts',[checkoutController::class,'get_acounts']);
+      
 });
 
+// Route::group([
+//     'middleware' => 'api',
+// ], function () {
+//     Route::group(['prefix' => 'admin','namespace'=>'Admin'],function(){
+//         Route::post('/login', [AdminController::class, 'login']);
 
-Route::group([
-    'middleware' => 'api',
-  //  'prefix' => 'payments',
+//     });
+//     Route::group(['prefix' => 'user'],function(){
+//         Route::post('/login', [UserController::class, 'login']);
+
+//     });
     
-], function () {
+//     Route::post('/register', [AdminController::class, 'register']);
+//     Route::post('/logout', [AdminController::class, 'logout']);
+//     Route::post('/refresh', [AdminController::class, 'refresh']);
+//     Route::get('/user-profile', [AdminController::class, 'userProfile']);    
+// });
 
 
-    Route::get('/allPayments' , [APIPaymentController::class,'allPayments']);
-});
+// Route::group([
+//     'middleware' => 'api',
+//     'prefix' => 'user',
+    
+// ], function () {
+//     Route::post('/login', [UserController::class, 'login']);
+//     Route::post('/register', [UserController::class, 'register']);
+//     Route::post('/logout', [UserController::class, 'logout']);
+//     Route::post('/refresh', [UserController::class, 'refresh']);
+//     Route::get('/user-profile', [UserController::class, 'userProfile']);    
+// });
+
+
+// Route::group([
+//     'middleware' => 'api',
+//   //  'prefix' => 'payments',
+    
+// ], function () {
+
+
+//     Route::get('/allPayments' , [APIPaymentController::class,'allPayments']);
+// });
 
 

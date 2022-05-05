@@ -7,6 +7,8 @@ use App\Mail\ContuctMe;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,24 @@ use App\Http\Controllers\user\UserController;
  Route::get('/customer/register',[UserController::class,'viewCustomerRegister'])->name('customer_register');
  Route::get('/merchant/register',[UserController::class,'viewMerchantRegister'])->name('merchant_register');
  Route::post('/Signin',[UserController::class,'viewRegisterationPage'])->name('Signin');
+
+
+/**
+ * register customrs and merchants
+ */
+
+
+=======
+Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
+Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
+
+Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
+Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
+
+
+
+
+
  Route::get('/moblie-conf', function (){
     return view('website/customer/moblie_conf');
 });
@@ -36,25 +56,36 @@ Route::get('/card-info', function (){
     return view('website/customer/card_info');
 });
 Route::get('/buisness-info', function (){
-    return view('website/customer/buisness_info');
+    return view('website/merchant/buisness_info');
 });
 
-/**
- * register customrs and merchants
- */
 
-
-Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
-Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
-
-Route::get('/user/login',[UserController::class,'viewLogin'])->name('view_login');
-Route::get('/login',[UserController::class,'customLogin'])->name('custom_login');
-
-
-
+/* Index Routes */
 Route::get('/', function () {
     return view('website/index');
 })->name('index');
+
+/**
+ * Reset password & verity email
+ *
+ */
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+
+   /**
+    * Verification Routes
+    */
+
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+    // /* New Added Routes */
+ Route::get('user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
+ Route::get('account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify');
+
+
 
 Route::get('/about-us', function () {
     return view('website/about');
@@ -65,14 +96,27 @@ Route::get('/contuct', function (){
 });
 Route::post('/contuct', function (){
     $data=request(['name','email','subject','message']);
-    Mail::to('roor3hakimi@gmail.com')->send(new ContuctMe($data));
+    Mail::to('waslpayment@gmail.com')->send(new ContuctMe($data));
     return  redirect('/contuct')
     ->with('flash','تم الارسال بنجاح');
 
 });
-Route::get('/user-profile', function () {
-    return view('website/user_profile');
+
+
+/*
+profile settings
+*/
+Route::get('/settings', function () {
+    return view('website/user_profile/settings');
+})->name('user_profile');
+
+Route::get('/security', function () {
+    return view('website/user_profile/security');
 });
+Route::get('/privacy', function () {
+    return view('website/user_profile/privacy');
+});
+
 
 
 
@@ -82,7 +126,6 @@ Route::get('/user-profile', function () {
  * You should go to this route every time the database data are lost
  */
 Route::get('/generate_roles',[SettingController::class,'generateRoles']);
-
 
 
 Route::get('/document', function () {

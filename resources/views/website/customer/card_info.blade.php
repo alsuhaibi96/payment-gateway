@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب</title>
+    <title>wasel pay</title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -26,15 +26,7 @@
     <!--start header section-->
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
-        <nav class="navbar" id="menu">
-            <a  href="#dashboard" class="active">انشاء حساب</a>
-            <a class="" href="#home">تسجيل الدخول</a>
-            <a  href="#home"> الرجوع للرئيسية</a>
-        </nav>
-        <div class="icon">
-            <i class="fas fa-bars toogle" id="menu-bars"></i>
-            
-        </div>
+        
     </header>
     <!--end header section-->
     <!--start signIn form-->
@@ -53,33 +45,29 @@
             <input name="card" placeholder="رقم بطاقة الائتمان" type="text" class="form-control fs-3 ">
                                            
           </div>
-          <div class="col-md-6">
-            <label for="name" class="form-label fs-3">نوع البطاقة</label>
-          <select class="form-select form-control fs-3" aria-label="Default select example">
-            <option selected>select your card type</option>
-            <option value="1">master</option>
-            <option value="2">union</option>
-            <option value="3">cac bank</option>
-          </select>
-        </div>
+         
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">تاريخ الانتهاء</label>
-            <input name="date" placeholder="تاريخ الانتهاء" type="date" class="form-control fs-3 ">
+            <input name="date" placeholder="MM/YY" type="text" inputmode="numeric" aria-label="Card expiration date" class="form-control fs-3 ">
                                            
           </div>
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">رمز الحماية</label>
-            <input name="code" placeholder="رمز الحماية" type="text" class="form-control fs-3 ">
+            <input name="code" placeholder="CVV" type="text" class="form-control fs-3 ">
                                            
           </div>
           <div class="col-md-6">
-            <label for="name" class="form-label fs-3">عنوان وصول الفواتير</label>
-            <input name="billing" placeholder="عنوان وصول الفواتير" type="text" class="form-control fs-3 ">
+            <label for="name" class="form-label fs-3">الاسم على البطاقة</label>
+            <input name="billing" placeholder="اسمك الكامل" type="text" class="form-control fs-3 ">
                                            
           </div>
+          
         
           <div class="col-12">
             <button type="submit" class="btn login-btn">الموافقة و إنشاء حساب</button>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn login-btn">الغاء</button>
           </div><hr>
         </form>
     </section>

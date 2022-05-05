@@ -729,3 +729,16 @@ header .icon a:hover
 }
 /*end search form*/
 /* table */
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+  .my-custom1-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+    }

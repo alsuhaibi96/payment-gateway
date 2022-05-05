@@ -41,7 +41,7 @@ h1,h2,h3,h4,p
 section:nth-child(even)
 {
     background: #eee;
-  
+
 }
 .btn
 {
@@ -212,7 +212,7 @@ section.home
 }
 .home .home-slider .slide
 {
-    
+
     display: flex;
     width: 80vw;
     height: 80vh;
@@ -229,7 +229,7 @@ section.home
 .home .home-slider .slide .content h2
 {
     text-align: center;
-    
+
     padding: 2rem;
     font-size: 3.5rem;
     color: white;
@@ -392,16 +392,16 @@ section.home
 {
     font-size: 1.5rem;
     color: var(--black);
-    
+
 
 }
 .icons i{
     font-size: 2.5rem;
-    color: var(--green);  
+    color: var(--green);
 }
 .icons span{
     font-size: 1.5rem;
-    color: var(--black); 
+    color: var(--black);
 }
 
 /*end about section*/
@@ -460,7 +460,7 @@ section.home
 /*end review customers section*/
 
 /*start footer section*/
- 
+
 .footer .fotterBox
 {
     display: grid;
@@ -472,7 +472,7 @@ section.home
     padding: 0.5rem 0;
     font-size: 2.5rem;
     color: var(--black);
-    
+
 }
 .footer .fotterBox .Box a
 {
@@ -533,14 +533,14 @@ section:nth-child(even).login-form
     padding: 5px 10px;
     display: inline-block;
     border-radius: 25px;
-    
+
 
 }
 .regester.active
 {
     background: var(--second-color);
     color: #fff;
-    
+
 
 
 }
@@ -605,7 +605,7 @@ section:nth-child(even).login-form
     {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     }
-   
+
     header .navbar a
     {
         display: block;

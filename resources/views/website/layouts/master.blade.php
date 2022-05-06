@@ -42,6 +42,9 @@
          <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>
             <i class="fas fa-search" id="search-icon"></i>
+            <i class="fas fa-right-to-bracket" style="color: #192a56;">
+                <a href="{{ route('registeration') }}">  </a>
+                </i>
         </div>
 
         </div>

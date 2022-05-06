@@ -45,7 +45,7 @@
     <nav class="navbar">
         
                 <a  href="/settings">حسابي</a>
-                <a href="/security">الامان</a>
+                <a href="{{ route('change') }}">الامان</a>
                 <a href="/privacy">خصوصية البيانات</a>
                 
                
@@ -72,17 +72,22 @@
                     </div>
                     <h5 class="modal-title fs-3 fw-bold text-center">غير كلمة المرور الخاصة بك</h5>
                     <div class="modal-body">
-                        <form action="">
+                        <form action="{{ route('change.password') }}" method="POST">
+                            @csrf 
+                            
+                         @foreach ($errors->all() as $error)
+                         <p class="text-danger">{{ $error }}</p>
+                         @endforeach 
                             <div class="col-6">
                                 <label for="exampleFormControlInput1" class="form-label fs-3">قم بتأكيد كلمة مرورك الحالية</label>
-                                <input type="password" class="form-control w-100 p-4 fs-3" id="exampleFormControlInput1" placeholder="كلمة السر الحالية">
+                                <input type="password" id="password" class="form-control w-100 p-4 fs-3" id="exampleFormControlInput1" placeholder="كلمة السر الحالية" name="current_password" autocomplete="current-password">
                               </div>
                               <div class="col-6">
                                 <label for="exampleFormControlInput1" class="form-label fs-3">أدخل كلمة المرور الجديدة (حافظ على أمان حسابك. لا تستخدم اسمك.)</label>
-                                <input type="password" class="form-control  p-4 fs-3" id="exampleFormControlInput1" placeholder="كلمة سر جديدة">
+                                <input type="password" id="new_password" name="new_password" class="form-control  p-4 fs-3" id="exampleFormControlInput1" placeholder="كلمة سر جديدة" autocomplete="current-password">
                               </div>
                               <div class="col-6 mt-4">
-                                <input type="password" class="form-control  p-4 fs-3" id="exampleFormControlInput1" placeholder="تاكيد كلمة السر">
+                                <input type="password" id="new_confirm_password" class="form-control  p-4 fs-3" id="exampleFormControlInput1" placeholder="تاكيد كلمة السر" name="new_confirm_password" autocomplete="current-password">
                               </div>
                               <div class="col-6">
                                 <button type="submit" class="btn btn-primary mb-3">تغير كلمة السر</button>

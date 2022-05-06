@@ -8,8 +8,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\user\UserProfileController;
+use App\Http\Controllers\user\ChangePasswordController;
+use App\Models\user\user;
 
-	
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,6 +104,19 @@ Route::post('/contuct', function (){
 /*
 profile settings
 */ 
+Route::get('/dashboard/profile', [UserProfileController::class, 'index'])->name('profile');
+Route::get('/dashboard/profile/edit',[UserProfileController::class,'edit'])->name('profile.edit');
+Route::put('/dashboard/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+/*
+change password
+*/
+Route::get('/role-register', 
+    [App\Http\Controllers\Admin\DashboardController::class, 'registered']);
+Route::get('/change-password', [ChangePasswordController::class,'index'])->name('change');
+Route::post('/change-password/edit', [ChangePasswordController::class,'store'])->name('change.password');
+
+
+Route::post('/dashboard/profile/deleteavatar/{id}', [UserProfileController::class, 'deleteavatar'])->name('profile.deleteavatar'); 
 Route::get('/settings', function () {
     return view('website/user_profile/settings');
 })->name('user_profile');

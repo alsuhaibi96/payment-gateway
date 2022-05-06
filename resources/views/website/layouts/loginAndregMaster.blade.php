@@ -32,8 +32,8 @@
     <header>
         <a href="{{ route('index') }}" class="logo">WASL Payment <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
-            <a  href="{{ route('registeration'); }}">انشاء حساب</a>
-            <a class="active" href="{{ route('login'); }}">تسجيل الدخول</a>
+            <a @yield('signup') href="{{ route('registeration'); }}">انشاء حساب</a>
+            <a @yield('signin') href="{{ route('login'); }}">تسجيل الدخول</a>
             <a  href="{{ route('index') }}"> الرجوع للرئيسية</a>
 
         </nav>

@@ -5,7 +5,9 @@
  إنشاء حساب
 @endsection
 
-
+@section('signup')
+ class="active"
+@endsection
 
 @section('content')
     <!--start signIn form-->

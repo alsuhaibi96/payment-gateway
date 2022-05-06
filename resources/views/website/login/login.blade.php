@@ -6,6 +6,9 @@
     تسجيل الدخول
 @endsection
 
+@section('signin')
+class="active"
+@endsection
 
 
 @section('content')

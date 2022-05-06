@@ -153,12 +153,7 @@ class UserController extends Controller
        
        
       return redirect()->route("login")->with(['success'=>'تم إرسال رسالة تأكيد لحسابك على الايميل!']);
-        //   return redirect()->route('login')
-        //   ->with(['success'=>' 
-        //   قم بتسجيل الدخول !          
-        //   ']);
-    
-        //   return back()->with(['error'=>'خطأ في التسجيل']);
+      
       }
 
 
@@ -224,7 +219,7 @@ class UserController extends Controller
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1,'is_email_verified'=>1])){
             
                 if(Auth::user()->hasRole('Merchant'))
-                return redirect()->route('dashboard');
+                return redirect()->route('home');
                 
             
                 if(Auth::user()->hasRole('Customer'))
@@ -234,15 +229,10 @@ class UserController extends Controller
     
             
             }
-        //     else if(!Auth::attempt(['email'=>$request->email,'is_email_verified'=>1])){
-        //         return redirect()->route('login')->with(['message'=>
-        //    'قم بتأكيد الايميل !'  
-    
-        //     ]);
-        //     }
+   
 
             else
-                return redirect()->route('login')->with(['message'=>
+                return redirect()->route('login')->with(['message'=>'البيانات خاطئة او لم يتم تفعيل الايميل!']);}
 
 //         
 

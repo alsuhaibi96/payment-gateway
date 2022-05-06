@@ -35,7 +35,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
  */
 
 
-=======
 Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
 Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 

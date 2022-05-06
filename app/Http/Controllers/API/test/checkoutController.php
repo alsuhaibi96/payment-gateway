@@ -118,10 +118,10 @@ class checkoutController extends Controller
                 );
     
        
+                Products::insert($productsArr);
     
             }
             
-            Products::insert($productsArr);
             
             
             return $this->returnData('invoice',$invoice,'invoice created successfuly');
@@ -140,9 +140,11 @@ class checkoutController extends Controller
 
         $products = Orders_invoice::find(1)->productsGet;
    
-     
+    //    foreach($products as $product)  {
+    //        dd($product->product_name);
+    //    }   
 
-        return view('paymentView.paymentView' ,compact('invoice_data','products'));
+         return view('paymentView.paymentView' ,compact('invoice_data','products'));
 
     }
     public function cancel_payment($invoice_referance){

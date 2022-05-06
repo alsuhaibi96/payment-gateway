@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\auth\UserVerify;
+use App\Models\Credit_cards;
 use App\Models\Role;
 use Illuminate\Support\Str;
 use Mail;
@@ -125,6 +126,14 @@ class UserController extends Controller
           $bank_account->balance = 10000000.00;
           $bank_account->account_number=$this->generate_string(10);
           $bank_account->save();
+          $credit_cards=new Credit_cards();
+          $credit_cards->card_number=$this->generate_string(10);
+          $credit_cards->card_holder=$user->first_name.' '.$user->middle_name.' '.$user->last_name;
+          $credit_cards->expiration_mm=date('n');
+          $credit_cards->expiration_yy=date('Y');
+          $credit_cards->cvv=$this->generate_string(4);
+          $credit_cards->bank_accounts_id=$bank_account->id;
+          $credit_cards->save();
          
          
           
@@ -361,4 +370,5 @@ class UserController extends Controller
      
         return $random_string;
     }
+    
 }

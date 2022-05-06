@@ -96,9 +96,7 @@
                                                    <label class="text-dark">الاسم الرباعي</label>
                                                    <input type="text" class="form-control fs-6" placeholder="الاسم">
                                                </div>
-                                               <div class="col-2">
 
-                                               </div>
 
                                             <div class="col-4">
                                                 <label class="text-dark">كلمة المرور</label>
@@ -116,7 +114,7 @@
                                     </div>
 
                                     <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start mb-2">
-                                        <small class=" text-muted"> من بطاقة الصرّاف إلى الموقع </small>
+                                        <small class=" text-success"> من بطاقة الصرّاف إلى الموقع </small>
                                     </div>
 
                                     <div class="row invoice-info">

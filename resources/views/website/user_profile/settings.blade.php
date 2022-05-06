@@ -60,7 +60,7 @@
         <img  class="rounded" style="width: 90px;" src="{{url('assets/web/images/avater.jpg')}}" alt="">
         <h6 class="m-5 fs-1 fw-bold">Roaa Tareq</h6>
         <h6 class="m-5 fs-1">انضم في 2022 </h6>
-        <a href="{{ route('profile.edit') }}" class="card-link fs-3 fw-bold">تغيير الاسم</a>
+        <a href="#" class="card-link fs-3 fw-bold">تغيير الاسم</a>
         
     </div>
     

@@ -21,7 +21,8 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-        html{
+
+        html {
             direction: rtl;
         }
 
@@ -43,8 +44,8 @@
             width: 600px;
             padding-top: 160px;
         }
-        .info .name
-        {
+
+        .info .name {
             color: #fff;
         }
 
@@ -205,18 +206,18 @@
                 <div class="info mb-5">
                     @foreach ($invoice_data as $item )
                     <tr>
-                        
-                        <p class="name">رقم الطلب :  {{ $item->invoice_referance}}</p>
-                       <!-- @foreach ($products as $product  )
+                        <p class="name">رقم التاجر : {{ $item->user_id}}</p>
+                        <p class="name">رقم الطلب : {{ $item->invoice_referance}}</p>
+                        @foreach ($products as $product  )
                         <p class="name">المشتريات  :  {{ $product->product_name}}</p>
 
-                       @endforeach -->
-                     
-                        
-                        <p class="name">الأجمالي  :  {{ $item->total_amout}}</p>
-                        <p class="name">العملة  :  {{ $item->currency}}</p>
-                       
-                        
+                       @endforeach
+
+
+                        <p class="name">الأجمالي : {{ $item->total_amout}}</p>
+                        <p class="name">العملة : {{ $item->currency}}</p>
+
+
                     </tr>
                     @endforeach
 
@@ -248,19 +249,30 @@
 
         </div>
 
-        <form action="">
+        <form action="{{ route('Payment_confirmation')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+            @foreach ($invoice_data as $item )
+            <input type="hidden" name="merchant_id" value="{{ $item->user_id}}">
+            <input type="hidden" name="invoice_referance" value="{{ $item->invoice_referance}}">
+            <input type="hidden" name="product_name" value="{{ $product->product_name}}">
+            <input type="hidden" name="total_amout" value="{{ $item->total_amout}}">
+            <input type="hidden" name="currency" value="{{ $item->currency}}">
+            <input type="hidden" name="success_url" value="{{$item->success_url}}">
+            @endforeach
             <div class="inputBox">
                 <span>card number</span>
-                <input type="text" maxlength="16" class="card-number-input">
+                <input type="text" maxlength="16" name="card_number" class="card-number-input">
+                
             </div>
             <div class="inputBox">
                 <span>card holder</span>
-                <input type="text" class="card-holder-input">
+                <input type="text" name="card_holder" class="card-holder-input">
+                
             </div>
             <div class="flexbox">
                 <div class="inputBox">
                     <span>expiration mm</span>
-                    <select name="" id="" class="month-input">
+                    <select  name="expiration_mm" id="" class="month-input">
                         <option value="month" selected disabled>month</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -275,10 +287,11 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
+                   
                 </div>
                 <div class="inputBox">
                     <span>expiration yy</span>
-                    <select name="" id="" class="year-input">
+                    <select id="" name="expiration_yy" class="year-input">
                         <option value="year" selected disabled>year</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
@@ -291,17 +304,19 @@
                         <option value="2029">2029</option>
                         <option value="2030">2030</option>
                     </select>
+                    
                 </div>
                 <div class="inputBox">
                     <span>cvv</span>
-                    <input type="text" maxlength="4" class="cvv-input">
+                    <input type="text" name="cvv" maxlength="4" class="cvv-input">
+                    
                 </div>
             </div>
             <div class="inputBox" style="justify-content: space-between; display:flex;text-align:center;gap:10px;">
-            @foreach ($invoice_data as $item )
-                <a href="{{$item->next_url}}" class="submit-btn">pay</a>
+                <button type="submit" class="submit-btn">pay</button>
+                @foreach ($invoice_data as $item )
                 <a href="{{$item->cancel_url}}" class="submit-btn">cancel</a>
-            @endforeach
+                @endforeach
 
             </div>
         </form>

@@ -8,6 +8,7 @@ use App\Http\Controllers\api\test\checkoutValidatorController;
 use App\Models\Orders_invoice;
 use App\Http\Traits\general_trait;
 use App\Models\bank_account;
+use App\Models\Credit_cards;
 use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
@@ -190,19 +191,46 @@ class checkoutController extends Controller
 
     }
     public function Financial_processing(Request $request){
-        $validated = $request->validate([
-            'card_number' => 'required|unique|max:10',
-            'card_holder' => 'required',
-            'expiration_mm' => 'required|date',
-            'expiration_yy' => 'required|date',
-            'cvv' => 'required|unique|max:4',
-        ]);
-        $public_key=$request->header('public_key');
+        
+        
+        
+        $invoice_referance=$request->input('invoice_referance');
+        $product_name=$request->input('product_name');
+        $total_amout=$request->input('total_amout');
+        $currency=$request->input('currency');
         $card_number=$request->input('card_number');
         $card_holder=$request->input('card_holder');
         $expiration_mm=$request->input('expiration_mm');
         $expiration_yy=$request->input('expiration_yy');
+        $success_url=$request->input('success_url');
         $cvv=$request->input('cvv');
+        $Payment_confirmation_data=$request->all();
+        $client_card_data=Credit_cards::where('card_number',$card_number)->first();
+        $client_banck_acount_id=$client_card_data->bank_accounts_id;
+        $client_account_data=bank_account::where('id',$client_banck_acount_id)->first();
+        $client_account_number=$client_account_data->account_number;
+        $client_balance=$client_account_data->balance;
+        $client_balance=(float)$client_balance;
+        $total_amout=(float)$total_amout;
+        $remaining_balance=$client_balance-$total_amout;
+        if($remaining_balance >0){
+            $merchant_id=$request->input('merchant_id');
+            $merchant_data=bank_account::where('user_id',$merchant_id)->first();
+            $merchant_account_number=$merchant_data->account_number;
+            $merchant_balance=$merchant_data->balance;
+            $merchant_balance=(float)$merchant_balance;
+            $merchant_data->balance=$merchant_balance+$total_amout;
+            $merchant_data->save();
+            $client_account_data->balance=$remaining_balance;
+            $client_account_data->save();
+
+            return $this->returnData('success',$client_account_data,'تمت عملية الدفع بنجاح');
+
+        }
+        else{
+            return $this->returnError('4011','رصيدك غير كافي');
+        }
+        return $this->returnData('success',$client_account_number,'تمت عملية الدفع بنجاح');
         
 
 

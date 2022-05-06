@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Wasl Pay</title>
+    <title>
+        @yield('title')
+    </title>
     <!--walper slider library-->
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
@@ -22,51 +24,40 @@
     <!--custom css file link-->
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
 
-    <!-- add Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
+     <!-- add Icon -->
+     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
 </head>
 <body>
     <!--start header section-->
     <header>
-        <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
+        <a href="{{ route('index') }}" class="logo">WASL Payment <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
+            <a  href="{{ route('registeration'); }}">انشاء حساب</a>
+            <a class="active" href="{{ route('login'); }}">تسجيل الدخول</a>
+            <a  href="{{ route('index') }}"> الرجوع للرئيسية</a>
 
-            <a class="border ml-50" href="{{ route('login') }}">لوحة التحكم</a>
-            <a class="active" href="#">الرئيسية</a>
-            <a href="#about">من نحن</a>
-            <a href="#customer"> عملائنا</a>
-
-            <a href="/contuct-us">التواصل</a>
-            <a href="/document">Docs</a>
         </nav>
-         <div class="icon">
+        <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>
-            <i class="fas fa-search" id="search-icon"></i>
-            <i class="fas fa-right-to-bracket" style="color: #192a56;">
-                <a href="{{ route('registeration') }}">  </a>
-                </i>
-        </div>
 
         </div>
     </header>
     <!--end header section-->
-    <!--start search form-->
-    <form action="#" id="search-form">
-        <input type="search" placeholder="أبحث ...." name="" id="search-box">
-        <label for="search-box" class="fas fa-search"></label>
-        <i class="fas fa-times" id="close"></i>
-    </form>
-    <!--end search form-->
+
 
 
     @yield('content')
 
 
-    <footer class="footer-content">
+
+     <!--start footer section -->
+    <footer class="footer-content" style="margin-top: 150px" >
         <p>جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT  </p>
     </footer>
 
-    <!--start footer section -->
+
+
+
 
 
 

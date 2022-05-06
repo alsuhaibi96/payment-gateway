@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\auth\UserVerify;
+use App\Models\Credit_cards;
 use App\Models\Role;
 use Illuminate\Support\Str;
 use Mail;
@@ -26,32 +27,32 @@ class UserController extends Controller
 
    /**
      * Display registeration view ( customer or merchant)
-     * 
+     *
      */
     public function viewRegisteration(){
         return view('website.register.registeration');
- 
+
     }
- 
-    
+
+
    /**
      * Display login view ( customer or merchant)
-     * 
+     *
      */
     public function viewLogin(){
         return view('website.login.login');
- 
+
     }
- 
+
  /**
     *  Check for user radio input if 1 register as a merchant if not register as a customer
     */
     public function viewRegisterationPage(Request $request){
-        
+
         if(($request->radio1)==1)
         return  redirect()->route('customer_register');
         return  redirect()->route('merchant_register');
-               
+
        }
 
        /**
@@ -61,7 +62,7 @@ class UserController extends Controller
     public function viewMerchantRegister(){
         return view('website/merchant/register_merchant');
     }
-    
+
     /**
      * Display register view
      * @return \Illuminate\Http\Response;
@@ -72,24 +73,24 @@ class UserController extends Controller
 
 
 
-     
+
    /** create customer method
-    * 
+    *
     */
     public function createCustomer(Request $request){
         return  $this->registerMerchantOrCustomer($request,'Customer');
       }
-  
+
    /** create Merchant method
-      * 
+      *
       */
       public function createMerchant(Request $request){
           return  $this->registerMerchantOrCustomer($request,'Merchant');
         }
-  
-  
+
+
           /** Create Merchant or Customer method
-      * 
+      *
       */
       public function registerMerchantOrCustomer (Request $request , $roleName){
           Validator::Validate($request->all(),[
@@ -99,20 +100,21 @@ class UserController extends Controller
               'email'=>['email','required','min:3','unique:users,email'],
               'password'=>['required','min:5','same:confirm_password'],
 
-  
+
           ],[
-              
+
               'email.unique'=>'There is an email in the table',
               'confirm_password.same'=>'password do not match',
-  
+
           ]);
-  
+
           $user=new User();
           $user->first_name=$request->input('firstName');
           $user->middle_name=$request->input('middleName');
           $user->last_name=$request->input('lastName');
           $user->email=$request->input('email');
           $user->password= Hash::make($request->password);
+
 
           $user->public_key=$this->generate_string(25);
           $user->private_key=$this->generate_string(50);
@@ -124,6 +126,14 @@ class UserController extends Controller
           $bank_account->balance = 10000000.00;
           $bank_account->account_number=$this->generate_string(10);
           $bank_account->save();
+          $credit_cards=new Credit_cards();
+          $credit_cards->card_number=$this->generate_string(10);
+          $credit_cards->card_holder=$user->first_name.' '.$user->middle_name.' '.$user->last_name;
+          $credit_cards->expiration_mm=date('n');
+          $credit_cards->expiration_yy=date('Y');
+          $credit_cards->cvv=$this->generate_string(4);
+          $credit_cards->bank_accounts_id=$bank_account->id;
+          $credit_cards->save();
          
          
           
@@ -150,7 +160,7 @@ class UserController extends Controller
     
         //   return back()->with(['error'=>'خطأ في التسجيل']);
       }
-  
+
 
        /**
      * Write code on Method
@@ -202,13 +212,14 @@ class UserController extends Controller
             Validator::validate($request->all(),[
                 'email'=>['email','required','min:3','max:50'],
                 'password'=>['required','min:5']
-    
-    
+
+
             ],[
                 'email.required'=>'This field is required',
-                'password.required'=>'This field is required', 
-               
+                'password.required'=>'This field is required',
+
             ]);
+
     
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1,'is_email_verified'=>1])){
             
@@ -232,10 +243,8 @@ class UserController extends Controller
 
             else
                 return redirect()->route('login')->with(['message'=>
-          ' تأكد من إدخال بياناتك بشكل صحيح او قم بتأكيد الايميل'   ]);
-    
-                   
-              }
+
+//         
 
 
     //         public function login(Request $request){
@@ -264,6 +273,7 @@ class UserController extends Controller
     //     catch(\Exception $ex){
     //         return $this->returnError($ex->getCode(),$ex->getMessage());
 
+
     //     }
         
     // }
@@ -287,9 +297,9 @@ class UserController extends Controller
                 $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
-         
+
        $user->attachRole('Customer');
-                
+
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
@@ -360,4 +370,5 @@ class UserController extends Controller
      
         return $random_string;
     }
+    
 }

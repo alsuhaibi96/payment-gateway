@@ -23,6 +23,8 @@ class CreateOrdersInvoicesTable extends Migration
             $table->string('currency');
             $table->string('success_url');
             $table->string('cancel_url');
+            $table->string('next_url');
+            $table->string('cancel_next_url');
             $table->timestamps();
         });
     }

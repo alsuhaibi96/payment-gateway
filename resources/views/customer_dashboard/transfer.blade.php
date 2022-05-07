@@ -215,6 +215,16 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="d-flex justify-content-between py-50">
+                                                        <span class="invoice-terms-title">المبلغ شامل الضريبة</span>
+                                                        <div class="custom-control custom-switch custom-switch-glow">
+                                                            <input type="checkbox" class="custom-control-input" checked id="paymentTerm">
+                                                            <label class="custom-control-label" for="paymentTerm">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
                                                 </div>
                                                 <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
                                                     <ul class="list-group list-group-flush">

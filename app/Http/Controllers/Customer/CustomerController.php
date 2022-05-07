@@ -9,5 +9,9 @@ use Illuminate\Http\Request;
  */
 class CustomerController extends Controller
 {
+
+    public function viewDashboard(){
+        return view('customer_dashboard.home');
+    }
     
 }

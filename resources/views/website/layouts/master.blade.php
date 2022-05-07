@@ -36,7 +36,7 @@
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>
 
-            <a href="/contuct-us">التواصل</a>
+            <a href="/contact-us">التواصل</a>
             <a href="/document">Docs</a>
         </nav>
          <div class="icon">

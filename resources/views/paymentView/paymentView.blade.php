@@ -225,14 +225,14 @@
                 <div class="card-number-box"></div>
                 <div class="flexbox">
                     <div class="box">
-                        <span>card holder</span>
-                        <div class="card-holder-name">full name</div>
+                        <span></span>
+                        <div class="card-holder-name"></div>
                     </div>
                     <div class="box">
-                        <span>expires</span>
+                        <span></span>
                         <div class="expiration">
-                            <span class="exp-month">mm</span>
-                            <span class="exp-year">yy</span>
+                            <span class="exp-month"></span>
+                            <span class="exp-year"></span>
                         </div>
                     </div>
                 </div>
@@ -329,21 +329,21 @@
 
 
     <script>
-        document.querySelector('.card-number-input').oninput = () => {
-            document.querySelector('.card-number-box').innerText = document.querySelector('.card-number-input').value;
-        }
+        // document.querySelector('.card-number-input').oninput = () => {
+        //     document.querySelector('.card-number-box').innerText = document.querySelector('.card-number-input').value;
+        // }
 
-        document.querySelector('.card-holder-input').oninput = () => {
-            document.querySelector('.card-holder-name').innerText = document.querySelector('.card-holder-input').value;
-        }
+        // document.querySelector('.card-holder-input').oninput = () => {
+        //     document.querySelector('.card-holder-name').innerText = document.querySelector('.card-holder-input').value;
+        // }
 
-        document.querySelector('.month-input').oninput = () => {
-            document.querySelector('.exp-month').innerText = document.querySelector('.month-input').value;
-        }
+        // document.querySelector('.month-input').oninput = () => {
+        //     document.querySelector('.exp-month').innerText = document.querySelector('.month-input').value;
+        // }
 
-        document.querySelector('.year-input').oninput = () => {
-            document.querySelector('.exp-year').innerText = document.querySelector('.year-input').value;
-        }
+        // document.querySelector('.year-input').oninput = () => {
+        //     document.querySelector('.exp-year').innerText = document.querySelector('.year-input').value;
+        // }
 
         document.querySelector('.cvv-input').onmouseenter = () => {
             document.querySelector('.front').style.transform = 'perspective(1000px) rotateY(-180deg)';

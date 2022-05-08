@@ -9,13 +9,15 @@ use App\Models\Orders_invoice;
 use App\Http\Traits\general_trait;
 use App\Models\bank_account;
 use App\Models\Credit_cards;
+use App\Models\FinancialTransaction;
+use App\Models\PaymentInvoice;
 use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Products;
-
-
+use App\Models\Transaction;
+use App\Models\TransactionOverView;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Redirect;
 
@@ -61,7 +63,7 @@ class checkoutController extends Controller
         if($private_key==null|| $public_key==null)
         return $this->errors(500,5200,'invalid credintical keys');
 
-        if($private_key=='rRQ26GcsZzoEhbrP2HZvLYDbn9C9et' && $public_key=='HGvTMLDssJghr9tlN9gr4DVYt0qyBy')
+        if($private_key=='123456' && $public_key=='123456')
         {
             return $this->create_order($order_details,$products,$public_key,$private_key);
         }
@@ -195,6 +197,7 @@ class checkoutController extends Controller
         
         
         $invoice_referance=$request->input('invoice_referance');
+        
         $product_name=$request->input('product_name');
         $total_amout=$request->input('total_amout');
         $currency=$request->input('currency');
@@ -224,7 +227,79 @@ class checkoutController extends Controller
             $client_account_data->balance=$remaining_balance;
             $client_account_data->save();
 
-            return $this->returnData('success',$client_account_data,'تمت عملية الدفع بنجاح');
+            $paymentinvoice=new PaymentInvoice();
+            $order_invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->first();
+            $paymentinvoice->order_invoice_id=$order_invoice_data->id;
+            $paymentinvoice->user_id=$order_invoice_data->user_id;
+            $paymentinvoice->amount_due=$total_amout;
+            $paymentinvoice->amount_paid=$total_amout;
+            $paymentinvoice->status='Payment done';
+            $paymentinvoice->save();
+            $transaction=new Transaction();
+            $transaction->payment_invoices_id=$paymentinvoice->id;
+            $transaction->description='مدفوعات المشتريات';
+            $transaction->transaction_date=date("Y-m-d H:i:s");
+            $transaction->save();
+
+            $sales_transaction=new Transaction();
+            $sales_transaction->payment_invoices_id=$paymentinvoice->id;
+            $sales_transaction->description='استحقاق المبيعات';
+            $sales_transaction->transaction_date=date("Y-m-d H:i:s");
+            $sales_transaction->save();
+
+            $journal_entries_merchant_right=new FinancialTransaction();
+            $journal_entries_merchant_right->transaction_id=$transaction->id;
+            $journal_entries_merchant_right->financial_acount_id=3;
+            $journal_entries_merchant_right->entry_type="Debit";
+            $journal_entries_merchant_right->amount=$total_amout;
+            $journal_entries_merchant_right->save();
+
+            $journal_entries_merchant_left=new FinancialTransaction();
+            $journal_entries_merchant_left->transaction_id=$transaction->id;
+            $journal_entries_merchant_left->financial_acount_id=1;
+            $journal_entries_merchant_left->entry_type="Cred";
+            $journal_entries_merchant_left->amount=$total_amout;
+            $journal_entries_merchant_left->save();
+
+            $journal_entries_customer_right=new FinancialTransaction();
+            $journal_entries_customer_right->transaction_id=$sales_transaction->id;
+            $journal_entries_customer_right->financial_acount_id=2;
+            $journal_entries_customer_right->entry_type="Debit";
+            $journal_entries_customer_right->amount=$total_amout;
+            $journal_entries_customer_right->save();
+
+
+            $journal_entries_customer_left=new FinancialTransaction();
+            $journal_entries_customer_left->transaction_id=$sales_transaction->id;
+            $journal_entries_customer_left->financial_acount_id=4;
+            $journal_entries_customer_left->entry_type="Cred";
+            $journal_entries_customer_left->amount=$total_amout;
+            $journal_entries_customer_left->save();
+
+
+            $transactionoverview=new TransactionOverView();
+            $transactionoverview->trans_id=$this->generate_string(15);
+            $transactionoverview->user_id=$client_account_data->id;
+            $transactionoverview->bank_account_id=$client_banck_acount_id;
+            $transactionoverview->type='pay';
+            $transactionoverview->amount=$total_amout;
+            $transactionoverview->currency=$currency;
+            $transactionoverview->fee='0';
+            $transactionoverview->fromAccount=$client_account_number;
+            $transactionoverview->client_name=$client_card_data->card_holder;
+            $transactionoverview->toAccount=$merchant_account_number;
+            $transactionoverview->merchant_name=$merchant_data->first_name."".$merchant_data->last_name ;
+            $transactionoverview->status='تمت عملية الدفع';
+
+            $transactionoverview->save();
+
+            $invoice_sender=PaymentInvoice::where('id',$paymentinvoice->order_invoice_id)->get();
+
+            
+
+
+            // return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
+            return $this->returnData('الرصيد المتبقي',$invoice_sender,'تمت عملية الدفع بنجاح');
 
         }
         else{
@@ -237,5 +312,14 @@ class checkoutController extends Controller
     }
     public function get_acounts(){
         return bank_account::find(1)->Credit_cards;
+    }
+    public function getinvoice(){
+        $item=User::with(['PaymentInvoice'])->get();
+        
+        
+        
+       
+        return $item;
+
     }
 }

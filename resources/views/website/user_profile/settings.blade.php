@@ -33,7 +33,7 @@
         <i class="fas fa-bars toogle" id="menu-bars"></i> 
        <i class="fas fa-bell"></i>
        <i class="fas fa-cog "></i>
-     <a href="#" >تسجيل الخروج</a>
+     <a href="{{ route('logout') }}" >تسجيل الخروج</a>
    </div>
     </header>
    

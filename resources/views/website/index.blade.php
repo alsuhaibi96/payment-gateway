@@ -1,6 +1,7 @@
-@extends('website.layouts.master');
+@extends('website.layouts.master')
+
 @section('content')
-    
+
     <!--start home section-->
     <section class="home" id="home">
         <div class="swiper home-slider">
@@ -11,28 +12,28 @@
                         <p class="para">لوحة التحكم توفر تقارير تفصيلية يومية | اسبوعية | شهرية لجميع اعمالك </p>
                     </div>
 
-                    
+
                 </div>
                 <div class="swiper-slide slide one">
                     <div class="content">
                         <h2>ربط سريع وسهل</h2>
                         <p class="para">قمنا بتوفير واجهة  برمجية سهلة ومرنة بحيث تمكن المطورين من القيام بجميع عمليات الدفع الالكتروني بسهولة</p>
                     </div>
-                    
+
                 </div>
                 <div class="swiper-slide slide two">
                     <div class="content">
                         <h2>حلول دفع الكترونية متكاملة</h2>
                         <p class="para">نوفر حلول تمكنك من استقبال جميع المدفوعات الكترونيا </p>
                     </div>
-                    
+
                 </div>
                 <div class="swiper-slide slide three">
                     <div class="content">
                         <h2>ادارة ومتابعة العمليات المالية</h2>
                         <p class="para">توفر لوحة التحكم ادارة كاملة للحساب المالي حيث توفر تقارير تفصيلية عن حركة العمليات المالية في متجرك</p>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -42,10 +43,10 @@
     <!--end home section-->
     <!--start about us-->
     <section class="about" id="about">
-        
+
         <a href="#" class="logo">WASL Pay<i class="fas fa-wallet"></i></a>
         <h1 class="sub-head"> من نحن</h1>
-        
+
         <div class="row">
             <div class="image">
                 <img src="{{url('assets/web/images/pexels-karolina-grabowska-5632371-removebg-preview.png')}}" alt="">
@@ -53,10 +54,10 @@
             <div class="content">
                 <h3>موقع الكتروني يوفر خدمات الدفع الالكتروني</h3>
                 <p>
-موقع يوفر خدمات الدفع الالكتروني على مسوى الجمهورية اليمنية 
+موقع يوفر خدمات الدفع الالكتروني على مسوى الجمهورية اليمنية
                 </p>
                 <p>
-تحصل اموالك من جميع المتاجر الالكترونية بكل سهولة 
+تحصل اموالك من جميع المتاجر الالكترونية بكل سهولة
                 </p>
                 <div class="icon-container">
                     <div class="icons">
@@ -80,7 +81,7 @@
     </section>
     <!--end about us-->
     <!--start our menu-->
-    
+
     <!--end our menu-->
     <!--start review customers-->
     <section class="review" id="customer">
@@ -97,7 +98,7 @@
                         </div>
                     </div>
                     <p>
-                        الموقع الاشهر في اليمن للعرض و الطلب 
+                        الموقع الاشهر في اليمن للعرض و الطلب
                     </p>
                 </div>
                 <div class="swiper-slide slide">
@@ -118,11 +119,11 @@
                         <img src="{{url('assets/web/images/logo one.jpg')}}" alt="">
                         <div class="user-info">
                             <h3>فري لانس يمن</h3>
-                            
+
                         </div>
                     </div>
                     <p>
-                        موقع الكتروني يوفر وضائف  
+                        موقع الكتروني يوفر وضائف
                     </p>
                 </div>
                 <div class="swiper-slide slide">
@@ -131,7 +132,7 @@
                         <img src="{{url('assets/web/images/logothree.jpg')}}" alt="">
                         <div class="user-info">
                             <h3>المدرسة الرقمية</h3>
-                            
+
                         </div>
                     </div>
                     <p>
@@ -143,7 +144,7 @@
     </section>
     <!--end review customers-->
     <!--start order section-->
-    
+
     <!--end order section-->
     <!--start footer section -->
     <section class="footer" id="contact">
@@ -171,7 +172,7 @@
             </div>
         </div>
         </div>
-        
+
     </section>
 
     @endsection

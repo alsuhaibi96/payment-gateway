@@ -27,24 +27,11 @@ class checkoutController extends Controller
     
     use general_trait;
     public function payment_order(Request $request){
-        // try{
-        //     $this->validate($request,[
-        //         'secret_key'=>'required',
-        //         'public_key'=>'required',
-        //         'products'=>'required',
-        //         'total_amout'=>'required',
-        //         'currency'=>'required',
     
-        //     ]);
-
-        // }
-        // catch(ValidationException $e){
-        //     return response()->json($e->validator->errors(),422);
-        // }
         
         $info=array('refrence_id'=>1,'products'=>[array('id'=>1,'name'=>'laptop','quantity'=>2,'unint_amount'=>3000),array('id'=>3,'name'=>'laptop','quantity'=>5,'unint_amount'=>100)]);
-        $private_key=$request->header('private_key');
-        $public_key=$request->header('public_key');
+        $private_key=$request->header('private-key');
+        $public_key=$request->header('public-key');
         $products=json_decode($request->input('products'),true);
 
         $order_reference=$request->input('order_reference');
@@ -95,52 +82,56 @@ class checkoutController extends Controller
         $feedback['invoice_referance']);
 
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
-        $invoice=new Orders_invoice();
 
-        $invoice->invoice_referance=$orders['invoice_referance'];
-        $invoice->user_id=$merchant_data->id;
-        $invoice->products=$orders['products'];
-        $invoice->order_reference=$orders['order_reference'];
-        $invoice->total_amout=$orders['total_amout'];
-        $invoice->currency=$orders['currency'];
-        $invoice->next_url=$orders['next_url'];
-        $invoice->cancel_next_url=$orders['cancel_next_url'];
-        $invoice->success_url=$orders['success_url'];
-        $invoice->cancel_url=$orders['cancel_url'];
+       return $orders;
 
+        // $invoice=new Orders_invoice;
 
+        // $invoice->invoice_referance=$orders['invoice_referance'];
+        // $invoice->user_id=$merchant_data->id;
+        // $invoice->products=$orders['products'];
+        // $invoice->order_reference=$orders['order_reference'];
+        // $invoice->total_amout=$orders['total_amout'];
+        // $invoice->currency=$orders['currency'];
+        // $invoice->next_url=$orders['next_url'];
+        // $invoice->cancel_next_url=$orders['cancel_next_url'];
+        // $invoice->success_url=$orders['success_url'];
+        // $invoice->cancel_url=$orders['cancel_url'];
+
+    // return $invoice.'ff';
 
         
-        if($invoice->save()){
-            $products_ids=array_column($products,'id');
-            $products_names=array_column($products,'product_name');
-            $products_quantity=array_column($products,'quantity');
-            $products_unit_amounts=array_column($products,'unit_amount');
+        // if($invoice->save()){
+        //     $products_ids=array_column($products,'id');
+        //     $products_names=array_column($products,'product_name');
+        //     $products_quantity=array_column($products,'quantity');
+        //     $products_unit_amounts=array_column($products,'unit_amount');
     
             
            
-            // $product_model_obj=new Products();
-    
-            for($i=0;$i<count($products_ids);$i++){
-    
-                $productsArr = array(
-                    'product_id' =>$products_ids[$i],
-                    'product_name'=> $products_names[$i],
-                    'quantity'=> $products_quantity[$i],
-                    'unit_amount'=> $products_unit_amounts[$i],
-                    'invoice_id'=>  $invoice->id,
 
-                );
+    
+        //     for($i=0;$i<count($products_ids);$i++){
+    
+        //         $productsArr = array(
+        //             'product_id' =>$products_ids[$i],
+        //             'product_name'=> $products_names[$i],
+        //             'quantity'=> $products_quantity[$i],
+        //             'unit_amount'=> $products_unit_amounts[$i],
+        //             'invoice_id'=>  $invoice->id,
+
+        //         );
     
        
+        //         Products::insert($productsArr);
     
-            }
-            Products::insert($productsArr);
+        //     }
             
             
-            return $this->returnData('invoice',$invoice,'invoice created successfuly');
+            
+        //     return $this->returnData('invoice',$invoice,'invoice created successfuly');
 
-        }
+        // }
         
         
 
@@ -150,21 +141,15 @@ class checkoutController extends Controller
     }
     public function do_payment($invoice_referance){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->get();
-        // $products=DB::table('products')
-        // ->join('orders_invoices','products.invoice_id',
-        // '=','orders_invoices.id');
+    
 
         $products = Orders_invoice::find(1)->productsGet;
-        //  foreach($products as $pro){
-        //      dd($pro->product_name);
-        //  }
+   
+    //    foreach($products as $product)  {
+    //        dd($product->product_name);
+    //    }   
 
-
-
-        // return $invoice_data;
-        // dd($products->product_name);
-
-        return view('paymentView.paymentView' ,compact('invoice_data','products'));
+         return view('paymentView.paymentView' ,compact('invoice_data','products'));
 
     }
     public function cancel_payment($invoice_referance){
@@ -199,7 +184,7 @@ class checkoutController extends Controller
         $invoice_referance=$request->input('invoice_referance');
         
         $product_name=$request->input('product_name');
-        $total_amout=$request->input('total_amout');
+        $total_amout=$request->input('total_amount');
         $currency=$request->input('currency');
         $card_number=$request->input('card_number');
         $card_holder=$request->input('card_holder');
@@ -209,15 +194,19 @@ class checkoutController extends Controller
         $cvv=$request->input('cvv');
         $Payment_confirmation_data=$request->all();
         $client_card_data=Credit_cards::where('card_number',$card_number)->first();
-        $client_banck_acount_id=$client_card_data->bank_accounts_id;
+        $client_banck_acount_id=5;
+
         $client_account_data=bank_account::where('id',$client_banck_acount_id)->first();
+
         $client_account_number=$client_account_data->account_number;
+     
+
         $client_balance=$client_account_data->balance;
         $client_balance=(float)$client_balance;
         $total_amout=(float)$total_amout;
         $remaining_balance=$client_balance-$total_amout;
         if($remaining_balance >0){
-            $merchant_id=$request->input('merchant_id');
+            $merchant_id=1;
             $merchant_data=bank_account::where('user_id',$merchant_id)->first();
             $merchant_account_number=$merchant_data->account_number;
             $merchant_balance=$merchant_data->balance;
@@ -300,6 +289,7 @@ class checkoutController extends Controller
 
             // return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
             return $this->returnData('الرصيد المتبقي',$invoice_sender,'تمت عملية الدفع بنجاح');
+
 
         }
         else{

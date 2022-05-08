@@ -11,7 +11,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\auth\UserVerify;
 
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable 
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;

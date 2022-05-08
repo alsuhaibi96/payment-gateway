@@ -15,4 +15,7 @@ class bank_account extends Model
     public function Credit_cards(){
         return $this->hasOne('App\Models\Credit_cards','bank_accounts_id');
     }
+    public function transactionoverview(){
+        return $this->hasMany(TransactionOverView::class);
+    }
 }

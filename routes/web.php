@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\test\checkoutController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
@@ -220,3 +221,5 @@ Route::get('/customer_dashboard/deposit', function(){
  Route::get('/merchant_dashboard/invoice' , function(){
      return view('merchant_dashboard/invoice');
  })->name('invoice');
+ Route::get('getinvoice', [checkoutController::class, 'getinvoice'])->name('getinvoice'); 
+ 

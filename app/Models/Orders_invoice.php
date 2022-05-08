@@ -15,4 +15,7 @@ class Orders_invoice extends Model
     public function productsGet(){
         return $this->hasMany(Products::class,'invoice_id');
     }
+    public function paymentInvoice(){
+        return $this->hasOne(PaymentInvoice::class,'order_invoice_id');
+    }
 }

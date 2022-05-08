@@ -75,16 +75,20 @@
                                             <span class="text-dark"><b> بيانات الحساب </b> </span>
                                         </div>
                                     </div>
-                                        <div class="col-sm-6 col-12 order-2 order-sm-1">
-                                            <div class="row">
-                                                <div class="col-12 py-20">
-                                                     <label class="text-dark">رقم البطاقة</label>
-                                                     <input type="text" class="form-control" placeholder="1406####35" readonly>
-                                                </div>
-
+                                    <div class=" order-2 order-sm-1">
+                                        <div class="row">
+                                            <div class="col-6 py-20">
+                                                 <label class="text-dark">رقم البطاقة</label>
+                                                 <input type="text" class="form-control" placeholder="6139 4325 9204 5331" readonly>
                                             </div>
+                                            <div class="col-6 py-20">
+                                                <label class="text-dark">تاريخ الانتهاء</label>
+                                                <input type="text" class="form-control" placeholder="1/1/2025" readonly>
+                                           </div>
 
                                         </div>
+
+                                    </div>
 
                                         <div class="col-12">
                                             <div class="row">
@@ -92,9 +96,7 @@
                                                    <label class="text-dark">الاسم الرباعي</label>
                                                    <input type="text" class="form-control fs-6" placeholder="الاسم">
                                                </div>
-                                               <div class="col-2">
 
-                                               </div>
 
                                             <div class="col-4">
                                                 <label class="text-dark">كلمة المرور</label>
@@ -109,6 +111,10 @@
 
                                     <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                         <span class="text-dark"><b>المبلغ المضاف </b> </span>
+                                    </div>
+
+                                    <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start mb-2">
+                                        <small class=" text-success"> من بطاقة الصرّاف إلى الموقع </small>
                                     </div>
 
                                     <div class="row invoice-info">

@@ -44,30 +44,31 @@
             >
            
           </div>
-          <span> <a href="" style="color: #999; margin:20px;">back to home</a></span>
+          <span> <a href="{{ route('docs') }}" style="color: #999; margin:20px;">back to docs main</a></span>
          
           <div class="sidebar-content">
-            <nav class="menu open-current-submenu">
+            <nav class=" text-dark">
               <ul>
                 
-                <li class="menu-item sub-menu">
-                  <a href="#">
-                    <span class="menu-icon">
+                <li class="text-dark text-decoration-none">
+                  <a href="/document">
+                    <span class="menu-icon text-dark">
                       <i class="ri-vip-diamond-fill"></i>
                     </span>
-                    <span class="menu-title">APIs</span>
+                    <span class="menu-title text-dark">APIs</span>
                   
                   </a>
-                  <div class="sub-menu-list">
+                  <div class="">
                     <ul>
-                      <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-title">Error/Success codes</span>
-                        </a>
+                      {{--<li class="menu-item">
+                         <a href="#">
+                          <span class="menu-title text-dark">Error/Success codes</span>
+                        </a> 
                       </li>
+                      --}}
                       <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-title">Wasel test card</span>
+                        <a href="{{ route('test_card') }}">
+                          <span class="menu-title text-dark">Wasel test card</span>
                         </a>
                       </li>
                      
@@ -76,32 +77,30 @@
                               
                                    
                 <li class="menu-item sub-menu">
-                  <a href="#">
-                    <span class="menu-icon">
-                     
-                    </span>
-                    <span class="menu-title">Checkout</span>
+                  <a href="/checkout">
+                   
+                    <span class="menu-title text-dark">Checkout</span>
                   </a>
                   <div class="sub-menu-list">
                     <ul>
                       <li class="menu-item">
+                        <a href="{{ route('checkout') }}">
+                          <span class="menu-title text-dark">Create session</span>
+                        </a>
+                      </li>
+                      {{-- <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Create session</span>
+                          <span class="menu-title text-dark">List session</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">List session</span>
+                          <span class="menu-title text-dark">Retrieve session</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Retrieve session</span>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#">
-                          <span class="menu-title">Checkout_Model</span>
+                          <span class="menu-title text-dark">Checkout_Model</span>
                         </a>
                       </li>
                     </ul>
@@ -111,23 +110,23 @@
                   <a href="#">
                     <span class="menu-icon">
                     </span>
-                    <span class="menu-title">Payment method</span>
+                    <span class="menu-title text-dark">Payment method</span>
                   </a>
                   <div class="sub-menu-list">
                     <ul>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Delete payment method</span>
+                          <span class="menu-title text-dark">Delete payment method</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Payment method model</span>
+                          <span class="menu-title text-dark">Payment method model</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">List a Customer's Payment Method</span>
+                          <span class="menu-title text-dark">List a Customer's Payment Method</span>
                         </a>
                       </li>
                     </ul>
@@ -137,23 +136,23 @@
                   <a href="#">
                     <span class="menu-icon">
                     </span>
-                    <span class="menu-title">Payments</span>
+                    <span class="menu-title text-dark">Payments</span>
                   </a>
                   <div class="sub-menu-list">
                     <ul>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">List Payments</span>
+                          <span class="menu-title text-dark">List Payments</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Retrieve Payment</span>
+                          <span class="menu-title text-dark">Retrieve Payment</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Payment_Model</span>
+                          <span class="menu-title text-dark">Payment_Model</span>
                         </a>
                       </li>
                     </ul>
@@ -163,13 +162,13 @@
                   <a href="#">
                     <span class="menu-icon">
                     </span>
-                    <span class="menu-title">Invoice</span>
+                    <span class="menu-title text-dark">Invoice</span>
                   </a>
                   <div class="sub-menu-list">
                     <ul>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Invoice_Model</span>
+                          <span class="menu-title text-dark">Invoice_Model</span>
                         </a>
                       </li>
                      
@@ -180,33 +179,33 @@
                   <a href="#">
                     <span class="menu-icon">
                     </span>
-                    <span class="menu-title">Customers</span>
+                    <span class="menu-title text-dark">Customers</span>
                   </a>
                   <div class="sub-menu-list">
                     <ul>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">List customers</span>
+                          <span class="menu-title text-dark">List customers</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Create Customer</span>
+                          <span class="menu-title text-dark">Create Customer</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Retrieve customer</span>
+                          <span class="menu-title text-dark">Retrieve customer</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Delete customer</span>
+                          <span class="menu-title text-dark">Delete customer</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Customer_Model</span>
+                          <span class="menu-title text-dark">Customer_Model</span>
                         </a>
                       </li>
                      
@@ -217,35 +216,35 @@
                   <a href="#">
                     <span class="menu-icon">
                     </span>
-                    <span class="menu-title">Refunds</span>
+                    <span class="menu-title text-dark">Refunds</span>
                   </a>
                   <div class="sub-menu-list">
                     <ul>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">List Refunds</span>
+                          <span class="menu-title text-dark">List Refunds</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">create refunds</span>
+                          <span class="menu-title text-dark">create refunds</span>
                         </a>
                       </li>
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Retrieve refunds</span>
+                          <span class="menu-title text-dark">Retrieve refunds</span>
                         </a>
                       </li>
                      
                       <li class="menu-item">
                         <a href="#">
-                          <span class="menu-title">Refunds_Model</span>
+                          <span class="menu-title text-dark">Refunds_Model</span>
                         </a>
                       </li>
                      
                     </ul>
                   </div>
-                </li>
+                </li> --}}
                
                
               </ul>
@@ -257,7 +256,7 @@
       <div id="overlay" class="overlay"></div>
       <div class="layout">
       
-        <header class="header">
+        {{-- <header class="header">
          
           <nav class="navbar" id="menu">
  
@@ -268,7 +267,7 @@
               <i class="fas fa-search" id="search-icon"></i>
               
           </div>
-      </header>
+      </header> --}}
       <form action="#" id="search-form">
         <input type="search" placeholder="search ...." name="" id="search-box">
         <label for="search-box" class="fas fa-search"></label>

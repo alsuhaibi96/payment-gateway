@@ -16,11 +16,11 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Testing:https://uatcheckout.wasel.ye/api/v1</th>
+              <th scope="row">Testing:https://waslpayment.com/api/test/merchant/payment_order</th>
               
             </tr>
             <tr>
-              <th scope="row">Production:https://checkout.wasel.ye/api/v1</th>
+              <th scope="row">Production:https://waslpayment.com/api/v1</th>
               
             </tr>
             <tr>
@@ -34,19 +34,19 @@
         <table class="table table-light table-striped  table-borderless ">
           <thead>
             <tr>
-              <th scope="col">Security</th>
+              <th scope="col">Test</th>
              
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">API key</th>
+              <th scope="row">Private and Public keys</th>
               
             </tr>
             <tr>
-              <th scope="row">An API key is a token that you provide when making API calls. Include the token in a header parameter called wasel-api-key.
-
-                Example: wasel-api-key: 123</th>
+              <th scope="row">
+<br>
+                Examples: <br>private-key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et<br>public-Key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy</th>
               
             </tr>
            
@@ -114,16 +114,15 @@ Important Notes The code sample is for demonstration purposes only. It should NO
         </ul>
       </div>
       <div>
-        <p class="h1 ms-5 mt-5 fw-bold">Secert and publishible keys</p>
+        <p class="h1 ms-5 mt-5 fw-bold">Private and public keys</p>
         <p class=" text-justify fs-5 ms-5 mt-5">
-          You MUST provide Secret and Publishable Keys in order to call any request in Wasel Checkout. Each merchant will have his unique keys which he can generate from the merchant portal directly. For testing purposes, below is the keys that will help you while integrating. Note that this is in UAT ONLY. If you need to move to production, then contact
+          You MUST provide Private and public Keys in order to call any request in Wasel Checkout. Each merchant will have his unique keys which he can generate from the merchant portal directly. For testing purposes, below is the keys that will help you while integrating. Note that this is in UAT ONLY. If you need to move to production, then contact
           <a href="sales@waslpayment.com">A Wasel Sales</a>  to register with Wasel as a merchant and get your own keys.
-
-
+<br>
+       <span class=" fw-bold">   Test Examples:</span> <br><span class="fw-bold">private-key:</span> rRQ26GcsZzoEhbrP2HZvLYDbn9C9et<br>
+       <span class="fw-bold">public-key:</span> HGvTMLDssJghr9tlN9gr4DVYt0qyBy</th>
         </p>
-        <input class="form-control ms-5 mt-5 w-50" type="text" placeholder="Secret Key: rRQ26GcsZzoEhbrP2HZvLYDbn9C9et" aria-label="Disabled input example" disabled>
-        <br>
-        <input class="form-control ms-5  w-50" type="text" placeholder="Publishable Key: HGvTMLDssJghr9tlN9gr4DVYt0qyBy" aria-label="Disabled input example" disabled>
+     
       </div>
         </main>
         <div class="overlay"></div>

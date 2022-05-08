@@ -129,10 +129,10 @@ Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
 Route::get('/document', function () {
     return view('docs/docs');
-});
+})->name('docs');
 Route::get('/checkout', function () {
     return view('docs/checkout');
-});
+})->name('checkout');
 Route::get('/checkout-model', function () {
     return view('docs/checkout_model');
 });
@@ -179,6 +179,9 @@ Route::get('/retrieve-payment', function () {
     return view('docs/retrieve_payment');
 });
 
+Route::get('/test-card', function () {
+    return view('docs.wasl_test_card');
+})->name('test_card');
 
 
 /*********** Customer Dashboard Routes *************/

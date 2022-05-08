@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\test\checkoutController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
@@ -8,7 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Customer\CustomerController;
-use App\Http\Controllers\API\test\checkoutController;
+
 
 
 
@@ -239,3 +240,5 @@ Route::get('/customer_dashboard/deposit', function(){
 
 
 
+ Route::get('getinvoice', [checkoutController::class, 'getinvoice'])->name('getinvoice'); 
+ 

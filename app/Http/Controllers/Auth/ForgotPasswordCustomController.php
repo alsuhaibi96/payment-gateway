@@ -11,7 +11,7 @@ use Mail;
 use Hash;
 use Illuminate\Support\Str;
   
-class ForgotPasswordController extends Controller
+class ForgotPasswordCustomController extends Controller
 {
       /**
        * Write code on Method

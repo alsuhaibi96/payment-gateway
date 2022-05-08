@@ -7,7 +7,9 @@ use App\Mail\ContuctMe;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Customer\CustomerController;
+
+use App\Http\Controllers\Auth\ForgotPasswordCustomController;
 
 
 /*
@@ -67,11 +69,11 @@ Route::get('/', function () {
 /**
  * Reset password & verity email
  *
- */
-Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
-Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
-Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+*/
+Route::get('forget-password', [ForgotPasswordCustomController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordCustomController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordCustomController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
    /**
@@ -79,6 +81,8 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
     */
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
+Route::get('get_user', [CustomerController::class, 'getUser'])->name('get_user');
+
 
     // /* New Added Routes */
  Route::get('user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);

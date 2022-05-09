@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\api\test\checkoutController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
@@ -48,18 +47,7 @@ Route::post('/login',[UserController::class,'customLogin'])->name('customLogin')
 
 
 
- Route::get('/moblie-conf', function (){
-    return view('website/customer/moblie_conf');
-});
-Route::get('/adderss', function (){
-    return view('website/customer/name_adderss');
-});
-Route::get('/card-info', function (){
-    return view('website/customer/card_info');
-});
-Route::get('/buisness-info', function (){
-    return view('website/merchant/buisness_info');
-});
+
 
 
 /* Index Routes */
@@ -81,7 +69,6 @@ Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitRes
     * Verification Routes
     */
 
-Route::get('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('get_user', [CustomerController::class, 'getUser'])->name('get_user');
 
 
@@ -95,41 +82,17 @@ Route::get('/about-us', function () {
     return view('website/about');
 });
 // contuct form
-Route::get('/contuct', function (){
+Route::get('/contact', function (){
     return view('website/contuct');
-});
-Route::post('/contuct', function (){
+})->name('contact-us');
+
+Route::post('/contact', function (){
     $data=request(['name','email','subject','message']);
-    Mail::to('waslpayment@gmail.com')->send(new ContuctMe($data));
-    return  redirect('/contuct')
+    Mail::to('mail@waslpayment.com')->send(new ContuctMe($data));
+    return  redirect()->route('contact-us')
     ->with('flash','تم الارسال بنجاح');
 
-});
-
-
-/*
-profile settings
-*/
-Route::get('/settings', function () {
-    return view('website/user_profile/settings');
-})->name('user_profile');
-
-Route::get('/security', function () {
-    return view('website/user_profile/security');
-});
-Route::get('/privacy', function () {
-    return view('website/user_profile/privacy');
-});
-
-
-
-
-
-/**
- * Adding roles for the authentication and users
- * You should go to this route every time the database data are lost
- */
-Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+})->name('send_contact_message');
 
 
 Route::get('/document', function () {
@@ -188,11 +151,50 @@ Route::get('/test-card', function () {
     return view('docs.wasl_test_card');
 })->name('test_card');
 
+Route::group(['middleware'=>['auth']],function(){
 
+    
+/**
+ * Adding roles for the authentication and users
+ * You should go to this route every time the database data are lost
+ */
+    Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+
+    
+/*
+profile settings
+*/
+Route::get('/settings', function () {
+    return view('website/user_profile/settings');
+})->name('user_profile');
+
+Route::get('/security', function () {
+    return view('website/user_profile/security');
+});
+Route::get('/privacy', function () {
+    return view('website/user_profile/privacy');
+});
+
+Route::get('/moblie-conf', function (){
+    return view('website/customer/moblie_conf');
+});
+Route::get('/adderss', function (){
+    return view('website/customer/name_adderss');
+});
+Route::get('/card-info', function (){
+    return view('website/customer/card_info');
+});
+Route::get('/buisness-info', function (){
+    return view('website/merchant/buisness_info');
+});
+
+
+    Route::get('/customer_dashboard', function(){
+        return view('customer_dashboard/home');
+    })->name('home');
+   
+    
 /*********** Customer Dashboard Routes *************/
-Route::get('/customer_dashboard', function(){
-     return view('customer_dashboard/home');
- })->name('home');
 
 Route::get('/customer_dashboard/add_balance', function(){
     return view('customer_dashboard/addBalance');
@@ -213,6 +215,8 @@ Route::get('/customer_dashboard/deposit', function(){
 
 
 
+
+
  /********** Merchant Dashboard Routes *************/
  Route::get('/merchant_dashboard', function(){
     return view('merchant_dashboard/home');
@@ -221,5 +225,14 @@ Route::get('/customer_dashboard/deposit', function(){
  Route::get('/merchant_dashboard/invoice' , function(){
      return view('merchant_dashboard/invoice');
  })->name('invoice');
- Route::get('getinvoice', [checkoutController::class, 'getinvoice'])->name('getinvoice'); 
- 
+
+
+ Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+
+});
+
+
+
+
+

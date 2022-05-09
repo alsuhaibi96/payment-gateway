@@ -34,6 +34,9 @@
        <i class="fas fa-bell"></i>
        <i class="fas fa-cog "></i>
      <a href="{{ route('logout') }}" >تسجيل الخروج</a>
+     {{-- <form action="{{ route('logout') }}" method="POST">
+      @csrf
+      <button type="submit">ِتسجيل الخروج</button> --}}
    </div>
     </header>
    

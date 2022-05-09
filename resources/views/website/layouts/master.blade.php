@@ -32,12 +32,12 @@
         <nav class="navbar" id="menu">
 
             <a class="border ml-50" href="{{ route('login') }}">لوحة التحكم</a>
-            <a class="active" href="#">الرئيسية</a>
+            <a class="active" href="{{ route('index') }}">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>
 
-            <a href="/contact-us">التواصل</a>
-            <a href="/document">Docs</a>
+            <a href="{{ route('contact-us') }}">تواصل معنا</a>
+            <a href="{{ route('docs') }}">Docs</a>
         </nav>
          <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>

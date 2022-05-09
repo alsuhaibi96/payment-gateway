@@ -50,7 +50,7 @@ class checkoutController extends Controller
         if($private_key==null|| $public_key==null)
         return $this->errors(500,5200,'invalid credintical keys');
 
-        if($private_key=='123456' && $public_key=='123456')
+        if($private_key=='rRQ26GcsZzoEhbrP2HZvLYDbn9C9et' && $public_key=='HGvTMLDssJghr9tlN9gr4DVYt0qyBy')
         {
             return $this->create_order($order_details,$products,$public_key,$private_key);
         }
@@ -80,58 +80,53 @@ class checkoutController extends Controller
         $feedback['invoice_referance'],
         "cancel_next_url"=>"http://localhost:8000/api/test/merchant/cancel_payment_order/".
         $feedback['invoice_referance']);
-
+       
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
 
-       return $orders;
+    //    return $orders;
 
-        // $invoice=new Orders_invoice;
+        $invoice=new Orders_invoice;
 
-        // $invoice->invoice_referance=$orders['invoice_referance'];
-        // $invoice->user_id=$merchant_data->id;
-        // $invoice->products=$orders['products'];
-        // $invoice->order_reference=$orders['order_reference'];
-        // $invoice->total_amout=$orders['total_amout'];
-        // $invoice->currency=$orders['currency'];
-        // $invoice->next_url=$orders['next_url'];
-        // $invoice->cancel_next_url=$orders['cancel_next_url'];
-        // $invoice->success_url=$orders['success_url'];
-        // $invoice->cancel_url=$orders['cancel_url'];
-
-    // return $invoice.'ff';
+        $invoice->invoice_referance=$orders['invoice_referance'];
+        $invoice->user_id=$merchant_data->id;
+        $invoice->products=$orders['products'];
+        $invoice->order_reference=$orders['order_reference'];
+        $invoice->total_amout=$orders['total_amount'];
+        $invoice->currency=$orders['currency'];
+        $invoice->next_url=$orders['next_url'];
+        $invoice->cancel_next_url=$orders['cancel_next_url'];
+        $invoice->success_url=$orders['success_url'];
+        $invoice->cancel_url=$orders['cancel_url'];
 
         
-        // if($invoice->save()){
-        //     $products_ids=array_column($products,'id');
-        //     $products_names=array_column($products,'product_name');
-        //     $products_quantity=array_column($products,'quantity');
-        //     $products_unit_amounts=array_column($products,'unit_amount');
+        if($invoice->save()){
+            $products_ids=array_column($products,'id');
+            $products_names=array_column($products,'product_name');
+            $products_quantity=array_column($products,'quantity');
+            $products_unit_amounts=array_column($products,'unit_amount');
     
             
+    
+            for($i=0;$i<count($products_ids);$i++){
+    
+                $productsArr = array(
+                    'product_id' =>$products_ids[$i],
+                    'product_name'=> $products_names[$i],
+                    'quantity'=> $products_quantity[$i],
+                    'unit_amount'=> $products_unit_amounts[$i],
+                    'invoice_id'=>  $invoice->id,
+
+                );
+    
+               
+                Products::insert($productsArr);
+    
+            }
            
-
-    
-        //     for($i=0;$i<count($products_ids);$i++){
-    
-        //         $productsArr = array(
-        //             'product_id' =>$products_ids[$i],
-        //             'product_name'=> $products_names[$i],
-        //             'quantity'=> $products_quantity[$i],
-        //             'unit_amount'=> $products_unit_amounts[$i],
-        //             'invoice_id'=>  $invoice->id,
-
-        //         );
-    
-       
-        //         Products::insert($productsArr);
-    
-        //     }
             
-            
-            
-        //     return $this->returnData('invoice',$invoice,'invoice created successfuly');
+            return $this->returnData('invoice',$invoice,'invoice created successfuly');
 
-        // }
+        }
         
         
 
@@ -141,15 +136,13 @@ class checkoutController extends Controller
     }
     public function do_payment($invoice_referance){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->get();
-    
+     $invoice_id= $invoice_data[0]["id"];
+       $products=$this->getProducts($invoice_id);
+      
+         
+     
 
-        $products = Orders_invoice::find(1)->productsGet;
-   
-    //    foreach($products as $product)  {
-    //        dd($product->product_name);
-    //    }   
-
-         return view('paymentView.paymentView' ,compact('invoice_data','products'));
+        return view('paymentView.paymentView' ,compact('invoice_data','products'));
 
     }
     public function cancel_payment($invoice_referance){
@@ -177,6 +170,8 @@ class checkoutController extends Controller
         
 
     }
+
+    
     public function Financial_processing(Request $request){
         
         
@@ -194,7 +189,7 @@ class checkoutController extends Controller
         $cvv=$request->input('cvv');
         $Payment_confirmation_data=$request->all();
         $client_card_data=Credit_cards::where('card_number',$card_number)->first();
-        $client_banck_acount_id=5;
+        $client_banck_acount_id=$client_card_data->id;
 
         $client_account_data=bank_account::where('id',$client_banck_acount_id)->first();
 
@@ -278,30 +273,36 @@ class checkoutController extends Controller
             $transactionoverview->client_name=$client_card_data->card_holder;
             $transactionoverview->toAccount=$merchant_account_number;
             $transactionoverview->merchant_name=$merchant_data->first_name."".$merchant_data->last_name ;
-            $transactionoverview->status='تمت عملية الدفع';
+            $transactionoverview->status='Done Payment';
 
             $transactionoverview->save();
 
             $invoice_sender=PaymentInvoice::where('id',$paymentinvoice->order_invoice_id)->get();
 
-            
+            $invoice_id=  $order_invoice_data["id"];
 
 
             // return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
-            return $this->returnData('الرصيد المتبقي',$invoice_sender,'تمت عملية الدفع بنجاح');
+            // return $this->returnData('Balance Left',$invoice_sender,'Payment Process Completed Successfully');
 
 
         }
         else{
-            return $this->returnError('4011','رصيدك غير كافي');
+            return $this->returnError('4011','You do not Have enough balance');
         }
-        return $this->returnData('success',$client_account_number,'تمت عملية الدفع بنجاح');
+          $products= $this->getProducts($invoice_id);
+        return $this->returnData('success',$client_account_number,array("Products:"=>$products),'Done Payment Successfully');
         
 
 
     }
     public function get_acounts(){
         return bank_account::find(1)->Credit_cards;
+    }
+    public function getProducts($invoice_id){
+
+        $products =DB::table('products')->where('invoice_id',$invoice_id)->get();
+        return $products;
     }
     public function getinvoice(){
         $item=User::with(['PaymentInvoice'])->get();

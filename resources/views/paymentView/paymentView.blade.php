@@ -206,10 +206,12 @@
                 <div class="info mb-5">
                     @foreach ($invoice_data as $item )
                     <tr>
-                        <p class="name">رقم التاجر : {{ $item->user_id}}</p>
+                        <p class="name ">رقم التاجر : {{ $item->user_id}}</p>
                         <p class="name">رقم الطلب : {{ $item->invoice_referance}}</p>
-                        @foreach ($products as $product  )
-                        <p class="name">المشتريات  :  {{ $product->product_name}}</p>
+                        <p class="name">المشتريات  : </p>
+                     
+                        @foreach ($products as $product)
+                        <p class="name">  {{ $product->product_name}}</p>
 
                        @endforeach
 

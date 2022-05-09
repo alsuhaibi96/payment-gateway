@@ -13,7 +13,7 @@
           <h2 class="display-1 mt-5 fw-bold">  تواصل معنا</h2>
       </div>
     </div>
-    <form class=" row container g-3 fs-3" action="/contuct" method="POST">
+    <form class=" row container g-3 fs-3" action="{{ route('send_contact_message') }}" method="POST">
       @csrf
    
       <div class="mb-3 ">

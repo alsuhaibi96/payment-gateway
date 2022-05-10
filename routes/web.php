@@ -107,7 +107,7 @@ profile settings
 */
 Route::get('/settings', function () {
     return view('website/user_profile/settings');
-})->name('user_profile');
+})->name('settings');
 
 Route::get('/security', function () {
     return view('website/user_profile/security');
@@ -179,6 +179,14 @@ Route::get('/retrieve-payment', function () {
     return view('docs/retrieve_payment');
 });
 
+/*********** General Dashboard Routes *************/
+Route::get('/customer_dashboard/reports', function(){
+    return view('customer_dashboard/reports');
+})->name('reports');
+/*Route::get('/merchant_dashboard/payments', function(){
+    return view('merchant_dashboard/payments');
+})->name('user_profile');*/
+
 
 
 /*********** Customer Dashboard Routes *************/
@@ -186,21 +194,10 @@ Route::get('/customer_dashboard', function(){
      return view('customer_dashboard/home');
  })->name('home');
 
-Route::get('/customer_dashboard/add_balance', function(){
-    return view('customer_dashboard/addBalance');
-})->name('addBalance');
-
-Route::get('/customer_dashboard/withdraw', function(){
-    return view('customer_dashboard/withdraw');
-})->name('withdraw');
-
-Route::get('/customer_dashboard/transfer', function(){
+Route::get('/customer_dashboard', function(){
     return view('customer_dashboard/transfer');
 })->name('transfer');
 
-Route::get('/customer_dashboard/deposit', function(){
-    return view('customer_dashboard/deposit');
-})->name('deposit');
 
 
 
@@ -208,8 +205,14 @@ Route::get('/customer_dashboard/deposit', function(){
  /********** Merchant Dashboard Routes *************/
  Route::get('/merchant_dashboard', function(){
     return view('merchant_dashboard/home');
-})->name('merchant_dashboard');
+})->name('home');
 
  Route::get('/merchant_dashboard/invoice' , function(){
-     return view('merchant_dashboard/invoice');
- })->name('invoice');
+     return view('merchant_dashboard/list_invoice');
+ })->name('list_invoice');
+
+ Route::get('/merchant_dashboard/payments', function(){
+    return view('merchant_dashboard/payments');
+})->name('payments');
+
+

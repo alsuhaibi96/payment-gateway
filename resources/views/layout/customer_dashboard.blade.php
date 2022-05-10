@@ -59,6 +59,8 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Changa:wght@700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+
     </style>
 </head>
 <!-- END: Head-->
@@ -186,45 +188,35 @@
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate"
-                        data-i18n="Dashboard">لوحة التحكم</span></a>
-                    <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce">
-                                رصيدك الحالي</span> <span
-                                class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R
-                            </span></a>
-                    </li>
-                    <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i
-                                class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض
-                                الإحصائيات</span></a>
-                    </li>
-                    </ul>
+                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-danger badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
+                            </li>
+                            <li class="active"><a class="d-flex align-items-center" href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                            </li>
+                        </ul>
                     </li>
 
-                    <li class=" nav-item"><a href="{{ route('payments') }}"> <i class="fas fa-money-bill"></i> <span class="menu-title text-truncate"
-                        data-i18n="Chat">المدفوعات </span></a>
-                    </li>
-                    <li class=" nav-item"><a href="{{ route('list_invoice') }}"> <i class="fas fa-file-invoice-dollar"></i> <span
-                        class="menu-title text-truncate" data-i18n="Todo">الفواتير</span></a>
-                    </li>
-                    <li class=" nav-item"><a href="#settingsOruserProfile"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate"
-                        data-i18n="Calendar"> تحويل رصيد </span></a>
-                    </li>
-                    <li class=" nav-item"><a href="#settingsOruserProfile"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate"
-                        data-i18n="Calendar"> إعدادات الحساب</span></a>
+                    <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                     </li>
 
-                    <li class=" navigation-header text-truncate divider"><span data-i18n="Forms &amp; Tables"> </span>
+                    <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
                     </li>
-                    <li class=" nav-item"><a href="{{ route('reports') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
-                        data-i18n="Form Layout"> الإبلاغ عن مشكلة</span></a>
-                    <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span
-                        class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
+
+                    <li class=" nav-item"><a href="{{ route('reports') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> الفواتير </span></a>
                     </li>
+
+                    <li class=" nav-item"><a href="{{ route('settings') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">الملف الشخصي </span></a>
                     </li>
-                    </div>
-                    </div>
-                    <!-- END: Main Menu-->
+
+
+                    <li class=" navigation-header text-truncate"><span data-i18n="Forms &amp; Tables">الدعم الفني</span>
+                    </li>
+                    <li class=" nav-item"><a href="{{ route('reports') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> الإبلاغ عن مشكلة</span></a>
+                    </li>
+            </div>
+        </div>
+        <!-- END: Main Menu-->
 
     @yield('content')
 

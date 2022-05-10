@@ -77,14 +77,21 @@ Route::group([
     'prefix' => 'test',
     
 ], function () {
+   
     Route::post('/merchant/payment_order', [checkoutController::class, 'payment_order'])->name('payment_order');
-    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
+   
     Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
     Route::get('acounts',[checkoutController::class,'get_acounts']);
-    Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
-      
+  
 });
 
+Route::group([
+    'prefix'=>'test',
+    'middleware'=>['web']],function(){
+    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
+Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
+
+});
 // Route::group([
 //     'middleware' => 'api',
 // ], function () {

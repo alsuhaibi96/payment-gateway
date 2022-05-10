@@ -1,4 +1,5 @@
-@extends('layout.dashboard_master')
+@extends('layout.customer_dashboard')
+
 
 @section('header')
 <span class="nav navbar-nav float-left">
@@ -11,35 +12,7 @@
 
 @section('content')
 
-                <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-danger badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-                </li>
-
-
-                <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-circle-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{ route('withdraw') }}"> <i class="fas fa-circle-minus">  </i> <span class="menu-title text-truncate" data-i18n="Icons">سحب رصيد </span></a>
-                </li>
-                <li class="active nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-money-check-alt"></i> <span class="menu-title text-truncate" data-i18n="Widgets">إيداع إلى حساب</span><span class="badge badge-light-primary badge-pill badge-round float-right ml-auto">New</span></a>
-                </li>
-
-                <li class=" navigation-header text-truncate"><span data-i18n="Forms &amp; Tables">الدعم الفني</span>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> الإبلاغ عن مشكلة</span></a>
-                </li>
-        </div>
-    </div>
-    <!-- END: Main Menu-->
+               
 
         <!-- BEGIN: Content-->
         <div class="app-content content">
@@ -56,44 +29,7 @@
                                 <div class="card">
                                     <div class="card-body pb-0 mx-25">
 
-                                        <!-- logo and title -->
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
-                                                <span class="text-dark"><b> بيانات المرسل </b> </span>
-                                            </div>
-                                        </div>
-                                        <div class=" order-2 order-sm-1">
-                                            <div class="row">
-                                                <div class="col-6 py-20">
-                                                     <label class="text-dark"> اسم المرسل (English)</label>
-                                                     <input type="text" class="form-control" placeholder="Mo'khtar Mohammed Ghaleb" readonly>
-                                                </div>
-                                                <div class="col-6 py-20">
-                                                    <label class="text-dark"> اسم المرسل (عربي) </label>
-                                                    <input type="text" class="form-control" placeholder="مختار محمد غالب" readonly>
-                                               </div>
-
-                                            </div>
-
-                                        </div>
-
-                                            <div class="col-12">
-                                                <div class="row">
-                                                   <div class="col-6">
-                                                       <label class="text-dark"> رقم الجوال </label>
-                                                       <input type="text" class="form-control fs-6" placeholder="+967">
-                                                   </div>
-
-
-                                                <div class="col-6">
-                                                    <label class="text-dark"> تاريخ التحويل </label>
-                                                    <input type="password" class="form-control" placeholder="10/2/2022" readonly>
-                                                 </div>
-                                             </div>
-                                            </div>
-
-
-                                        <hr>
+                                       
 
                                          <!-- logo and title -->
                                          <div class="row my-2">
@@ -104,93 +40,43 @@
                                         <div class=" order-2 order-sm-1">
                                             <div class="row">
                                                 <div class="col-6 py-20">
-                                                     <label class="text-dark"> اسم المستلم (English)</label>
+                                                     <label class="text-dark"> البريد الالكتروني أو الid </label>
                                                      <input type="text" class="form-control" placeholder="Reciever Name" >
                                                 </div>
 
-                                                <div class="col-6 py-20">
-                                                    <label class="text-dark"> اسم المستلم (عربي)</label>
-                                                    <input type="text" class="form-control" placeholder="اسم المستلم" >
-                                               </div>
+                                               
+                                                <div class="col-6">
+                                                    <fieldset class="invoice-address form-group">
+                                                        <label for=""> مبلغ التحويل </label>
+                                                        <input type="text" class="form-control" placeholder="قيمة المبلغ">
+                                                    </fieldset>
+                                                </div>
 
                                             </div>
 
                                         </div>
 
-                                            <div class="col-12">
-                                                <div class="row">
-                                                   <div class="col-6">
-                                                       <label class="text-dark"> رقم الجوال </label>
-                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567">
-                                                   </div>
-
-
-                                                <div class="col-6">
-                                                    <label class="text-dark"> رقم الحساب </label>
-                                                    <input type="password" class="form-control" placeholder="0000 0000 0000 0000">
-                                                 </div>
-                                             </div>
-                                            </div>
-
-                                            <div class="col-4">
-                                                <div class="row">
-
-                                                    <div class="dropdown text-dark">
-                                                        <button class="btn btn-white border border-1 btn-sm dropdown-toggle text-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                         العلاقة
-                                                        </button>
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                          <a class="dropdown-item" href="">عمل</a>
-                                                          <a class="dropdown-item" href="">أصدقاء</a>
-                                                          <a class="dropdown-item" href="">أقارب</a>
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
+                                            
 
                                         <hr>
 
                                         <!-- invoice address and contact -->
 
-                                        <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start mb-2">
-                                            <span class="text-dark"><b> مبلغ التحويل </b> </span>
-                                        </div>
+                                       
 
                                         <div class="row invoice-info">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <fieldset class="invoice-address form-group">
-                                                        <input type="text" class="form-control" placeholder="قيمة المبلغ">
-                                                    </fieldset>
-                                                </div>
+                                                
 
 
-                                                <div class="col-2">
-                                                    <div class="input-group-text">
-                                                        <label for="yer" class="text-dark"> YER </label>
-                                                        <input name="currency" id="YER" type="radio" aria-label="yer" required>
-                                                    </div>
-                                                </div>
+                                               
 
-                                                <div class="col-2">
-                                                    <div class="input-group-text">
-                                                        <label for="sar" class="text-dark"> SAR </label>
-                                                        <input name="currency" id="SAR" type="radio" aria-label="sar">
-                                                    </div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="input-group-text">
-                                                        <label for="$" class="text-dark"> $USD </label>
-                                                        <input name="currency" id="USD" type="radio" aria-label="$">
-                                                    </div>
-                                                </div>
+                                               
+                                               
 
                                             </div>
 
-                                            <div class="col-lg-6 col-md-12 mt-25">
+                                            <div class="col-lg-12 col-md-12 mt-25">
 
 
                                                 <fieldset class="invoice-address form-group">
@@ -203,7 +89,7 @@
                                     <div class="card-body pt-50">
                                         <!-- invoice subtotal -->
                                         <hr>
-                                        <div class="invoice-subtotal pt-50">
+                                        <div class="invoice-subtotal pt-50 ">
                                             <div class="row">
                                                 <div class="col-md-5 col-12">
                                                     <div class="d-flex justify-content-between py-50">
@@ -241,10 +127,11 @@
                                                             <h6 class="invoice-subtotal-value mb-0">200 YER</h6>
                                                         </li>
 
-                                                        <li class="list-group-item border-0 pb-0">
-                                                            <button class="btn btn-primary btn-block subtotal-preview-btn">تأكيد العملية</button>
-                                                        </li>
+                                                       
                                                     </ul>
+                                                    <div class="col-12 border-0 pb-0">
+                                                        <button class="btn btn-primary btn-block subtotal-preview-btn">تأكيد العملية</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -273,7 +160,7 @@
                                             <button class="btn btn-light-primary btn-block">حفظ في المسوّدة</button>
                                         </div>
                                         <div class="invoice-action-btn mb-1">
-                                            <button class="btn btn-danger btn-block">
+                                            <button class="btn btn-success btn-block">
                                                 <i class='bx bx-dollar'></i>
                                                 <span> تحويل مبلغ آخر </span>
                                             </button>

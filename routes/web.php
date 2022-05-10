@@ -161,19 +161,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
     
-/*
-profile settings
-*/
-Route::get('/settings', function () {
-    return view('website/user_profile/settings');
-})->name('user_profile');
 
-Route::get('/security', function () {
-    return view('website/user_profile/security');
-});
-Route::get('/privacy', function () {
-    return view('website/user_profile/privacy');
-});
+
 
 Route::get('/moblie-conf', function (){
     return view('website/customer/moblie_conf');
@@ -187,6 +176,7 @@ Route::get('/card-info', function (){
 Route::get('/buisness-info', function (){
     return view('website/merchant/buisness_info');
 });
+});
 
 
     Route::get('/customer_dashboard', function(){
@@ -195,19 +185,19 @@ Route::get('/buisness-info', function (){
    
     
 /*********** Customer Dashboard Routes *************/
-
+//invoices show
 Route::get('/customer_dashboard/add_balance', function(){
     return view('customer_dashboard/addBalance');
 })->name('addBalance');
 
-Route::get('/customer_dashboard/withdraw', function(){
-    return view('customer_dashboard/withdraw');
-})->name('withdraw');
+/*   funds transfer */
 
 Route::get('/customer_dashboard/transfer', function(){
     return view('customer_dashboard/transfer');
 })->name('transfer');
-
+/*
+profile settings
+*/
 Route::get('/customer_dashboard/deposit', function(){
     return view('customer_dashboard/deposit');
 })->name('deposit');
@@ -230,7 +220,7 @@ Route::get('/customer_dashboard/deposit', function(){
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 
-});
+
 
 
 

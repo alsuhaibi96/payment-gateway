@@ -192,7 +192,35 @@
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-    
+                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
+                            </li>
+                            <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                      
+                    
+                    
+                                    <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفواتير</span></a>
+                                    </li>
+                                    
+                                    <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
+                                    </li>
+                                    <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
+                                    </li>
+                    
+                                    <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
+                                    </li>
+                                    <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
+                                    </li>
+                                    <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
+                                    </li>
+                            </div>
+                        </div>
+                        <!-- END: Main Menu-->
     @yield('content')
 
         <!-- BEGIN: Footer-->

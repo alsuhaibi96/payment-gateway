@@ -31,7 +31,7 @@
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
 
-            <a class="border ml-50" href="{{ route('login') }}">لوحة التحكم</a>
+            
             <a class="active" href="{{ route('index') }}">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>

@@ -8,6 +8,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\API\test\checkoutController;
+
+
 
 use App\Http\Controllers\Auth\ForgotPasswordCustomController;
 
@@ -231,8 +234,8 @@ Route::get('/customer_dashboard/deposit', function(){
 
 
 });
-
-
+// Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
+// Route::get('/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
 
 
 

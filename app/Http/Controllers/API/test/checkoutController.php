@@ -12,7 +12,7 @@ use App\Models\Credit_cards;
 use App\Models\FinancialTransaction;
 use App\Models\PaymentInvoice;
 use App\Models\User;
-
+use Carbon\Carbon as Carbon; 
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Products;
@@ -20,6 +20,8 @@ use App\Models\Transaction;
 use App\Models\TransactionOverView;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 class checkoutController extends Controller
 
@@ -36,6 +38,7 @@ class checkoutController extends Controller
 
         $order_reference=$request->input('order_reference');
         $total_amount=$request->input('total_amount');
+      
         $currency=$request->input('currency');
         $meta_data=$request->input('meta_data');
         $sucess_url=$request->input('success_url');
@@ -82,8 +85,9 @@ class checkoutController extends Controller
         $feedback['invoice_referance']);
        
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
-
-    //    return $orders;
+    //     $total_amount=$order_details['total_amount'];
+    //   return  $this->payment_response($total_amount);
+        //return $orders;
 
         $invoice=new Orders_invoice;
 
@@ -136,13 +140,14 @@ class checkoutController extends Controller
     }
     public function do_payment($invoice_referance){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->get();
-     $invoice_id= $invoice_data[0]["id"];
+//    return     $invoice_data;
+    $invoice_id= $invoice_data[0]["id"];
        $products=$this->getProducts($invoice_id);
       
          
      
 
-        return view('paymentView.paymentView' ,compact('invoice_data','products'));
+        return view('paymentView.pay_card' ,compact('invoice_data','products'));
 
     }
     public function cancel_payment($invoice_referance){
@@ -170,21 +175,50 @@ class checkoutController extends Controller
         
 
     }
+        
+    public function payment_response($total_amount){
 
+        $client_balance=1000000-$total_amount;
+        $current_time=Carbon::now();
+        $response_info=
+        array('status'=>'success','message'=>'Payment Done Successfully','customer_account_info'=>
+        [array('order_reference_id'=>'0','left_amount'=>$client_balance,'paid_amount'=>$total_amount,'status'=>'Payment Done',
+        'created_at'=>$current_time->toDateTimeString()
+        ,'updated_at'=>
+        $current_time->toDateTimeString()
+        )]);
+    return $response_info;
+    }
     
     public function Financial_processing(Request $request){
         
-        
-        
+        $validator=Validator::make($request->all(),[
+            'card_number'=>['required','digits:16','integer'],
+            'card_holder'=>['required','string','min:6'],
+            'expiration_yy'=>['required'],
+            'cvv'=>['required','digits:3'],
+            
+            
+            ]);
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator);
+        }
+
         $invoice_referance=$request->input('invoice_referance');
         
         $product_name=$request->input('product_name');
-        $total_amout=$request->input('total_amount');
+         $total_amout=$request->input('total_amount');
         $currency=$request->input('currency');
         $card_number=$request->input('card_number');
         $card_holder=$request->input('card_holder');
-        $expiration_mm=$request->input('expiration_mm');
-        $expiration_yy=$request->input('expiration_yy');
+      
+    
+
+         $expiration_yy=$request->input('expiration_yy');
+          $date=$this->seprateDate($expiration_yy);
+            $expiration_yy=$date[1];
+             $expiration_mm=$date[0];
+
         $success_url=$request->input('success_url');
         $cvv=$request->input('cvv');
         $Payment_confirmation_data=$request->all();
@@ -199,6 +233,7 @@ class checkoutController extends Controller
         $client_balance=$client_account_data->balance;
         $client_balance=(float)$client_balance;
         $total_amout=(float)$total_amout;
+     
         $remaining_balance=$client_balance-$total_amout;
         if($remaining_balance >0){
             $merchant_id=1;
@@ -281,8 +316,10 @@ class checkoutController extends Controller
 
             $invoice_id=  $order_invoice_data["id"];
 
-
-            // return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
+          return $invoice_sender;
+            // $success_uri='https://localhost:8080/test/invoice';
+            //  return redirect::away($success_uri)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);    
+            // return Redirect::away($success_url)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);
             // return $this->returnData('Balance Left',$invoice_sender,'Payment Process Completed Successfully');
 
 
@@ -311,6 +348,10 @@ class checkoutController extends Controller
         
        
         return $item;
+
+    }
+    public function seprateDate($date){
+      return  $dates=explode('/',$date);
 
     }
 }

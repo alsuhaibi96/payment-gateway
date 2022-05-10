@@ -11,4 +11,10 @@ class Transaction extends Model
     public function FinancialTransaction(){
         return $this->hasMany(FinancialTransaction::class);
     }
+    public function PaymentInvoice(){
+        return $this->belongsTo(PaymentInvoice::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

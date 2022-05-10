@@ -42,14 +42,15 @@
     </section>
     <!--end home section-->
     <!--start about us-->
-    <section class="about" id="about">
+    <section class="about pt-5" id="about">
 
-        <a href="#" class="logo">WASL Pay<i class="fas fa-wallet"></i></a>
-        <h1 class="sub-head"> من نحن</h1>
+        <a href="#" class="logo">وصل!<i class="fas fa-wallet"></i></a>
+        <
 
         <div class="row">
-            <div class="image">
+            <div class="image ">
                 <img src="{{url('assets/web/images/pexels-karolina-grabowska-5632371-removebg-preview.png')}}" alt="">
+                {{-- <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a> --}}
             </div>
             <div class="content">
                 <h3>موقع الكتروني يوفر خدمات الدفع الالكتروني</h3>
@@ -72,8 +73,9 @@
                         <span>7/24 خدمة</span>
                         <i class="fas fa-headset"></i>
                     </div>
-                    <a class="btn" href="/about-us">أعرف اكثر</a>
+                  
                 </div>
+                <a class="btn text-white " href="/about-us">أعرف اكثر</a>
 
             </div>
         </div>
@@ -84,7 +86,7 @@
 
     <!--end our menu-->
     <!--start review customers-->
-    <section class="review" id="customer">
+    <section class="review py-5" id="customer">
         <!-- <h3 class="sub-heading">العملاء</h3> -->
         <h1 class="heading"> من عملائنا</h1>
         <div class="swiper review-slider">

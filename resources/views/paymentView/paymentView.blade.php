@@ -204,7 +204,7 @@
 
             <div class="front">
                 <div class="info mb-5">
-                    @foreach ($invoice_data as $item )
+                    {{-- @foreach ($invoice_data as $item )
                     <tr>
                         <p class="name ">رقم التاجر : {{ $item->user_id}}</p>
                         <p class="name">رقم الطلب : {{ $item->invoice_referance}}</p>
@@ -213,15 +213,15 @@
                         @foreach ($products as $product)
                         <p class="name">  {{ $product->product_name}}</p>
 
-                       @endforeach
+                       @endforeach --}}
 
 
-                        <p class="name">الأجمالي : {{ $item->total_amout}}</p>
+                        {{-- <p class="name">الأجمالي : {{ $item->total_amout}}</p>
                         <p class="name">العملة : {{ $item->currency}}</p>
 
 
                     </tr>
-                    @endforeach
+                    @endforeach --}}
 
                 </div>
                 <div class="card-number-box"></div>
@@ -253,17 +253,20 @@
 
         <form action="{{ route('Payment_confirmation')}}" method="POST" enctype="multipart/form-data">
         @csrf
-            @foreach ($invoice_data as $item )
+            {{-- @foreach ($invoice_data as $item )
             <input type="hidden" name="merchant_id" value="{{ $item->user_id}}">
             <input type="hidden" name="invoice_referance" value="{{ $item->invoice_referance}}">
             <input type="hidden" name="product_name" value="{{ $product->product_name}}">
-            <input type="hidden" name="total_amout" value="{{ $item->total_amout}}">
+            <input type="hidden" name="total_amount" value="{{ $item->total_amout}}">
             <input type="hidden" name="currency" value="{{ $item->currency}}">
             <input type="hidden" name="success_url" value="{{$item->success_url}}">
-            @endforeach
+            @endforeach --}}
             <div class="inputBox">
                 <span>card number</span>
-                <input type="text" maxlength="16" name="card_number" class="card-number-input">
+                <input type="text" maxlength="16" name="card_number" class="card-number-input @error('card_number') @enderror">
+                @if($errors->has('card_number'))
+    <span class="error invalid-feedback">{{ $errors->first('card_number') }}</span>
+@endif
                 
             </div>
             <div class="inputBox">
@@ -316,9 +319,9 @@
             </div>
             <div class="inputBox" style="justify-content: space-between; display:flex;text-align:center;gap:10px;">
                 <button type="submit" class="submit-btn">pay</button>
-                @foreach ($invoice_data as $item )
+                {{-- @foreach ($invoice_data as $item )
                 <a href="{{$item->cancel_url}}" class="submit-btn">cancel</a>
-                @endforeach
+                @endforeach --}}
 
             </div>
         </form>

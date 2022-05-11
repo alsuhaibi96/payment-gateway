@@ -194,29 +194,29 @@
                                 class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R
                             </span></a>
                     </li>
-                    <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i
-                                class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض
+                    <li class="@yield('analytics')" ><a class="d-flex align-items-center" href="{{ route('home') }}"><i
+                                class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics"> عرض
                                 الإحصائيات</span></a>
                     </li>
                     </ul>
                     </li>
 
-                    <li class=" nav-item"><a href="{{ route('payments') }}"> <i class="fas fa-money-bill"></i> <span class="menu-title text-truncate"
+                    <li class=" nav-item @yield('payments') "><a href="{{ route('payments') }}"> <i class="fas fa-money-bill"></i> <span class="menu-title text-truncate"
                         data-i18n="Chat">المدفوعات </span></a>
                     </li>
-                    <li class=" nav-item"><a href="{{ route('list_invoice') }}"> <i class="fas fa-file-invoice-dollar"></i> <span
+                    <li class=" nav-item @yield('invoices') "><a href="{{ route('list_invoice') }}"> <i class="fas fa-file-invoice-dollar"></i> <span
                         class="menu-title text-truncate" data-i18n="Todo">الفواتير</span></a>
                     </li>
-                    <li class=" nav-item"><a href="#settingsOruserProfile"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate"
+                    <li class=" nav-item @yield('transfer')"><a href="#settingsOruserProfile"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate"
                         data-i18n="Calendar"> تحويل رصيد </span></a>
                     </li>
-                    <li class=" nav-item"><a href="#settingsOruserProfile"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate"
+                    <li class=" nav-item @yield('settings')"><a href="#settingsOruserProfile"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate"
                         data-i18n="Calendar"> إعدادات الحساب</span></a>
                     </li>
 
                     <li class=" navigation-header text-truncate divider"><span data-i18n="Forms &amp; Tables"> </span>
                     </li>
-                    <li class=" nav-item"><a href="{{ route('reports') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
+                    <li class=" nav-item @yield('report')"><a href="{{ route('reports') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
                         data-i18n="Form Layout"> الإبلاغ عن مشكلة</span></a>
                     <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span
                         class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>

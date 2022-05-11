@@ -215,4 +215,8 @@ Route::get('/customer_dashboard', function(){
     return view('merchant_dashboard/payments');
 })->name('payments');
 
+Route::get('/merchant_dashboard/invoice/show', function(){
+    return view('merchant_dashboard/show-invoice');
+})->name('show_invoice');
+
 

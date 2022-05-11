@@ -9,6 +9,10 @@
     </span>
 @endsection
 
+@section('payments')
+    active
+@endsection
+
 
 @section('content')
     <div class="app-content content">

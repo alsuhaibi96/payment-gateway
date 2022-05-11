@@ -9,6 +9,10 @@
     </span>
 @endsection
 
+@section('analytics')
+    active
+@endsection
+
 
 @section('content')
 

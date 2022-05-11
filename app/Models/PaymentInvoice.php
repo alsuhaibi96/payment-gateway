@@ -15,4 +15,7 @@ class PaymentInvoice extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function Transaction(){
+        return $this->hasMany(Transaction::class);
+    }
 }

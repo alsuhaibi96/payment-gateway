@@ -25,7 +25,7 @@
                             <div class="col-12 col-md-5 mt-10 col-md-offset-1 card mx-4 p-3 " data-v-e9c818fa="">
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
-                                        <input id="client_radio" type="radio" value="1" name="radio1" aria-labelledby="button-box-1" value="hire" > <span class="up-checkbox-replacement-helper"><!----> <!----></span> </label></div>
+                                        <input id="client_radio" type="radio" checked value="1" name="radio1" aria-labelledby="button-box-1" value="hire" > <span class="up-checkbox-replacement-helper"><!----> <!----></span> </label></div>
                                     <div class="up-illustration mt-2 " data-v-e9c818fa="">
                                         <svg style="width: 50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 130" aria-hidden="true" role="img">
                                             <polygon points="145,18.601 73.396,10.394 72.487,18.338 71.58,10.422 0,18.622 12.049,123.807	72.489,116.884 132.95,123.809" fill="var(--illustration-color-13, #e8f1e8)"></polygon>
@@ -75,7 +75,7 @@
     <script>
 
         document.getElementById('client_radio').onclick = function() {
-            console.log("hi");
+            
             document.getElementById('register_btn').disabled = false;
         }
         document.getElementById('freelancer_radio').onclick = function() {

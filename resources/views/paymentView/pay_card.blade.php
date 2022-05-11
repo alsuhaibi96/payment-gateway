@@ -500,7 +500,7 @@
 
 
                                     <div class="mb-5"><fieldset ><legend class="block text-sm font-medium leading-5 text-gray-700"  >بيانات البطاقة </legend><div class="mt-1 bg-white rounded-md shadow-sm relative"><span><p id="email-error" class="absolute bottom-20 right-0 text-xs text-red-600 text-right normal-case">  </p><div class="relative">
-                                        <input id="card_number" type="text" autocomplete="off" inputmode="numeric" value="{{ old('card_number') }}" placeholder="رقم البطاقة" 
+                                        <input id="card_number" type="text" autocomplete="off" value="{{ old('card_number') }}" placeholder="رقم البطاقة" 
                                         class="form-input relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" maxlength="16" name="card_number" >
 
                                         @if($errors->has('card_number'))

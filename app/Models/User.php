@@ -75,5 +75,8 @@ class User extends Authenticatable
     public function transactionOverView(){
         return $this->hasMany(TransactionOverView::class);
     }
+    public function Transaction(){
+        return $this->hasMany(Transaction::class);
+    }
    
 }

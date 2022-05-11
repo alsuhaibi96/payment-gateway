@@ -82,7 +82,11 @@ Route::group([
    
     Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
     Route::get('acounts',[checkoutController::class,'get_acounts']);
-  
+    Route::get('/getinvoice/{id}',[checkoutController::class,'getinvoice'])->name('getinvoice');
+    Route::get('/userWithTransaction/{id}',[checkoutController::class,'userWithTransaction'])->name('userWithTransaction');
+    Route::get('/finanical_accounts',[checkoutController::class,'finanical_accounts'])->name('finanical_accounts');
+    Route::get('/account_statement/{id}',[checkoutController::class,'customer_account_statement'])->name('customer_account_statement');
+    Route::get('/Ledger_account/{id}',[checkoutController::class,'Ledger_account'])->name('Ledger_account');
 });
 
 Route::group([

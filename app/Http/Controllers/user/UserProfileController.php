@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\user_profile;
+use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
@@ -52,32 +53,33 @@ class UserProfileController extends Controller
 
      }
 
-    //  function editImage(Request $req){
-    //      Validator::validate($req->all(),[
-    //          'avatar'=>'required|mimes:jepg,png,jpg,gif,svg|max:6000',
-    //      ],[
-    //          'avatar.required'=>'هذا الحقل مطلوب',
-    //          'avatar.mimes'=>'الامتداد من نوع'
+     function editImage(Request $req){
+         Validator::validate($req->all(),[
+             'avatar'=>'required|mimes:jepg,png,jpg,gif,svg|max:6000',
+         ],[
+             'avatar.required'=>'هذا الحقل مطلوب',
+             'avatar.mimes'=>'الامتداد من نوع'
 
-    //      ]);
-    //      if($req->hasFile('avatar')){
-    //          $image= $this->uploadFile($req->file('avatar'));
-    //          $user_profile=user_profile::where('user_id',Auth::id())->update([
-    //             'avatar'=>$image
-    //         ]);
-    //      }
+         ]);
+         if($req->hasFile('avatar')){
+             $image= $this->uploadFile($req->file('avatar'));
+             $user_profile=user_profile::where('user_id',Auth::id())->update([
+                'avatar'=>$image
+            ]);
+         }
         
+        //  echo Auth::user()->profile->avatar;
 
-    //     if($user_profile){
-    //         return redirect()->back()->with(['succes'=>'تم التعديل الصورة بنجاح']);
-    //     }
-    //     else{
-    //         return back()->with(['eror'=>' الصورة خطاء لم يتم التعديل']);
-    //     }
+        if($user_profile){
+            return redirect()->back()->with(['succes'=>'تم التعديل الصورة بنجاح']);
+        }
+        else{
+            return back()->with(['eror'=>' الصورة خطاء لم يتم التعديل']);
+        }
 
 
 
-    //  }
+     }
    
     
 }

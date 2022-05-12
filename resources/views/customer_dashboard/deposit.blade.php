@@ -47,29 +47,56 @@
                                             </div>
                                         </div>
                                         <!-- users edit media object start -->
+                                        
                                     <div class="media mb-2">
                                         <a class="mr-2" href="javascript:void(0);">
                                             @if(isset(Auth::user()->profile->avatar))
-                                           <img src="{{URL::assets('web/images/.Auth::user()->profile->avatar')}}"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">
-                                           @else
-                                           <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle img-float "  >
-                                           @endif
+                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle w-2"  style="object-fit: cover">                                           
+                                            @else
+                                            <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">                                          
+
+                                            @endif
                                         </a>
+                                      
+                                    </div>   
+                                    <div class="col-12 px-0 d-flex mb-5">
+                                    
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary mr-25">تغيير</a>
+                                        
+                                    </div>
                                         <div class="media-body">
                                             
-                                            <div class="col-12 px-0 d-flex">
-                                    
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-primary mr-25">تغيير</a>
-                                                
-                                            </div>
-                                            {{-- <form action="{{ route("editImage") }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="card-body">
-                                               
-                                            <input type="file" name="avatar" id="">
-                                            <button type="submit">تغيير</button>
-                                            
-                                        </form> --}}
+                                           
+                                            {{-- start model of change image --}}
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">تعديل الصورة</h5>
+                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route("editImage") }}" method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="card-body">
+                                                               
+                                                            <input type="file" name="avatar" id="">
+                                                            
+                                                            
+                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                                                      <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                                                    </form>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              {{-- end model --}}
+                                           
                                             
                                         </div>
                                     </div>
@@ -88,7 +115,6 @@
                                                </div>
 
                                             </div>
-
                                         </div>
 
                                             <div class="order-2 order-sm-1">

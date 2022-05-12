@@ -109,10 +109,11 @@
                                         <div class="media d-flex align-items-center">
                                             <div class="media-left pr-0">
                                                 @if(isset(Auth::user()->profile->avatar))
-                                                <div class="avatar mr-1 m-0"><img src="{{URL::assets('web/images/.Auth::user()->profile->avatar')}}" alt="avatar" height="39" width="39"></div>
-                                                @else
-                                                <div class="avatar mr-1 m-0"><img src="{{ url('assets/web/images/avatar.jpg') }}" alt=""height="39" width="39"></div>
-                                                @endif
+                                                <div class="mr-1 m-0"> <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class=" rounded-circle"  style="width:50px">         </div>                                  
+                                               @else
+                                               <img src="assets/web/images/avatar.jpg"alt="users avatar" class=" rounded-circle" style="width: 50px">                                          
+   
+                                               @endif
                                             </div>
                                             <div class="media-body">
                                                 <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{Auth::user()->first_name }}</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">{{ Auth::user()->created_at }}</small>
@@ -161,10 +162,12 @@
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name">{{ Auth::user()->first_name }}</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span>
                                     @if(isset(Auth::user()->profile->avatar))
-                                    <div class="rounded"><img src="{{URL::assets('web/images/.Auth::user()->profile->avatar')}}" alt="avatar" height="40" width="40"></div>
-                                    @else
-                                    <div class="avatar mr-1 m-0"><img src="{{ url('assets/web/images/avatar.jpg') }}" alt="" height="40" width="40"></div>
-                                    @endif</span>
+                                                <div class=" mr-1 m-0"> <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 50px">         </div>                                  
+                                               @else
+                                               <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">                                          
+   
+                                               @endif
+                                </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
                                 {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>

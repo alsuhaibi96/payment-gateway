@@ -15,7 +15,6 @@
 
 
 @section('content')
-
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -38,13 +37,9 @@
                                         </div>
                                         <div class="col-lg-8 col-md-12">
                                             <div class="d-flex align-items-center justify-content-lg-end flex-wrap">
-                                                <div class="mr-3">
-                                                    <small class="text-muted"> تاريخ البدء :</small>
-                                                    <span>08/10/2019</span>
-                                                </div>
                                                 <div>
-                                                    <small class="text-muted">إلى يوم:</small>
-                                                    <span>08/10/2019</span>
+                                                    <small class="text-muted">تاريخ الفاتورة:</small>
+                                                    <span>08/10/2021</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -55,79 +50,92 @@
                                             <h4 class="text-primary">فاتورة</h4>
                                             <span> شراء أدوية السكر</span>
                                         </div>
-                                        <div class="col-sm-6 col-12 text-center text-sm-right order-1 order-sm-2 d-sm-flex justify-content-end mb-1 mb-sm-0">
-                                            <img src="../../../app-assets/images/pages/pixinvent-logo.png" alt="logo" height="46" width="164">
+                                        <div
+                                            class="col-sm-6 col-12 text-center text-sm-right order-1 order-sm-2 d-sm-flex justify-content-end mb-1 mb-sm-0">
+                                            <img src="{{ url('assets/app-assets/images/pages/PayPal_logo.png') }}"
+                                                alt="logo" height="46" width="164">
                                         </div>
                                     </div>
                                     <hr>
                                     <!-- invoice address and contact -->
                                     <div class="row invoice-info">
                                         <div class="col-sm-6 col-12 mt-1">
-                                            <h6 class="invoice-from">Bill From</h6>
+                                            <h6 class="invoice-from"> <b> بيانات المشتري </b> </h6>
                                             <div class="mb-1">
-                                                <span>Clevision PVT. LTD.</span>
+                                                <span>محمد أحمد</span>
                                             </div>
                                             <div class="mb-1">
-                                                <span>9205 Whitemarsh Street New York, NY 10002</span>
+                                                <span>صنعاء - شارع حدة ، جولة المصباحي</span>
                                             </div>
                                             <div class="mb-1">
-                                                <span>hello@clevision.net</span>
+                                                <span>mohammed@gmail.com</span>
                                             </div>
                                             <div class="mb-1">
-                                                <span>601-678-8022</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-12 mt-1">
-                                            <h6 class="invoice-to">Bill To</h6>
-                                            <div class="mb-1">
-                                                <span>Pixinvent PVT. LTD.</span>
-                                            </div>
-                                            <div class="mb-1">
-                                                <span>203 Sussex St. Suite B Waukegan, IL 60085</span>
-                                            </div>
-                                            <div class="mb-1">
-                                                <span>pixinvent@gmail.com</span>
-                                            </div>
-                                            <div class="mb-1">
-                                                <span>987-352-5603</span>
+                                                <span>6014-6782-8022</span>
                                             </div>
                                         </div>
+
                                     </div>
                                     <hr>
                                 </div>
                                 <!-- product details table-->
                                 <div class="invoice-product-details table-responsive">
-                                    <table class="table table-borderless mb-0">
+                                    <table class="table table-borderless mb-0;">
                                         <thead>
                                             <tr class="border-0">
-                                                <th scope="col">Item</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Cost</th>
-                                                <th scope="col">Qty</th>
-                                                <th scope="col" class="text-right">Price</th>
+                                                <th scope="col" style="     font-family: 'Amiri', serif;
+                                                    font-family: 'Changa', sans-serif;
+                                                    font-family: 'Tajawal', sans-serif;">المنتج</th>
+                                                <th scope="col" style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">الوصف</th>
+                                                <th scope="col" style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">التكلفة</th>
+                                                <th scope="col" style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">الكمية</th>
+                                                <th scope="col" style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;" class="text-right">السعر</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Frest Admin</td>
-                                                <td>HTML Admin Template</td>
-                                                <td>28</td>
-                                                <td>1</td>
-                                                <td class="text-primary text-right font-weight-bold">$28.00</td>
+                                                <td style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">كاناجليفلوزين</td>
+                                                <td style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">دواء يستخدم لعلاج مرض السكري من النوع الثاني.</td>
+                                                <td >28</td>
+                                                <td >1</td>
+                                                <td  class="text-primary text-right font-weight-bold">
+                                                    $28.00</td>
                                             </tr>
                                             <tr>
-                                                <td>Apex Admin</td>
-                                                <td>Anguler Admin Template</td>
-                                                <td>24</td>
-                                                <td>1</td>
-                                                <td class="text-primary text-right font-weight-bold">$24.00</td>
+                                                <td style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">جليميبرايد </td>
+                                                <td style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">يُستخدم لعلاج ارتفاع مستويات السكر في الدم،</td>
+                                                <td >24</td>
+                                                <td >1</td>
+                                                <td class="text-primary text-right font-weight-bold">
+                                                    $24.00</td>
                                             </tr>
                                             <tr>
-                                                <td>Stack Admin</td>
-                                                <td>HTML Admin Template</td>
-                                                <td>24</td>
-                                                <td>1</td>
-                                                <td class="text-primary text-right font-weight-bold">$24.00</td>
+                                                <td style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;">برافستاتين </td>
+                                                <td style="     font-family: 'Amiri', serif;
+                                font-family: 'Changa', sans-serif;
+                                font-family: 'Tajawal', sans-serif;"> يعمل عن طريق خفض انتاج الكوليسترول في الكبد</td>
+                                                <td >24</td>
+                                                <td >1</td>
+                                                <td class="text-primary text-right font-weight-bold">
+                                                    $24.00</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -138,33 +146,30 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-4 col-sm-6 col-12 mt-75">
-                                            <p>Thanks for your business.</p>
+                                            <p>شكرًا لشراءك منتجاتنا</p>
                                         </div>
                                         <div class="col-8 col-sm-6 col-12 d-flex justify-content-end mt-75">
                                             <div class="invoice-subtotal">
                                                 <div class="invoice-calc d-flex justify-content-between">
-                                                    <span class="invoice-title">Subtotal</span>
+                                                    <span class="invoice-title">المجموع الإجمالي</span>
                                                     <span class="invoice-value">$76.00</span>
                                                 </div>
                                                 <div class="invoice-calc d-flex justify-content-between">
-                                                    <span class="invoice-title">Discount</span>
+                                                    <span class="invoice-title">الخصم</span>
                                                     <span class="invoice-value">- $09.60</span>
                                                 </div>
                                                 <div class="invoice-calc d-flex justify-content-between">
-                                                    <span class="invoice-title">Tax</span>
+                                                    <span class="invoice-title">الضريبة</span>
                                                     <span class="invoice-value">21%</span>
                                                 </div>
                                                 <hr>
                                                 <div class="invoice-calc d-flex justify-content-between">
-                                                    <span class="invoice-title">Invoice Total</span>
+                                                    <span class="invoice-title">المجموع للفاتورة</span>
                                                     <span class="invoice-value">$66.40</span>
                                                 </div>
+
                                                 <div class="invoice-calc d-flex justify-content-between">
-                                                    <span class="invoice-title">Paid to date</span>
-                                                    <span class="invoice-value">$00.00</span>
-                                                </div>
-                                                <div class="invoice-calc d-flex justify-content-between">
-                                                    <span class="invoice-title">Balance (USD)</span>
+                                                    <span class="invoice-title">الميزانية (USD)</span>
                                                     <span class="invoice-value">$10,953</span>
                                                 </div>
                                             </div>
@@ -180,23 +185,18 @@
                                     <div class="invoice-action-btn">
                                         <button class="btn btn-primary btn-block invoice-send-btn">
                                             <i class="bx bx-send"></i>
-                                            <span>Send Invoice</span>
+                                            <span>إرسال الفاتورة</span>
                                         </button>
                                     </div>
                                     <div class="invoice-action-btn">
                                         <button class="btn btn-light-primary btn-block invoice-print">
-                                            <span>print</span>
+                                            <span>طباعة</span>
                                         </button>
                                     </div>
-                                    <div class="invoice-action-btn">
-                                        <a href="app-invoice-edit.html" class="btn btn-light-primary btn-block">
-                                            <span>Edit Invoice</span>
-                                        </a>
-                                    </div>
-                                    <div class="invoice-action-btn">
+                                    <div class="invoice-action-btn ">
                                         <button class="btn btn-success btn-block">
-                                            <i class='bx bx-dollar'></i>
-                                            <span>Add Payment</span>
+
+                                            <span>عودة إلى الفواتير</span>
                                         </button>
                                     </div>
                                 </div>
@@ -209,5 +209,4 @@
         </div>
     </div>
     <!-- END: Content-->
-
 @endsection

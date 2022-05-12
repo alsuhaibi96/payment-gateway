@@ -207,7 +207,7 @@
                     <li class=" nav-item @yield('invoices') "><a href="{{ route('list_invoice') }}"> <i class="fas fa-file-invoice-dollar"></i> <span
                         class="menu-title text-truncate" data-i18n="Todo">الفواتير</span></a>
                     </li>
-                    <li class=" nav-item @yield('transfer')"><a href="#settingsOruserProfile"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate"
+                    <li class=" nav-item @yield('transfer')"><a href="{{ route('merchant_transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate"
                         data-i18n="Calendar"> تحويل رصيد </span></a>
                     </li>
                     <li class=" nav-item @yield('settings')"><a href="#settingsOruserProfile"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate"

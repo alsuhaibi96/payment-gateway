@@ -39,35 +39,8 @@
                         <!-- invoice list -->
                         <section class="invoice-list-wrapper">
 
-                            <!-- Options and filter dropdown button-->
-                            <div class="action-dropdown-btn d-none">
-                                <div class="dropdown invoice-filter-action">
-                                    <button class="btn border dropdown-toggle mr-1" type="button" id="invoice-filter-btn"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Filter Invoice
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="invoice-filter-btn">
-                                        <a class="dropdown-item" href="javascript:;">Downloaded</a>
-                                        <a class="dropdown-item" href="javascript:;">Sent</a>
-                                        <a class="dropdown-item" href="javascript:;">Partial Payment</a>
-                                        <a class="dropdown-item" href="javascript:;">Paid</a>
-                                    </div>
-                                </div>
-                                <div class="dropdown invoice-options">
-                                    <button class="btn border dropdown-toggle mr-2" type="button" id="invoice-options-btn"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Options
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="invoice-options-btn">
-                                        <a class="dropdown-item" href="javascript:;">Delete</a>
-                                        <a class="dropdown-item" href="javascript:;">Edit</a>
-                                        <a class="dropdown-item" href="javascript:;">View</a>
-                                        <a class="dropdown-item" href="javascript:;">Send</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="table-responsive">
-                                <table class="table invoice-data-table dt-responsive nowrap" style="width:100%">
+                                <table class="table invoice-data-table dt-responsive nowrap" >
                                     <thead>
                                         <tr>
                                             <th style="    font-family: 'Amiri', serif;

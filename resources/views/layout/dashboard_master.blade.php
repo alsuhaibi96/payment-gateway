@@ -56,13 +56,9 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
     <!-- END: Custom CSS-->
-    
-
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Changa:wght@700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
-
-
     </style>
 </head>
 <!-- END: Head-->
@@ -157,10 +153,8 @@
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name">Mo'khtar Ghaleb</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right pb-0">
-                                {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-envelope mr-50"></i> البريد والرسائل</a> --}}
-                                <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{ route('logout'); }}"><i class="bx bx-power-off mr-50"></i> تسجيل الخروج </a>
+                            <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a><a class="dropdown-item" href="#"><i class="bx bx-envelope mr-50"></i> البريد والرسائل</a>
+                                <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{ url('/'); }}"><i class="bx bx-power-off mr-50"></i> تسجيل الخروج </a>
                             </div>
                         </li>
                     </ul>
@@ -192,7 +186,46 @@
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-    
+                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate"
+                        data-i18n="Dashboard">لوحة التحكم</span></a>
+                    <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce">
+                                رصيدك الحالي</span> <span
+                                class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R
+                            </span></a>
+                    </li>
+                    <li class="@yield('analytics')" ><a class="d-flex align-items-center" href="{{ route('merchant_dashboard') }}"><i
+                                class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics"> عرض
+                                الإحصائيات</span></a>
+                    </li>
+                    </ul>
+                    </li>
+
+                    <li class=" nav-item @yield('payments') "><a href="{{ route('payments') }}"> <i class="fas fa-money-bill"></i> <span class="menu-title text-truncate"
+                        data-i18n="Chat">المدفوعات </span></a>
+                    </li>
+                    <li class=" nav-item @yield('invoices') "><a href="{{ route('list_invoice') }}"> <i class="fas fa-file-invoice-dollar"></i> <span
+                        class="menu-title text-truncate" data-i18n="Todo">الفواتير</span></a>
+                    </li>
+                    <li class=" nav-item @yield('transfer')"><a href="{{ route('merchant_transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate"
+                        data-i18n="Calendar"> تحويل رصيد </span></a>
+                    </li>
+                    <li class=" nav-item @yield('settings')"><a href="{{ route('settings') }}"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate"
+                        data-i18n="Calendar"> إعدادات الحساب</span></a>
+                    </li>
+
+                    <li class=" navigation-header text-truncate divider"><span data-i18n="Forms &amp; Tables"> </span>
+                    </li>
+                    <li class=" nav-item @yield('report')"><a href="{{ route('faq') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
+                        data-i18n="Form Layout">  الأسئلة المتكررة - FAQ </span></a>
+                    <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span
+                        class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
+                    </li>
+                    </li>
+                    </div>
+                    </div>
+                    <!-- END: Main Menu-->
+
     @yield('content')
 
         <!-- BEGIN: Footer-->

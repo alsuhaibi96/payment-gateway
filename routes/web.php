@@ -156,14 +156,14 @@ Route::get('/test-card', function () {
 
 Route::group(['middleware'=>['auth']],function(){
 
-    
+
 /**
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
     Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
-    
+
 
 
 
@@ -185,8 +185,8 @@ Route::get('/buisness-info', function (){
     Route::get('/customer_dashboard', function(){
         return view('customer_dashboard/home');
     })->name('home');
-   
-    
+
+
 /*********** Customer Dashboard Routes *************/
 //invoices show
 Route::get('/customer_dashboard/add_balance', function(){
@@ -216,9 +216,36 @@ Route::get('/customer_dashboard/deposit', function(){
 })->name('merchant_dashboard');
 
  Route::get('/merchant_dashboard/invoice' , function(){
-     return view('merchant_dashboard/invoice');
- })->name('invoice');
+     return view('merchant_dashboard/list_invoice');
+ })->name('list_invoice');
 
+ Route::get('/merchant_dashboard/payments', function(){
+    return view('merchant_dashboard/payments');
+})->name('payments');
+
+Route::get('/merchant_dashboard/transfer' , function(){
+    return view('merchant_dashboard/merchant_transfer');
+})->name('merchant_transfer');
+
+Route::get('/merchant_dashboard/invoice/show', function(){
+    return view('merchant_dashboard/show-invoice');
+})->name('show_invoice');
+
+Route::get('/merchant_dashboard/reports', function(){
+    return view('merchant_dashboard/reports');
+})->name('invoice');
+
+Route::get('/merchant_dashboard/settings', function(){
+    return view('merchant_dashboard/settings');
+})->name('settings');
+
+Route::get('/merchant_dashboard/reports', function(){
+    return view('merchant_dashboard/reports');
+})->name('reports');
+
+Route::get('/merchant_dashboard/faq', function(){
+    return view('merchant_dashboard/faq');
+})->name('faq');
 
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
 

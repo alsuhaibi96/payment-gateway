@@ -56,7 +56,7 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
     <!-- END: Custom CSS-->
-    
+
 
 
     <style>
@@ -200,22 +200,22 @@
                             </li>
                         </ul>
                     </li>
-                    
-                      
-                    
-                    
+
+
+
+
                                     <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفواتير</span></a>
                                     </li>
-                                    
+
                                     <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
                                     </li>
                                     <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
                                     </li>
-                    
+
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
-                                    <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
-                                    </li>
+                                    <li class=" nav-item @yield('report')"><a href="{{ route('faq') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
+                                        data-i18n="Form Layout">  الأسئلة المتكررة - FAQ </span></a>
                                     <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                                     </li>
                             </div>

@@ -1,4 +1,4 @@
-@extends('layout.dashboard_master')
+@extends('layout.customer_dashboard')
 
 
 @section('header')
@@ -9,6 +9,9 @@
     </span>
 @endsection
 
+@section('faq')
+    active
+@endsection
 
 @section('content')
     <!-- BEGIN: Content-->
@@ -91,7 +94,7 @@
 
                                <div class="col-lg-5 col-md-7 offset-lg-2 col-12 mb-3 mr-5">
                                 <div class="col-12 border-0 pb-0">
-                                    <a href="{{ route('merchant_dashboard') }}"> <button class="btn btn-primary btn-block subtotal-preview-btn">عودة إلى الصفحة الرئيسية</button>
+                                    <a href="{{ route('home') }}">   <button class="btn btn-primary btn-block subtotal-preview-btn">  عودة إلى الصفحة الرئيسية </button> </a>
                                     </div>
                                </div>
                             </div>

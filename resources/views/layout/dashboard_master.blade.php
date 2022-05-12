@@ -153,7 +153,7 @@
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name">Mo'khtar Ghaleb</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a><a class="dropdown-item" href="#"><i class="bx bx-envelope mr-50"></i> البريد والرسائل</a>
+                            <div class="dropdown-menu dropdown-menu-right pb-0">
                                 <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{ url('/'); }}"><i class="bx bx-power-off mr-50"></i> تسجيل الخروج </a>
                             </div>
                         </li>
@@ -180,7 +180,7 @@
 
                         </a>
                         </a></li>
-                    <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+
                 </ul>
             </div>
             <div class="shadow-bottom"></div>

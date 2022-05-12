@@ -8,7 +8,9 @@
 </span>
 @endsection
 
-
+@section('settings')
+    active
+@endsection
 
 @section('content')
 
@@ -24,7 +26,7 @@
                 <div class="content-body">
                     <!-- app account View Page -->
                     <section class="invoice-edit-wrapper">
-                        
+
                         <div class="row">
                             <!-- account view page -->
                             <div class="col-xl-9 col-md-8 col-12">
@@ -99,8 +101,8 @@
                                                        <input type="text" class="form-control fs-6" placeholder="00967-71234567">
                                                    </div>
 
-                                                  
-                                                   
+
+
 
                                              </div>
                                             </div>
@@ -119,29 +121,29 @@
                                             </ul>
                                         </div>
 
-                                            
+
                                     </div>
                                     <div class="card-body pt-50">
                                         <!-- account subtotal -->
                                         <hr>
                                         <div class="invoice-subtotal pt-50">
                                             <div class="row">
-                                                
-                                               
-                                                   
+
+
+
 
                                                         <li class="list-group-item border-0 pb-0">
                                                             <button class="btn btn-primary btn-block subtotal-preview-btn">تحديث الملف الشخصي</button>
                                                         </li>
-                                                   
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
-                          
+
                         <div class="row">
                             <!-- password card model -->
                             <div class="col-xl-9 col-md-8 col-12">
@@ -161,7 +163,7 @@
                                                      <input type="text" class="form-control" placeholder="كلمة السر الحالية" >
                                                      <hr>
                                                 </div>
-                                                
+
                                                 <div class="col-12 py-20">
                                                     <label class="text-dark"> أدخل كلمة المرور الجديدة (حافظ على أمان حسابك. لا تستخدم اسمك.) </label>
                                                     <input type="text" class="form-control" placeholder="كلمة السر الجديدة" >
@@ -180,32 +182,32 @@
                                                    </div>
 
 
-                                                
+
                                              </div>
                                             </div>
 
 
-                                        
 
-                                           
 
-                            
 
-                                            
+
+
+
+
                                     </div>
                                     <div class="card-body pt-50">
                                         <!-- account subtotal -->
                                         <hr>
                                         <div class="invoice-subtotal pt-50">
                                             <div class="row">
-                                                
-                                               
-                                                   
+
+
+
 
                                                         <li class="list-group-item border-0 pb-0">
                                                             <button class="btn btn-primary btn-block subtotal-preview-btn">تغيير كلمة السر</button>
                                                         </li>
-                                                   
+
                                             </div>
                                         </div>
                                     </div>
@@ -216,27 +218,27 @@
                                 <div class="col-xl-9 col-md-8 col-12">
                                     <div class="card">
                                         <div class="card-body pb-0 mx-25">
-    
+
                                             <!-- name and email -->
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                                     <span class="text-dark"><b> التحقق بخطوتين </b> </span>
                                                 </div>
-                                               
-                                            
+
+
 
                                             </div>
 
-                               
-    
-    
-                                            
-    
-                                               
-    
-                                
-    
-                                                
+
+
+
+
+
+
+
+
+
+
                                         </div>
                                         <div class="card-body pt-50">
                                             <div class="col-12 py-20">
@@ -248,29 +250,29 @@
                                                 <input name="currency" id="YER" type="radio" aria-label="yer" required>
                                             </div>
                                         </div>
-                                    
+
                                             <hr>
                                             <div class="invoice-subtotal pt-50">
                                                 <div class="row">
-                                                    
-                                                   
-                                                       
-    
+
+
+
+
                                                             <li class="list-group-item border-0 pb-0">
                                                                 <button class="btn btn-primary btn-block subtotal-preview-btn">إعداد</button>
                                                             </li>
-                                                       
+
                                                 </div>
                                             </div>
                                         </div>
-                                   
-                                
+
+
                     </section>
 
                 </div>
             </div>
         </div>
-        
+
         <!-- END: Content-->
 
         <!-- Tec Suppoort -->

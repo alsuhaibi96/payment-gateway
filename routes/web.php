@@ -189,9 +189,13 @@ Route::get('/buisness-info', function (){
 
 /*********** Customer Dashboard Routes *************/
 //invoices show
-Route::get('/customer_dashboard/add_balance', function(){
-    return view('customer_dashboard/addBalance');
-})->name('addBalance');
+Route::get('/customer_dashboard/list_invoice', function(){
+    return view('customer_dashboard/list_invoice');
+})->name('list_customer_invoice');
+
+Route::get('/customer_dashboard/show_invoice', function(){
+    return view('customer_dashboard/show_invoice');
+})->name('show_customer_invoice');
 
 /*   funds transfer */
 
@@ -201,9 +205,14 @@ Route::get('/customer_dashboard/transfer', function(){
 /*
 profile settings
 */
-Route::get('/customer_dashboard/deposit', function(){
-    return view('customer_dashboard/deposit');
-})->name('deposit');
+Route::get('/customer_dashboard/settings', function(){
+    return view('customer_dashboard/settings');
+})->name('customer_settings');
+
+Route::get('/customer_dashboard/faq', function(){
+    return view('customer_dashboard/faq');
+})->name('FAQ');
+
 
 
 
@@ -231,10 +240,6 @@ Route::get('/merchant_dashboard/invoice/show', function(){
     return view('merchant_dashboard/show-invoice');
 })->name('show_invoice');
 
-Route::get('/merchant_dashboard/reports', function(){
-    return view('merchant_dashboard/reports');
-})->name('invoice');
-
 Route::get('/merchant_dashboard/settings', function(){
     return view('merchant_dashboard/settings');
 })->name('settings');
@@ -246,6 +251,8 @@ Route::get('/merchant_dashboard/reports', function(){
 Route::get('/merchant_dashboard/faq', function(){
     return view('merchant_dashboard/faq');
 })->name('faq');
+
+
 
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
 

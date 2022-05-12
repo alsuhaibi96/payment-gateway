@@ -95,7 +95,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -108,7 +108,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -122,22 +122,7 @@
                                         <tr>
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
-                                                </a>
-                                            </td>
-                                            <td><span class="invoice-amount align-middle"> 5</span></td>
-                                            <td><span class="invoice-amoun">$459.30</span></td>
-                                            <td><span class="text-muted">28-04-19</span></td>
-                                            <td><small class="invoice-customer">محمد أحمد</small></td>
-                                            <td>
-                                                <span class="text-muted"> RangeRover</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-
-                                            <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -152,7 +137,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -167,7 +152,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -182,7 +167,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -197,7 +182,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -212,7 +197,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -227,7 +212,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -242,7 +227,7 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>
@@ -257,7 +242,22 @@
 
 
                                             <td>
-                                                <a href="app-invoice.html"> <span class="align-middle"> INV-00223 </span>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
+                                                </a>
+                                            </td>
+                                            <td><span class="invoice-amount align-middle"> 5</span></td>
+                                            <td><span class="invoice-amoun">$459.30</span></td>
+                                            <td><span class="text-muted">28-04-19</span></td>
+                                            <td><small class="invoice-customer">محمد أحمد</small></td>
+                                            <td>
+                                                <span class="text-muted"> RangeRover</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <td>
+                                                <a href="{{ route('show_invoice')}}"> <span class="align-middle"> INV-00223 </span>
                                                 </a>
                                             </td>
                                             <td><span class="invoice-amount align-middle"> 5</span></td>

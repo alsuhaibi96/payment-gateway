@@ -9,6 +9,10 @@
     </span>
 @endsection
 
+@section('reports')
+    active
+@endsection
+
 
 @section('content')
     <!-- BEGIN: Content-->

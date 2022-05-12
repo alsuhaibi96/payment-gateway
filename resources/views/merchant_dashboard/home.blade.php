@@ -38,8 +38,8 @@
                                     <a class="dropdown-item" href="javascript:;">2018</a>
                                 </div>
                             </div>
-                            </div>
-                            <div class="col-xl-6">
+                        </div>
+                        <div class="col-xl-6">
 
                                 <div class="dropdown" style="margin-right: 110px ">
                                     <span class=" mx-2 ">  <b class="text-dark">  للشهر </b> </span>
@@ -61,7 +61,7 @@
                                         <a class="dropdown-item" href="javascript:;">ديسمبر</a>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
                     </div>
 
                     <!-- Activity Card Starts-->

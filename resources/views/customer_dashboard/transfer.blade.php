@@ -9,10 +9,14 @@
 </span>
 @endsection
 
+@section('transfer')
+    active
+@endsection
+
 
 @section('content')
 
-               
+
 
         <!-- BEGIN: Content-->
         <div class="app-content content">
@@ -29,7 +33,7 @@
                                 <div class="card">
                                     <div class="card-body pb-0 mx-25">
 
-                                       
+
 
                                          <!-- logo and title -->
                                          <div class="row my-2">
@@ -44,7 +48,7 @@
                                                      <input type="text" class="form-control" placeholder="Reciever Name" >
                                                 </div>
 
-                                               
+
                                                 <div class="col-6">
                                                     <fieldset class="invoice-address form-group">
                                                         <label for=""> مبلغ التحويل </label>
@@ -56,23 +60,23 @@
 
                                         </div>
 
-                                            
+
 
                                         <hr>
 
                                         <!-- invoice address and contact -->
 
-                                       
+
 
                                         <div class="row invoice-info">
                                             <div class="row">
-                                                
 
 
-                                               
 
-                                               
-                                               
+
+
+
+
 
                                             </div>
 
@@ -127,7 +131,7 @@
                                                             <h6 class="invoice-subtotal-value mb-0">200 YER</h6>
                                                         </li>
 
-                                                       
+
                                                     </ul>
                                                     <div class="col-12 border-0 pb-0">
                                                         <button class="btn btn-primary btn-block subtotal-preview-btn">تأكيد العملية</button>

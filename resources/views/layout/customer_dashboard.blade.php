@@ -81,12 +81,7 @@
 
 
 
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="javascript:void(0);"><i class="ficon bx bx-menu"></i></a></li>
-                        </ul>
-                        <ul class="nav navbar-nav">
 
-                        </ul>
                         @yield('header')
 
                     </div>
@@ -186,7 +181,7 @@
 
                         </a>
                         </a></li>
-                    <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+
                 </ul>
             </div>
             <div class="shadow-bottom"></div>
@@ -196,7 +191,7 @@
                         <ul class="menu-content">
                             <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
                             </li>
-                            <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                            <li class="@yield('analytics')"><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                             </li>
                         </ul>
                     </li>
@@ -204,17 +199,17 @@
 
 
 
-                                    <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفواتير</span></a>
+                                    <li class=" nav-item @yield('invoices')"><a href="{{ route('list_customer_invoice') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفواتير</span></a>
                                     </li>
 
-                                    <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
+                                    <li class=" nav-item @yield('transfer')"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
                                     </li>
-                                    <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
+                                    <li class=" nav-item @yield('settings')"><a href="{{ route('customer_settings') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
                                     </li>
 
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
-                                    <li class=" nav-item @yield('report')"><a href="{{ route('faq') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
+                                    <li class=" nav-item @yield('faq')"><a href="{{ route('FAQ') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate"
                                         data-i18n="Form Layout">  الأسئلة المتكررة - FAQ </span></a>
                                     <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                                     </li>

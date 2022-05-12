@@ -8,6 +8,9 @@
 </span>
 @endsection
 
+@section('settings')
+    active
+@endsection
 
 
 @section('content')

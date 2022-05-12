@@ -9,19 +9,17 @@ use App\Models\Orders_invoice;
 use App\Http\Traits\general_trait;
 use App\Models\bank_account;
 use App\Models\Credit_cards;
-use App\Models\FinancialAcount;
 use App\Models\FinancialTransaction;
 use App\Models\PaymentInvoice;
 use App\Models\User;
-use Carbon\Carbon as Carbon; 
+
 use Illuminate\Support\Facades\DB;
+
 use App\Models\Products;
 use App\Models\Transaction;
 use App\Models\TransactionOverView;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
-
 
 class checkoutController extends Controller
 
@@ -29,21 +27,22 @@ class checkoutController extends Controller
     
     use general_trait;
     public function payment_order(Request $request){
-    
+        $data=json_decode($request->getContent(),true);
+       
+    //$req->input()
         
         $info=array('refrence_id'=>1,'products'=>[array('id'=>1,'name'=>'laptop','quantity'=>2,'unint_amount'=>3000),array('id'=>3,'name'=>'laptop','quantity'=>5,'unint_amount'=>100)]);
         $private_key=$request->header('private-key');
         $public_key=$request->header('public-key');
-        $products=json_decode($request->input('products'),true);
+        $products=$data['products'];//json_decode($request->input('products'),true);
 
-        $order_reference=$request->input('order_reference');
-        $total_amount=$request->input('total_amount');
-      
-        $currency=$request->input('currency');
-        $meta_data=$request->input('meta_data');
-        $sucess_url=$request->input('success_url');
-        $cancel_url=$request->input('cancel_url');
-        $order_details=$request->all();
+        $order_reference=$data['order_reference'];
+        $total_amount=$data['total_amount'];
+        $currency=$data['currency'];
+        $meta_data=$data['meta_data'];
+        $sucess_url=$data['success_url'];
+        $cancel_url=$data['cancel_url'];
+        //$order_details=$request->all();
 
      
 
@@ -53,9 +52,10 @@ class checkoutController extends Controller
         if($private_key==null|| $public_key==null)
         return $this->errors(500,5200,'invalid credintical keys');
 
-        if($private_key=='gogqBV1hzlHQxR1GfCp9qqLwc35y4ik8Y4bBQ3C0o6w3fgEBG4' && $public_key=='SKpbOHIHQnceI0mQH0ZQPYqpL')
+        if($private_key=='rRQ26GcsZzoEhbrP2HZvLYDbn9C9et' && $public_key=='HGvTMLDssJghr9tlN9gr4DVYt0qyBy')
         {
-            return $this->create_order($order_details,$products,$public_key,$private_key);
+           // return $this->create_order($order_details,$products,$public_key,$private_key);
+            return $this->create_order($data,$products,$public_key,$private_key);
         }
         else
         {
@@ -85,9 +85,8 @@ class checkoutController extends Controller
         $feedback['invoice_referance']);
        
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
-    //     $total_amount=$order_details['total_amount'];
-    //   return  $this->payment_response($total_amount);
-       // return $orders;
+
+    //    return $orders;
 
         $invoice=new Orders_invoice;
 
@@ -140,14 +139,13 @@ class checkoutController extends Controller
     }
     public function do_payment($invoice_referance){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->get();
-//    return     $invoice_data;
-      $invoice_id= $invoice_data[0]["id"];
+     $invoice_id= $invoice_data[0]["id"];
        $products=$this->getProducts($invoice_id);
       
          
      
 
-        return view('paymentView.pay_card' ,compact('invoice_data','products'));
+        return view('paymentView.paymentView' ,compact('invoice_data','products'));
 
     }
     public function cancel_payment($invoice_referance){
@@ -175,55 +173,26 @@ class checkoutController extends Controller
         
 
     }
-        
-    public function payment_response($total_amount){
 
-        $client_balance=1000000-$total_amount;
-        $current_time=Carbon::now();
-        $response_info=
-        array('status'=>'success','message'=>'Payment Done Successfully','customer_account_info'=>
-        [array('order_reference_id'=>'0','left_amount'=>$client_balance,'paid_amount'=>$total_amount,'status'=>'Payment Done',
-        'created_at'=>$current_time->toDateTimeString()
-        ,'updated_at'=>
-        $current_time->toDateTimeString()
-        )]);
-    return $response_info;
-    }
     
     public function Financial_processing(Request $request){
         
-        $validator=Validator::make($request->all(),[
-            'card_number'=>['required','digits:16','integer'],
-            'card_holder'=>['required','string','min:6'],
-            'expiration_yy'=>['required'],
-            'cvv'=>['required','digits:3'],
-            
-            
-            ]);
-        if($validator->fails()){
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
-
+        
+        
         $invoice_referance=$request->input('invoice_referance');
         
         $product_name=$request->input('product_name');
-         $total_amout=$request->input('total_amount');
+        $total_amout=$request->input('total_amount');
         $currency=$request->input('currency');
         $card_number=$request->input('card_number');
         $card_holder=$request->input('card_holder');
-      
-    
-
-         $expiration_yy=$request->input('expiration_yy');
-          $date=$this->seprateDate($expiration_yy);
-            $expiration_yy=$date[1];
-             $expiration_mm=$date[0];
-
+        $expiration_mm=$request->input('expiration_mm');
+        $expiration_yy=$request->input('expiration_yy');
         $success_url=$request->input('success_url');
         $cvv=$request->input('cvv');
         $Payment_confirmation_data=$request->all();
         $client_card_data=Credit_cards::where('card_number',$card_number)->first();
-        $client_banck_acount_id=$client_card_data->bank_accounts_id;
+        $client_banck_acount_id=$client_card_data->id;
 
         $client_account_data=bank_account::where('id',$client_banck_acount_id)->first();
 
@@ -233,12 +202,10 @@ class checkoutController extends Controller
         $client_balance=$client_account_data->balance;
         $client_balance=(float)$client_balance;
         $total_amout=(float)$total_amout;
-     
         $remaining_balance=$client_balance-$total_amout;
         if($remaining_balance >0){
             $merchant_id=1;
             $merchant_data=bank_account::where('user_id',$merchant_id)->first();
-            $merchant_name=User::where('id',$merchant_id)->first();
             $merchant_account_number=$merchant_data->account_number;
             $merchant_balance=$merchant_data->balance;
             $merchant_balance=(float)$merchant_balance;
@@ -257,22 +224,19 @@ class checkoutController extends Controller
             $paymentinvoice->save();
             $transaction=new Transaction();
             $transaction->payment_invoices_id=$paymentinvoice->id;
-            $transaction->user_id=$client_account_data->user_id;
             $transaction->description='مدفوعات المشتريات';
             $transaction->transaction_date=date("Y-m-d H:i:s");
             $transaction->save();
 
             $sales_transaction=new Transaction();
             $sales_transaction->payment_invoices_id=$paymentinvoice->id;
-            $sales_transaction->user_id=$merchant_id;
             $sales_transaction->description='استحقاق المبيعات';
             $sales_transaction->transaction_date=date("Y-m-d H:i:s");
             $sales_transaction->save();
 
             $journal_entries_merchant_right=new FinancialTransaction();
             $journal_entries_merchant_right->transaction_id=$transaction->id;
-            $journal_entries_merchant_right->financial_acount_id=4;
-         
+            $journal_entries_merchant_right->financial_acount_id=3;
             $journal_entries_merchant_right->entry_type="Debit";
             $journal_entries_merchant_right->amount=$total_amout;
             $journal_entries_merchant_right->save();
@@ -294,8 +258,7 @@ class checkoutController extends Controller
 
             $journal_entries_customer_left=new FinancialTransaction();
             $journal_entries_customer_left->transaction_id=$sales_transaction->id;
-            $journal_entries_customer_left->financial_acount_id=3;
-
+            $journal_entries_customer_left->financial_acount_id=4;
             $journal_entries_customer_left->entry_type="Cred";
             $journal_entries_customer_left->amount=$total_amout;
             $journal_entries_customer_left->save();
@@ -321,14 +284,8 @@ class checkoutController extends Controller
 
             $invoice_id=  $order_invoice_data["id"];
 
-          return $invoice_sender;
 
-          
-          return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
-          return $this->returnData('الرصيد المتبقي',$invoice_sender,'تمت عملية الدفع بنجاح');
-            // $success_uri='https://localhost:8080/test/invoice';
-            //  return redirect::away($success_uri)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);    
-            // return Redirect::away($success_url)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);
+            // return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
             // return $this->returnData('Balance Left',$invoice_sender,'Payment Process Completed Successfully');
 
 
@@ -350,95 +307,13 @@ class checkoutController extends Controller
         $products =DB::table('products')->where('invoice_id',$invoice_id)->get();
         return $products;
     }
-    public function getinvoice($id){
-        $invoice=Transaction::with(['user','FinancialTransaction'])->where('id',$id)->get();
-        $invoice_data=array('القيود'=>$invoice);
+    public function getinvoice(){
         $item=User::with(['PaymentInvoice'])->get();
-        return response()->json($invoice_data);
         
         
         
        
-        return $invoice;
-
-    }
-    public function finanical_accounts(){
-        $invoice=User::with(['Transaction','Transaction.FinancialTransaction','Transaction.FinancialTransaction.FinancialAcount'])->get();
-        $invoice_data=array('القيود'=>$invoice);
-        $item=User::with(['PaymentInvoice'])->get();
-        return response()->json($invoice_data);
-        
-        
-        
-       
-        return $invoice;
-
-    }
-    public function userWithTransaction($id){
-        $invoice=User::with(['transactionOverView'])->where('id',$id)->get();
-        $invoice_data=array('usertransaction'=>$invoice);
-        $item=User::with(['PaymentInvoice'])->get();
-        return response()->json($invoice_data);
-        
-        
-        
-       
-        return $invoice;
-
-    }
-    public function customer_account_statement($id){
-        
-        $customer_account_pro=DB::table('transactions')
-        ->select(DB::raw('null as transaction_date'),
-        DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_acounts.acount_name ELSE CONCAT("-",financial_acounts.acount_name) END) AS DescriptionOrAccountTitle'),
-        DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
-        DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit')
-        ,'transactions.id AS Reference',
-        DB::raw(
-            '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine')
-        )
-        ->leftJoin('financial_transactions','financial_transactions.transaction_id','=','transactions.id')
-        ->leftJoin('financial_acounts','financial_acounts.id','=','financial_transactions.financial_acount_id')
-        ->whereBetween('transactions.transaction_date',['2022-05-09','2022-05-10'])
-        ->where('transactions.user_id',$id)
-        ->orderBy('Reference','Desc')
-        ;
-        $customer_account=DB::table('transactions')
-        ->select('transactions.transaction_date','transactions.description AS DescriptionOrAccountTitle',DB::raw('null as AmountDebit'),DB::raw('null as AmountCredit'),'transactions.id AS Reference',DB::raw('null as IsLine') )
-        ->leftJoin('financial_transactions','financial_transactions.transaction_id','=','transactions.id')
-        ->leftJoin('financial_acounts','financial_acounts.id','=','financial_transactions.financial_acount_id')
-        ->whereBetween('transactions.transaction_date',['2022-05-09','2022-05-10'])
-        ->where('transactions.user_id',$id)
-        ->union($customer_account_pro)
-        ->get()
-        ;
-        
-        
-        
-        
-        
-        
-       
-        return response()->json($customer_account);;
-
-    }
-    public function Ledger_account(){
-        $accounts=DB::table('transactions')
-        ->select('financial_transactions.financial_acount_id','financial_acounts.acount_name',
-        DB::raw('count(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE -financial_transactions.amount END) AS Balance')
-        )
-        ->leftJoin('financial_transactions','financial_transactions.transaction_id','=','transactions.id')
-        ->leftJoin('financial_acounts','financial_acounts.id','=','financial_transactions.financial_acount_id')
-        ->where('transactions.transaction_date','=','2022-05-10')
-        ->groupBy('financial_transactions.financial_acount_id')
-        ->orderBy('financial_transactions.financial_acount_id','asc')
-        ->get();
-
-    }
-
-
-    public function seprateDate($date){
-      return  $dates=explode('/',$date);
+        return $item;
 
     }
 }

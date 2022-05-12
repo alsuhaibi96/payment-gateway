@@ -10,4 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function uploadFile($file){
+        $filename=date('YmdHi').$file->getClientOriginalName();
+        $file->move(public_path('images'),$filename);
+        return $filename;
+
+    }
 }

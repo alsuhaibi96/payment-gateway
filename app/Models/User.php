@@ -47,6 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public function profile(){
+        return $this->hasOne(user_profile::class,'user_id');
+    }
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

@@ -224,7 +224,7 @@ class UserController extends Controller
                 
             
                 if(Auth::user()->hasRole('Customer'))
-                return redirect()->route('user_profile');
+                return redirect()->route('customer_dashboard');
                
              
     

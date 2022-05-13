@@ -108,15 +108,10 @@
                                 <li class="scrollable-container media-list"><a class="d-flex justify-content-between" href="javascript:void(0);">
                                         <div class="media d-flex align-items-center">
                                             <div class="media-left pr-0">
-                                                @if(isset(Auth::user()->profile->avatar))
-                                                <div class="mr-1 m-0"> <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class=" rounded-circle"  style="width:50px">         </div>                                  
-                                               @else
-                                               <img src="assets/web/images/avatar.jpg"alt="users avatar" class=" rounded-circle" style="width: 50px">                                          
-   
-                                               @endif
+                                                <div class="avatar mr-1 m-0"><img src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="39" width="39"></div>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{Auth::user()->first_name }}</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">{{ Auth::user()->created_at }}</small>
+                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك Mo'khtar Ghaleb</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -160,14 +155,7 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name">{{ Auth::user()->first_name }}</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span>
-                                    @if(isset(Auth::user()->profile->avatar))
-                                                <div class=" mr-1 m-0"> <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 50px">         </div>                                  
-                                               @else
-                                               <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">                                          
-   
-                                               @endif
-                                </span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name">Mo'khtar Ghaleb</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
                                 {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>
@@ -205,24 +193,22 @@
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
                     <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
-                            </li>
-                            <li class="active"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                            </li>
-                        </ul>
+                       
                     </li>
                     
                       
+                                    <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
+                                     </li>
                     
-                    
-                                    <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفواتير</span></a>
+                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
                                     
-                                    <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
+                                    
+                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
                                     </li>
-                                    <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
+                                    <li ><a  href="{{ route('admin_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                     </li>
+
                     
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>

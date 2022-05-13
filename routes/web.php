@@ -9,6 +9,7 @@ use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\API\test\checkoutController;
+use App\Http\Controllers\user\UserProfileController;
 
 
 
@@ -179,12 +180,19 @@ Route::get('/card-info', function (){
 Route::get('/buisness-info', function (){
     return view('website/merchant/buisness_info');
 });
-});
 
 
-    Route::get('/customer_dashboard', function(){
-        return view('customer_dashboard/home');
-    })->name('home');
+
+    // Route::get('/customer_dashboard', function(){
+    //     return view('customer_dashboard/home');
+    // })->name('home');
+    Route::get('/customer_dashboard', [UserProfileController::class,'Profile']
+    )->name('customer_dashboard');
+    Route::post('/customer_dashboard/deposit', [UserProfileController::class,'addProfile']
+    )->name('addProfile');
+    Route::post('/customer_dashboard/edit', [UserProfileController::class,'editProfile']
+    )->name('editProfile');
+    
    
     
 /*********** Customer Dashboard Routes *************/
@@ -192,6 +200,7 @@ Route::get('/buisness-info', function (){
 Route::get('/customer_dashboard/add_balance', function(){
     return view('customer_dashboard/addBalance');
 })->name('addBalance');
+
 
 /*   funds transfer */
 
@@ -204,8 +213,11 @@ profile settings
 Route::get('/customer_dashboard/deposit', function(){
     return view('customer_dashboard/deposit');
 })->name('deposit');
+Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 
-
+/***************change password****************/
+Route::get('/change-password', [App\Http\Controllers\user\ChangePasswordController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordController::class, 'updatePassword'])->name('update-password');
 
 
 
@@ -219,7 +231,31 @@ Route::get('/customer_dashboard/deposit', function(){
      return view('merchant_dashboard/invoice');
  })->name('invoice');
 
+// admin dashboard
+Route::get('/admin_dashboard', function(){
+    return view('admin_dashboard/home');
+})->name('admin_dashboard');
 
+
+
+Route::get('/admin_dashboard/deposit', function(){
+    return view('admin_dashboard/deposit');
+})->name('admin_dashboard/deposit');
+
+Route::get('/admin_dashboard/addBalance', function(){
+    return view('admin_dashboard/addBalance');
+})->name('admin_dashboard/addBalance');
+
+Route::get('/admin_dashboard/users', function(){
+    return view('admin_dashboard/users');
+})->name('admin_dashboard/users');
+Route::get('/admin_dashboard/add_user', function(){
+    return view('admin_dashboard/addUser');
+})->name('addUser');
+Route::get('/admin_dashboard/editUser', function(){
+    return view('admin_dashboard/editUser');
+})->name('editUser');
+/*logout route*/
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 
@@ -229,3 +265,4 @@ Route::get('/customer_dashboard/deposit', function(){
 
 
 
+});

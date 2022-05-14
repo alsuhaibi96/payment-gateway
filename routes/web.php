@@ -186,7 +186,9 @@ Route::get('/buisness-info', function (){
     // })->name('home');
     Route::get('/customer_dashboard', [UserProfileController::class,'Profile']
     )->name('customer_dashboard');
+
     /*profile edit */
+
     Route::post('/customer_dashboard/deposit', [UserProfileController::class,'addProfile']
     )->name('addProfile');
     Route::post('/customer_dashboard/edit', [UserProfileController::class,'editProfile']
@@ -230,10 +232,13 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
      return view('merchant_dashboard/invoice');
  })->name('invoice');
 
-// admin dashboard route
-Route::get('/admin/dashboard', function(){
+
+// admin dashboard
+Route::get('/admin_dashboard', function(){
+
     return view('admin_dashboard/home');
 })->name('admin_dashboard');
+
 
 
 
@@ -257,6 +262,8 @@ Route::get('/admin/dashboard/editUser', function(){
 Route::get('/admin/dashboard/transactions',function(){
     return view('admin_dashboard.transactions');
 })->name('transactions');
+
+
 
 /*logout route*/
  Route::get('logout', [UserController::class, 'logout'])->name('logout');

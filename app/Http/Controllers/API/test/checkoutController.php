@@ -30,30 +30,32 @@ class checkoutController extends Controller
     use general_trait;
     public function payment_order(Request $request){
     
-        
+        $data=json_decode($request->getContent(),true);
         $info=array('refrence_id'=>1,'products'=>[array('id'=>1,'name'=>'laptop','quantity'=>2,'unint_amount'=>3000),array('id'=>3,'name'=>'laptop','quantity'=>5,'unint_amount'=>100)]);
         $private_key=$request->header('private-key');
         $public_key=$request->header('public-key');
-        $products=json_decode($request->input('products'),true);
 
-        $order_reference=$request->input('order_reference');
-        $total_amount=$request->input('total_amount');
-      
-        $currency=$request->input('currency');
-        $meta_data=$request->input('meta_data');
-        $sucess_url=$request->input('success_url');
-        $cancel_url=$request->input('cancel_url');
-        $order_details=$request->all();
+        $products=$data['products'];
+        $order_reference= $data['order_reference'] ;
+       $total_amount= $data['total_amount'];
+    
+        $currency=  $data['currency'];
 
-     
+        $meta_data= $data['metadata'];
 
+        $success_url= $data['success_url'];
+
+        $cancel_url= $data['cancel_url'];
+        $order_details=array('products'=>$products,'order_reference'=>$order_reference,'total_amount'=>$total_amount,'currency'=>$currency,'meta_data'=>$meta_data,'success_url'=>$success_url,'cancel_url'=>$cancel_url);
+
+    
 
         if(!is_array($products))
         return $this->errors(300,5100,'invalid products array format');
         if($private_key==null|| $public_key==null)
         return $this->errors(500,5200,'invalid credintical keys');
 
-        if($private_key=='gogqBV1hzlHQxR1GfCp9qqLwc35y4ik8Y4bBQ3C0o6w3fgEBG4' && $public_key=='SKpbOHIHQnceI0mQH0ZQPYqpL')
+        if($private_key=='rRQ26GcsZzoEhbrP2HZvLYDbn9C9et' && $public_key=='HGvTMLDssJghr9tlN9gr4DVYt0qyBy')
         {
             return $this->create_order($order_details,$products,$public_key,$private_key);
         }
@@ -83,50 +85,59 @@ class checkoutController extends Controller
         $feedback['invoice_referance'],
         "cancel_next_url"=>"http://localhost:8000/api/test/merchant/cancel_payment_order/".
         $feedback['invoice_referance']);
-       
+
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
-    //     $total_amount=$order_details['total_amount'];
-    //   return  $this->payment_response($total_amount);
-       // return $orders;
+
+   //return $orders['products'];
+    
+ 
 
         $invoice=new Orders_invoice;
 
         $invoice->invoice_referance=$orders['invoice_referance'];
         $invoice->user_id=$merchant_data->id;
-        $invoice->products=$orders['products'];
+        $invoice->products= json_encode($orders['products'],true);
+        
+       
         $invoice->order_reference=$orders['order_reference'];
-        $invoice->total_amout=$orders['total_amount'];
+        $invoice->total_amout=$orders['total_amout'];
         $invoice->currency=$orders['currency'];
         $invoice->next_url=$orders['next_url'];
         $invoice->cancel_next_url=$orders['cancel_next_url'];
         $invoice->success_url=$orders['success_url'];
         $invoice->cancel_url=$orders['cancel_url'];
 
+    
+
         
         if($invoice->save()){
-            $products_ids=array_column($products,'id');
+          
+             $products_ids=array_column($products,'id');
             $products_names=array_column($products,'product_name');
             $products_quantity=array_column($products,'quantity');
             $products_unit_amounts=array_column($products,'unit_amount');
     
             
+           
+
     
-            for($i=0;$i<count($products_ids);$i++){
+             for($i=0;$i<count($products_ids);$i++){
     
-                $productsArr = array(
-                    'product_id' =>$products_ids[$i],
+             $productsArr = array(
+                   'product_id' =>$products_ids[$i],
                     'product_name'=> $products_names[$i],
-                    'quantity'=> $products_quantity[$i],
-                    'unit_amount'=> $products_unit_amounts[$i],
+                     'quantity'=> $products_quantity[$i],
+                     'unit_amount'=> $products_unit_amounts[$i],
                     'invoice_id'=>  $invoice->id,
 
-                );
+                 );
     
-               
+       
                 Products::insert($productsArr);
     
             }
-           
+            
+            
             
             return $this->returnData('invoice',$invoice,'invoice created successfuly');
 
@@ -207,7 +218,7 @@ class checkoutController extends Controller
         $invoice_referance=$request->input('invoice_referance');
         
         $product_name=$request->input('product_name');
-         $total_amout=$request->input('total_amount');
+         $total_amount=$request->input('total_amout');
         $currency=$request->input('currency');
         $card_number=$request->input('card_number');
         $card_holder=$request->input('card_holder');

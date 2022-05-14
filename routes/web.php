@@ -8,7 +8,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Customer\CustomerController;
-use App\Http\Controllers\API\test\checkoutController;
+use App\Http\Controllers\api\test\checkoutController;
+use App\Http\Controllers\api\test\testController;
+
 
 
 
@@ -221,6 +223,15 @@ Route::get('/customer_dashboard/deposit', function(){
 
 
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
+ Route::get('test', [testController::class, 'index'])->name('test');
+ Route::get('test/response/{info}', [testController::class, 'showTest'])->name('test/response');
+
+ Route::get('test/cancel/{cancel}', [testController::class, 'testCancel'])->name('testCancel');
+ Route::get('test/cancel', [testController::class, 'viewCancel'])->name('viewCancel');
+
+
+
+
 
 
 

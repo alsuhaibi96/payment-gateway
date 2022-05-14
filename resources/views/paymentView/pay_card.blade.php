@@ -488,14 +488,15 @@
                             <span dir="rtl">
                                <form action="{{ route('Payment_confirmation')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                 @foreach ($invoice_data as $item )
-                            <input type="hidden" name="merchant_id" value="{{ $item->user_id}}">
-                            <input type="hidden" name="invoice_referance" value="{{ $item->invoice_referance}}">
-                            <input type="hidden" name="product_name" value="{{ $product->product_name}}">
-                            <input type="hidden" name="total_amount" value="{{ $item->total_amout}}">
-                            <input type="hidden" name="currency" value="{{ $item->currency}}">
-                            <input type="hidden" name="success_url" value="{{$item->success_url}}">
-                              @endforeach
+                                @foreach ($invoice_data as $item )
+                                <input type="hidden" name="merchant_id" value="{{ $item->user_id}}">
+                                <input type="hidden" name="invoice_referance" value="{{ $item->invoice_referance}}">
+                                <input type="hidden" name="product_name" value="{{ $product->product_name}}">
+                                <input type="hidden" name="total_amount" value="{{ $item->total_amout}}">
+                                <input type="hidden" name="currency" value="{{ $item->currency}}">
+                                <input type="hidden" name="success_url" value="{{$item->success_url}}">
+                                  @endforeach
+    
 
 
 
@@ -554,7 +555,9 @@
                     </button>
                     </span>
                 </div>
-                <div class="text-center mt-6 md:mb-0"><button class="text-sm focus:outline-none border-none text-red-500">الغاء</button></div>
+                <div class="text-center mt-6 md:mb-0"><a href="{{ route('viewCancel') }}" class="text-sm focus:outline-none border-none text-red-500" 
+                     >الغاء</a></div>
+                     {{-- onclick="window.location='{{ URL::previous() }}'" --}}
                 </form>
                 </span>
                 <div class="lg:hidden block">

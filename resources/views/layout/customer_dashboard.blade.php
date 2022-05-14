@@ -111,7 +111,7 @@
                                                 @if(isset(Auth::user()->profile->avatar))
                                                 <div class="mr-1 m-0"> <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class=" rounded-circle"  style="width:50px">         </div>                                  
                                                @else
-                                               <img src="assets/web/images/avatar.jpg"alt="users avatar" class=" rounded-circle" style="width: 50px">                                          
+                                               <div class="mr-1 m-0">  <img src="{{ asset('assets/web/images/avatar.jpg') }}" alt="users avatar" class=" rounded-circle" style="width: 50px">   </div>                                       
    
                                                @endif
                                             </div>

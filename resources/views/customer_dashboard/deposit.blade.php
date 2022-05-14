@@ -43,7 +43,7 @@
                                         <!-- name and email -->
                                         <div class="row mb-2">
                                             <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
-                                                <span class="text-dark"><b> اعداد الملف الشخصي </b> </span>
+                                                <span class="text-dark"><b> تعديل الصورة </b> </span>
                                             </div>
                                         </div>
                                         <!-- users edit media object start -->
@@ -51,9 +51,11 @@
                                     <div class="media mb-2">
                                         <a class="mr-2" href="javascript:void(0);">
                                             @if(isset(Auth::user()->profile->avatar))
-                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle w-2"  style="object-fit: cover">                                           
+
+                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle w-2"   style="object-fit: cover;">                                           
                                             @else
-                                            <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">                                          
+                                            <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
+
 
                                             @endif
                                         </a>
@@ -101,6 +103,14 @@
                                         </div>
                                     </div>
 
+                                     <!-- name and email -->
+                                     <div class="row mb-2">
+                                        <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
+                                            <span class="text-dark"><b> تعديل الملف الشخصي </b> </span>
+                                        </div>
+                                    </div>
+
+
                                         <form action="{{ route('editProfile') }}" method="post">
                                             @csrf
                                         <div class=" order-2 order-sm-1">
@@ -143,14 +153,15 @@
                                         </div>
                                         <div class=" order-2 order-sm-1">
                                             <div class="row">
-                                                <div class="col-6 py-20">
-                                                     <label class="text-dark"> العنوان الاول </label>
-                                                     <input type="text" class="form-control" placeholder="العنوان الاول" name="address" value="" >
-                                                </div>
+
 
                                                 <div class="col-6 py-20">
                                                     <label class="text-dark"> العنوان الثاني </label>
+
+                                                    <input type="text" class="form-control" placeholder=" العنوان الاول"  >
+
                                                     <input type="text" class="form-control" placeholder=" العنوان الاول" name="address2" >
+
                                                </div>
 
                                             </div>
@@ -161,7 +172,9 @@
                                                 <div class="row">
                                                    <div class="col-6">
                                                        <label class="text-dark"> رقم الجوال </label>
-                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone">
+
+                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567" >
+
                                                    </div>
 
                                                   
@@ -196,6 +209,7 @@
                             </div>
                            
                         </div>
+
 {{-- 
                         <div class="col-lg-5 col-md-7  col-12">
                             <ul class="list-group list-group-flush">
@@ -214,6 +228,7 @@
                             <input type="file" name="avatar" id="">
                             <button type="submit">اضافة الصورة</button>
                         </form> --}}
+
 
                           
                         <div class="row">
@@ -295,13 +310,15 @@
                                  </form>
                                 </div>
                             </div>
+                        </div>
+                    </div>
                             <div class="row">
-                                <!-- password card model -->
+                                <!-- authentication card model -->
                                 <div class="col-xl-9 col-md-8 col-12">
                                     <div class="card">
                                         <div class="card-body pb-0 mx-25">
     
-                                            <!-- name and email -->
+                                           
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                                     <span class="text-dark"><b> التحقق بخطوتين </b> </span>
@@ -347,6 +364,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        
+            </div>
+        </div>
+        
                                    
                                 
                     </section>

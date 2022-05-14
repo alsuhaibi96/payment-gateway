@@ -68,7 +68,9 @@
                                            
 
                                                 <li class="list-group-item border-0 pb-0">
-                                                    <button class="btn btn-primary btn-block subtotal-preview-btn">إضافة رصيد</button>
+
+                                                    <button class="btn btn-primary btn-block subtotal-preview-btn">سحب رصيد</button>
+
                                                 </li>
                                            
                                     </div>

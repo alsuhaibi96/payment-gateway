@@ -174,9 +174,7 @@ Route::get('/moblie-conf', function (){
 Route::get('/adderss', function (){
     return view('website/customer/name_adderss');
 });
-Route::get('/card-info', function (){
-    return view('website/customer/card_info');
-});
+
 Route::get('/buisness-info', function (){
     return view('website/merchant/buisness_info');
 });
@@ -188,6 +186,9 @@ Route::get('/buisness-info', function (){
     // })->name('home');
     Route::get('/customer_dashboard', [UserProfileController::class,'Profile']
     )->name('customer_dashboard');
+
+    /*profile edit */
+
     Route::post('/customer_dashboard/deposit', [UserProfileController::class,'addProfile']
     )->name('addProfile');
     Route::post('/customer_dashboard/edit', [UserProfileController::class,'editProfile']
@@ -231,30 +232,39 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
      return view('merchant_dashboard/invoice');
  })->name('invoice');
 
+
 // admin dashboard
 Route::get('/admin_dashboard', function(){
+
     return view('admin_dashboard/home');
 })->name('admin_dashboard');
 
 
 
-Route::get('/admin_dashboard/deposit', function(){
+
+Route::get('/admin/dashboard/deposit', function(){
     return view('admin_dashboard/deposit');
 })->name('admin_dashboard/deposit');
 
-Route::get('/admin_dashboard/addBalance', function(){
+Route::get('/admin/dashboard/addBalance', function(){
     return view('admin_dashboard/addBalance');
 })->name('admin_dashboard/addBalance');
 
-Route::get('/admin_dashboard/users', function(){
+Route::get('/admin/dashboard/users', function(){
     return view('admin_dashboard/users');
 })->name('admin_dashboard/users');
-Route::get('/admin_dashboard/add_user', function(){
+Route::get('/admin/dashboard/add_user', function(){
     return view('admin_dashboard/addUser');
 })->name('addUser');
-Route::get('/admin_dashboard/editUser', function(){
+Route::get('/admin/dashboard/editUser', function(){
     return view('admin_dashboard/editUser');
 })->name('editUser');
+Route::get('/admin/dashboard/transactions',function(){
+    return view('admin_dashboard.transactions');
+})->name('transactions');
+
+
+
 /*logout route*/
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
 

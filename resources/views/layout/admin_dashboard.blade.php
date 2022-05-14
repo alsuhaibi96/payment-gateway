@@ -203,9 +203,15 @@
                                     <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
                                     
+
+                               
+                                    <li class=" nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
+                                    </li>
+
                                     
                                     <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
                                     </li>
+
                                     <li ><a  href="{{ route('admin_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                     </li>
 

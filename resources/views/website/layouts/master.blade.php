@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Wasl Pay</title>
     <!--walper slider library-->
+    @notifyCss
     <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
     <link rel="stylesheet" href="{{url('assets/web/css/normalize.css')}}">
@@ -21,11 +22,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--custom css file link-->
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
+    
 
     <!-- add Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
 </head>
-<body>
+<body style="    height: 100vh;position: relative;overflow: hidden;">
     <!--start header section-->
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
@@ -62,7 +64,7 @@
     @yield('content')
 
 
-    <footer class="footer-content">
+    <footer class="footer-content" style="position: fixed; bottom:0px;">
         <p>جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT  </p>
     </footer>
 
@@ -77,5 +79,6 @@
     <script src="{{url('assets/web/js/swiper-bundle.min.js')}}"></script>
     <!--custom js file link-->
     <script src="{{url('assets/web/js/main.js')}}"></script>
+    @notifyJs
 </body>
 </html>

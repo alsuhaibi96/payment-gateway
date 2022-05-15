@@ -13,7 +13,7 @@ use App\Http\Controllers\API\test\checkoutController;
 
 
 use App\Http\Controllers\Auth\ForgotPasswordCustomController;
-
+use App\Http\Controllers\merchants\MerchantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,16 +154,18 @@ Route::get('/test-card', function () {
     return view('docs.wasl_test_card');
 })->name('test_card');
 
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 Route::group(['middleware'=>['auth']],function(){
-
     
+   
 /**
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
-    Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
     
+
+
 
 
 
@@ -206,18 +208,18 @@ Route::get('/customer_dashboard/deposit', function(){
 })->name('deposit');
 
 
+/********** Merchant Dashboard Routes *************/
+
+Route::get('/merchant_dashboard', [MerchantController::class,'index'])->name('merchant_dashboard');
+Route::get('/Transactions', [MerchantController::class,'Transactions'])->name('Transactions');
+Route::get('/listInvoice', [MerchantController::class,'listInvoice'])->name('listInvoice');
+Route::get('/financial_movement/{id}', [MerchantController::class,'financial_movement'])->name('financial_movement');
 
 
 
-
- /********** Merchant Dashboard Routes *************/
- Route::get('/merchant_dashboard', function(){
-    return view('merchant_dashboard/home');
-})->name('merchant_dashboard');
-
- Route::get('/merchant_dashboard/invoice' , function(){
-     return view('merchant_dashboard/invoice');
- })->name('invoice');
+Route::get('/merchant_dashboard/invoice', function () {
+    return view('merchant_dashboard/invoice');
+})->name('invoice');
 
 
  Route::get('logout', [UserController::class, 'logout'])->name('logout');

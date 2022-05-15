@@ -1,5 +1,7 @@
 @extends('layout.customer_dashboard')
-
+@section('transfer')
+    active
+@endsection
 
 @section('header')
 <span class="nav navbar-nav float-left">
@@ -178,14 +180,8 @@
                                                 <span>إرسال العملية</span>
                                             </button>
                                         </div>
-                                        <div class="invoice-action-btn mb-1">
-                                            <button class="btn btn-light-primary btn-block">
-                                                <span>تحميل العملية PDF</span>
-                                            </button>
-                                        </div>
-                                        <div class="invoice-action-btn mb-1">
-                                            <button class="btn btn-light-primary btn-block">طباعة</button>
-                                        </div>
+                                        
+                                        
                                         <div class="invoice-action-btn mb-1">
                                             <button class="btn btn-light-primary btn-block">حفظ في المسوّدة</button>
                                         </div>

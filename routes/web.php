@@ -223,6 +223,11 @@ Route::get('/customer_dashboard/transaction', function(){
 Route::get('/customer_dashboard/transfer', function(){
     return view('customer_dashboard/transfer');
 })->name('transfer');
+/*FAQ page route*/
+
+Route::get('/customer_dashboard/report', function(){
+    return view('customer_dashboard/report');
+})->name('report');
 /*
 profile settings
 */

@@ -1,6 +1,8 @@
 @extends('layout.customer_dashboard')
 
-
+@section('transaction')
+    active
+@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>

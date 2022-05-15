@@ -1,5 +1,7 @@
 @extends('layout.customer_dashboard')
-
+@section('addBalance')
+    active
+@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>

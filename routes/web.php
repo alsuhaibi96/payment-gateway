@@ -98,6 +98,17 @@ Route::post('/contact', function (){
 })->name('send_contact_message');
 
 
+// new docs
+Route::get('/new-docs', function() {
+return view('new-docs.index');
+}); 
+Route::get('/new-docs/card', function() {
+return view('new-docs.card');
+}); 
+Route::get('/new-docs/checkout', function() {
+return view('new-docs.checkout');
+}); 
+
 Route::get('/document', function () {
     return view('docs/docs');
 })->name('docs');
@@ -197,10 +208,14 @@ Route::get('/buisness-info', function (){
    
     
 /*********** Customer Dashboard Routes *************/
-//invoices show
+//add balance show
 Route::get('/customer_dashboard/add_balance', function(){
     return view('customer_dashboard/addBalance');
 })->name('addBalance');
+//transaction show
+Route::get('/customer_dashboard/transaction', function(){
+    return view('customer_dashboard/transaction');
+})->name('transaction');
 
 
 /*   funds transfer */
@@ -211,9 +226,9 @@ Route::get('/customer_dashboard/transfer', function(){
 /*
 profile settings
 */
-Route::get('/customer_dashboard/deposit', function(){
-    return view('customer_dashboard/deposit');
-})->name('deposit');
+Route::get('/customer_dashboard/settings', function(){
+    return view('customer_dashboard/settings');
+})->name('settings');
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 
 /***************change password****************/

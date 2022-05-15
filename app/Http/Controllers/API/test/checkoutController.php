@@ -20,6 +20,8 @@ use App\Models\Transaction;
 use App\Models\TransactionOverView;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 class checkoutController extends Controller
 

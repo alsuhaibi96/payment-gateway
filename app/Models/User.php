@@ -50,6 +50,7 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne(user_profile::class,'user_id');
     }
+   
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -69,6 +70,11 @@ class User extends Authenticatable
     public function bank_account(){
         return $this->belongsTo(bank_account::class);
     }
+    public function bank_accounts(){
+        return $this->hasOne(bank_account::class,'user_id');
+    }
+    
+
     public function orders_invoice(){
         return $this->hasMany(Orders_invoice::class);
     }

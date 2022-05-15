@@ -166,6 +166,7 @@
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name">{{ Auth::user()->first_name }}</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span>
                                     @if(isset(Auth::user()->profile->avatar))
+                                    
                                                 <div class=" mr-1 m-0"> <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 50px">         </div>                                  
                                                @else
                                                <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">                                          
@@ -210,7 +211,15 @@
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
                     <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                         <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
+                            
+                            <li><a class="d-flex align-items-center" href="">
+                                
+                                <span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto">
+                   
+                                {{ Auth::user()->bank_accounts->balance .' ريال' }}
+                                
+                            </span></a>
+                            
                             </li>
                             <li class="active"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                             </li>
@@ -271,7 +280,13 @@
     <!-- BEGIN: Page JS-->
     <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
+    <script src="{{url('assets/web/js/jquery.min.js')}}"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- END: Page JS-->
+   
+
 
 </body>
 <!-- END: Body-->

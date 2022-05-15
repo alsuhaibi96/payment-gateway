@@ -26,29 +26,60 @@
                         <div class="row">
                             <!-- invoice view page -->
                             <div class="col-xl-9 col-md-8 col-12">
+                                <form action="{{ route('transfer_money') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                @if(session()->has('success'))
+
+                                    <div class="alert alert-success alert-dismissible fade show mx-20 " role="alert">
+                                        <strong>نجاح!</strong>     {{ session()->get('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                      </div>
+                              
+                              
+                                @endif
+                                        
                                 <div class="card">
                                     <div class="card-body pb-0 mx-25">
-
-                                       
+                
 
                                          <!-- logo and title -->
                                          <div class="row my-2">
                                             <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
-                                                <span class="text-dark"><b> بيانات المستلم </b> </span>
-                                            </div>
+                                                <span class="text-dark col-6"><b> بيانات المستلم </b> </span>
+                                          </div>
                                         </div>
+                                    
+
                                         <div class=" order-2 order-sm-1">
                                             <div class="row">
-                                                <div class="col-6 py-20">
-                                                     <label class="text-dark"> البريد الالكتروني أو الid </label>
-                                                     <input type="text" class="form-control" placeholder="Reciever Name" >
+                                                <div class="col-6 py-20  has-validation">
+                                                     <label class="text-dark"> البريد الالكتروني  </label>
+                                                     <input type="email" name="email" class="form-control" placeholder="البريد الالكتروني" value="{{ old('email') }}">
+                                                  
+                                                     @if($errors->has('email'))
+                                                     <div class="" style="color: red">
+                                                        {{ $errors->first('email') }}
+                                                      </div>
+                                                     {{-- <span class="invalid-feedback" style="color: red" ></span> --}}
+                                                     @endif
                                                 </div>
 
                                                
                                                 <div class="col-6">
                                                     <fieldset class="invoice-address form-group">
                                                         <label for=""> مبلغ التحويل </label>
-                                                        <input type="text" class="form-control" placeholder="قيمة المبلغ">
+                                                        <input type="number" name="transfer_money" class="form-control" placeholder="قيمة المبلغ بالريال" value="{{ old('transfer_money') }}">
+                                                        @if($errors->has('transfer_money'))
+                                                        <div class="" style="color: red">
+                                                           {{ $errors->first('transfer_money') }}
+                                                         </div>
+                                                  
+                                                         @elseif ($errors->has('customError'))
+                                                         <div class="" style="color: red">
+                                                            {{ $errors->first('customError') }}
+                                                    
+                                                          </div>
+                                                          @endif
                                                     </fieldset>
                                                 </div>
 
@@ -67,20 +98,18 @@
                                         <div class="row invoice-info">
                                             <div class="row">
                                                 
-
-
-                                               
-
-                                               
-                                               
-
                                             </div>
 
                                             <div class="col-lg-12 col-md-12 mt-25">
 
 
                                                 <fieldset class="invoice-address form-group">
-                                                    <textarea class="form-control" rows="4" placeholder="وصف / تفاصيل"></textarea>
+                                                    <textarea class="form-control" rows="4" name="transfer_desc" placeholder="وصف / تفاصيل" value="{{ old('transfer_desc') }}"></textarea>
+                                                    @if($errors->has('transfer_desc'))
+                                                    <div class="" style="color: red">
+                                                       {{ $errors->first('transfer_desc') }}
+                                                     </div>
+                                                     @endif
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -130,13 +159,14 @@
                                                        
                                                     </ul>
                                                     <div class="col-12 border-0 pb-0">
-                                                        <button class="btn btn-primary btn-block subtotal-preview-btn">تأكيد العملية</button>
+                                                        <button class="btn btn-primary btn-block subtotal-preview-btn submit_transfer" type="submit" id="submit_transfer">تأكيد العملية</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                             <!-- invoice action  -->
                             <div class="col-xl-3 col-md-4 col-12">
@@ -176,5 +206,10 @@
             </div>
         </div>
         <!-- END: Content-->
+<script>
+$('.submit_transfer').click(function(){
+return Confirm('هل انت متأكد ؟');
+});
 
+</script>
 @endsection

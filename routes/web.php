@@ -73,7 +73,6 @@ Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitRes
     * Verification Routes
     */
 
-Route::get('get_user', [CustomerController::class, 'getUser'])->name('get_user');
 
 
     // /* New Added Routes */
@@ -162,10 +161,11 @@ Route::group(['middleware'=>['auth']],function(){
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
-    Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
     
-
+//This route is calling the method transfering money
+Route::post('money/transfer',[CustomerController::class,'transferMoney'])->name('transfer_money');
 
 
 Route::get('/moblie-conf', function (){
@@ -270,8 +270,7 @@ Route::get('/admin/dashboard/transactions',function(){
 
 
 
-// Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
-// Route::get('/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
+Route::get('getData', [CustomerController::class, 'getData'])->name('getData');
 
 
 

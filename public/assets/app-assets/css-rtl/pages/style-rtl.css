@@ -1,0 +1,26 @@
+*{
+	font-family: 'Amiri', serif;
+font-family: 'Changa', sans-serif;
+font-family: 'Tajawal', sans-serif;
+
+margin-top: 0%;
+}
+.navbar-header .logo h4
+{
+    color: #fcfff4;
+	font-weight: bold;
+}
+
+.navbar-header .logo h4 i
+{
+    color: var(--green);
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 35px;
+
+}
+
+
+
+
+

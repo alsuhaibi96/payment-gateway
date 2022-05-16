@@ -14,7 +14,7 @@ use App\Http\Controllers\user\UserProfileController;
 
 
 use App\Http\Controllers\Auth\ForgotPasswordCustomController;
-use App\Http\Controllers\merchants\MerchantController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -166,20 +166,17 @@ Route::get('/test-card', function () {
 })->name('test_card');
 
 Route::group(['middleware'=>['auth']],function(){
+
     
-   
 /**
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
 Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
-
     
 //This route is calling the method transfering money
 Route::post('money/transfer',[CustomerController::class,'transferMoney'])->name('transfer_money');
-
-
 
 
 Route::get('/moblie-conf', function (){
@@ -242,18 +239,18 @@ Route::post('/customer_dashboard/editImage', [UserProfileController::class,'edit
 /***************change password****************/
 Route::get('/change-password', [App\Http\Controllers\user\ChangePasswordController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordController::class, 'updatePassword'])->name('update-password');
-/********** Merchant Dashboard Routes *************/
-
-Route::get('/merchant_dashboard', [MerchantController::class,'index'])->name('merchant_dashboard');
-Route::get('/Transactions', [MerchantController::class,'Transactions'])->name('Transactions');
-Route::get('/listInvoice', [MerchantController::class,'listInvoice'])->name('listInvoice');
-Route::get('/financial_movement/{id}', [MerchantController::class,'financial_movement'])->name('financial_movement');
 
 
 
-Route::get('/merchant_dashboard/invoice', function () {
-    return view('merchant_dashboard/invoice');
-})->name('invoice');
+
+ /********** Merchant Dashboard Routes *************/
+ Route::get('/merchant_dashboard', function(){
+    return view('merchant_dashboard/home');
+})->name('merchant_dashboard');
+
+ Route::get('/merchant_dashboard/invoice' , function(){
+     return view('merchant_dashboard/invoice');
+ })->name('invoice');
 
 
 // admin dashboard

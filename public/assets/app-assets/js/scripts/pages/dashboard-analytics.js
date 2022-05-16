@@ -8,6 +8,8 @@
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
+
+
 $(window).on("load", function () {
 
   var $primary = '#5A8DEE';
@@ -20,6 +22,7 @@ $(window).on("load", function () {
   var $danger_light = '#ffeed9';
   var $gray_light = '#828D99';
   var $sub_label_color = "#596778";
+  var $tajwal ="'Tajawal', sans-serif";
   var $radial_bg = "#e7edf3";
 
 
@@ -331,7 +334,7 @@ $(window).on("load", function () {
       enabled: false
     },
     series: [80, 30, 60],
-    labels: ["Social", "Email", "Search"],
+    labels: ["تحويل", "شراء", "سحب"],
     stroke: {
       width: 0,
       lineCap: 'round',
@@ -362,8 +365,10 @@ $(window).on("load", function () {
             },
             total: {
               show: true,
-              label: 'Impression',
+              label: 'عملية',
               color: $gray_light,
+              fontFamily: $tajwal,
+              fontSize: 14,
               formatter: function (w) {
                 return w.globals.seriesTotals.reduce(function (a, b) {
                   return a + b
@@ -404,16 +409,17 @@ $(window).on("load", function () {
       bar: {
         columnWidth: '20%',
         endingShape: 'rounded',
+        
       },
       distributed: true,
     },
     colors: [$primary, $warning],
     series: [{
-      name: 'New Clients',
-      data: [75, 150, 225, 200, 35, 50, 150, 180, 50, 150, 240, 140, 75, 35, 60, 120]
+      name: ' تحصيل مبلغ ',
+      data: ['20$', '130$', '80$','50$', '35$', '20$', '40$', '60$', '100$','90$', '10$', '60$', '70$', '20$', '60$', '120$']
     }, {
-      name: 'Retained Clients',
-      data: [-100, -55, -40, -120, -70, -40, -60, -50, -70, -30, -60, -40, -50, -70, -40, -50],
+      name: ' خصم مبلغ ',
+      data: [-10, -55, -40, -120, -70, -40, -60, -50, -70, -30, -60, -40, -50, -70, -40, -50],
     }],
     grid: {
       show: false,

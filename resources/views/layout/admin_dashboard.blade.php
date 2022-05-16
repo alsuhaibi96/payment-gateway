@@ -197,10 +197,10 @@
                     </li>
                     
                       
-                                    <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
+                                    <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-user">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
                                      </li>
                     
-                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
+                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
                                     
 
@@ -208,8 +208,9 @@
                                     <li class=" nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
                                     </li>
 
-                                    
-                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
+                                    <li class=" nav-item"><a href="{{ route('reports') }}"> <i class="fas fa-chart-line"> </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> تقارير العمليات</span></a>
+                                    </li>
+                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-minus">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
                                     </li>
 
                                     <li ><a  href="{{ route('admin_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
@@ -218,7 +219,7 @@
                     
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
-                                    <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
+                                    <li class=" nav-item"><a href="{{ route('help') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
                                     </li>
                                     <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                                     </li>

@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContuctMe;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Settings\SettingController;
 use App\Http\Controllers\user\UserController;
@@ -14,6 +11,8 @@ use App\Http\Controllers\user\UserProfileController;
 
 
 use App\Http\Controllers\Auth\ForgotPasswordCustomController;
+use App\Http\Controllers\ContuctController;
+use App\Http\Controllers\CustomerDashController;
 
 
 /*
@@ -83,19 +82,11 @@ Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitRes
 
 Route::get('/about-us', function () {
     return view('website/about');
-});
+})->name('about');
+
 // contuct form
-Route::get('/contact', function (){
-    return view('website/contuct');
-})->name('contact-us');
-
-Route::post('/contact', function (){
-    $data=request(['name','email','subject','message']);
-    Mail::to('mail@waslpayment.com')->send(new ContuctMe($data));
-    return  redirect()->route('contact-us')
-    ->with('flash','تم الارسال بنجاح');
-
-})->name('send_contact_message');
+Route::get('/contact',[ContuctController::class,'contuct'])->name('contact-us');
+Route::post('/contact', [ContuctController::class,'contuctUs'])->name('send_contact_message');
 
 
 // new docs
@@ -115,51 +106,7 @@ Route::get('/document', function () {
 Route::get('/checkout', function () {
     return view('docs/checkout');
 })->name('checkout');
-Route::get('/checkout-model', function () {
-    return view('docs/checkout_model');
-});
-Route::get('/create-customer', function () {
-    return view('docs/create_customer');
-});
-Route::get('/customer-model', function () {
-    return view('docs/customer_model');
-});
-Route::get('/customers', function () {
-    return view('docs/customers');
-});
-Route::get('/delete-customer', function () {
-    return view('docs/delete_customer');
-});
-Route::get('/delete-payment-method', function () {
-    return view('docs/delete_payment_method');
-});
-Route::get('/invoice-model', function () {
-    return view('docs/invoice_model');
-});
-Route::get('/list-checkout', function () {
-    return view('docs/list_checkout');
-});
-Route::get('/payment-method-model', function () {
-    return view('docs/payment_method_model');
-});
-Route::get('/payment-method', function () {
-    return view('docs/payment_method');
-});
-Route::get('/payment-model', function () {
-    return view('docs/payment_model');
-});
-Route::get('/payments', function () {
-    return view('docs/payments');
-});
-Route::get('/retrieve-checkout', function () {
-    return view('docs/retrieve_checkout');
-});
-Route::get('/retrieve-customer', function () {
-    return view('docs/retrieve_customer');
-});
-Route::get('/retrieve-payment', function () {
-    return view('docs/retrieve_payment');
-});
+
 
 Route::get('/test-card', function () {
     return view('docs.wasl_test_card');
@@ -209,31 +156,27 @@ Route::get('/buisness-info', function (){
     
 /*********** Customer Dashboard Routes *************/
 //add balance show
-Route::get('/customer_dashboard/add_balance', function(){
-    return view('customer_dashboard/addBalance');
-})->name('addBalance');
-//transaction show
-Route::get('/customer_dashboard/transaction', function(){
-    return view('customer_dashboard/transaction');
-})->name('transaction');
+Route::get('/customer_dashboard/add_balance', [CustomerDashController::class,'addBalance']
+)->name('addBalance');
 
+//transaction show
+Route::get('/customer_dashboard/transaction', [CustomerDashController::class,'transaction']
+)->name('transaction');
 
 /*   funds transfer */
+Route::get('/customer_dashboard/transfer', [CustomerDashController::class,'transfer']
+)->name('transfer');
 
-Route::get('/customer_dashboard/transfer', function(){
-    return view('customer_dashboard/transfer');
-})->name('transfer');
 /*FAQ page route*/
+Route::get('/customer_dashboard/report', [CustomerDashController::class,'report']
+)->name('report');
 
-Route::get('/customer_dashboard/report', function(){
-    return view('customer_dashboard/report');
-})->name('report');
 /*
 profile settings
 */
-Route::get('/customer_dashboard/settings', function(){
-    return view('customer_dashboard/settings');
-})->name('settings');
+Route::get('/customer_dashboard/settings', [CustomerDashController::class,'settings']
+)->name('settings');
+/**************edit image***************/
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 
 /***************change password****************/
@@ -282,6 +225,12 @@ Route::get('/admin/dashboard/editUser', function(){
 Route::get('/admin/dashboard/transactions',function(){
     return view('admin_dashboard.transactions');
 })->name('transactions');
+Route::get('/admin/dashboard/reports',function(){
+    return view('admin_dashboard.reports');
+})->name('reports');
+Route::get('/admin/dashboard/help',function(){
+    return view('admin_dashboard.help');
+})->name('help');
 
 
 

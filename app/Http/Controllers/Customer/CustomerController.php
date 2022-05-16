@@ -40,13 +40,11 @@ class CustomerController extends Controller
         }
          return $val;  
       }
+
     public function getData(){
         $userId=$this->getUserId();
       $data=User::with('bank_accounts')->where('id',$userId)->get()->first();
 
-  
-   
-    // $data=DB::table('bank_accounts')->where('id',$userId)->get();
 
      return view('layout.customer_dashboard',['data'=>$data]);
 
@@ -60,7 +58,7 @@ public function getAnotherBalance($email){
   foreach($value as $val){
    $val= $val->balance;
 }
-return $val;
+   return $val;
 
 }
 
@@ -87,15 +85,11 @@ return $val;
          'transfer_money'=>['required','numeric','max:600000','min:1000' ],
          'transfer_desc'=>['required','min:5'    ]
         ],
-
     );
 
     $email=$request->input('email');
     $money=$request->input('transfer_money');
     $description=$request->input('transfer_desc');
-
-    
-
 
    if($this->currentBalance()<=1000){
      $balanecError="رصيدك غير كافي";

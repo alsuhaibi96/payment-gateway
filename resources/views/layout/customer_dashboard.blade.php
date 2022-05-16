@@ -24,6 +24,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--custom css file link-->
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
+    @notifyCss
 
 
     <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
@@ -118,6 +119,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{ Auth::user()->first_name }}</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">{{ Auth::user()->created_at }}</small>
+                                             
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -274,6 +276,7 @@
     <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
     <!-- END: Page JS-->
+    @notifyJs
 
 </body>
 <!-- END: Body-->

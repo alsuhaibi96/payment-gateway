@@ -18,4 +18,8 @@ class bank_account extends Model
     public function transactionoverview(){
         return $this->hasMany(TransactionOverView::class);
     }
+    public function FinancialTransaction(){
+        return $this->hasMany(FinancialTransaction::class);
+    }
+
 }

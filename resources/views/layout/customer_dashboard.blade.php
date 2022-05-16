@@ -211,7 +211,9 @@
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
                     <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                         <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 89k Y.R </span></a>
+                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 
+                                
+                                {{Auth::user()->bank_accounts->balance.' ريال '  }} </span></a>
                             </li>
                            
                         </ul>

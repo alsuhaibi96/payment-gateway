@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "mckenziearts/laravel-notify": "^2.3",
         "santigarcor/laratrust": "^7.1"
     },
     "require-dev": {

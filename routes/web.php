@@ -10,6 +10,7 @@ use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\API\test\checkoutController;
 use App\Http\Controllers\user\UserProfileController;
+use App\Http\Controllers\merchants\MerchantController;
 
 
 
@@ -165,6 +166,10 @@ Route::get('/test-card', function () {
     return view('docs.wasl_test_card');
 })->name('test_card');
 
+
+
+
+
 Route::group(['middleware'=>['auth']],function(){
 
     
@@ -192,9 +197,10 @@ Route::get('/buisness-info', function (){
 
 
 
-    // Route::get('/customer_dashboard', function(){
-    //     return view('customer_dashboard/home');
-    // })->name('home');
+    Route::get('/customer_dashboard', function(){
+        return view('customer_dashboard/home');
+    })->name('home');
+    
     Route::get('/customer_dashboard', [UserProfileController::class,'Profile']
     )->name('customer_dashboard');
 
@@ -244,6 +250,11 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
 
 
  /********** Merchant Dashboard Routes *************/
+ Route::get('/merchant_dashboard', [MerchantController::class,'index'])->name('merchant_dashboard');
+Route::get('/Transactions', [MerchantController::class,'Transactions'])->name('Transactions');
+Route::get('/listInvoice', [MerchantController::class,'listInvoice'])->name('listInvoice');
+Route::get('/financial_movement/{id}', [MerchantController::class,'financial_movement'])->name('financial_movement'); 
+ 
  Route::get('/merchant_dashboard', function(){
     return view('merchant_dashboard/home');
 })->name('merchant_dashboard');
@@ -253,13 +264,14 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
  })->name('invoice');
 
 
+
+
+
 // admin dashboard
 Route::get('/admin_dashboard', function(){
 
     return view('admin_dashboard/home');
 })->name('admin_dashboard');
-
-
 
 
 Route::get('/admin/dashboard/deposit', function(){

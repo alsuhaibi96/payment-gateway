@@ -19,6 +19,9 @@ class CreateFinancialTransactionsTable extends Migration
             $table->integer('financial_acount_id');
             $table->string('entry_type');
             $table->double('amount');
+            $table->integer('bank_acount_id');
+            $table->string('account_number');
+
             $table->timestamps();
         });
     }

@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\auth\UserVerify;
 use App\Models\Credit_cards;
+use App\Models\FinancialTransaction;
+
 use App\Models\Role;
+use App\Models\Transaction;
+
 use Illuminate\Support\Str;
 use Mail;
 use Session;
@@ -136,6 +140,31 @@ class UserController extends Controller
           $credit_cards->bank_accounts_id=$bank_account->id;
           $credit_cards->save();
          
+          $sales_transaction = new Transaction();
+          $sales_transaction->payment_invoices_id = 0;
+          $sales_transaction->user_id = $user->id;
+          $sales_transaction->description = ' ايداع نقدي الى الحساب';
+          $sales_transaction->transaction_date = date("Y-m-d H:i:s");
+          $sales_transaction->save();
+  
+          $journal_entries_merchant_right = new FinancialTransaction();
+          $journal_entries_merchant_right->transaction_id = $sales_transaction->id;
+          $journal_entries_merchant_right->financial_acount_id = 3;
+          $journal_entries_merchant_right->bank_acount_id = $bank_account->id;
+          $journal_entries_merchant_right->account_number = $bank_account->account_number;
+          $journal_entries_merchant_right->entry_type = "Debit";
+          $journal_entries_merchant_right->amount = $bank_account->balance;
+          $journal_entries_merchant_right->save();
+  
+          $journal_entries_merchant_left = new FinancialTransaction();
+          $journal_entries_merchant_left->transaction_id = $sales_transaction->id;
+          $journal_entries_merchant_left->financial_acount_id = 4;
+          $journal_entries_merchant_left->bank_acount_id = 1;
+          $journal_entries_merchant_left->account_number = 'hadiahmedsofan';
+          $journal_entries_merchant_left->entry_type = "Cred";
+          $journal_entries_merchant_left->amount = $bank_account->balance;
+          $journal_entries_merchant_left->save();
+           
          
           
           if($user->save())
@@ -220,7 +249,7 @@ class UserController extends Controller
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1,'is_email_verified'=>1])){
             
                 if(Auth::user()->hasRole('Merchant'))
-                return redirect()->route('home');
+                return redirect()->route('merchant_dashboard');
                 
             
                 if(Auth::user()->hasRole('Customer'))

@@ -83,8 +83,21 @@ public function getAnotherBalance($email){
       $validator=Validator::make($request->all(),
         [ 'email'=>['required','min:3','email','not_in:'.auth::user()->email],
          'transfer_money'=>['required','numeric','max:600000','min:1000' ],
-         'transfer_desc'=>['required','min:5'    ]
+         'transfer_desc'=>['required','min:10']
         ],
+        [
+        'email.required'=>' الحقل مطلوب',
+        'email.not_in'=>'هذا ايميلك المسجل به الآن !',
+        'transfer_money.required'=>' الحقل مطلوب',
+        'transfer_money.numberic'=>'قيمة رقمية',
+        'transfer_money.max'=>'ادخل مبلغ اقل من 600000',
+        'transfer_money.min'=>'ادخل مبلغ اكبر من 1000',
+        'transfer_desc.required'=>'الحقل مطلوب',
+        'transfer_desc.min'=>'يجب ادخال اكثر من عشرة احرف',
+     
+
+
+              ]
     );
 
     $email=$request->input('email');

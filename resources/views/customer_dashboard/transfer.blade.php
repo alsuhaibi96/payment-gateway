@@ -18,8 +18,8 @@
 
         <!-- BEGIN: Content-->
         <div class="app-content content">
-            <div class="content-overlay"></div>
-            <div class="content-wrapper">
+            <div class="content-overlay col-12"></div>
+            <div class="content-wrapper col-12">
                 <div class="content-header row">
                 </div>
                 <div class="content-body">
@@ -27,7 +27,7 @@
                     <section class="invoice-edit-wrapper">
                         <div class="row">
                             <!-- invoice view page -->
-                            <div class="col-xl-9 col-md-8 col-12">
+                            <div class="col-xl-9 col-md-8 col-sm-12 ">
                                 <form action="{{ route('transfer_money') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 @if(session()->has('success'))
@@ -40,8 +40,8 @@
                               
                                 @endif
                                         
-                                <div class="card">
-                                    <div class="card-body pb-0 mx-25">
+                                <div class="card ">
+                                    <div class="card-body pb-0 mx-25 ">
                 
 
                                          <!-- logo and title -->
@@ -54,15 +54,15 @@
 
                                         <div class=" order-2 order-sm-1">
                                             <div class="row">
-                                                <div class="col-6 py-20  has-validation">
+                                                <div class="col-6  py-20  has-validation">
                                                      <label class="text-dark"> البريد الالكتروني  </label>
                                                      <input type="email" name="email" class="form-control" placeholder="البريد الالكتروني" value="{{ old('email') }}">
                                                   
                                                      @if($errors->has('email'))
-                                                     <div class="" style="color: red">
+                                                     <div class="" style="color: red;font-size: 12px" >
                                                         {{ $errors->first('email') }}
                                                       </div>
-                                                     {{-- <span class="invalid-feedback" style="color: red" ></span> --}}
+                                                     {{-- <span class="invalid-feedback"style="color: red;font-size: 12px" ></span> --}}
                                                      @endif
                                                 </div>
 
@@ -72,12 +72,12 @@
                                                         <label for=""> مبلغ التحويل </label>
                                                         <input type="number" name="transfer_money" class="form-control" placeholder="قيمة المبلغ بالريال" value="{{ old('transfer_money') }}">
                                                         @if($errors->has('transfer_money'))
-                                                        <div class="" style="color: red">
+                                                        <div class=""style="color: red;font-size: 12px">
                                                            {{ $errors->first('transfer_money') }}
                                                          </div>
                                                   
                                                          @elseif ($errors->has('customError'))
-                                                         <div class="" style="color: red">
+                                                         <div class=""style="color: red;font-size: 12px">
                                                             {{ $errors->first('customError') }}
                                                     
                                                           </div>
@@ -102,13 +102,13 @@
                                                 
                                             </div>
 
-                                            <div class="col-lg-12 col-md-12 mt-25">
+                                            <div class="col-lg-12 col-md-12 col-md-10 mt-25">
 
 
                                                 <fieldset class="invoice-address form-group">
-                                                    <textarea class="form-control" rows="4" name="transfer_desc" placeholder="وصف / تفاصيل" value="{{ old('transfer_desc') }}"></textarea>
+                                                    <textarea style="resize: none" class="form-control" rows="4" name="transfer_desc" placeholder="وصف / تفاصيل" value="{{ old('transfer_desc') }}"></textarea>
                                                     @if($errors->has('transfer_desc'))
-                                                    <div class="" style="color: red">
+                                                    <div class=""style="color: red;font-size: 12px" >
                                                        {{ $errors->first('transfer_desc') }}
                                                      </div>
                                                      @endif

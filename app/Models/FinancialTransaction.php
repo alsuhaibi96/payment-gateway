@@ -14,4 +14,8 @@ class FinancialTransaction extends Model
     public function Transaction(){
         return $this->belongsTo(Transaction::class);
     }
+    public function bank_account(){
+        return $this->belongsTo(bank_account::class);
+    }
+
 }

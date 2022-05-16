@@ -17,17 +17,17 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
-            <!-- app invoice View Page -->
+            <!-- deposit balance Page -->
             <section class="invoice-edit-wrapper">
                 <div class="row">
-                    <!-- invoice view page -->
+                    <!-- deposit balance form -->
                     <div class="col-xl-9 col-md-8 col-12">
                         <div class="card">
                             <div class="card-body pb-0 mx-25">
 
                                
 
-                                 <!-- logo and title -->
+                                 <!-- enter data of user name -->
                                  <div class="row my-2">
                                     <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                         <span class="text-dark"><b> إضافة مبلغ السحب </b> </span>
@@ -59,7 +59,7 @@
                                 
                             
                             <div class="card-body pt-50">
-                                <!-- invoice subtotal -->
+                                <!-- deposit subtotal -->
                                 <hr>
                                 <div class="invoice-subtotal pt-50">
                                     <div class="row">

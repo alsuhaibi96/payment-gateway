@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-xl-3 col-md-6 col-sm-12 dashboard-referral-impression">
                             <div class="row">
-                                <!-- Referral Chart Starts-->
+                                <!-- Purchases Chart Starts-->
                                 <div class="col-xl-12 col-12">
                                     <div class="card">
                                         <div class="card-body text-center pb-0">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-xl-3 col-md-12 col-sm-12">
                             <div class="row">
-                                <!-- Conversion Chart Starts-->
+                                <!-- balance Chart Starts-->
                                 <div class="col-xl-12 col-md-6 col-12">
                                     <div class="card">
                                         <div class="card-header d-flex justify-content-between pb-xl-0 pt-xl-1">

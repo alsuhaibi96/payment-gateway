@@ -17,10 +17,10 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
-            <!-- app invoice View Page -->
+            <!-- report of problem Page -->
             <section class="invoice-edit-wrapper">
                 <div class="row">
-                    <!-- invoice view page -->
+                    <!-- question page -->
                     <div class="col-xl-9 col-md-8 col-12">
                         <div class="card">
                             <div class="card-body pb-0 mx-75">

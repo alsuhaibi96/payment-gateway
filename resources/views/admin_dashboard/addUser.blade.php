@@ -17,10 +17,10 @@
         <div class="content-header row">
         </div>
         <div class="content-body">
-            <!-- app invoice View Page -->
+            <!-- add user Page -->
             <section class="invoice-edit-wrapper">
                 <div class="row">
-                    <!-- invoice view page -->
+                    <!-- user add form -->
                     <div class="col-xl-9 col-md-8 col-12">
                         <div class="card">
                             <div class="card-body pb-0 mx-25">
@@ -80,7 +80,7 @@
                                 
                             
                             <div class="card-body pt-50">
-                                <!-- invoice subtotal -->
+                                <!-- user subtotal -->
                                 <hr>
                                 <div class="invoice-subtotal pt-50">
                                     <div class="row">

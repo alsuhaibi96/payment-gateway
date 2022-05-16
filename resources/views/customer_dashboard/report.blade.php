@@ -21,17 +21,17 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <!-- app invoice View Page -->
+                <!--  help View Page -->
                 <section class="invoice-edit-wrapper">
                     <div class="row">
-                        <!-- invoice view page -->
+                        <!-- help view page -->
                         <div class="col-xl-9 col-md-8 col-12">
                             <div class="card">
                                 <div class="card-body pb-0 mx-75">
 
 
 
-                                    <!-- logo and title -->
+                                    <!-- Question and Answer -->
                                     <div class="row my-2">
                                        <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                            <span class="text-dark"><b> FAQ - الأسئلة المتكررة </b> </span>

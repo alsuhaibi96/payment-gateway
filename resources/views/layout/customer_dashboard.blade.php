@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
 
 
-    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
+  <!-- Select2 CSS -->
+  <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/select2.min.css') }}">
+  <!-- Datetimepicker CSS -->
+  <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/bootstrap-datetimepicker.min.css') }}">    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
@@ -52,6 +55,14 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/dashboard-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/app-invoice.css')}}">
     <!-- END: Page CSS-->
+    @notifyCss
+    <!-- datatable -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/favicon.ico')}}">
+    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/custom-rtl.css')}}">
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
@@ -62,7 +73,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Changa:wght@700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
+        .notify {
+            margin: 8% 0 0 0;
+            padding: 0;
+        }
 
+        .p-4 {
+            padding: 1.5rem !important;
+        }
     </style>
 </head>
 <!-- END: Head-->
@@ -110,9 +128,11 @@
                                             <div class="media-left pr-0">
                                                 <div class="avatar mr-1 m-0">
                                                     @if(isset(Auth::user()->profile->avatar))
-                                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="39" width="39">
+                                                    <img src="{{ asset('public/images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" style="height: 50px;width: 50px;">
                                                     @else
-                                                    <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle"height="39" width="39">                                          
+                                                    <img src="{{asset('assets/web/images/avatar.jpg')}}"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
+                                                   
+                                                   
                                                     @endif        
                                                       </div>
                                             </div>
@@ -168,9 +188,9 @@
                     </div>
                     <span>
                         @if(isset(Auth::user()->profile->avatar))
-                        <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 50px"> 
+                        <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 40px;height: 40px;"> 
                         @else
-                        <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="50" width="50">                                          
+                        <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
                         @endif
                     </span>
                             </a>
@@ -213,7 +233,7 @@
                         <ul class="menu-content">
                             <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 
                                 
-                                {{Auth::user()->bank_accounts->balance.' ريال '  }} </span></a>
+                                {{Auth::user()->bank_accounts->balance.' $ '  }} </span></a>
                             </li>
                            
                         </ul>
@@ -272,11 +292,44 @@
     <script src="{{url('assets/app-assets/js/scripts/footer.js')}}"></script>
     <!-- END: Theme JS-->
 
+
+    
     <!-- BEGIN: Page JS-->
     <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
     <!-- END: Page JS-->
+<!-- BEGIN: Page Vendor JS-->
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+<script src="{{url('assets/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<!-- END: Page Vendor JS-->
+  <!-- BEGIN: Page JS-->
+  <script src="{{url('assets/app-assets/js/scripts/datatables/datatable.js')}}"></script>
+  <!-- END: Page JS-->
 
+  <!-- BEGIN: Page JS-->
+  <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
+  <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
+  <!-- END: Page JS-->
+  <!-- Select2 JS -->
+  <script src="{{ URL::to('assets/app-assets/js/select2.min.js') }}"></script>
+  <!-- Datetimepicker JS -->
+  <script src="{{ URL::to('assets/app-assets/js/moment.min.js') }}"></script>
+  <script src="{{ URL::to('assets/app-assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+  <script>
+      $(document).ready(function() {
+          $('.select2s-hidden-accessible').select2({
+              closeOnSelect: false
+          });
+      });
+  </script>
+  @notifyJs
+  <x:notify-messages />
 </body>
 <!-- END: Body-->
 

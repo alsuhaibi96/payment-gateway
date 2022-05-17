@@ -54,17 +54,18 @@
                                         <a class="mr-2" href="javascript:void(0);">
                                             @if(isset(Auth::user()->profile->avatar))
 
-                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle w-2"   style="object-fit: cover;">                                           
+                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow  "    style="object-fit: contain;height: 200px;width:200px;">                                           
                                             @else
-                                            <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
+                                            <img src="{{asset('assets/web/images/avatar.jpg')}}" alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
 
 
                                             @endif
+                                            
                                         </a>
                                       
                                     </div>   
                                     <div class="col-12 px-0 d-flex mb-5">
-                                    
+                                      
                                         <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary mr-25">تغيير</a>
                                         
                                     </div>
@@ -160,9 +161,9 @@
                                                 <div class="col-6 py-20">
                                                     <label class="text-dark"> العنوان الثاني </label>
 
-                                                    <input type="text" class="form-control" placeholder=" العنوان الاول"  >
+                                                    <input type="text" class="form-control" name="first_address" placeholder=" العنوان الاول"  value="{{ Auth::user()->profile->first_address }}">
 
-                                                    <input type="text" class="form-control" placeholder=" العنوان الاول" name="address2" >
+                                                    <input type="text" class="form-control" name ="second_address" placeholder=" العنوان الثاني" value="{{ Auth::user()->profile->second_address }}" >
 
                                                </div>
 
@@ -175,7 +176,7 @@
                                                    <div class="col-6">
                                                        <label class="text-dark"> رقم الجوال </label>
 
-                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567" >
+                                                    <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone" value="{{ Auth::user()->profile->phone }}">
 
                                                    </div>
 
@@ -212,25 +213,6 @@
                            
                         </div>
 
-{{-- 
-                        <div class="col-lg-5 col-md-7  col-12">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item  border-0 pb-0">
-
-                                 <img  class="rounded" style="width: 100px;" src="{{url('assets/web/images/avater.jpg')}}" alt="">
-                                </li>
-                                <li class="list-group-item border-0 pb-0">
-                                    <button class="btn btn-primary btn-block subtotal-preview-btn">اضافة صورة جديدة</button>
-                                </li>
-                            </ul>
-                        </div> --}}
-
-                        {{-- <form action="{{ route('addProfile') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <input type="file" name="avatar" id="">
-                            <button type="submit">اضافة الصورة</button>
-                        </form> --}}
-
 
                           
                         <div class="row">
@@ -239,7 +221,7 @@
                                 <div class="card">
                                     <div class="card-body pb-0 mx-25">
 
-                                        <!-- name and email -->
+                                        <!-- change password -->
                                         <div class="row mb-2">
                                             <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                                 <span class="text-dark"><b> {{ __('تغيير كلمة المرور') }} </b> </span>

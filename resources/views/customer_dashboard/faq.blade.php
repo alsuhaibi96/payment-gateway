@@ -1,7 +1,5 @@
 @extends('layout.customer_dashboard')
-@section('report')
-    active
-@endsection
+
 
 @section('header')
     <span class="nav navbar-nav float-left">
@@ -11,7 +9,9 @@
     </span>
 @endsection
 
-
+@section('faq')
+    active
+@endsection
 
 @section('content')
     <!-- BEGIN: Content-->
@@ -21,17 +21,17 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <!--  help View Page -->
+                <!-- app invoice View Page -->
                 <section class="invoice-edit-wrapper">
                     <div class="row">
-                        <!-- help view page -->
+                        <!-- invoice view page -->
                         <div class="col-xl-9 col-md-8 col-12">
                             <div class="card">
                                 <div class="card-body pb-0 mx-75">
 
 
 
-                                    <!-- Question and Answer -->
+                                    <!-- logo and title -->
                                     <div class="row my-2">
                                        <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                            <span class="text-dark"><b> FAQ - الأسئلة المتكررة </b> </span>
@@ -92,7 +92,11 @@
 
                                </div>
 
-                             
+                               <div class="col-lg-5 col-md-7 offset-lg-2 col-12 mb-3 mr-5">
+                                <div class="col-12 border-0 pb-0">
+                                    <a href="{{ route('home') }}">   <button class="btn btn-primary btn-block subtotal-preview-btn">  عودة إلى الصفحة الرئيسية </button> </a>
+                                    </div>
+                               </div>
                             </div>
                         </div>
 

@@ -241,6 +241,8 @@ Route::get('/customer_dashboard/settings', function(){
     return view('customer_dashboard/settings');
 })->name('settings');
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
+Route::get('customer/transfer/details', [CustomerController::class,'transferredMoenyDetails'])->name('tansfer_details');
+
 
 /***************change password****************/
 Route::get('/change-password', [App\Http\Controllers\user\ChangePasswordController::class, 'changePassword'])->name('change-password');
@@ -303,6 +305,7 @@ Route::get('/admin/dashboard/transactions',function(){
 
 
 Route::get('getData', [CustomerController::class, 'getData'])->name('getData');
+Route::get('profile', [UserProfileController::class, 'profile'])->name('profile');
 
 
 

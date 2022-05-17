@@ -70,7 +70,7 @@
                                                 <div class="col-6">
                                                     <fieldset class="invoice-address form-group">
                                                         <label for=""> مبلغ التحويل </label>
-                                                        <input type="number" name="transfer_money" class="form-control" placeholder="قيمة المبلغ بالريال" value="{{ old('transfer_money') }}">
+                                                        <input onkeyup="callRestBalance()" type="number" name="transfer_money" class="form-control" placeholder="قيمة المبلغ بالدولار" value="{{ old('transfer_money') }}" id="balance">
                                                         @if($errors->has('transfer_money'))
                                                         <div class=""style="color: red;font-size: 12px">
                                                            {{ $errors->first('transfer_money') }}
@@ -143,19 +143,20 @@
 
 
                                                 </div>
-                                                <div class="col-lg-5 col-md-7 offset-lg-2 col-12">
+                                                <div class="col-lg-6 col-md-7 offset-lg-2 col-12">
                                                     <ul class="list-group list-group-flush">
                                                         <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                             <span class="invoice-subtotal-title">رصيدك الحالي</span>
-                                                            <h6 class="invoice-subtotal-value mb-0">114k YER</h6>
+                                                            <input type="hidden"  id="current_balance" value=" {{Auth::user()->bank_accounts->balance }} ">  
+                                                            <h6 class="invoice-subtotal-value mb-0" id="headline_test"> {{Auth::user()->bank_accounts->balance.' $' }}</h6>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                             <span class="invoice-subtotal-title">المبلغ المحوّل</span>
-                                                            <h6 class="invoice-subtotal-value mb-0">25k YER</h6>
+                                                            <h6 class="invoice-subtotal-value mb-0" id="transferred_id">{{ '0000000' .' $'}}</h6>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                             <span class="invoice-subtotal-title">ضريبة التحويل</span>
-                                                            <h6 class="invoice-subtotal-value mb-0">200 YER</h6>
+                                                            <h6 class="invoice-subtotal-value mb-0"> 50 $</h6>
                                                         </li>
 
                                                        
@@ -168,6 +169,7 @@
                                         </div>
                                     </div>
                                 </div>
+                          
                                 </form>
                             </div>
                             <!-- invoice action  -->
@@ -207,5 +209,18 @@ $('.submit_transfer').click(function(){
 return Confirm('هل انت متأكد ؟');
 });
 
+//to get how much left balance in the account
+function callRestBalance(){
+var balance=document.getElementById('balance').value;
+var current_balance=document.getElementById('current_balance').value;transferred_id
+
+current_balance-=balance;
+
+    document.getElementById("headline_test").innerHTML=current_balance+' $';
+    document.getElementById("transferred_id").innerHTML=balance+' $';
+
+
+//    value.innerHTMl="hello";
+}
 </script>
 @endsection

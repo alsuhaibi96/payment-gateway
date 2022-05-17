@@ -18,6 +18,9 @@ class CreateUserProfilesTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->string('first_address')->nullable();
+            $table->string('second_address')->nullable();
+
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users');

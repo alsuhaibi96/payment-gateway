@@ -28,7 +28,9 @@ class UserProfileController extends Controller
         $last_name=$req->last_name;
         $email=$req->email;
         $phone=$req->phone;
-        $address=$req->address;
+        $first_address=$req->first_address;
+        $second_address=$req->second_address;
+
        
 
         $id=Auth::id();
@@ -40,7 +42,8 @@ class UserProfileController extends Controller
            
         ]);
         $user_profile=user_profile::where('user_id',Auth::id())->update([
-            'address'=>$address,
+            'first_address'=>$first_address,
+            'second_address'=>$second_address,
             'phone'=>$phone
         ]);
         if ($user && $user_profile){

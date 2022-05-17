@@ -127,5 +127,11 @@ public function getAnotherBalance($email){
   
     }
 
+    /**
+     * Get the details of the transferred money (bill shape)
+     */
+public function transferredMoenyDetails(){
+  return view('customer_dashboard.transfer_details');
+}
 
 }

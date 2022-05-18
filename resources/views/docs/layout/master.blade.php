@@ -60,12 +60,12 @@
                   </a>
                   <div class="">
                     <ul>
-                      {{--<li class="menu-item">
+                      <li class="menu-item">
                          <a href="#">
-                          <span class="menu-title text-dark">Error/Success codes</span>
+                          <span class="menu-title text-dark">Tutorial</span>
                         </a> 
                       </li>
-                      --}}
+                     
                       <li class="menu-item">
                         <a href="{{ route('test_card') }}">
                           <span class="menu-title text-dark">Wasel test card</span>

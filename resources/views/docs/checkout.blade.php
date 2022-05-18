@@ -182,65 +182,42 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row" class="text-dark ">{<br>
-                  "success": true, <br>
-                  "code": 0, <br>
-                  "description": "string", <br>
-                  "data": { <br>
-                    "session_id": "string", <br>
-                    "order_reference": "string", <br>
-                    "customer_id": "string", <br>
-                    "products": [ <br>
-                      { <br>
-                        "name": "string", <br>
-                        "quantity": 0, <br>
-                        "unit_amount": 0 <br>
-                      } <br>
-                    ], <br>
-                    "total_amount": 0, <br>
-                    "currency": "string", <br>
-                    "success_url": "string", <br>
-                    "cancel_url": "string", <br>
-                    "payment_status": "unpaid", <br>
-                    "mode": "string", <br>
-                    "invoice": "string", <br>
-                    "metadata": {}, <br>
-                    "created_at": "2019-08-24T14:15:22Z", <br>
-                    "expire_at": "2019-08-24T14:15:22Z", <br>
-                    , <br>
-                      "payment_method": { <br>
-                        "id": "string", <br>
-                        "bin": 0, <br>
-                        "masked_card": "string", <br>
-                        "expiry_month": 0, <br>
-                        "expiry_year": 0, <br>
-                        "nickname": "string", <br>
-                        "brand": "Visa", <br>
-                        "card_type": "Debit" <br>
-                      },
-                      "latest_invoice": {<br>
-                        "id": "string", <br>
-                        "amount_due": 0, <br>
-                        "amount_paid": 0, <br>
-                        "attempt_count": 0, <br>
-                        "next_payment_attempt": "2019-08-24T14:15:22Z", <br>
-                        "created_at": "2019-08-24T14:15:22Z", <br>
-                        "payment_intent": { <br>
-                          "id": "string", <br>
-                          "order_reference": "string", <br>
-                          "amount": 0, <br>
-                          "currency": "string", <br>
-                          "payment_method": "string", <br>
-                          
-                          "status": "requires_payment_method", <br>
-                          "metadata": {}, <br>
-                          "created_at": "2019-08-24T14:15:22Z", <br>
-                          "expire_at": "2019-08-24T14:15:22Z" <br>
-                        } <br>
-                      } <br>
-                    } <br>
-                  } <br>
-                }</th>
+                <th scope="row" class="text-dark ">{
+                  <br>
+                  "status":"success",
+                  <br>"order_reference":"12", <br>
+                  "products":"[ <br>
+                   {"id":1, <br>
+                   "product_name":"colock", <br>
+                    "quantity":2, <br>
+                    "unit_amount":1000 <br>
+                  }, <br>
+                  {
+                    "id":1, <br>
+                    "product_name":"watch", <br>
+                    "quantity":3, <br> 
+                    "unit_amount":200 <br>
+                  }, <br>
+                  { <br>
+                    "id":2, <br>
+                   "product_name":"doll", <br>
+                   "quantity":1, <br>
+                   "unit_amount":2000 <br>
+                  }]", <br>
+                  "customer_account_info": <br>
+                  {<br>
+                    "paid_amount":"2300", <br>
+                    "card_holder":"Test Test Test", <br>
+                    "card_type":"visa Card", <br>
+                    "created_at":"2022-05-18T14:43:50.000000Z", <br>
+                    "updated_at":"2022-05-18T14:43:50.000000Z"
+                  }, <br>
+                  "meta_data":
+                  "{ <br>
+                    "customer_id":1, <br>
+                    "merchant_id":3, <br>
+                    "details":"new drug order" <br>
+                  }"}</th>
                 
               </tr>
               

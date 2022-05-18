@@ -128,9 +128,9 @@
                                             <div class="media-left pr-0">
                                                 <div class="avatar mr-1 m-0">
                                                     @if(isset(Auth::user()->profile->avatar))
-                                                    <img src="{{ asset('public/images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" style="height: 50px;width: 50px;">
+                                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" style="height: 50px;width: 50px;">
                                                     @else
-                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
+                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
                                                    
                                                    
                                                     @endif        
@@ -190,7 +190,7 @@
                         @if(isset(Auth::user()->profile->avatar))
                         <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 40px;height: 40px;"> 
                         @else
-                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
+                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
                         @endif
                     </span>
                             </a>

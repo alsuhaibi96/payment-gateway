@@ -75,7 +75,7 @@
                     </div>
                   
                 </div>
-                <a class="btn text-white " href="/about-us">أعرف اكثر</a>
+                <a class="btn text-white " href="{{ route('about') }}">أعرف اكثر</a>
 
             </div>
         </div>

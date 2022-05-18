@@ -85,7 +85,7 @@ Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitRes
 
 Route::get('/about-us', function () {
     return view('website/about');
-});
+})->name('about');
 // contuct form send email
 Route::get('/contact',[ContuctController::class,'contuct'])->name('contact-us');
 Route::post('/contact', [ContuctController::class,'contuctUs'])->name('send_contact_message');

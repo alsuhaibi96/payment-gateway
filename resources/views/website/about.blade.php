@@ -1,17 +1,15 @@
-@extends('layouts.master')
+@extends('website.layouts.master')
 
 @section('content')
 <!-- start about section-->
 <section class="mt-4  p-3 mb-2 blue-dark text-white d-flex justify-content-around">
     <div class="w-75 mt-5">
      <h1 class=" ms-5 m-5 display-1 fw-bold text-center" > عن وصل  <sub class="fs-3 text-success">خدمات الدفع الالكترونية</sub></h1><br>
-     <p class=" ms-5 m-5 fs-3  text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Curabitur cursus convallis mauris ac fermentum. Cras consectetur lacus id ullamcorper rutrum.
-         Aenean porttitor risus vel elit efficitur lobortis. Cras eu luctus enim.
-          Aliquam erat volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed aliquet erat mauris, 
-          cursus viverra urna porttitor at. Praesent id ex orci. Aenean ullamcorper mattis est,
-           quis elementum magna mattis vel. Vestibulum eu lectus massa.
-            Interdum et malesuada fames ac ante ipsum primis in faucibus.
+     <p class=" ms-5 m-5 fs-3  text-center">بوابة الدفع هي تقنية يستخدمها التجار لقبول مشتريات بطاقات الخصم أو الائتمان من العملاء.
+      بوابات الدفع هي الواجهات التي تواجه المستهلك وتستخدم لجمع معلومات الدفع.
+      في المتاجر عبر الإنترنت ، تعتبر بوابات الدفع بوابات "الخروج" المستخدمة لإدخال معلومات بطاقة الائتمان أو بيانات الاعتماد لخدمات مثل wasl.
+      تختلف بوابات الدفع عن معالجات الدفع ، التي تستخدم معلومات العميل لتحصيل المدفوعات نيابة عن التاجر.
+      يمكن للتجار الوصول إلى أنظمة بوابة الدفع من خلال الحصول على شراكات مصرفية للتاجر ، أو يمكنهم اختيار نظام بوابة الدفع الخاص بهم
 
      </p>
     </div>

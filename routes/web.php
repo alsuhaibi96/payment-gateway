@@ -11,7 +11,8 @@ use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\API\test\checkoutController;
 use App\Http\Controllers\user\UserProfileController;
 use App\Http\Controllers\merchants\MerchantController;
-
+use App\Http\Controllers\ContuctController;
+use App\Http\Controllers\CustomerDashController;
 
 
 use App\Http\Controllers\Auth\ForgotPasswordCustomController;
@@ -160,32 +161,29 @@ Route::get('/buisness-info', function (){
    
     
 /*********** Customer Dashboard Routes *************/
+/*********** Customer Dashboard Routes *************/
 //add balance show
-Route::get('/customer_dashboard/add_balance', function(){
-    return view('customer_dashboard/addBalance');
-})->name('addBalance');
-//transaction show
-Route::get('/customer_dashboard/transaction', function(){
-    return view('customer_dashboard/transaction');
-})->name('transaction');
+Route::get('/customer_dashboard/add_balance', [CustomerDashController::class,'addBalance']
+)->name('addBalance');
 
+//transaction show
+Route::get('/customer_dashboard/transaction', [CustomerDashController::class,'transaction']
+)->name('transaction');
 
 /*   funds transfer */
+Route::get('/customer_dashboard/transfer', [CustomerDashController::class,'transfer']
+)->name('transfer');
 
-Route::get('/customer_dashboard/transfer', function(){
-    return view('customer_dashboard/transfer');
-})->name('transfer');
 /*FAQ page route*/
+Route::get('/customer_dashboard/report', [CustomerDashController::class,'report']
+)->name('report');
 
-Route::get('/customer_dashboard/report', function(){
-    return view('customer_dashboard/report');
-})->name('report');
 /*
 profile settings
 */
-Route::get('/customer_dashboard/settings', function(){
-    return view('customer_dashboard/settings');
-})->name('settings');
+Route::get('/customer_dashboard/settings', [CustomerDashController::class,'settings']
+)->name('settings');
+/**************edit image***************/
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 Route::get('customer/transfer/details', [CustomerController::class,'transferredMoenyDetails'])->name('tansfer_details');
 

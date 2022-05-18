@@ -38,9 +38,9 @@
     </form>
     </div>
    
-    <div class="w-50 mt-5 h-50  bg-success text-white p-5 fs-4 ">
+    <div class="w-50 mt-5 h-50  bg-success text-white p-5 fs-4">
         <h2 class="display-2">معلومات التواصل</h2>
-        <i class="fas fa-envelope-open-text mt-5"></i>&nbsp;&nbsp;<span>wasel@gmail.com</span><br>
+        <i class="fas fa-envelope-open-text mt-5"></i>&nbsp;&nbsp;<span>mail@waslpayment.com</span><br>
         <i class="fas fa-clock mt-4"></i>&nbsp;&nbsp;<span>9:00AM - 12:00PM</span><br>
         <i class="fas fa-phone mt-4"></i>&nbsp;&nbsp;<span>+967 777-777-777</span>
 

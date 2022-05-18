@@ -11,7 +11,8 @@ use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\API\test\checkoutController;
 use App\Http\Controllers\user\UserProfileController;
 use App\Http\Controllers\merchants\MerchantController;
-
+use App\Http\Controllers\ContuctController;
+use App\Http\Controllers\CustomerDashController;
 
 
 use App\Http\Controllers\Auth\ForgotPasswordCustomController;
@@ -84,19 +85,10 @@ Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitRes
 
 Route::get('/about-us', function () {
     return view('website/about');
-});
-// contuct form
-Route::get('/contact', function (){
-    return view('website/contuct');
-})->name('contact-us');
-
-Route::post('/contact', function (){
-    $data=request(['name','email','subject','message']);
-    Mail::to('mail@waslpayment.com')->send(new ContuctMe($data));
-    return  redirect()->route('contact-us')
-    ->with('flash','تم الارسال بنجاح');
-
-})->name('send_contact_message');
+})->name('about');
+// contuct form send email
+Route::get('/contact',[ContuctController::class,'contuct'])->name('contact-us');
+Route::post('/contact', [ContuctController::class,'contuctUs'])->name('send_contact_message');
 
 
 // new docs
@@ -116,51 +108,6 @@ Route::get('/document', function () {
 Route::get('/checkout', function () {
     return view('docs/checkout');
 })->name('checkout');
-Route::get('/checkout-model', function () {
-    return view('docs/checkout_model');
-});
-Route::get('/create-customer', function () {
-    return view('docs/create_customer');
-});
-Route::get('/customer-model', function () {
-    return view('docs/customer_model');
-});
-Route::get('/customers', function () {
-    return view('docs/customers');
-});
-Route::get('/delete-customer', function () {
-    return view('docs/delete_customer');
-});
-Route::get('/delete-payment-method', function () {
-    return view('docs/delete_payment_method');
-});
-Route::get('/invoice-model', function () {
-    return view('docs/invoice_model');
-});
-Route::get('/list-checkout', function () {
-    return view('docs/list_checkout');
-});
-Route::get('/payment-method-model', function () {
-    return view('docs/payment_method_model');
-});
-Route::get('/payment-method', function () {
-    return view('docs/payment_method');
-});
-Route::get('/payment-model', function () {
-    return view('docs/payment_model');
-});
-Route::get('/payments', function () {
-    return view('docs/payments');
-});
-Route::get('/retrieve-checkout', function () {
-    return view('docs/retrieve_checkout');
-});
-Route::get('/retrieve-customer', function () {
-    return view('docs/retrieve_customer');
-});
-Route::get('/retrieve-payment', function () {
-    return view('docs/retrieve_payment');
-});
 
 Route::get('/test-card', function () {
     return view('docs.wasl_test_card');
@@ -168,7 +115,7 @@ Route::get('/test-card', function () {
 
 
 
-
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
 Route::group(['middleware'=>['auth']],function(){
 
@@ -177,7 +124,7 @@ Route::group(['middleware'=>['auth']],function(){
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
-Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+
 
     
 //This route is calling the method transfering money
@@ -214,32 +161,29 @@ Route::get('/buisness-info', function (){
    
     
 /*********** Customer Dashboard Routes *************/
+/*********** Customer Dashboard Routes *************/
 //add balance show
-Route::get('/customer_dashboard/add_balance', function(){
-    return view('customer_dashboard/addBalance');
-})->name('addBalance');
-//transaction show
-Route::get('/customer_dashboard/transaction', function(){
-    return view('customer_dashboard/transaction');
-})->name('transaction');
+Route::get('/customer_dashboard/add_balance', [CustomerDashController::class,'addBalance']
+)->name('addBalance');
 
+//transaction show
+Route::get('/customer_dashboard/transaction', [CustomerDashController::class,'transaction']
+)->name('transaction');
 
 /*   funds transfer */
+Route::get('/customer_dashboard/transfer', [CustomerDashController::class,'transfer']
+)->name('transfer');
 
-Route::get('/customer_dashboard/transfer', function(){
-    return view('customer_dashboard/transfer');
-})->name('transfer');
 /*FAQ page route*/
+Route::get('/customer_dashboard/report', [CustomerDashController::class,'report']
+)->name('report');
 
-Route::get('/customer_dashboard/report', function(){
-    return view('customer_dashboard/report');
-})->name('report');
 /*
 profile settings
 */
-Route::get('/customer_dashboard/settings', function(){
-    return view('customer_dashboard/settings');
-})->name('settings');
+Route::get('/customer_dashboard/settings', [CustomerDashController::class,'settings']
+)->name('settings');
+/**************edit image***************/
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 Route::get('customer/transfer/details', [CustomerController::class,'transferredMoenyDetails'])->name('tansfer_details');
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
-    //
+    //show form of update user profile
     public function profile(){
        
        $id=Auth::id();
@@ -21,8 +21,9 @@ class UserProfileController extends Controller
      public function addProfile(){
 
      }
+     /** update profile with name, email, address and phone */
      function editProfile(Request $req){
-        //  return $req;
+        
         $first_name=$req->first_name;
         $middle_name=$req->middle_name;
         $last_name=$req->last_name;
@@ -55,7 +56,7 @@ class UserProfileController extends Controller
            
 
      }
-
+// edit image
      function editImage(Request $req){
          Validator::validate($req->all(),[
              'avatar'=>'required|mimes:jepg,png,jpg,gif,svg|max:6000',
@@ -71,7 +72,7 @@ class UserProfileController extends Controller
             ]);
          }
         
-        //  echo Auth::user()->profile->avatar;
+        
 
         if($user_profile){
             return redirect()->back()->with(['succes'=>'تم التعديل الصورة بنجاح']);

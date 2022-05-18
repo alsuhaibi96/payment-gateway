@@ -1,48 +1,38 @@
 @extends('layout.merchant_dashboard')
-@section('financial')
-    active
-@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
-      الحركة المالية
+        عرض الإحصائيات
     </b>
 </span>
 @endsection
 @section('content')
- <!-- BEGIN: Content-->
- <div class="app-content content">
+<div class="app-content content">
     <div class="content-overlay"></div>
+    <!-- Page Wrapper -->
     <div class="content-wrapper">
+        <!-- Page Content -->
+        <!-- Page Header -->
         <div class="content-header row">
+
         </div>
-        <div class="content-body">
-           
-            <section class="invoice-list-wrapper">
-              
-               
 
         <!-- Search Filter -->
         <div class="row filter-row">
             <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
-                <div class="form-group form-focus ">
-                    
-                    <fieldset class="form-group position-relative">
-                        <label class="focus-label">From</label>
-                        <input type="date" class="form-control pickadate-firstday" placeholder="Select Date">
-                        
-                    </fieldset>
-                   
+                <div class="form-group form-focus">
+                    <div class="cal-icon">
+                        <input class="form-control floating datetimepicker" type="text">
+                    </div>
+                    <label class="focus-label">From</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus">
-                   
-                    <fieldset class="form-group position-relative">
-                        <label class="focus-label">To</label>
-                        <input type="date" class="form-control " >
-                        
-                    </fieldset>
+                    <div class="cal-icon">
+                        <input class="form-control floating datetimepicker" type="text">
+                    </div>
+                    <label class="focus-label">To</label>
                 </div>
             </div>
         </div>
@@ -50,8 +40,8 @@
         <section id="column-selectors" style="padding: 30px 0;">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="table-responsive p-25">
-                        <table class="table  invoice-data-table  nowrap dataex-html5-selectors m-2">
+                    <div class="table-responsive">
+                        <table class="table  dataex-html5-selectors">
                             <thead>
                                 <tr>
                                     <th>transaction_date</th>
@@ -63,7 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($movements as $movement)
+                            @foreach($movements as $movement)
                                 <tr>
                                     <td>{{$movement->transaction_date}}</td>
 
@@ -73,13 +63,11 @@
                                     <td>{{$movement->Reference}}</td>
                                     <td>{{$movement->IsLine}}</td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
-                    
                 </div>
-                
             </div>
         </section>
 

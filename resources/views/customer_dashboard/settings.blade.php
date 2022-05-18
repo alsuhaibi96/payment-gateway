@@ -54,17 +54,18 @@
                                         <a class="mr-2" href="javascript:void(0);">
                                             @if(isset(Auth::user()->profile->avatar))
 
-                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle "   >                                           
+                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow  "    style="object-fit: contain;height: 200px;width:200px;">                                           
                                             @else
-                                            <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" >                                          
+                                            <img src="{{asset('assets/web/images/avatar.jpg')}}" alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
 
 
                                             @endif
+                                            
                                         </a>
                                       
                                     </div>   
                                     <div class="col-12 px-0 d-flex mb-5">
-                                    
+                                      
                                         <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary mr-25">تغيير</a>
                                         
                                     </div>
@@ -146,36 +147,37 @@
 
 
                                         <hr>
- <!-- address-->
- <div class="row my-2">
-    <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
-        <span class="text-dark"><b>  العناوين </b> </span>
-    </div>
-</div>
-<div class=" order-2 order-sm-1">
-    <div class="row">
+
+                                         <!-- address-->
+                                         <div class="row my-2">
+                                            <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
+                                                <span class="text-dark"><b>  العناوين </b> </span>
+                                            </div>
+                                        </div>
+                                        <div class=" order-2 order-sm-1">
+                                            <div class="row">
 
 
-        <div class="col-6 py-20">
-            <label class="text-dark"> العنوان الاول </label>
-        
-            <input type="text" class="form-control" name="first_address" placeholder=" العنوان الاول"  value="{{ Auth::user()->profile->first_address }}">
-        </div>
-        <div class="col-6 py-20">
-            <label class="text-dark"> العنوان الاول </label>
-            <input type="text" class="form-control" name ="second_address" placeholder=" العنوان الثاني" value="{{ Auth::user()->profile->second_address }}" >
+                                                <div class="col-6 py-20">
+                                                    <label class="text-dark"> العنوان الثاني </label>
 
-       </div>
+                                                    <input type="text" class="form-control" name="first_address" placeholder=" العنوان الاول"  value="{{ Auth::user()->profile->first_address }}">
 
-    </div>
+                                                    <input type="text" class="form-control" name ="second_address" placeholder=" العنوان الثاني" value="{{ Auth::user()->profile->second_address }}" >
 
-</div>
-       <div class="order-2 order-sm-1">
+                                               </div>
+
+                                            </div>
+
+                                        </div>
+
+                                            <div class="order-2 order-sm-1">
                                                 <div class="row">
                                                    <div class="col-6">
                                                        <label class="text-dark"> رقم الجوال </label>
 
-                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone" value="{{ Auth::user()->profile->phone }}">
+                                                    <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone" value="{{ Auth::user()->profile->phone }}">
+
                                                    </div>
 
                                                   
@@ -185,7 +187,7 @@
                                             </div>
 
 
-                                       
+                                        <hr>
                                      
                                             
                                     </div>

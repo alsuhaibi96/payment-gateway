@@ -1,11 +1,8 @@
 @extends('layout.merchant_dashboard')
-@section('listInvoice')
-    active
-@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
-       الفواتير
+        عرض الإحصائيات
     </b>
 </span>
 @endsection

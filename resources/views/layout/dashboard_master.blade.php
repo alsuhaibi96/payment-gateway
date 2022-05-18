@@ -7,30 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-
     <title> Wasl Pay</title>
     <!--walper slider library-->
-    <link rel="stylesheet" href="{{url('assets/web/css/swiper-bundle.min.css')}}" />
+    <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
     <!--normalize library-->
     <link rel="stylesheet" href="{{url('assets/web/css/normalize.css')}}">
     <!--google font library-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap"
+    rel="stylesheet">
     <!--font icon-->
-    <link rel="stylesheet" href="{{url('assets/web/css/all.min.css')}}" />
+    <link rel="stylesheet" href="{{url('assets/web/css/all.min.css')}}"/>
     <link rel="stylesheet" href="{{url('assets/web/path/to/font-awesome/css/font-awesome.min.css')}}">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--custom css file link-->
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
+    @notifyCss
 
-
-
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/select2.min.css') }}">
-    <!-- Datetimepicker CSS -->
-    <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/bootstrap-datetimepicker.min.css') }}">
 
     <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
@@ -51,39 +46,25 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/themes/semi-dark-layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/custom-rtl.css')}}">
     <!-- END: Theme CSS-->
+
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/widgets.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/dashboard-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/app-invoice.css')}}">
     <!-- END: Page CSS-->
-    @notifyCss
-    <!-- datatable -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/favicon.ico')}}">
-    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/custom-rtl.css')}}">
-
-
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
     <!-- END: Custom CSS-->
+    
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Changa:wght@700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
-        .notify {
-            margin: 8% 0 0 0;
-            padding: 0;
-        }
 
-        .p-4 {
-            padding: 1.5rem !important;
-        }
     </style>
-
 </head>
 <!-- END: Head-->
 
@@ -131,7 +112,7 @@
                                                 <div class="avatar mr-1 m-0"><img src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="39" width="39"></div>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك Mo'khtar </span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
+                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك  </span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -140,7 +121,7 @@
                                                 <div class="avatar bg-primary bg-lighten-5 mr-1 m-0 p-25"><span class="avatar-content text-primary font-medium-2">LD</span></div>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="media-heading"><span class="text-bold-500"> <b> أشخاص قد تعرفهم</b> </span>انضموا إلى بوابة الدفع "وصل" </h6><small class="notification-text">استكشف 25 شخص قد تعرفهم من هنا</small>
+                                                <h6 class="media-heading"><span class="text-bold-500"> <b> أشخاص قد تعرفهم</b> </span>انضموا إلى بوابة الدفع "وصل"  </h6><small class="notification-text">استكشف 25 شخص قد تعرفهم من هنا</small>
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -175,7 +156,7 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name">{{Auth::user()->first_name ." ".Auth::user()->last_name}}</span><span class="user-status text-muted"> 😊 Welcome </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name">Mo'khtar Ghaleb</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
                                 {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>
@@ -192,11 +173,11 @@
     </nav>
     <!-- END: Header-->
 
-    <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true" id="main-menu">
-        <div class="navbar-header">
-            <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
+        <!-- BEGIN: Main Menu-->
+        <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true" id="main-menu">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav flex-row">
+                    <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
                         <a href="#" class="logo">
                             <h4>
                                 <i class="fas fa-wallet"></i>
@@ -205,64 +186,23 @@
                             </h4>
 
                         </a>
-                    </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
-            </ul>
-        </div>
-        <div class="shadow-bottom"></div>
-        <div class="main-menu-content">
-            <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
-                    <ul class="menu-content">
-                        <li>
-                            <a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span> <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto">
-                                {{ Auth::user()->bank_accounts->balance; }}   
-                                
-                                
-                                {{-- @foreach($data as $balance)
-                                    {{$balance->balance}}.'$'.
-
-                                    @endforeach --}}
-                                </span></a>
-                        </li>
-                        {{-- <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                        </li> --}}
-                    </ul>
-                </li>
-
-
-
-
-                <li class=" nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفواتير</span></a>
-                </li>
-
-                <li class=" nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
-                </li>
-                {{-- <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate" data-i18n="Widgets"> إعدادات الحساب</span></a>
-                </li> --}}
-
-                <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
-                </li>
-                <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> الإبلاغ عن مشكلة</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">أحدث المعاملات</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
-                </li>
-                <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-                </li>
-        </div>
-    </div>
-    <!-- END: Main Menu-->
+                        </a></li>
+                    <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+                </ul>
+            </div>
+            <div class="shadow-bottom"></div>
+            <div class="main-menu-content">
+                <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+    
     @yield('content')
 
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-left d-inline-block">2022 &copy; Wasl Team</span><span class="float-right d-sm-inline-block d-none">Made with<i class="bx bxs-heart pink mx-50 font-small-3"></i>by<a class="text-uppercase" href="#WaslTeam.com" target="_blank"> Wasl Team</a></span>
-            <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
-        </p>
-    </footer>
-    <!-- END: Footer-->
+        <!-- BEGIN: Footer-->
+        <footer class="footer footer-static footer-light">
+            <p class="clearfix mb-0"><span class="float-left d-inline-block">2022 &copy; Wasl Team</span><span class="float-right d-sm-inline-block d-none">Made with<i class="bx bxs-heart pink mx-50 font-small-3"></i>by<a class="text-uppercase" href="#WaslTeam.com" target="_blank"> Wasl Team</a></span>
+                <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
+            </p>
+        </footer>
+        <!-- END: Footer-->
 
 
     <!-- BEGIN: Vendor JS-->
@@ -284,38 +224,12 @@
     <script src="{{url('assets/app-assets/js/scripts/components.js')}}"></script>
     <script src="{{url('assets/app-assets/js/scripts/footer.js')}}"></script>
     <!-- END: Theme JS-->
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
-    <script src="{{url('assets/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
-    <!-- END: Page Vendor JS-->
-    <!-- BEGIN: Page JS-->
-    <script src="{{url('assets/app-assets/js/scripts/datatables/datatable.js')}}"></script>
-    <!-- END: Page JS-->
 
     <!-- BEGIN: Page JS-->
     <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
     <!-- END: Page JS-->
-    <!-- Select2 JS -->
-    <script src="{{ URL::to('assets/app-assets/js/select2.min.js') }}"></script>
-    <!-- Datetimepicker JS -->
-    <script src="{{ URL::to('assets/app-assets/js/moment.min.js') }}"></script>
-    <script src="{{ URL::to('assets/app-assets/js/bootstrap-datetimepicker.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.select2s-hidden-accessible').select2({
-                closeOnSelect: false
-            });
-        });
-    </script>
     @notifyJs
-    <x:notify-messages />
 
 </body>
 <!-- END: Body-->

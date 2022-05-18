@@ -92,15 +92,18 @@ Route::post('/contact', [ContuctController::class,'contuctUs'])->name('send_cont
 
 
 // new docs
-Route::get('/new-docs', function() {
+Route::get('/docs/home', function() {
 return view('new-docs.index');
-}); 
+})->name('docs/home'); 
 Route::get('/new-docs/card', function() {
 return view('new-docs.card');
-}); 
+})->name('docs/card'); 
 Route::get('/new-docs/checkout', function() {
 return view('new-docs.checkout');
-}); 
+})->name('docs/checkout'); 
+Route::get('/new-docs/tutorial', function() {
+    return view('new-docs.tutorial');
+    })->name('docs/tutorial'); 
 
 Route::get('/document', function () {
     return view('docs/docs');

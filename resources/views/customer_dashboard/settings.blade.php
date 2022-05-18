@@ -56,7 +56,11 @@
 
                                              <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow  "    style="object-fit: contain;height: 200px;width:200px;">                                           
                                             @else
+<<<<<<< Updated upstream
                                             <img src="{{asset('assets/web/images/avatar.jpg')}}" alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
+=======
+                                            <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width:30px; height:auto;">                                          
+>>>>>>> Stashed changes
 
 
                                             @endif

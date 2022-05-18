@@ -31,8 +31,6 @@ class UserProfileController extends Controller
         $first_address=$req->first_address;
         $second_address=$req->second_address;
 
-       
-
         $id=Auth::id();
         $user=User::where('id',Auth::id())->update([
             'first_name'=>$first_name ,

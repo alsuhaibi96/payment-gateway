@@ -45,15 +45,14 @@ class checkoutController extends Controller
         $meta_data=$data['metadata'];
         $sucess_url=$data['success_url'];
         $cancel_url=$data['cancel_url'];
-
-
+        $merchant_key_info=User::where('private_key',$private_key)->first();
 
         if(!is_array($products))
         return $this->errors(300,5100,'invalid products array format');
         if($private_key==null|| $public_key==null)
         return $this->errors(500,5200,'invalid credintical keys');
 
-        if($private_key=='rRQ26GcsZzoEhbrP2HZvLYDbn9C9et' && $public_key=='HGvTMLDssJghr9tlN9gr4DVYt0qyBy')
+        if($private_key==$merchant_key_info->private_key && $public_key==$merchant_key_info->public_key )
         {
            // return $this->create_order($order_details,$products,$public_key,$private_key);
             return $this->create_order($data,$products,$public_key,$private_key);
@@ -190,157 +189,180 @@ class checkoutController extends Controller
         //   return  $response;
         return  Redirect::away($response);
         }
-    
-        public function Financial_processing(Request $request)
-        {
-    
-            $validator = Validator::make($request->all(), [
-                'card_number' => ['required'],
-                'card_holder' => ['required', 'string', 'min:6'],
-                'expiration_yy' => ['required'],
-                'cvv' => ['required', 'digits:3'],
-    
-    
-            ]);
-            if ($validator->fails()) {
-                return Redirect::back()->withInput()->withErrors($validator);
-            }
-    
-            $invoice_referance = $request->input('invoice_referance');
-    
-            $product_name = $request->input('product_name');
-            $total_amout = $request->input('total_amount');
-            $currency = $request->input('currency');
-            $card_number = $request->input('card_number');
-            $card_holder = $request->input('card_holder');
-    
-    
-    
-            $expiration_yy = $request->input('expiration_yy');
-            $date = $this->seprateDate($expiration_yy);
-            $expiration_yy = $date[1];
-            $expiration_mm = $date[0];
-    
-            $success_url = $request->input('success_url');
-            $cvv = $request->input('cvv');
-            $Payment_confirmation_data = $request->all();
-            $client_card_data = Credit_cards::where('card_number', $card_number)->first();
-            if($client_card_data ==null){
-                notify()->error('Make sure you type your payment information correctly', 'wrong information');
-                
-                return Redirect::back();
-            }
-            $client_banck_acount_id = $client_card_data->bank_accounts_id;
-    
-            $client_account_data = bank_account::where('id', $client_banck_acount_id)->first();
-    
-            $client_account_number = $client_account_data->account_number;
-    
-    
-            $client_balance = $client_account_data->balance;
-            $client_balance = (float)$client_balance;
-            $total_amout = (float)$total_amout;
-    
-            $remaining_balance = $client_balance - $total_amout;
-            if ($remaining_balance > 0) {
-                $merchant_id = $request->input('merchant_id');
-                $merchant_data = bank_account::where('user_id', $merchant_id)->first();
-                $merchant_name = User::where('id', $merchant_id)->first();
-                $merchant_account_number = $merchant_data->account_number;
-                $merchant_balance = $merchant_data->balance;
-                $merchant_balance = (float)$merchant_balance;
-                $merchant_data->balance = $merchant_balance + $total_amout;
-                $merchant_data->save();
-                $client_account_data->balance = $remaining_balance;
-                $client_account_data->save();
-    
-                $paymentinvoice = new PaymentInvoice();
-                $order_invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->first();
-                $paymentinvoice->order_invoice_id = $order_invoice_data->id;
-                $paymentinvoice->user_id = $order_invoice_data->user_id;
-                $paymentinvoice->amount_due = $total_amout;
-                $paymentinvoice->amount_paid = $total_amout;
-                $paymentinvoice->status = 'Payment done';
-                $paymentinvoice->save();
-                $transaction = new Transaction();
-                $transaction->payment_invoices_id = $paymentinvoice->id;
-                $transaction->user_id = $client_account_data->user_id;
-                $transaction->description = 'مدفوعات المشتريات';
-                $transaction->transaction_date = date("Y-m-d H:i:s");
-                $transaction->save();
-    
-                $sales_transaction = new Transaction();
-                $sales_transaction->payment_invoices_id = $paymentinvoice->id;
-                $sales_transaction->user_id = $merchant_id;
-                $sales_transaction->description = 'استحقاق المبيعات';
-                $sales_transaction->transaction_date = date("Y-m-d H:i:s");
-                $sales_transaction->save();
-    
-                $journal_entries_merchant_right = new FinancialTransaction();
-                $journal_entries_merchant_right->transaction_id = $transaction->id;
-                $journal_entries_merchant_right->financial_acount_id = 3;
-    
-                $journal_entries_merchant_right->entry_type = "Debit";
-                $journal_entries_merchant_right->amount = $total_amout;
-                $journal_entries_merchant_right->save();
-    
-                $journal_entries_merchant_left = new FinancialTransaction();
-                $journal_entries_merchant_left->transaction_id = $transaction->id;
-                $journal_entries_merchant_left->financial_acount_id = 1;
-                $journal_entries_merchant_left->entry_type = "Cred";
-                $journal_entries_merchant_left->amount = $total_amout;
-                $journal_entries_merchant_left->save();
-    
-                $journal_entries_customer_right = new FinancialTransaction();
-                $journal_entries_customer_right->transaction_id = $sales_transaction->id;
-                $journal_entries_customer_right->financial_acount_id = 2;
-                $journal_entries_customer_right->entry_type = "Debit";
-                $journal_entries_customer_right->amount = $total_amout;
-                $journal_entries_customer_right->save();
-    
-    
-                $journal_entries_customer_left = new FinancialTransaction();
-                $journal_entries_customer_left->transaction_id = $sales_transaction->id;
-                $journal_entries_customer_left->financial_acount_id = 3;
-    
-                $journal_entries_customer_left->entry_type = "Cred";
-                $journal_entries_customer_left->amount = $total_amout;
-                $journal_entries_customer_left->save();
-    
-    
-                $transactionoverview = new TransactionOverView();
-                $transactionoverview->trans_id = $this->generate_string(15);
-                $transactionoverview->user_id = $client_account_data->id;
-                $transactionoverview->bank_account_id = $client_banck_acount_id;
-                $transactionoverview->type = 'pay';
-                $transactionoverview->amount = $total_amout;
-                $transactionoverview->currency = $currency;
-                $transactionoverview->fee = '0';
-                $transactionoverview->fromAccount = $client_account_number;
-                $transactionoverview->client_name = $client_card_data->card_holder;
-                $transactionoverview->toAccount = $merchant_account_number;
-                $transactionoverview->merchant_name = $merchant_name->first_name . " " . $merchant_name->last_name;
-                $transactionoverview->status = 'Done Payment';
-    
-                $transactionoverview->save();
-    
-                $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id)->get();
-    
-                $invoice_id =  $order_invoice_data["id"];
-    
-                // return $invoice_sender;
-    return $this->payment_response($request);
-    
-                // return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_sender]);
-                // return $this->returnData('الرصيد المتبقي', $invoice_sender, 'تمت عملية الدفع بنجاح');
-       
-    
-            } else {
-                return $this->returnError('4011', 'You do not Have enough balance');
-            }
-            $products = $this->getProducts(4);
-            return $this->returnData('success', $client_account_number, array("Products:" => $products), 'Done Payment Successfully');
+
+    public function Financial_processing(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'card_number' => ['required'],
+            'card_holder' => ['required', 'string', 'min:6'],
+            'expiration_yy' => ['required'],
+            'cvv' => ['required', 'string:3'],
+
+
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
         }
+
+        $invoice_referance = $request->input('invoice_referance');
+
+        $product_name = $request->input('product_name');
+        $total_amout = $request->input('total_amount');
+        $currency = $request->input('currency');
+        $card_number = $request->input('card_number');
+        $card_holder = $request->input('card_holder');
+
+
+
+        $expiration_yy = $request->input('expiration_yy');
+        $date = $this->seprateDate($expiration_yy);
+        $expiration_yy = $date[1];
+        $expiration_mm = $date[0];
+
+        $success_url = $request->input('success_url');
+        $cvv = $request->input('cvv');
+        $card_holder=$request->input('card_holder');
+        $expiration_date=$request->input('expiration_yy');
+        $Payment_confirmation_data = $request->all();
+        $client_card_data = Credit_cards::where('card_number', $card_number)->first();
+        if ($client_card_data == null || $client_card_data->card_holder!=$card_holder || strval($expiration_date) != date_format($client_card_data->created_at,'m/y')) {
+            notify()->error('Make sure you type your payment information correctly', 'wrong information');
+
+            return Redirect::back();
+        }
+        $client_banck_acount_id = $client_card_data->bank_accounts_id;
+
+        $client_account_data = bank_account::where('id', $client_banck_acount_id)->first();
+
+        $client_account_number = $client_account_data->account_number;
+
+
+        $client_balance = $client_account_data->balance;
+        $client_balance = (float)$client_balance;
+        $total_amout = (float)$total_amout;
+
+        $remaining_balance = $client_balance - $total_amout;
+        if ($remaining_balance > 0) {
+            $merchant_id = $request->input('merchant_id');
+            $merchant_data = bank_account::where('user_id', $merchant_id)->first();
+            $merchant_name = User::where('id', $merchant_id)->first();
+            $merchant_account_number = $merchant_data->account_number;
+            $merchant_balance = $merchant_data->balance;
+            $merchant_balance = (float)$merchant_balance;
+            $merchant_data->balance = $merchant_balance + $total_amout;
+            $merchant_data->save();
+            $client_account_data->balance = $remaining_balance;
+            $client_account_data->save();
+
+            $paymentinvoice = new PaymentInvoice();
+            $order_invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->first();
+            $paymentinvoice->order_invoice_id = $order_invoice_data->id;
+            $paymentinvoice->user_id = $order_invoice_data->user_id;
+            $paymentinvoice->amount_due = $total_amout;
+            $paymentinvoice->amount_paid = $total_amout;
+            $paymentinvoice->status = 'Payment done';
+            $paymentinvoice->save();
+            $transaction = new Transaction();
+            $transaction->payment_invoices_id = $paymentinvoice->id;
+            $transaction->user_id = $client_account_data->user_id;
+            $transaction->description = 'مدفوعات المشتريات';
+            $transaction->transaction_date = date("Y-m-d H:i:s");
+            $transaction->save();
+
+            $sales_transaction = new Transaction();
+            $sales_transaction->payment_invoices_id = $paymentinvoice->id;
+            $sales_transaction->user_id = $merchant_id;
+            $sales_transaction->description = 'استحقاق المبيعات';
+            $sales_transaction->transaction_date = date("Y-m-d H:i:s");
+            $sales_transaction->save();
+
+            $journal_entries_merchant_right = new FinancialTransaction();
+            $journal_entries_merchant_right->transaction_id = $transaction->id;
+            $journal_entries_merchant_right->financial_acount_id = 3;
+            $journal_entries_merchant_right->bank_acount_id = $merchant_data->id;
+            $journal_entries_merchant_right->account_number = $merchant_data->account_number;
+            $journal_entries_merchant_right->entry_type = "Debit";
+            $journal_entries_merchant_right->amount = $total_amout;
+            $journal_entries_merchant_right->save();
+
+            $journal_entries_merchant_left = new FinancialTransaction();
+            $journal_entries_merchant_left->transaction_id = $transaction->id;
+            $journal_entries_merchant_left->financial_acount_id = 1;
+            $journal_entries_merchant_left->bank_acount_id = $client_account_data->id;
+            $journal_entries_merchant_left->account_number = $client_account_data->account_number;
+            $journal_entries_merchant_left->entry_type = "Cred";
+            $journal_entries_merchant_left->amount = $total_amout;
+            $journal_entries_merchant_left->save();
+
+            $journal_entries_customer_right = new FinancialTransaction();
+            $journal_entries_customer_right->transaction_id = $sales_transaction->id;
+            $journal_entries_customer_right->financial_acount_id = 2;
+            $journal_entries_customer_right->bank_acount_id = $client_account_data->id;
+            $journal_entries_customer_right->bank_acount_id = $client_account_data->account_number;
+            $journal_entries_customer_right->entry_type = "Debit";
+            $journal_entries_customer_right->amount = $total_amout;
+            $journal_entries_customer_right->save();
+
+
+            $journal_entries_customer_left = new FinancialTransaction();
+            $journal_entries_customer_left->transaction_id = $sales_transaction->id;
+            $journal_entries_customer_left->financial_acount_id = 3;
+            $journal_entries_customer_right->bank_acount_id = $merchant_data->id;
+            $journal_entries_customer_right->bank_acount_id = $merchant_data->account_number;
+            $journal_entries_customer_left->entry_type = "Cred";
+            $journal_entries_customer_left->amount = $total_amout;
+            $journal_entries_customer_left->save();
+
+
+            $transactionoverview = new TransactionOverView();
+            $transactionoverview->trans_id = $this->generate_string(15);
+            $transactionoverview->user_id = $client_account_data->id;
+            $transactionoverview->bank_account_id = $client_banck_acount_id;
+            $transactionoverview->type = 'pay';
+            $transactionoverview->amount = $total_amout;
+            $transactionoverview->currency = $currency;
+            $transactionoverview->fee = '0';
+            $transactionoverview->fromAccount = $client_account_number;
+            $transactionoverview->client_name = $client_card_data->card_holder;
+            $transactionoverview->toAccount = $merchant_account_number;
+            $transactionoverview->merchant_name = $merchant_name->first_name . " " . $merchant_name->last_name;
+            $transactionoverview->status = 'Done Payment';
+
+            $transactionoverview->save();
+
+            $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id)->first();
+
+            $invoice_id =  $order_invoice_data["id"];
+            $invoice_ids=$invoice_sender->id;
+            $invoice_information=response()->json([
+                "Invoice_id"=>$invoice_sender->id,
+                "order_invoice_id"=>$invoice_sender->order_invoice_id,
+                "amount_paid"=>$invoice_sender->amount_paid,
+                "currency"=>$invoice_sender->orders_invoice->currency,
+                "order_"=>$invoice_sender->orders_invoice->products,
+                "status"=>$invoice_sender->status,
+                "meta_data"=>"any data you want",
+            ]);
+            
+
+            // return $invoice_information;
+
+
+            return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_information]);
+            return $this->returnData('الرصيد المتبقي', $invoice_sender, 'تمت عملية الدفع بنجاح');
+            // $success_uri='https://localhost:8080/test/invoice';
+            //  return redirect::away($success_uri)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);    
+            // return Redirect::away($success_url)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);
+            // return $this->returnData('Balance Left',$invoice_sender,'Payment Process Completed Successfully');
+
+
+        } else {
+            return $this->returnError('4011', 'You do not Have enough balance');
+        }
+        $products = $this->getProducts(4);
+        return $this->returnData('success', $client_account_number, array("Products:" => $products), 'Done Payment Successfully');
+    }
         public function get_acounts()
         {
             return bank_account::find(1)->Credit_cards;

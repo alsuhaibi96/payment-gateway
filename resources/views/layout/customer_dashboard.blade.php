@@ -190,7 +190,11 @@
                         @if(isset(Auth::user()->profile->avatar))
                         <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 40px;height: 40px;"> 
                         @else
+<<<<<<< Updated upstream
                         <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
+=======
+                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width:30px; height:auto;">                                          
+>>>>>>> Stashed changes
                         @endif
                     </span>
                             </a>

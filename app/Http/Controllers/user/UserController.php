@@ -136,7 +136,7 @@ class UserController extends Controller
           $credit_cards->card_holder=$user->first_name.' '.$user->middle_name.' '.$user->last_name;
           $credit_cards->expiration_mm=date('n');
           $credit_cards->expiration_yy=date('Y');
-          $credit_cards->cvv=$this->generate_string(4);
+          $credit_cards->cvv=$this->generate_string(3);
           $credit_cards->bank_accounts_id=$bank_account->id;
           $credit_cards->save();
          

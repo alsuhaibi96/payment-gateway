@@ -230,6 +230,7 @@
     <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
     <!-- END: Page JS-->
     @notifyJs
+    <x:notify-messages />
 
 </body>
 <!-- END: Body-->

@@ -168,7 +168,7 @@ Route::get('/test-card', function () {
 
 
 
-
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
 Route::group(['middleware'=>['auth']],function(){
 
@@ -177,7 +177,7 @@ Route::group(['middleware'=>['auth']],function(){
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
-Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+
 
     
 //This route is calling the method transfering money

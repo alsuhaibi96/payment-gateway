@@ -22,7 +22,7 @@
             <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
-                        <input class="form-control floating datetimepicker" type="text">
+                        <input class="form-control floating " type="date">
                     </div>
                     <label class="focus-label">From</label>
                 </div>
@@ -30,22 +30,22 @@
             <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
-                        <input class="form-control floating datetimepicker" type="text">
+                        <input class="form-control floating date" type="date">
                     </div>
                     <label class="focus-label">To</label>
                 </div>
             </div>
         </div>
         <!-- /Search Filter -->
-        <section id="column-selectors" style="padding: 30px 0;">
+        <section id="column-selectors" style="padding: 0;">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table  dataex-html5-selectors">
+                    <div class=" table">
+                        <table class="table">
                             <thead>
                                 <tr>
-                                    <th>transaction_date</th>
-                                    <th>DescriptionOrAccountTitle</th>
+                                    <th data-orderable="false">transaction_date</th>
+                                    <th data-orderable="false">DescriptionOrAccountTitle</th>
                                     <th>AmountDebit</th>
                                     <th>AmountCredit</th>
                                     <th>Reference</th>
@@ -53,7 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($movements as $movement)
+                                @foreach($movements->sortBy('Reference') as $movement)
                                 <tr>
                                     <td>{{$movement->transaction_date}}</td>
 
@@ -63,7 +63,7 @@
                                     <td>{{$movement->Reference}}</td>
                                     <td>{{$movement->IsLine}}</td>
                                 </tr>
-                            @endforeach
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

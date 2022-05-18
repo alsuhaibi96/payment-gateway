@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class MerchantController extends Controller
 {
+    //constructor function
     public function __construct() {
          $this->middleware('auth');
     }
+    // the main function to log to merchant dashboard
     public function index(){
         
         $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
@@ -22,11 +24,13 @@ class MerchantController extends Controller
         notify()->success('تم ايداع 10000000$ الى حسابك','تهانينا');
         return view('merchant_dashboard/home',compact('data'));
     }
+    // transactions function that show finanicial transaction
     public function Transactions(){
         $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
         $transactions=TransactionOverView::where('user_id',Auth::user()->id)->paginate(3);
         return view('merchant_dashboard/Transactions',compact('data','transactions'));
     }
+    //list function to show all invoice transaction
     public function listInvoice(){
         $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
         $Invoices=PaymentInvoice::with('Orders_invoice')->where('user_id',Auth::user()->id)->get();
@@ -37,12 +41,14 @@ class MerchantController extends Controller
         return view('merchant_dashboard/listInvoice',compact('data','Invoices'));
 
     }
+
+    //
     public function financial_movement($id){
-        $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
+        $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
         $customer_account_pro = DB::table('transactions')
         ->select(
             DB::raw('null as transaction_date'),
-            
+
             DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN bank_accounts.account_number ELSE CONCAT("-",bank_accounts.account_number) END) AS account_number'),
             DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
             DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
@@ -56,7 +62,8 @@ class MerchantController extends Controller
             ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
             ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-26'])
             ->where('transactions.user_id', $id)
-            ->orderBy('Reference', 'Desc');
+            ->orderBy('Reference', 'asc')
+            ;
         $customer_account = DB::table('transactions')
         ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
         ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
@@ -66,10 +73,10 @@ class MerchantController extends Controller
         ->where('transactions.user_id', $id)
         ->union($customer_account_pro)
             ->get();
-        $movements= $customer_account;
+        $movements = $customer_account;
         // return $movements;
         // // // return $customer_account_pro;
-        return view('merchant_dashboard/financial_movement',compact('data','movements'));
+        return view('merchant_dashboard/financial_movement', compact('data', 'movements'));
 
     }
 }

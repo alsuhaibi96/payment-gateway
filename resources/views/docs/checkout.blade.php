@@ -9,7 +9,7 @@
         <div class="d-flex justify-content-around">
           <div>
         <p class="fs-5 ms-5 mt-5">
-            Create a checkout session. After the session has been created,<br> use the session_id to redirect the user to the Wasel payment hosted page.
+            Create a checkout . After the checkout has been created,<br> use the nextURL to redirect the user to the Wasel payment hosted page.
             <br><br>
             url format: <br>
             https://waslpayment.com/api/test/merchant/payment_order
@@ -132,7 +132,7 @@
           <table class="table table-light table-bordered table-striped  w-50 mt-5">
             <thead>
               <tr>
-                <th scope="col">Requset simple</th>
+                <th scope="col">Requset sample</th>
                
               </tr>
             </thead>

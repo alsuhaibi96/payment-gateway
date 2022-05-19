@@ -186,7 +186,8 @@ class UserController extends Controller
           $journal_entries_merchant_left->entry_type = "Cred";
           $journal_entries_merchant_left->amount = $bank_account->balance;
           $journal_entries_merchant_left->save();
-           
+          
+     
          
           
           

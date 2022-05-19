@@ -11,18 +11,18 @@
 
 
 @section('content')
-<section class=" mt-5"></section>
+<section class=" mt-5 "></section>
     <!--Sign in form for speciftying if merchant or customer-->
     <form  action="{{ route('Signin') }}" method="POST" style="background-color: #eee; " class="p-3">
         @csrf
     <div class="mt-5" style="margin-top: 120px ;margin-bottom: 90px;">
-        <div class="up-card my-0 mt-5 my-sm-30 border-2  m-auto" data-v-e9c818fa="">
-            <div class="text-center card mt-5 col-5 m-auto pt-5" data-v-e9c818fa="">
+        <div class="up-card my-0 mt-5 my-sm-30 border-2  m-auto  " data-v-e9c818fa="">
+            <div class="text-center card mt-5 col-5 m-auto pt-5 col-10 col-md-7 " data-v-e9c818fa="">
                 <h2 class="display-rebrand fw-bold" data-v-e9c818fa="">انضم كحساب شخصي او حساب تجاري</h2>
                 <div class="up-button-box-radio-group pb-10" data-v-e9c818fa="">
                     <fieldset data-v-e9c818fa="">
                         <div class="row card-body p-5 " data-v-e9c818fa="">
-                            <div class="col-12 col-md-5 mt-10 col-md-offset-1 card mx-4 p-3 " data-v-e9c818fa="">
+                            <div class="col-10 col-md-5 mt-10 col-md-offset-1 card mx-4 p-3 " data-v-e9c818fa="">
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
                                         <input id="client_radio" type="radio" checked value="1" name="radio1" aria-labelledby="button-box-1" value="hire" > <span class="up-checkbox-replacement-helper"><!----> <!----></span> </label></div>
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-5 mt-10 card mx-2  p-3" data-v-e9c818fa="">
+                            <div class="col-10 col-md-5 mt-10 card mx-4 mt-s-2  p-3" data-v-e9c818fa="">
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
                                         <input name="radio1" value="2" id="freelancer_radio" type="radio" aria-labelledby="button-box-2" value="work"> <span class="up-checkbox-replacement-helper"><!----> <!----></span> </label></div>
@@ -63,8 +63,8 @@
                 </div>
                 <div class="mt-30" data-v-e9c818fa="">
                     <button type="submit" type="button" id="register_btn" class=" col-4 p-1 up-btn  rounded-3 m-auto mt-3 up-btn-primary width-md btn btn-primary" data-v-e9c818fa="">انشاء حساب </button>
-                    <p class="mb-0 mt-3 mb-2 fs-3" data-v-e9c818fa="">Already have an account? <a href="{{ route('login') }}" data-v-e9c818fa="">
-          Log In
+                    <p class="mb-0 mt-3 mb-2 fs-3" data-v-e9c818fa="">لديك حساب من قبل ؟ <a href="{{ route('login') }}" data-v-e9c818fa="">
+        تسجيل الدخول
         </a></p>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 
 
 @section('content')
-              
+
 
 
     <!-- BEGIN: Content-->
@@ -33,50 +33,55 @@
                         <div class="content-body">
                             <div class="col-md-12 col-sm-12">
                                 <div class="row card mt-2 ">
-                                    <div class="col-xl-6">
-                                        <span class=" mx-2 ">   عرض الإحصائيات :  </span>
-                                        <div class="dropdown">
-                                         
-                                       
-                                            <b class="text-dark">  للعام </b>
-                                            <button class="mb-1 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                2020
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonSec">
-                                                <a class="dropdown-item" href="javascript:;">2020</a>
-                                                <a class="dropdown-item" href="javascript:;">2019</a>
-                                                <a class="dropdown-item" href="javascript:;">2018</a>
+                                    <div class="col-xl-12">
+                                        <div class="row">
+                                            <span class=" col-xl-6 my-2">   عرض الإحصائيات </span>
+                                            <div class="col-xl-3 dropdown">
+
+
+                                                <b class="text-dark">  للعام </b>
+                                                <button class="mb-1 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    2020
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonSec">
+                                                    <a class="dropdown-item" href="javascript:;">2020</a>
+                                                    <a class="dropdown-item" href="javascript:;">2019</a>
+                                                    <a class="dropdown-item" href="javascript:;">2018</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 dropdown">
+                                                <b class="text-dark">  للشهر </b>
+                                                <button class="mb-1 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    يناير
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonSec">
+                                                    <a class="dropdown-item" href="javascript:;">يناير</a>
+                                                    <a class="dropdown-item" href="javascript:;">فبراير</a>
+                                                    <a class="dropdown-item" href="javascript:;">مارس</a>
+                                                    <a class="dropdown-item" href="javascript:;">ابريل</a>
+                                                    <a class="dropdown-item" href="javascript:;">مايو</a>
+                                                    <a class="dropdown-item" href="javascript:;">يونيو</a>
+                                                    <a class="dropdown-item" href="javascript:;">يوليو</a>
+                                                    <a class="dropdown-item" href="javascript:;">اغسطس</a>
+                                                    <a class="dropdown-item" href="javascript:;">سبتمبر</a>
+                                                    <a class="dropdown-item" href="javascript:;">اكتوبر</a>
+                                                    <a class="dropdown-item" href="javascript:;">نوفمبر</a>
+                                                    <a class="dropdown-item" href="javascript:;">ديسمبر</a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="dropdown">
-                                            <b class="text-dark">  للشهر </b>
-                                            <button class="mb-1 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                يناير
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonSec">
-                                                <a class="dropdown-item" href="javascript:;">يناير</a>
-                                                <a class="dropdown-item" href="javascript:;">فبراير</a>
-                                                <a class="dropdown-item" href="javascript:;">مارس</a>
-                                                <a class="dropdown-item" href="javascript:;">ابريل</a>
-                                                <a class="dropdown-item" href="javascript:;">مايو</a>
-                                                <a class="dropdown-item" href="javascript:;">يونيو</a>
-                                                <a class="dropdown-item" href="javascript:;">يوليو</a>
-                                                <a class="dropdown-item" href="javascript:;">اغسطس</a>
-                                                <a class="dropdown-item" href="javascript:;">سبتمبر</a>
-                                                <a class="dropdown-item" href="javascript:;">اكتوبر</a>
-                                                <a class="dropdown-item" href="javascript:;">نوفمبر</a>
-                                                <a class="dropdown-item" href="javascript:;">ديسمبر</a>
-                                            </div>
+
+
+
                                         </div>
-                                        </div>
-                                        
-                                   
+
+
                                 </div>
 
                             </div>
                         </div>
-                   
-                
+
+
                         <!-- Website Analytics Starts-->
                         <div class="col-md-12 col-sm-12">
                             <div class="card">

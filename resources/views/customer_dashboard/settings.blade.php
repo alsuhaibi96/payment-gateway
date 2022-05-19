@@ -26,7 +26,7 @@
                 <div class="content-body">
                     <!-- app account View Page -->
                     <section class="invoice-edit-wrapper">
-                        
+
                         <div class="row">
                             <!-- account view page -->
                             <div class="col-xl-9 col-md-8 col-12">
@@ -49,28 +49,28 @@
                                             </div>
                                         </div>
                                         <!-- users edit media object start -->
-                                        
+
                                     <div class="media mb-2">
                                         <a class="mr-2" href="javascript:void(0);">
                                             @if(isset(Auth::user()->profile->avatar))
 
-                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle w-2"   style="object-fit: cover;">                                           
+                                             <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle w-2"   style="object-fit: cover;">
                                             @else
-                                            <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
+                                            <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">
 
 
                                             @endif
                                         </a>
-                                      
-                                    </div>   
+
+                                    </div>
                                     <div class="col-12 px-0 d-flex mb-5">
-                                    
+
                                         <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary mr-25">تغيير</a>
-                                        
+
                                     </div>
                                         <div class="media-body">
-                                            
-                                           
+
+
                                             {{-- start model of change image --}}
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -85,11 +85,11 @@
                                                         <form action="{{ route("editImage") }}" method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="card-body">
-                                                               
+
                                                             <input type="file" name="avatar" id="">
-                                                            
-                                                            
-                                                        
+
+
+
                                                     </div>
                                                     <div class="modal-footer">
                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
@@ -100,8 +100,8 @@
                                                 </div>
                                               </div>
                                               {{-- end model --}}
-                                           
-                                            
+
+
                                         </div>
                                     </div>
 
@@ -179,40 +179,40 @@
 
                                                    </div>
 
-                                                  
-                                                   
+
+
 
                                              </div>
                                             </div>
 
 
                                         <hr>
-                                     
-                                            
+
+
                                     </div>
                                     <div class="card-body pt-50">
                                         <!-- account subtotal -->
                                         <hr>
                                         <div class="invoice-subtotal pt-50">
                                             <div class="row">
-                                                
-                                               
-                                                   
+
+
+
 
                                                         <li class="list-group-item border-0 pb-0">
                                                             <button class="btn btn-primary btn-block subtotal-preview-btn">تحديث الملف الشخصي</button>
                                                         </li>
-                                                   
+
                                             </div>
                                         </div>
                                     </form>
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
 
-{{-- 
+{{--
                         <div class="col-lg-5 col-md-7  col-12">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item  border-0 pb-0">
@@ -232,7 +232,7 @@
                         </form> --}}
 
 
-                          
+
                         <div class="row">
                             <!-- password card model -->
                             <div class="col-xl-9 col-md-8 col-12">
@@ -267,7 +267,7 @@
                                                          @enderror
                                                      <hr>
                                                 </div>
-                                                
+
                                                 <div class="col-12 py-20">
                                                     <label  for="newPasswordInput"  class="text-dark"> أدخل كلمة المرور الجديدة (حافظ على أمان حسابك. لا تستخدم اسمك.) </label>
                                                     <input  name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput" placeholder="كلمة السر الجديدة" >
@@ -289,23 +289,23 @@
                                                    </div>
 
 
-                                                
+
                                              </div>
-                                            </div>   
+                                            </div>
                                     </div>
                                     <div class="card-body pt-50">
                                         <!-- account subtotal -->
                                         <hr>
                                         <div class="invoice-subtotal pt-50">
                                             <div class="row">
-                                                
-                                               
-                                                   
+
+
+
 
                                                         <li class="list-group-item border-0 pb-0">
                                                             <button type="submit" class="btn btn-primary btn-block subtotal-preview-btn">تغيير كلمة السر</button>
                                                         </li>
-                                                   
+
                                             </div>
                                         </div>
                                     </div>
@@ -319,27 +319,27 @@
                                 <div class="col-xl-9 col-md-8 col-12">
                                     <div class="card">
                                         <div class="card-body pb-0 mx-25">
-    
-                                           
+
+
                                             <div class="row mb-2">
                                                 <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
                                                     <span class="text-dark"><b> التحقق بخطوتين </b> </span>
                                                 </div>
-                                               
-                                            
+
+
 
                                             </div>
 
-                               
-    
-    
-                                            
-    
-                                               
-    
-                                
-    
-                                                
+
+
+
+
+
+
+
+
+
+
                                         </div>
                                         <div class="card-body pt-50">
                                             <div class="col-12 py-20">
@@ -351,37 +351,37 @@
                                                 <input name="currency" id="YER" type="radio" aria-label="yer" required>
                                             </div>
                                         </div>
-                                    
+
                                             <hr>
                                             <div class="invoice-subtotal pt-50">
                                                 <div class="row">
-                                                    
-                                                   
-                                                       
-    
+
+
+
+
                                                             <li class="list-group-item border-0 pb-0">
                                                                 <button class="btn btn-primary btn-block subtotal-preview-btn">إعداد</button>
                                                             </li>
-                                                       
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
-                        
+
+
             </div>
         </div>
-        
-                                   
-                                
+
+
+
                     </section>
 
                 </div>
             </div>
         </div>
-        
+
         <!-- END: Content-->
 
         <!-- Tec Suppoort -->

@@ -37,7 +37,7 @@
             <a href="#customer"> عملائنا</a>
 
             <a href="{{ route('contact-us') }}">تواصل معنا</a>
-            <a href="{{ route('docs') }}">Docs</a>
+            <a href="{{ route('docs/home') }}">Docs</a>
         </nav>
          <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>

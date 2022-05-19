@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\auth\UserVerify;
+use App\Models\user_profile;
+
 use App\Models\Credit_cards;
 use App\Models\FinancialTransaction;
 
@@ -124,7 +126,27 @@ class UserController extends Controller
           $user->public_key=$this->generate_string(25);
           $user->private_key=$this->generate_string(50);
 
-          $user->save();
+          if($user->save()){
+          $token = Str::random(64);
+          $user->attachRole($roleName);
+
+           UserVerify::create([
+            'user_id' => $user->id, 
+            'token' => $token
+          ]);
+
+      Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Email Verification Mail');
+        });}
+       
+        //   $user->save();
+
+        $userProfile = new user_profile();
+        $userProfile->user_id=$user->id;
+        $userProfile->save();
+
+
 
           $bank_account = new bank_account();
           $bank_account->user_id = $user->id;
@@ -167,20 +189,7 @@ class UserController extends Controller
            
          
           
-          if($user->save())
-          $token = Str::random(64);
-          $user->attachRole($roleName);
-
-           UserVerify::create([
-            'user_id' => $user->id, 
-            'token' => $token
-          ]);
-
-      Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Email Verification Mail');
-        });
-       
+          
        
       return redirect()->route("login")->with(['success'=>'تم إرسال رسالة تأكيد لحسابك على الايميل!']);
       

@@ -14,7 +14,7 @@ class UserProfileController extends Controller
     //show form of update user profile
     public function profile(){
        
-       $id=Auth::id();
+       $id=Auth::user()->id;
        $user=User::with(['profile'])->find($id);
        return view('customer_dashboard.home',['user'=>$user]);
     }
@@ -42,12 +42,12 @@ class UserProfileController extends Controller
             'email'=>$email 
            
         ]);
-        $user_profile=user_profile::where('user_id',Auth::id())->update([
+     $user_profile=user_profile::where('user_id',Auth::id())->update([
             'first_address'=>$first_address,
             'second_address'=>$second_address,
             'phone'=>$phone
         ]);
-        if ($user && $user_profile){
+        if ($user || $user_profile){
             return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
         }
         else{

@@ -101,6 +101,8 @@ class checkoutController extends Controller
         $invoice->cancel_next_url=$orders['cancel_next_url'];
         $invoice->success_url=$orders['success_url'];
         $invoice->cancel_url=$orders['cancel_url'];
+        $invoice->metadata=json_encode($orders['metadata'],true);
+
 
         
         if($invoice->save()){
@@ -143,7 +145,7 @@ class checkoutController extends Controller
        $products=$this->getProducts($invoice_id);
       
          
-     
+    //  return $invoice_data;
 
         return view('paymentView.pay_card' ,compact('invoice_data','products'));
 
@@ -166,9 +168,7 @@ class checkoutController extends Controller
         }     
         public function payment_response(Request $request)
         {
-    
-            $total_amout=$request->input('total_amount');
-      
+            $invoice_referance=$request->input('invoice_referance');
             $card_number=$request->input('card_number');
             $card_holder=$request->input('card_holder');
             $expiration_mm=$request->input('expiration_mm');
@@ -176,16 +176,19 @@ class checkoutController extends Controller
             $success_url=$request->input('success_url');
             $cvv=$request->input('cvv');
          
+            $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->first();
            
             $current_time=Carbon::now();
             $response_info=
-            array('status'=>'success','customer_account_info'=>
-            array('order_reference_id'=>0,'paid_amount'=>$total_amout,'card_holder'=> $card_holder,'card_type'=>"visa Card",
-            'created_at'=>$current_time->toDateTimeString()
+            array('status'=>'success','order_reference'=>$invoice_data->order_reference,'products'=>str_replace('\\','',$invoice_data->products),'customer_account_info'=>
+            array('paid_amount'=>$invoice_data->total_amout,'card_holder'=> $card_holder,'card_type'=>"visa Card",
+            'created_at'=>$invoice_data->created_at
             ,'updated_at'=>
-            $current_time->toDateTimeString()
-            ));
-          $response_info= base64_encode(json_encode($response_info));
+            $invoice_data->updated_at,
+            ),'meta_data'=>$invoice_data->metadata);
+           
+        //   $response_info= base64_encode(json_encode($response_info));
+          return $response_info;
            $response= $success_url.'/'.$response_info;
         //   return  $response;
         return  Redirect::away($response);

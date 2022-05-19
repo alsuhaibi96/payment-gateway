@@ -490,7 +490,9 @@
                                 @csrf
                                  @foreach ($invoice_data as $item )
                             <input type="hidden" name="merchant_id" value="{{ $item->user_id}}">
+                            <input type="hidden" name="order_reference" value="{{ $item->order_reference}}">
                             <input type="hidden" name="invoice_referance" value="{{ $item->invoice_referance}}">
+                            <input type="hidden" name="metadata" value="{{ $item->metadata}}">
                             <input type="hidden" name="product_name" value="{{ $product->product_name}}">
                             <input type="hidden" name="total_amount" value="{{ $item->total_amout}}">
                             <input type="hidden" name="currency" value="{{ $item->currency}}">

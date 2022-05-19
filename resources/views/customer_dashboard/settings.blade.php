@@ -158,13 +158,21 @@
 
         <div class="col-6 py-20">
             <label class="text-dark"> العنوان الاول </label>
-        
-            <input type="text" class="form-control" name="first_address" placeholder=" العنوان الاول"  value="{{ Auth::user()->profile->first_address }}">
+      
+        <input type="text" class="form-control" name="first_address" placeholder=" العنوان الاول"  
+        value="{{ isset(Auth::user()->profile->first_address)?Auth::user()->profile->first_address:"" }}">
+      
         </div>
         <div class="col-6 py-20">
-            <label class="text-dark"> العنوان الاول </label>
-            <input type="text" class="form-control" name ="second_address" placeholder=" العنوان الثاني" value="{{ Auth::user()->profile->second_address }}" >
-
+            <label class="text-dark"> العنوان الثاني </label>
+            @if(isset(Auth::user()->profile->second_address))
+            <input type="text" class="form-control" name ="second_address" placeholder=" العنوان الثاني" 
+            value="{{Auth::user()->profile->second_address}}" >
+              @else
+                  
+            <input type="text" class="form-control" name ="second_address" placeholder=" العنوان الثاني" 
+            value="" >
+@endif
        </div>
 
     </div>
@@ -174,8 +182,12 @@
                                                 <div class="row">
                                                    <div class="col-6">
                                                        <label class="text-dark"> رقم الجوال </label>
-
-                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone" value="{{ Auth::user()->profile->phone }}">
+                                                       @if(isset(Auth::user()->profile->phone)) 
+                                                       <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone" value="{{ Auth::user()->profile->phone
+                                                        }}">
+                                                        @else
+                                                        <input type="text" class="form-control fs-6" placeholder="00967-71234567" name="phone" value="">
+                                                        @endif
                                                    </div>
 
                                                   

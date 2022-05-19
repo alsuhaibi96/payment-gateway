@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    @notifyCss
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="icon" href="/favicon.ico">
     <title>Checkout</title>
@@ -671,6 +672,8 @@ $jqDate.bind('keyup','keydown', function(e){
   }
 });
         </script>
+        @notifyJs
+        <x:notify-messages />
 </body>
 
 </html>

@@ -24,12 +24,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--custom css file link-->
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
+    @notifyCss
 
 
-  <!-- Select2 CSS -->
-  <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/select2.min.css') }}">
-  <!-- Datetimepicker CSS -->
-  <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/bootstrap-datetimepicker.min.css') }}">    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
+    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
@@ -55,14 +53,6 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/dashboard-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/app-invoice.css')}}">
     <!-- END: Page CSS-->
-    @notifyCss
-    <!-- datatable -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/favicon.ico')}}">
-    <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/custom-rtl.css')}}">
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
@@ -73,14 +63,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Changa:wght@700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
-        .notify {
-            margin: 8% 0 0 0;
-            padding: 0;
-        }
 
-        .p-4 {
-            padding: 1.5rem !important;
-        }
     </style>
 </head>
 <!-- END: Head-->
@@ -126,18 +109,10 @@
                                 <li class="scrollable-container media-list"><a class="d-flex justify-content-between" href="javascript:void(0);">
                                         <div class="media d-flex align-items-center">
                                             <div class="media-left pr-0">
-                                                <div class="avatar mr-1 m-0">
-                                                    @if(isset(Auth::user()->profile->avatar))
-                                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" style="height: 50px;width: 50px;">
-                                                    @else
-                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
-                                                   
-                                                   
-                                                    @endif        
-                                                      </div>
+                                                <div class="avatar mr-1 m-0"><img src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="39" width="39"></div>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{ Auth::user()->first_name }}</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">{{ Auth::user()->created_at }}</small>
+                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك  </span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -180,22 +155,8 @@
                                 <li class="dropdown-menu-footer"><a class="dropdown-item p-50 text-primary justify-content-center" href="javascript:void(0)">Read all notifications</a></li>
                             </ul>
                         </li>
-                       
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none">
-                                    <span class="user-name">{{ Auth::user()->first_name }}</span>
-                        <span class="user-status text-muted"> 😊 Welcome  </span>
-                    </div>
-                    <span>
-                        @if(isset(Auth::user()->profile->avatar))
-                        <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 40px;height: 40px;"> 
-                        @else
-                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
-                        {{-- <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                           --}}
-                           
-
-                        @endif
-                    </span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name">Mo'khtar Ghaleb</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
                                 {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>
@@ -232,38 +193,7 @@
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
-                        <ul class="menu-content">
-                            <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 
-                                
-                                {{Auth::user()->bank_accounts->balance.' $ '  }} </span></a>
-                            </li>
-                           
-                        </ul>
-                    </li>
-                    
-                      
-                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                                  </li>
-                                   <li class="@yield('addBalance') nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
-                                    </li>
-                                    <li class="@yield('transaction') nav-item"><a href="{{ route('transaction') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">العمليات</span></a>
-                                    </li>
-                                    
-                                    <li class="@yield('transfer') nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
-                                    </li>
-                                    <li class="@yield('settings') nav-item"><a href="{{ route('settings') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
-                                    </li>
-                    
-                                    <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
-                                    </li>
-                                    <li class="@yield('report') nav-item"><a href="{{ route('report') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
-                                    </li>
-                                    <li class="@yield('active') nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-                                    </li>
-                            </div>
-                        </div>
-                        <!-- END: Main Menu-->
+    
     @yield('content')
 
         <!-- BEGIN: Footer-->
@@ -295,44 +225,13 @@
     <script src="{{url('assets/app-assets/js/scripts/footer.js')}}"></script>
     <!-- END: Theme JS-->
 
-
-    
     <!-- BEGIN: Page JS-->
     <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
     <!-- END: Page JS-->
-<!-- BEGIN: Page Vendor JS-->
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
-<script src="{{url('assets/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
-<!-- END: Page Vendor JS-->
-  <!-- BEGIN: Page JS-->
-  <script src="{{url('assets/app-assets/js/scripts/datatables/datatable.js')}}"></script>
-  <!-- END: Page JS-->
+    @notifyJs
+    <x:notify-messages />
 
-  <!-- BEGIN: Page JS-->
-  <script src="{{url('assets/app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
-  <script src="{{url('assets/app-assets/js/scripts/pages/app-invoice.js')}}"></script>
-  <!-- END: Page JS-->
-  <!-- Select2 JS -->
-  <script src="{{ URL::to('assets/app-assets/js/select2.min.js') }}"></script>
-  <!-- Datetimepicker JS -->
-  <script src="{{ URL::to('assets/app-assets/js/moment.min.js') }}"></script>
-  <script src="{{ URL::to('assets/app-assets/js/bootstrap-datetimepicker.min.js') }}"></script>
-  <script>
-      $(document).ready(function() {
-          $('.select2s-hidden-accessible').select2({
-              closeOnSelect: false
-          });
-      });
-  </script>
-  @notifyJs
-  <x:notify-messages />
 </body>
 <!-- END: Body-->
 

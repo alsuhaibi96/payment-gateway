@@ -56,8 +56,9 @@
 
                                              <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="users-avatar-shadow rounded-circle "   >                                           
                                             @else
-                                            <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" >                                          
-
+                                            {{-- <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" >                                           --}}
+                                            <img src="{{asset('assets/web/images/avatar.jpg')}}" alt="users avatar" class="users-avatar-shadow rounded-circle" style="object-fit: cover">                                          
+       
 
                                             @endif
                                         </a>

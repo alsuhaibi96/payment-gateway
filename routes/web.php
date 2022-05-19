@@ -203,7 +203,10 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
 Route::get('/Transactions', [MerchantController::class,'Transactions'])->name('Transactions');
 Route::get('/listInvoice', [MerchantController::class,'listInvoice'])->name('listInvoice');
 Route::get('/financial_movement/{id}', [MerchantController::class,'financial_movement'])->name('financial_movement'); 
- 
+Route::get('/bank_account', [MerchantController::class,'bank_account'])->name('bank_account');
+Route::post('/update_acount', [MerchantController::class,'update_acount'])->name('update_acount');
+Route::get('/key_genrator', [MerchantController::class,'key_genrator'])->name('key_genrator');
+Route::post('/key_generat', [MerchantController::class,'key_generat'])->name('key_generat');
  Route::get('/merchant_dashboard', function(){
     return view('merchant_dashboard/home');
 })->name('merchant_dashboard');

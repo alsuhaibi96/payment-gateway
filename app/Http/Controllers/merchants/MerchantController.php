@@ -4,11 +4,15 @@ namespace App\Http\Controllers\merchants;
 
 use App\Http\Controllers\Controller;
 use App\Models\bank_account;
+use App\Models\Credit_cards;
 use App\Models\PaymentInvoice;
 use App\Models\TransactionOverView;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class MerchantController extends Controller
 {
@@ -27,7 +31,7 @@ class MerchantController extends Controller
     // transactions function that show finanicial transaction
     public function Transactions(){
         $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
-        $transactions=TransactionOverView::where('user_id',Auth::user()->id)->paginate(3);
+        $transactions=TransactionOverView::where('user_id',Auth::user()->id)->paginate(8);
         return view('merchant_dashboard/Transactions',compact('data','transactions'));
     }
     //list function to show all invoice transaction
@@ -78,5 +82,61 @@ class MerchantController extends Controller
         // // // return $customer_account_pro;
         return view('merchant_dashboard/financial_movement', compact('data', 'movements'));
 
+    }
+    public function bank_account(){
+        $merchant=Auth::user();
+        $public_key=$merchant->public_key;
+        $private_key=$merchant->private_key;
+        $bank_acount=bank_account::where('user_id',$merchant->id)->first();
+        $account_num=$bank_acount->account_number;
+        $card_info=credit_cards::where('bank_accounts_id',$bank_acount->id)->first();
+        $card_num=$card_info->card_number;
+        $card_holder=$card_info->card_holder;
+        $cvv=$card_info->cvv;
+        $expiration_yy=$card_info->expiration_yy;
+        $expiration_mm=$card_info->expiration_mm;
+        return view('merchant_dashboard/bank_account_information',compact('public_key','private_key','bank_acount','card_info'));
+    }
+    public function seprateDate($date)
+    {
+        return  $dates = explode('/', $date);
+    }
+    public function update_acount(Request $request){
+        $validator = Validator::make($request->all(), [
+            'cvv' => ['required','max:3'],
+        ]);
+        $cvv=$request->input('cvv');
+        Credit_cards::where('id',$request->id)->update(array('cvv'=>$cvv));
+        return redirect()->back();
+    }
+    public function key_genrator(){
+        $merchant=Auth::user();
+        $public_key=$merchant->public_key;
+        $private_key=$merchant->private_key;
+        return view('merchant_dashboard/key_generator',compact('public_key','private_key'));
+
+    }
+    public function key_generat(){
+        $merchant=Auth::user();
+        $public_key=$this->generate_string(15);
+        $private_key=$this->generate_string(24);
+        User::where('id',$merchant->id)->update(array(
+            'public_key'=>$public_key,
+            'private_key'=>$private_key
+        ));
+        return redirect()->back();
+
+    }
+    public function generate_string($strength = 16)
+    {
+        $input = '0123456789';
+        $input_length = strlen($input);
+        $random_string = '';
+        for ($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+
+        return $random_string;
     }
 }

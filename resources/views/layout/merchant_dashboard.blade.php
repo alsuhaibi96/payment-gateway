@@ -57,7 +57,6 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/dashboard-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/app-invoice.css')}}">
     <!-- END: Page CSS-->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     @notifyCss
     <!-- datatable -->
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/favicon.ico')}}">
@@ -246,6 +245,10 @@
             </li>
             <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
             </li>
+            <li class=" nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
+            </li>
+            <li class=" nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
+            </li>
         </div>
     </div>
     <!-- END: Main Menu-->
@@ -308,14 +311,14 @@
                 closeOnSelect: false
             });
         });
-        
+
 
 
 
         $(document).ready(function() {
             // Initialize
             $('#dtable').DataTable({
-                
+
                 'columns': [{
                         data: 'transaction_date'
                     }, // index - 0
@@ -330,7 +333,7 @@
                     }, // index - 3
                     {
                         data: 'Reference'
-                    } ,// index - 4
+                    }, // index - 4
                     {
                         data: 'IsLine'
                     } // index - 5
@@ -342,8 +345,9 @@
             });
         });
     </script>
-    <x:notify-messages />
     @notifyJs
+    <x:notify-messages />
+
 
 </body>
 <!-- END: Body-->

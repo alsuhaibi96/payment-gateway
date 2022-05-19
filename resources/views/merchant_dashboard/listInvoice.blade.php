@@ -32,13 +32,17 @@
                                                 <th>order_reference</th>
                                                 <th>Total Amount</th>
                                                 <th>Currency</th>
-                                                <th >Description</th>
+                                                <th>Description</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
                                                 <th class="text-right">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if ($Invoices->count() == 0)
+                                            <tr>
+                                                <td colspan="8">No products to display.</td>
+                                            </tr>
 
                                             @foreach($Invoices as $invoice)
                                             <tr>

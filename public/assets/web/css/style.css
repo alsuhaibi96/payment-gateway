@@ -14,21 +14,22 @@
     border: none;
     outline: none;
     text-decoration: none;
-    text-transform: capitalize;
-    transition: all .5s linear;
+
 }
 html
 {
     scroll-padding-top: 5.5rem;
     font-size: 62.5%;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+
     direction: rtl;
 }
 body
 {
     background-color: var(--main-color);
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Amiri', serif;
+    font-family: 'Changa', sans-serif;
+    font-family: 'Tajawal', sans-serif;
 }
 section
 {
@@ -648,6 +649,7 @@ section:nth-child(even).login-form
         width: 100%;
     }
 }
+
 /* user profile style */
 .rounded-circle{
     width: 15rem;

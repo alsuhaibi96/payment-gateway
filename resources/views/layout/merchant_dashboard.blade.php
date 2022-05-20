@@ -9,18 +9,11 @@
 
 
     <title> Wasl Pay</title>
-    <!--walper slider library-->
-    <link rel="stylesheet" href="{{url('assets/web/css/swiper-bundle.min.css')}}" />
-    <!--normalize library-->
-    <link rel="stylesheet" href="{{url('assets/web/css/normalize.css')}}">
-    <!--google font library-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+
     <!--font icon-->
     <link rel="stylesheet" href="{{url('assets/web/css/all.min.css')}}" />
     <link rel="stylesheet" href="{{url('assets/web/path/to/font-awesome/css/font-awesome.min.css')}}">
-    <!-- CSS only -->
+    <!--  Download Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--custom css file link-->
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
@@ -68,9 +61,10 @@
 
 
 
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
-    <!-- END: Custom CSS-->
+        <!--BEGIN: Dashboard Style-->
+        <link rel="stylesheet" href="{{url('assets/web/css/dashboardStyle.css')}}">
+        <!-- END: Dashboard Style-->
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri&family=Changa:wght@700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
@@ -216,9 +210,9 @@
                     <ul class="menu-content">
                         <li>
                             <a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span> <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto">
-                                {{ Auth::user()->bank_accounts->balance; }}   
-                                
-                                
+                                {{ Auth::user()->bank_accounts->balance; }}
+
+
                                 {{-- @foreach($data as $balance)
                                     {{$balance->balance}}.'$'.
 

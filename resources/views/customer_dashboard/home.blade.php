@@ -54,7 +54,8 @@
                                                 <button class="mb-1 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     يناير
                                                 </button>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonSec">
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButtonSec" style="max-height:400px;
+                                                overflow-y: scroll;">
                                                     <a class="dropdown-item" href="javascript:;">يناير</a>
                                                     <a class="dropdown-item" href="javascript:;">فبراير</a>
                                                     <a class="dropdown-item" href="javascript:;">مارس</a>

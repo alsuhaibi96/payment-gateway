@@ -45,7 +45,7 @@
     <section class="about pt-5" id="about">
 
         <a href="#" class="logo">وصل!<i class="fas fa-wallet"></i></a>
-        <
+
 
         <div class="row">
             <div class="image ">
@@ -55,10 +55,10 @@
             <div class="content">
                 <h3>موقع الكتروني يوفر خدمات الدفع الالكتروني</h3>
                 <p>
-موقع يوفر خدمات الدفع الالكتروني على مسوى الجمهورية اليمنية
+موقع يوفر خدمات الدفع الالكتروني على مستوى الجمهورية اليمنية
                 </p>
                 <p>
-تحصل اموالك من جميع المتاجر الالكترونية بكل سهولة
+تحصل على اموالك لجميع المتاجر الالكترونية بكل سهولة
                 </p>
                 <div class="icon-container">
                     <div class="icons">
@@ -73,7 +73,7 @@
                         <span>7/24 خدمة</span>
                         <i class="fas fa-headset"></i>
                     </div>
-                  
+
                 </div>
                 <a class="btn text-white " href="/about-us">أعرف اكثر</a>
 
@@ -163,7 +163,7 @@
                 <h3 class="">معلومات التواصل</h3>
                 <a>00967-777604785</a>
                 <a> - صنعاءاليمن -</a>
-                <a>www.yemenpay.com</a>
+                <a>www.waslpayment.com</a>
             </div>
             <div class="Box">
                 <h3 >يمكن ايجادنا عبر منصات التواصل</h3>

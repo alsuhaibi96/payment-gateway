@@ -1,8 +1,0 @@
-.leaflet-map {
-  height: 400px;
-  z-index: 1;
-}
-
-.leaflet-map .leaflet-marker-icon:focus {
-  outline: none;
-}

@@ -273,7 +273,20 @@
             </p>
         </footer>
         <!-- END: Footer-->
-
+ <!-- jquery -->
+ <script
+ src="https://code.jquery.com/jquery-3.6.0.min.js"
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+ crossorigin="anonymous"></script>
+<!-- publisher for notification -->
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+   // Enable pusher logging - don't include this in production
+   Pusher.logToConsole = true;
+   var pusher = new Pusher('7e80e29bb28840bff098', {
+      cluster: 'ap2'
+   });
+</script>
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{url('assets/app-assets/vendors/js/vendors.min.js')}}"></script>

@@ -24,7 +24,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <!-- Dashboard Analytics Start -->
+                <!-- Filtering Analytics-->
                 <section id="dashboard-analytics">
                     <div class="row">
 
@@ -35,8 +35,8 @@
                                 <div class="row card mt-2 ">
                                     <div class="col-xl-12">
                                         <div class="row">
-                                            <span class=" col-xl-6 my-2">   عرض الإحصائيات </span>
-                                            <div class="col-xl-3 dropdown">
+                                            <span class=" col-xl-6 col-md-6 col-sm-6 my-2">   عرض الإحصائيات </span>
+                                            <div class="col-xl-3 col-md-3 col-sm-3 dropdown">
 
 
                                                 <b class="text-dark">  للعام </b>
@@ -49,7 +49,7 @@
                                                     <a class="dropdown-item" href="javascript:;">2018</a>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 dropdown">
+                                            <div class="col-xl-3 col-md-3 col-sm-3 dropdown">
                                                 <b class="text-dark">  للشهر </b>
                                                 <button class="mb-1 btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     يناير
@@ -70,6 +70,18 @@
                                                     <a class="dropdown-item" href="javascript:;">ديسمبر</a>
                                                 </div>
                                             </div>
+<!--
+                                            <div class="col-xl-3 dropdown">
+                                                <b class="text-dark">  للشهر </b>
+                                                <select class="mb-1 btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButtonSec" data-toggle="dropdown" aria-expanded="false" >
+                                                    <option class="dropdown-item " value="10" >10</option>
+                                                    <option class="dropdown-item" value='20'>20</option>
+                                                    <option class="dropdown-item" value='30'>30</option>
+                                                    <option class="dropdown-item" value='-1'>All</option>
+                                                </select>
+                                            </div>
+                                        -->
+
                                         </div>
 
 
@@ -83,7 +95,7 @@
                         </div>
 
 
-                        <!-- Website Analytics Starts-->
+                        <!-- Transaction Analytics-->
                         <div class="col-md-12 col-sm-12">
                             <div class="card">
 
@@ -111,13 +123,13 @@
                             </div>
 
                         </div>
-                        <div class="col-xl-3 col-md-6 col-sm-12 dashboard-referral-impression">
+                        <div class="col-xl-3 col-md-6 col-sm-12 ">
                             <div class="row">
-                                <!-- Referral Chart Starts-->
+                                <!-- تحويل خلال الشهر -->
                                 <div class="col-xl-12 col-12">
-                                    <div class="card">
+                                    <div class="card h-100">
                                         <div class="card-body text-center pb-0">
-                                            <h5> <b>  11 </b> </h5>
+                                            <h5> <b>  80 </b> </h5>
                                             <span class="text-muted fs-10">عملية تحويل خلال الشهر </span>
                                             <div id="success-line-chart"></div>
                                         </div>
@@ -126,9 +138,9 @@
                             </div>
                         </div>
 
-                <div class="col-xl-3 col-md-6 col-sm-12 dashboard-referral-impression">
+                <div class="col-xl-3 col-md-6 col-sm-12 ">
                     <div class="row">
-                         <!-- Impression Radial Chart Starts-->
+                         <!-- عمليات خلال الشهر-->
                          <div class="col-xl-12 col-12">
                             <div class="card">
                                 <div class="card-body donut-chart-wrapper">
@@ -147,7 +159,7 @@
 
                         <div class="col-xl-3 col-md-12 col-sm-12">
                             <div class="row">
-                                <!-- Conversion Chart Starts-->
+                                <!-- المتبقي من الرصيد-->
                                 <div class="col-xl-12 col-12">
                                     <div class="card">
                                         <div class="card-header d-flex justify-content-between pb-xl-0 pt-xl-1">
@@ -156,7 +168,7 @@
 
                                             </div>
                                             <div class="conversion-rate">
-                                                <h5>89K Y.R</h5>
+                                                <h5> {{ Auth::user()->bank_accounts->balance . ' ريال ' }}</h5>
                                             </div>
                                         </div>
                                         <div class="card-body text-center">
@@ -169,8 +181,9 @@
 
                         <div class="col-xl-3 col-md-12 col-sm-12">
                             <div class="row">
+                                <!-- صرفيات -->
                                 <div class="col-12">
-                                    <div class="card">
+                                    <div class="card pt-1">
                                         <div class="card-body d-flex align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar bg-rgba-primary m-0 p-25 mr-75 mr-xl-2">
@@ -187,8 +200,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- إيداعات -->
                                 <div class="col-12">
-                                    <div class="card">
+                                    <div class="card pt-1">
                                         <div class="card-body d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar bg-rgba-warning m-0 p-25 mr-75 mr-xl-2">

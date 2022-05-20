@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ url('assets/web/css/style.css') }}">
 
     <!-- Website Icon-->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/app-assets/images/ico/wallet-solid.svg') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/app-assets/images/wallet-solid.svg') }}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700"
         rel="stylesheet">
 
@@ -239,10 +239,7 @@
 
                         </a>
                     </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
-                            class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i
-                            class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary"
-                            data-ticon="bx-disc"></i></a></li>
+
             </ul>
         </div>
         <div class="shadow-bottom"></div>

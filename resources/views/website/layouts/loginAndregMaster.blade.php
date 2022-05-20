@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
 
      <!-- add Icon -->
-     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
-</head>
+     <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/app-assets/images/wallet-solid.svg') }}">
+    </head>
 <body>
     <!--start header section-->
     <header>

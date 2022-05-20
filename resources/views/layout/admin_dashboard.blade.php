@@ -8,15 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
     <title> Wasl Pay</title>
-    <!--walper slider library-->
-    <link rel="stylesheet"href="{{url('assets/web/css/swiper-bundle.min.css')}}"/>
-    <!--normalize library-->
-    <link rel="stylesheet" href="{{url('assets/web/css/normalize.css')}}">
-    <!--google font library-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap"
-    rel="stylesheet">
+
     <!--font icon-->
     <link rel="stylesheet" href="{{url('assets/web/css/all.min.css')}}"/>
     <link rel="stylesheet" href="{{url('assets/web/path/to/font-awesome/css/font-awesome.min.css')}}">
@@ -27,7 +19,7 @@
 
 
     <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/app-assets/images/wallet-solid.svg') }}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
@@ -56,7 +48,7 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
     <!-- END: Custom CSS-->
-    
+
 
 
     <style>
@@ -193,29 +185,29 @@
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
                     <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
-                       
+
                     </li>
-                    
-                      
+
+
                                     <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
                                      </li>
-                    
+
                                     <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
-                                    
 
-                               
+
+
                                     <li class=" nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
                                     </li>
 
-                                    
+
                                     <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
                                     </li>
 
                                     <li ><a  href="{{ route('admin_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                     </li>
 
-                    
+
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
                                     <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>

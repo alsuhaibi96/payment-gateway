@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ URL::to('assets/app-assets/css/bootstrap-datetimepicker.min.css') }}">
 
     <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/app-assets/images/wallet-solid.svg') }}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->

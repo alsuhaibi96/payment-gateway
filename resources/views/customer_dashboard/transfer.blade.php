@@ -14,7 +14,7 @@
 
 @section('content')
 
-               
+
 
         <!-- BEGIN: Content-->
         <div class="app-content content">
@@ -23,7 +23,7 @@
                 <div class="content-header row">
                 </div>
                 <div class="content-body">
-                    <!-- app invoice View Page -->
+                    <!-- Transfer Page -->
                     <section class="invoice-edit-wrapper">
                         <div class="row">
                             <!-- invoice view page -->
@@ -36,28 +36,30 @@
                                         <strong>نجاح!</strong>     {{ session()->get('success') }}
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                       </div>
-                              
-                              
+
+
                                 @endif
-                                        
+
                                 <div class="card ">
                                     <div class="card-body pb-0 mx-25 ">
-                
 
-                                         <!-- logo and title -->
+
+                                         <!--Card Title -->
                                          <div class="row my-2">
                                             <div class="col-sm-6 col-12 order-1 order-sm-1 d-flex justify-content-start">
-                                                <span class="text-dark col-6"><b> بيانات المستلم </b> </span>
+                                                <span class="text-dark col-12"><b> بيانات المستلم </b> </span>
                                           </div>
                                         </div>
-                                    
 
-                                        <div class=" order-2 order-sm-1">
+
+                                        <!--Card Part 1 - ID & budget -->
+                                        <div class="">
                                             <div class="row">
+
                                                 <div class="col-6  py-20  has-validation">
                                                      <label class="text-dark"> البريد الالكتروني  </label>
                                                      <input type="email" name="email" class="form-control" placeholder="البريد الالكتروني" value="{{ old('email') }}">
-                                                  
+
                                                      @if($errors->has('email'))
                                                      <div class="" style="color: red;font-size: 12px" >
                                                         {{ $errors->first('email') }}
@@ -66,7 +68,7 @@
                                                      @endif
                                                 </div>
 
-                                               
+
                                                 <div class="col-6">
                                                     <fieldset class="invoice-address form-group">
                                                         <label for=""> مبلغ التحويل </label>
@@ -75,11 +77,11 @@
                                                         <div class=""style="color: red;font-size: 12px">
                                                            {{ $errors->first('transfer_money') }}
                                                          </div>
-                                                  
+
                                                          @elseif ($errors->has('customError'))
                                                          <div class=""style="color: red;font-size: 12px">
                                                             {{ $errors->first('customError') }}
-                                                    
+
                                                           </div>
                                                           @endif
                                                     </fieldset>
@@ -89,18 +91,20 @@
 
                                         </div>
 
-                                            
+
 
                                         <hr>
 
-                                        <!-- invoice address and contact -->
+                                        <!--Card Part 2 - Details -->
 
-                                       
 
-                                        <div class="row invoice-info">
-                                            <div class="row">
-                                                
-                                            </div>
+
+
+
+
+
+                                        <div class="row">
+
 
                                             <div class="col-lg-12 col-md-12 col-md-10 mt-25">
 
@@ -118,19 +122,12 @@
                                         <hr>
                                     </div>
                                     <div class="card-body pt-50">
-                                        <!-- invoice subtotal -->
+                                        <!-- Transfer subtotal -->
                                         <hr>
                                         <div class="invoice-subtotal pt-50 ">
                                             <div class="row">
                                                 <div class="col-md-5 col-12">
-                                                    <div class="d-flex justify-content-between py-50">
-                                                        <span class="invoice-terms-title">إرسال نسخة عبر الإيميل</span>
-                                                        <div class="custom-control custom-switch custom-switch-glow">
-                                                            <input type="checkbox" class="custom-control-input" checked id="paymentTerm">
-                                                            <label class="custom-control-label" for="paymentTerm">
-                                                            </label>
-                                                        </div>
-                                                    </div>
+
 
                                                     <div class="d-flex justify-content-between py-50">
                                                         <span class="invoice-terms-title">المبلغ شامل الضريبة</span>
@@ -158,10 +155,10 @@
                                                             <h6 class="invoice-subtotal-value mb-0">200 YER</h6>
                                                         </li>
 
-                                                       
+
                                                     </ul>
                                                     <div class="col-12 border-0 pb-0">
-                                                        <button class="btn btn-primary btn-block subtotal-preview-btn submit_transfer" type="submit" id="submit_transfer">تأكيد العملية</button>
+                                                        <button class="btn btn-primary btn-block " type="submit" id="submit_transfer">تأكيد العملية</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,7 +167,9 @@
                                 </div>
                                 </form>
                             </div>
-                            <!-- invoice action  -->
+
+
+                            <!-- Transfer action  -->
                             <div class="col-xl-3 col-md-4 col-12">
                                 <div class="card invoice-action-wrapper shadow-none border">
                                     <div class="card-body">
@@ -180,8 +179,8 @@
                                                 <span>إرسال العملية</span>
                                             </button>
                                         </div>
-                                        
-                                        
+
+
                                         <div class="invoice-action-btn mb-1">
                                             <button class="btn btn-light-primary btn-block">حفظ في المسوّدة</button>
                                         </div>

@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{url('assets/web/css/style.css')}}">
 
     <!-- add Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('assets/app-assets/images/wallet-solid.svg') }}">
 </head>
 <body>
     <!--start header section-->
@@ -31,7 +31,7 @@
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
         <nav class="navbar" id="menu">
 
-            
+
             <a class="active" href="{{ route('index') }}">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>

@@ -125,21 +125,21 @@ class UserController extends Controller
 
           $user->public_key=$this->generate_string(25);
           $user->private_key=$this->generate_string(50);
-
           if($user->save()){
-          $token = Str::random(64);
-          $user->attachRole($roleName);
-
-           UserVerify::create([
-            'user_id' => $user->id, 
-            'token' => $token
-          ]);
-
-      Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Email Verification Mail');
-        });}
-       
+            $token = Str::random(64);
+            $user->attachRole($roleName);
+  
+             UserVerify::create([
+              'user_id' => $user->id, 
+              'token' => $token
+            ]);
+  
+        Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+              $message->to($request->email);
+              $message->subject('Email Verification Mail');
+          });}
+ 
+        
         //   $user->save();
 
         $userProfile = new user_profile();
@@ -189,7 +189,7 @@ class UserController extends Controller
           
      
          
-          
+       
           
        
       return redirect()->route("login")->with(['success'=>'تم إرسال رسالة تأكيد لحسابك على الايميل!']);
@@ -269,7 +269,7 @@ class UserController extends Controller
     
             
             }
-   
+
 
             else
                 return redirect()->route('login')->with(['message'=>'البيانات خاطئة او لم يتم تفعيل الايميل!']);}

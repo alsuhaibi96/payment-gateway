@@ -47,6 +47,10 @@ Route::post('/customer/register', [UserController::class,'createCustomer'])->nam
 Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 
 Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
+
+
+
+
 Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
 
 
@@ -118,7 +122,6 @@ Route::get('/test-card', function () {
 
 
 
-Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
 Route::group(['middleware'=>['auth']],function(){
 
@@ -127,6 +130,7 @@ Route::group(['middleware'=>['auth']],function(){
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
 
     
@@ -188,7 +192,9 @@ Route::get('/customer_dashboard/settings', [CustomerDashController::class,'setti
 )->name('settings');
 /**************edit image***************/
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
-Route::get('customer/transfer/details', [CustomerController::class,'transferredMoenyDetails'])->name('tansfer_details');
+Route::get('customer/transfer/details', [CustomerController::class,'transferredMoneyDetails'])->name('tansfer_details');
+Route::get('customer/transfer/transactions', [CustomerController::class,'showTransferDetails'])->name('show_transfer_details');
+
 
 
 /***************change password****************/

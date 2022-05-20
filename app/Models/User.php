@@ -87,5 +87,8 @@ class User extends Authenticatable
     public function Transaction(){
         return $this->hasMany(Transaction::class);
     }
+    public function monyTransfer(){
+        return $this->hasOne(MoneyTransfer::class,'user_id');
+    }
    
 }

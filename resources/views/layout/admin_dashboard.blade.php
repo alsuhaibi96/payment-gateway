@@ -195,7 +195,9 @@
                     <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                        
                     </li>
-                    
+                    <li ><a  href="{{ route('admin_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                    </li>
+
                       
                                     <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
                                      </li>
@@ -212,9 +214,7 @@
                                     <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
                                     </li>
 
-                                    <li ><a  href="{{ route('admin_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                                    </li>
-
+                         
                     
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>

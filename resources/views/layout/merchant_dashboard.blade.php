@@ -227,7 +227,7 @@
                      
             </ul>
             </li>
-            <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('merchant_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+            <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('merchant_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
             </li>
             <li class="@yield('financial') nav-item"><a href="{{ route('financial_movement',Auth::user()->id) }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> الحركة المالية</span></a>
             </li>
@@ -237,32 +237,20 @@
             </li>
             <li class="@yield('listInvoice') nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
             </li>
-                        {{-- <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                </li> --}}
-            </ul>
+                    
             </li>
-
-            <li class=" nav-item"><a href="{{ route('financial_movement',Auth::user()->id) }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> الحركة المالية</span></a>
+ 
+            <li class=" nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
             </li>
-            {{-- <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate" data-i18n="Widgets"> إعدادات الحساب</span></a>
-            </li> --}}
-
+            <li class=" nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
+            </li>
             <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
             </li>
             <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> الإبلاغ عن مشكلة</span></a>
             </li>
             <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
             </li>
-            <li class=" nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">أحدث المعاملات</span></a>
-            </li>
-            <li class=" nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
-            </li>
-            <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-            </li>
-            <li class=" nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
-            </li>
-            <li class=" nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
-            </li>
+        </ul>
         </div>
     </div>
     <!-- END: Main Menu-->

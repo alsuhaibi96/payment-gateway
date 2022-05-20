@@ -243,7 +243,7 @@
                     </li>
                     
                       
-                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                   </li>
                                    <li class="@yield('addBalance') nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>

@@ -12,7 +12,7 @@
 @section('content')
 <section ></section>
     <!--start signIn form-->
-    <section class="login-form container justify-content-center pt-4 pb-4  ">
+    <section class="login-form container justify-content-center pt-4 pb-4  " style="    margin: 50px; border-radius: 10px;">
       <div class="row section-header text-center p-4">
         <div class="col-12">
             <h2 class="display-3  fw-bold">  إنشاء حساب شخصي</h2>

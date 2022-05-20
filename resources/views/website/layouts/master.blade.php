@@ -33,39 +33,65 @@
         <nav class="navbar" id="menu">
 
 
-            <a class="active" href="{{ route('index') }}">الرئيسية</a>
+            <a class="active" href="#home">الرئيسية</a>
             <a href="#about">من نحن</a>
             <a href="#customer"> عملائنا</a>
 
-            <a href="{{ route('contact-us') }}">تواصل معنا</a>
+            <a href="#contact">تواصل معنا</a>
             <a href="{{ route('docs') }}">Docs</a>
         </nav>
         <div class="icon">
             <i class="fas fa-bars toogle" id="menu-bars"></i>
-            <i class="fas fa-search" id="search-icon"></i>
-            <i class="fas fa-right-to-bracket" style="color: #192a56;">
-                <a href="{{ route('registeration') }}">  </a>
-            </i>
+            <a class="fas fa-user" href="{{ route('registeration') }}"> </a>
         </div>
     </header>
     <!--end header section-->
-    <!--start search form-->
-    <form action="#" id="search-form">
-        <input type="search" placeholder="أبحث ...." name="" id="search-box">
-        <label for="search-box" class="fas fa-search"></label>
-        <i class="fas fa-times" id="close"></i>
-    </form>
-    <!--end search form-->
+
+
 
 
     @yield('content')
 
 
-    <footer class="footer-content">
-        <p>جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT </p>
-    </footer>
-
     <!--start footer section -->
+    <section class="foot" id="contact" style="max-height: 400px; height: 400px;">
+
+        <div class="box-container">
+
+            <div class="box" data-aos="fade-up" data-aos-delay="150">
+                <a href="#" class="logo"> <i class="fas fa-wallet"></i>وصل! </a>
+                <p>موقع يوفر حلول دفع الكترونية متكاملة</p>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <h3>صفحات الموقع</h3>
+                <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> الرئيسية </a>
+                <a href="#about" class="links"> <i class="fas fa-arrow-right"></i> من نحن </a>
+                <a href="#destination" class="links"> <i class="fas fa-arrow-right"></i> عملائنا </a>
+                <a href="#services" class="links"> <i class="fas fa-arrow-right"></i> تواصل معنا </a>
+                <a href="#gallery" class="links"> <i class="fas fa-arrow-right"></i> Docs </a>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="450">
+                <h3>معلومات التواصل</h3>
+                <p class="cont_icon"> <i class="fas fa-map"></i> صنعاء, اليمن </p>
+                <p class="cont_icon"> <i class="fas fa-phone"></i> +967-777-604785 </p>
+                <p class="cont_icon"> <i class="fas fa-envelope"></i> wasl@gmail.com </p>
+            </div>
+
+        </div>
+        <div class="credit">created by <span>Was Team</span> | جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT</div>
+
+
+    </section>
+    <!--end footer section -->
+  
 
 
 

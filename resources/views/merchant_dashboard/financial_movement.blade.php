@@ -22,8 +22,31 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-body">
+                            <div class="col-12">
+                                <label for="dateRangePicker" class="form-label">فلترة حسب التاريخ</label>
+                                <form action="{{ route('filter_financial_movement') }}" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="input-group input-daterange" id="bs-datepicker-daterange">
+                                            <input type="date" name="from" id="dateRangePicker" placeholder="FROM: MM/DD/YYYY" class="form-control" />
+                                            <span class="input-group-text">to</span>
+                                            <input type="date" name="to" placeholder="TO: MM/DD/YYYY" class="form-control " />
+                                        </div>
+                                        <input type="submit" value="تصفية" class="btn btn-success form-control">
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
                         <div class="card-body card-dashboard">
-                            <div class="table-responsive ">
+                            <div class=" ">
                                 <table class="table table-bordered  dataex-html5-selectors">
                                     <thead>
                                         <tr>
@@ -38,7 +61,7 @@
                                     <tbody>
                                         @if ($movements->count() == 0)
                                         <tr>
-                                            <td colspan="6">No products to display.</td>
+                                            <td colspan="6" style="text-align: center;">لا يوجد اي حركة الى حد الان</td>
                                         </tr>
                                         @endif
                                         @foreach($movements->sortBy('Reference') as $movement)

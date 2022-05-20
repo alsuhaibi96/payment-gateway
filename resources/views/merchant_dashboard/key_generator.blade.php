@@ -35,7 +35,7 @@
 
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                        <input type="text" value="{{$public_key}}" disabled name="card_holder" class="form-control" id="basic-icon-default-fullname" placeholder="أسم العميل" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                        <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" value="{{$public_key}}" disabled name="card_holder" class="form-control" id="basic-icon-default-fullname" placeholder="أسم العميل" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" style="text-transform: none;"/>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
 
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                        <input type="text" value="{{$private_key}}" disabled name="card_holder" class="form-control" id="basic-icon-default-fullname" placeholder="أسم العميل" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                        <input value="{{$private_key}}" type="text" autocapitalize="off"  disabled name="card_holder" class="form-control" id="basic-icon-default-fullname" placeholder="أسم العميل" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" style="text-transform: none;" />
                                     </div>
                                 </div>
                             </div>

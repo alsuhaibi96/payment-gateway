@@ -24,14 +24,7 @@ window.onscroll=function(){
         };
     });
 }
-document.querySelector("#search-icon").onclick=function(){
-    document.querySelector("#search-form").classList.toggle("active");
 
-}
-document.querySelector("#close").onclick=function(){
-    document.querySelector("#search-form").classList.remove("active");
-
-}
 
 var swiper = new Swiper('.home-slider', {
     // Optional parameters

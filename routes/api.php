@@ -87,6 +87,7 @@ Route::group([
     Route::get('/finanical_accounts',[checkoutController::class,'finanical_accounts'])->name('finanical_accounts');
     Route::get('/account_statement/{id}',[checkoutController::class,'customer_account_statement'])->name('customer_account_statement');
     Route::get('/Ledger_account/{id}',[checkoutController::class,'Ledger_account'])->name('Ledger_account');
+    Route::get('/Ledger_accounts/{id}',[checkoutController::class,'Ledger_accounts'])->name('Ledger_accounts');
 });
 
 Route::group([

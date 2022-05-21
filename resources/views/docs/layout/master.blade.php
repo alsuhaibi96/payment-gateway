@@ -44,7 +44,7 @@
             >
            
           </div>
-          <span> <a href="{{ route('docs') }}" style="color: #999; margin:20px;">back to docs main</a></span>
+          <span> <a href="{{ route('docs/home') }}" style="color: #999; margin:20px;">back to docs main</a></span>
          
           <div class="sidebar-content">
             <nav class=" text-dark">

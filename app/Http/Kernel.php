@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'assign.guard' => \App\Http\Middleware\AssignGuard::class,
         'checkadmintoken' => \App\Http\Middleware\checkAdminToken::class,
         'is_verify_email' => \App\Http\Middleware\IsVerifyEmail::class,
+        'DisableBackBtn' => \App\Http\Middleware\DisableBackBtn::class,
     ];
 }

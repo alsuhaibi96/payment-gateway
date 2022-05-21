@@ -48,9 +48,6 @@ Route::post('/merchant/register', [UserController::class,'createMerchant'])->nam
 
 Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
 
-
-
-
 Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
 
 
@@ -84,7 +81,8 @@ Route::post('reset-password', [ForgotPasswordCustomController::class, 'submitRes
     // /* New Added Routes */
  Route::get('user/dashboard', [UserController::class, 'dashboard'])->name('dashboard_view')->middleware(['auth', 'is_verify_email']);
  Route::get('account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify');
-
+ Route::get('/send/link',[UserController::class,'sendLinkEmail'])->name('send_email');
+ Route::post('/send/link', [UserController::class, 'sendEmailAgain'])->name('reset_email_again');
 
 
 Route::get('/about-us', function () {
@@ -151,7 +149,7 @@ Route::get('/buisness-info', function (){
 
 
 
-    Route::get('/customer_dashboard', function(){
+    Route::get('/customer/dashboard', function(){
         return view('customer_dashboard/home');
     })->name('home');
     

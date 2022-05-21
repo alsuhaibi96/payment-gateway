@@ -32,7 +32,9 @@ class ForgotPasswordCustomController extends Controller
       {
           $request->validate([
               'email' => 'required|email|exists:users',
-          ]);
+          ],
+          ['email.exists'=>'الايميل ليش مسجل من قبل !']
+        );
   
           $token = Str::random(64);
   

@@ -264,13 +264,11 @@ class UserController extends Controller
                 'email'=>['email','required','min:3','max:50'],
                 'password'=>['required','min:5']
 
-
             ],[
-                'email.required'=>'This field is required',
-                'password.required'=>'This field is required',
+                'email.required'=>'هذا الحقل مطلوب',
+                'password.required'=>'هذا الحقل مطلوب',
 
             ]);
-            // return $this->checkVerification($request);
     
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1,'is_email_verified'=>1])){
               
@@ -322,7 +320,6 @@ class UserController extends Controller
    
     public function countLogins(){
         $user=new User();
-
         $logins=User::select('login_count')->where('id',Auth::user()->id)->first();
         $val=$logins->login_count+=1;
         User::where('id',Auth::user()->id)->update(array('login_count'=>$val));

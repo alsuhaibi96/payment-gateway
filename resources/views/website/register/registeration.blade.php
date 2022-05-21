@@ -17,7 +17,7 @@ class="active"
     @csrf
     <div class="mt-5" style="margin-top: 120px ;margin-bottom: 90px;">
         <div class="up-card my-0 mt-5 my-sm-30 border-2  m-auto" data-v-e9c818fa="">
-            <div class="text-center card mt-5 col-5 m-auto pt-5" data-v-e9c818fa="" style="border-radius: 15px; padding:30px 60px; width:55%;background:#eee;">
+            <div class="text-center col-12 card mt-5 col-md-7 m-auto pt-5" data-v-e9c818fa="" style="border-radius: 15px; padding:30px 60px;background:#eee;">
                 <h2 class="display-rebrand fw-bold" data-v-e9c818fa="">انضم كحساب شخصي او حساب تجاري</h2>
                 <div class="up-button-box-radio-group pb-10" data-v-e9c818fa="">
                     <fieldset data-v-e9c818fa="">
@@ -81,10 +81,13 @@ class="active"
                     </fieldset>
                 </div>
                 <div class="mt-30" data-v-e9c818fa="" style="padding: .5rem 3rem;">
-                    <button type="submit" type="button" style=" padding:0.5rem!important; border-radius:5px!important;outline: none;border:none;" id="register_btn" class=" col-4 p-1 up-btn  rounded-3 m-auto mt-3 up-btn-primary width-md btn btn-primary" data-v-e9c818fa="">انشاء حساب </button>
-                    <p class="mb-0 mt-3 mb-2 fs-3" data-v-e9c818fa="" style="padding: 10px 30px; font-size:2rem!important;">Already have an account? <a href="{{ route('login') }}" style="color: var(--green); font-size:26px;" data-v-e9c818fa="">
-                            Log In
-                        </a></p>
+                    <button type="submit" type="button" style=" padding:0.5rem!important; border-radius:5px!important;outline: none;border:none;" id="register_btn" class=" col-md-4    p-1 up-btn  rounded-3 m-auto mt-3 up-btn-primary width-md btn btn-primary" data-v-e9c818fa="">انشاء حساب </button>
+                    <p class="mb-0 mt-3 mb-2 fs-3" data-v-e9c818fa="" style="padding: 10px 30px; font-size:2rem!important;">
+                        لديك حساب من قبل!
+                        <a href="{{ route('login') }}" style="color: var(--green); font-size:18px;" data-v-e9c818fa="">
+                           تسجيل الدخول
+                        </a>
+                    </p>
  
                 </div>
             </div>

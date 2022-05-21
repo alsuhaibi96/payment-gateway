@@ -40,6 +40,7 @@
             <a href="#contact">تواصل معنا</a>
             <a href="{{ route('docs/home') }}">Docs</a>
         </nav>
+    
         <div class="icon">
 
             <i class="fas fa-bars toogle" id="menu-bars"></i>

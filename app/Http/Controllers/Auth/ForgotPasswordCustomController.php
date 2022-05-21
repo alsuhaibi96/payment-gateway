@@ -24,7 +24,7 @@ class ForgotPasswordCustomController extends Controller
       }
   
       /**
-       * Write code on Method
+       * function for forget password conform by email
        *
        * @return response()
        */
@@ -32,7 +32,9 @@ class ForgotPasswordCustomController extends Controller
       {
           $request->validate([
               'email' => 'required|email|exists:users',
-          ]);
+          ],
+          ['email.exists'=>'الايميل ليش مسجل من قبل !']
+        );
   
           $token = Str::random(64);
   
@@ -47,7 +49,7 @@ class ForgotPasswordCustomController extends Controller
               $message->subject('Reset Password');
           });
   
-          return back()->with('message', 'We have e-mailed your password reset link!');
+          return back()->with('message', 'لقد أرسلنا رابط إعادة تعيين كلمة المرور بالبريد الإلكتروني!');
       }
       /**
        * Write code on Method
@@ -87,6 +89,6 @@ class ForgotPasswordCustomController extends Controller
  
           DB::table('password_resets')->where(['email'=> $request->email])->delete();
   
-          return redirect('/user/login')->with('success', 'Your password has been changed!');
+          return redirect('/user/login')->with('success', 'تم تغيير كلمة السر الخاصة بك!');
       }
 }

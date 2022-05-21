@@ -42,6 +42,19 @@ class="active"
 
     @endif
 
+
+@if(session()->has('resendLink'))
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>فشل!</strong>   
+    <span> لم يتم تأكيد الايميل ! لإعادة ارسال رسالة تفعيل الايميل اضغط <a href="{{ route('reset_email_again') }}">هنا</a></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+@endif
+
+
   </div>
   <form autocomplete="off" class="login-form row container g-3" action="{{route('customLogin')}}" method="POST">
 

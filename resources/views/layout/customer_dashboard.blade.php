@@ -67,7 +67,7 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/style-rtl.css')}}">
     <!-- END: Custom CSS-->
-    
+    @notifyCss
 
 
     <style>
@@ -118,7 +118,9 @@
                                 <ul class="search-list"></ul>
                             </div>
                         </li>
-                        <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
+                        <li class="dropdown dropdown-notification nav-item">
+                            {{-- <a class="nav-link nav-link-label" href="javascript:void(0);" data-toggle="dropdown">
+                            <i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span class="badge badge-pill badge-danger badge-up">5</span></a> --}}
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header px-1 py-75 d-flex justify-content-between"><span class="notification-title"> <b>7 إشعارات جديدة</b> </span><span class="text-bold-400 cursor-pointer">تحديد الكل كمقروء </span></div>
@@ -128,9 +130,9 @@
                                             <div class="media-left pr-0">
                                                 <div class="avatar mr-1 m-0">
                                                     @if(isset(Auth::user()->profile->avatar))
-                                                    <img src="{{ asset('public/images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" style="height: 50px;width: 50px;">
+                                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar"  style="border-radius: 50%;width: 50px;height:50px" >
                                                     @else
-                                                    <img src="{{asset('assets/web/images/avatar.jpg')}}"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
+                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
                                                    
                                                    
                                                     @endif        
@@ -190,11 +192,10 @@
                         @if(isset(Auth::user()->profile->avatar))
                         <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 40px;height: 40px;"> 
                         @else
-<<<<<<< Updated upstream
-                        <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                          
-=======
-                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width:30px; height:auto;">                                          
->>>>>>> Stashed changes
+                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
+                        {{-- <img src="assets/web/images/avatar.jpg"alt="users avatar" class="users-avatar-shadow rounded-circle" height="20" width="20">                                           --}}
+                           
+
                         @endif
                     </span>
                             </a>
@@ -233,7 +234,7 @@
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
                 <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                    <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
+                    <li class=" nav-item open"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                         <ul class="menu-content">
                             <li><a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto"> 
                                 
@@ -243,8 +244,10 @@
                         </ul>
                     </li>
                     
+                             <li class="@yield('active') nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
+                                  </li>
                       
-                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                   </li>
                                    <li class="@yield('addBalance') nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
@@ -260,8 +263,7 @@
                                     </li>
                                     <li class="@yield('report') nav-item"><a href="{{ route('report') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
                                     </li>
-                                    <li class="@yield('active') nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-                                    </li>
+                                  
                             </div>
                         </div>
                         <!-- END: Main Menu-->
@@ -274,7 +276,20 @@
             </p>
         </footer>
         <!-- END: Footer-->
-
+ <!-- jquery -->
+ <script
+ src="https://code.jquery.com/jquery-3.6.0.min.js"
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+ crossorigin="anonymous"></script>
+<!-- publisher for notification -->
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+   // Enable pusher logging - don't include this in production
+   Pusher.logToConsole = true;
+   var pusher = new Pusher('7e80e29bb28840bff098', {
+      cluster: 'ap2'
+   });
+</script>
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{url('assets/app-assets/vendors/js/vendors.min.js')}}"></script>

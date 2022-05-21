@@ -17,11 +17,18 @@
 
 @section('content')
 <!-- BEGIN: Content-->
+
+
+
+
+
+   
 <div class="app-content content">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-header row">
         </div>
+     
         <!-- Column selectors with Export Options and print table -->
         <section id="column-selectors">
             <div class="row">
@@ -41,6 +48,7 @@
                                             <th>اسم المرسل</th>
                                             <th>اسم المستلم</th>
                                             <th>ايميل المستلم</th>
+                                            <th>رقم هاتف المستلم</th>
                                             <th>المبلغ</th>
                                             <th>العملة</th>
                                             <th>التاريخ</th>
@@ -51,24 +59,29 @@
                                         
                                         </tr>
                                     </thead>
-                                    <tbody>
-
+                                    <tbody style="font-size: 12px">
+                                        
+                                @foreach ($items as $data)
+    
                                    
                                         <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $items['sender_name'] }}</td>
+                                        <td>{{ $items['receiver_name'] }}</td>
+                                        <td>{{ $items['receiver_email'] }}</td>
+                                        <td>{{ $items['receiver_phone_number'] }}</td>
+                                        <td>{{ $items['money_transferred'] }}</td>
+                                        <td>{{ $items['currency'] }}</td>
+                                        <td>{{ $items['transferring_date'] }}</td>
+                                        <td>{{ $items['description'] }}</td>
+                                        <td>{{ $items['tax'] }}</td>
 
+                                     
 
-                                      
 
                                             
                                         </tr>
+                                   @endforeach
+
                                     </tbody>
                                   
                                 </table>

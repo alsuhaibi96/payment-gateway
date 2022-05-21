@@ -118,6 +118,22 @@
                 <p>
                     موقع الكتروني يوفر صيدلية الكترونية
                 </p>
+                <div class="icon-container">
+                    <div class="icons">
+                        <span> فواتير العمليات</span>
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="icons">
+                        <span>مدفوعات</span>
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="icons">
+                        <span>7/24 خدمة</span>
+                        <i class="fas fa-headset"></i>
+                    </div>
+                  
+                </div>
+                <a class="btn text-white " href="{{ route('about') }}">أعرف اكثر</a>
             </div>
             <div class="swiper-slide slide">
                 <i class="fas fa-quote-right"></i>

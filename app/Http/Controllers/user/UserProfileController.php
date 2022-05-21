@@ -11,18 +11,19 @@ use Illuminate\Support\Facades\Validator;
 
 class UserProfileController extends Controller
 {
-    //
+    //show form of update user profile
     public function profile(){
        
-       $id=Auth::id();
+       $id=Auth::user()->id;
        $user=User::with(['profile'])->find($id);
        return view('customer_dashboard.home',['user'=>$user]);
     }
      public function addProfile(){
 
      }
+     /** update profile with name, email, address and phone */
      function editProfile(Request $req){
-        //  return $req;
+        
         $first_name=$req->first_name;
         $middle_name=$req->middle_name;
         $last_name=$req->last_name;
@@ -39,12 +40,12 @@ class UserProfileController extends Controller
             'email'=>$email 
            
         ]);
-        $user_profile=user_profile::where('user_id',Auth::id())->update([
+     $user_profile=user_profile::where('user_id',Auth::id())->update([
             'first_address'=>$first_address,
             'second_address'=>$second_address,
             'phone'=>$phone
         ]);
-        if ($user && $user_profile){
+        if ($user || $user_profile){
             return redirect()->back()->with(['success'=>'تم التعديل بنجاح']);
         }
         else{
@@ -53,7 +54,7 @@ class UserProfileController extends Controller
            
 
      }
-
+// edit image
      function editImage(Request $req){
          Validator::validate($req->all(),[
              'avatar'=>'required|mimes:jepg,png,jpg,gif,svg|max:6000',
@@ -69,7 +70,7 @@ class UserProfileController extends Controller
             ]);
          }
         
-        //  echo Auth::user()->profile->avatar;
+        
 
         if($user_profile){
             return redirect()->back()->with(['succes'=>'تم التعديل الصورة بنجاح']);

@@ -53,12 +53,12 @@
         <div class="row">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label fs-3">كلمة المرور</label>
-            <input name="password" placeholder="كلمة المرور " type="password" class="form-control fs-3 mb-3 @error('password') is-invalid @enderror" id="inputEmail4" value="{{ old('password') }}">
+            <input name="password" placeholder="كلمة المرور " type="password" class="form-control fs-3 mb-3 @error('password') is-invalid @enderror" id="inputEmail4" >
             @error('password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label fs-3">تاكيد كلمة المرور</label>
-            <input name="confirm_password" placeholder="تاكيد كلمة المرور" type="password" class="form-control fs-3 mb-3 @error('confirm_password') is-invalid @enderror" id="inputEmail4" value="{{ old('confirm_password') }}">
+            <input name="confirm_password" placeholder="تاكيد كلمة المرور" type="password" class="form-control fs-3 mb-3 @error('confirm_password') is-invalid @enderror" id="inputEmail4" >
             @error('confirm_password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
         </div>

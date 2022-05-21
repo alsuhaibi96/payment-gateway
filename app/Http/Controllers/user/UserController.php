@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\auth\UserVerify;
+use App\Models\user_profile;
+
 use App\Models\Credit_cards;
 use App\Models\FinancialTransaction;
 
 use App\Models\Role;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon as Carbon;
 
 use Illuminate\Support\Str;
 use Mail;
@@ -108,8 +112,8 @@ class UserController extends Controller
 
           ],[
 
-              'email.unique'=>'There is an email in the table',
-              'confirm_password.same'=>'password do not match',
+              'email.unique'=>'الايميل مسجل من قبل',
+              'confirm_password.same'=>'كلمة السر ليست مطابقة',
 
           ]);
 
@@ -123,8 +127,19 @@ class UserController extends Controller
 
           $user->public_key=$this->generate_string(25);
           $user->private_key=$this->generate_string(50);
+          if($user->save()){
+            $user->attachRole($roleName);
+            $this->sendEmailVerification($request,$user);
+        }
+ 
+        
+        //   $user->save();
 
-          $user->save();
+        $userProfile = new user_profile();
+        $userProfile->user_id=$user->id;
+        $userProfile->save();
+
+
 
           $bank_account = new bank_account();
           $bank_account->user_id = $user->id;
@@ -164,23 +179,11 @@ class UserController extends Controller
           $journal_entries_merchant_left->entry_type = "Cred";
           $journal_entries_merchant_left->amount = $bank_account->balance;
           $journal_entries_merchant_left->save();
-           
-         
           
-          if($user->save())
-          $token = Str::random(64);
-          $user->attachRole($roleName);
-
-           UserVerify::create([
-            'user_id' => $user->id, 
-            'token' => $token
-          ]);
-
-      Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Email Verification Mail');
-        });
+     
+         
        
+          
        
       return redirect()->route("login")->with(['success'=>'تم إرسال رسالة تأكيد لحسابك على الايميل!']);
       
@@ -214,6 +217,29 @@ class UserController extends Controller
     $message
               ]);
     }
+    /**
+     * Send email verification method (when registering the first time )
+     */
+    public function sendEmailVerification($request,$user){
+        $token = Str::random(64);
+
+        UserVerify::create([
+            'user_id' => $user->id, 
+            'token' => $token
+          ]);
+
+          try{
+        Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Email Verification Mail');
+        });}
+        catch(Exception $ex)
+        {
+            return 'email failed to be sent';
+
+        }
+      
+    }
 
        /**
      * Write code on Method
@@ -244,25 +270,35 @@ class UserController extends Controller
                 'password.required'=>'This field is required',
 
             ]);
-
+            // return $this->checkVerification($request);
     
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password,'is_active'=>1,'is_email_verified'=>1])){
-            
-                if(Auth::user()->hasRole('Merchant'))
-                return redirect()->route('merchant_dashboard');
-                
-            
+              
+        
                 if(Auth::user()->hasRole('Customer'))
-                return redirect()->route('customer_dashboard');
+                {
+                    $this->notifyIfNew();
+                    return redirect()->route('customer_dashboard');
+                }                
+                if(Auth::user()->hasRole('Merchant'))
+                {
+                    $this->notifyIfNew();
+                return redirect()->route('merchant_dashboard');
                
-             
+                 }
+                  if(Auth::user()->hasRole('Super Admin'))
+               return redirect()->route('admin_dashboard');
     
-            
             }
-   
+          else if(!$this->checkVerification($request)==1){
+        
+               return redirect()->route('login')->with(['resendLink'=>'again']);
+
+            }
+
 
             else
-                return redirect()->route('login')->with(['message'=>'البيانات خاطئة او لم يتم تفعيل الايميل!']);}
+                return redirect()->route('login')->with(['message'=>'البيانات خاطئة !']);}
 
 
    
@@ -278,9 +314,25 @@ class UserController extends Controller
   
         return redirect()->route('login');
     }
+    public function notifyIfNew(){
+        if(Auth::user()->login_count==0)
+        notify()->success('تم ايداع مبلغ 10000000 دولار الى حسابك','تهانينا');
+        $this->countLogins();
+    }
    
-    
+    public function countLogins(){
+        $user=new User();
 
+        $logins=User::select('login_count')->where('id',Auth::user()->id)->first();
+        $val=$logins->login_count+=1;
+        User::where('id',Auth::user()->id)->update(array('login_count'=>$val));
+           
+    }
+ public function checkVerification($request){
+       $val=User::select('is_email_verified')->where('email',$request->email)->first();
+     return $val['is_email_verified'];
+       
+ }
     
     public function generate_string($strength = 16) {
         $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -293,5 +345,36 @@ class UserController extends Controller
      
         return $random_string;
     }
-    
+ 
+    public function sendLinkEmail(){
+            return view('website.auth.resetEmailForm');
+    }
+
+    /**
+     * Send Email verification again
+     * 
+     */
+    public function sendEmailAgain(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $token = Str::random(64);
+     $userId=User::select('id')->where('email',$request->email)->first();
+ 
+        DB::table('users_verify')->insert([
+            'user_id' => $userId['id'],
+            // 'email' => $request->email, 
+            'token' => $token, 
+            'created_at' => Carbon::now()
+          ]);
+
+        Mail::send('website.auth.email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Email Verification');
+        });
+
+        return redirect()->route('login')->with('success', 'لقد أرسلنا رابط التفعيل الى البريد الإلكتروني!');
+    }
 }

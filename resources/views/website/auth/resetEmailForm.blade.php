@@ -9,16 +9,28 @@
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header fs-3">إعادة تعيين كلمة السر</div>
+                  <div class="card-header fs-3">
+      إعادة ارسال الايميل من جديد
+                    </div>
                   <div class="card-body">
   
                     @if (Session::has('message'))
                          <div class="alert alert-success" role="alert">
                             {{ Session::get('message') }}
                         </div>
+                 
                     @endif
+                    @if(session()->has('error'))
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>فشل!</strong>     {{ session()->get('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  
+                  
+                  @endif
   
-                      <form action="{{ route('forget.password.post') }}" method="POST">
+                      <form action="{{ route('reset_email_again') }}" method="POST">
                           @csrf
                           <div class="form-group row">
                              

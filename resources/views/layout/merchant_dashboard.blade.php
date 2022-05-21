@@ -131,7 +131,7 @@
                                                 <div class="avatar mr-1 m-0"><img src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="39" width="39"></div>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك Mo'khtar </span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
+                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{ Auth::user()->first_name }} </span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -178,8 +178,7 @@
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name">{{Auth::user()->first_name ." ".Auth::user()->last_name}}</span><span class="user-status text-muted"> 😊 Welcome </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
-                                {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-envelope mr-50"></i> البريد والرسائل</a> --}}
+                               
                                 <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{ route('logout'); }}"><i class="bx bx-power-off mr-50"></i> تسجيل الخروج </a>
                             </div>
                         </li>
@@ -225,30 +224,33 @@
                                     @endforeach --}}
                                 </span></a>
                         </li>
-                        {{-- <li class="active"><a class="d-flex align-items-center" href="{{ route('home') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
-                </li> --}}
+                     
             </ul>
             </li>
-
-            <li class=" nav-item"><a href="{{ route('financial_movement',Auth::user()->id) }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> الحركة المالية</span></a>
+            <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('merchant_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
             </li>
-            {{-- <li class="active nav-item"><a href="{{ route('deposit') }}"> <i class="fas fa-gear">  </i> <span class="menu-title text-truncate" data-i18n="Widgets"> إعدادات الحساب</span></a>
-            </li> --}}
-
+            <li class="@yield('financial') nav-item"><a href="{{ route('financial_movement',Auth::user()->id) }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> الحركة المالية</span></a>
+            </li>
+           
+           
+            <li class="@yield('Transactions') nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">أحدث المعاملات</span></a>
+            </li>
+            <li class="@yield('listInvoice') nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
+            </li>
+                    
+            </li>
+ 
+            <li class=" nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
+            </li>
+            <li class=" nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-key"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
+            </li>
             <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
             </li>
             <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> الإبلاغ عن مشكلة</span></a>
             </li>
-            <li class=" nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">أحدث المعاملات</span></a>
-            </li>
-            <li class=" nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
-            </li>
             <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
             </li>
-            <li class=" nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
-            </li>
-            <li class=" nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
-            </li>
+        </ul>
         </div>
     </div>
     <!-- END: Main Menu-->
@@ -345,8 +347,8 @@
             });
         });
     </script>
-    @notifyJs
     <x:notify-messages />
+    @notifyJs
 
 
 </body>

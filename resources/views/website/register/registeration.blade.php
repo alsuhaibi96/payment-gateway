@@ -23,6 +23,7 @@ class="active"
                     <fieldset data-v-e9c818fa="">
                         <div class="row card-body p-5 " style="justify-content: space-between;" data-v-e9c818fa="">
                             <div class="col-12 col-md-5 mt-10 col-md-offset-1 card mx-4 p-3 " data-v-e9c818fa="" style="border-radius: 10px;">
+
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
                                             <input id="client_radio" type="radio" checked value="1" name="radio1" style="width: 18px; height: 18px; line-height: 18px;" aria-labelledby="button-box-1" value="hire"> <span class="up-checkbox-replacement-helper">
@@ -51,6 +52,7 @@ class="active"
                                 </div>
                             </div>
                             <div class="col-12 col-md-5 mt-10 card mx-2  p-3" data-v-e9c818fa="" style="border-radius: 10px;">
+
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
                                             <input name="radio1" style="width: 18px; height: 18px; line-height:18px;" value="2" id="freelancer_radio" type="radio" aria-labelledby="button-box-2" value="work"> <span class="up-checkbox-replacement-helper">
@@ -83,6 +85,7 @@ class="active"
                     <p class="mb-0 mt-3 mb-2 fs-3" data-v-e9c818fa="" style="padding: 10px 30px; font-size:2rem!important;">Already have an account? <a href="{{ route('login') }}" style="color: var(--green); font-size:26px;" data-v-e9c818fa="">
                             Log In
                         </a></p>
+ 
                 </div>
             </div>
         </div>

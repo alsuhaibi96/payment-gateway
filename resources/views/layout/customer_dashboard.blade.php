@@ -55,7 +55,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/dashboard-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('assets/app-assets/css-rtl/pages/app-invoice.css')}}">
     <!-- END: Page CSS-->
-    @notifyCss
+  
     <!-- datatable -->
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/favicon.ico')}}">
     <link rel="apple-touch-icon" href="{{url('assets/app-assets/images/ico/apple-icon-120.png')}}">
@@ -132,7 +132,7 @@
                                                     @if(isset(Auth::user()->profile->avatar))
                                                     <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar"  style="border-radius: 50%;width: 50px;height:50px" >
                                                     @else
-                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
+                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
                                                    
                                                    
                                                     @endif        

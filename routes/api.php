@@ -18,58 +18,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+/**
+ * Production routes
+ */
+Route::group([
+    'prefix' => 'v1',
+    
+], function () {
+        Route::get('/merchant/allPayments' , [APIPaymentController::class,'allPayments']);
 
-// Route::group(['middleware' =>'api','prefix' => 'admin'],function(){
-//     Route::get('/login', function () {
-//         return view('website/login');
-//     });
-//     Route::get('/register', function () {
-//         return view('website/register');
-//     });
-//     Route::get('/home', function () {
-//         return view('website/register');
-//     });
-// });
-// Route::group(['prefix' => 'admin'],function ()
-// {
-//     Route::get('/register', function () {
-//         return view('website/register');
-//     });	
-//     Route::post('/getadmin',[AdminController::class,'index']);	
-//     Route::get('/login', function () {
-//         return view('website/login');
-//     });
-// });
+        Route::post('/merchant/payment_order', [checkoutController::class, 'payment_order'])->name('payment_order');
 
-// Route::group(['prefix' => 'merchant','middleware' => ['auth.guard:merchants','jwt.auth']],function ()
-// {
-//     Route::get('/register', function () {
-//         return view('website/register');
-//     });	
-// 	Route::get('/login', function () {
-//         return view('website/login');
-//     });	
-// });
-
-// Route::group(['prefix' => 'user','middleware' => ['auth.guard:users','jwt.auth']],function ()
-// {
-// 	Route::get('/register', function () {
-//         return view('website/register');
-//     });	
-// 	Route::get('/login', function () {
-//         return view('website/login');
-//     });		
-// });
-// Route::group(['prefix' => 'admin','middleware' => ['auth:admins','jwt.auth']],function ()
-// {
-// 	Route::post('/register', function () {
-//         Route::post('/register', [UserController::class, 'register']);
-//     });	
-// 	Route::post('/login', [UserController::class, 'login']);	
-// });
+    Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
+    Route::get('acounts',[checkoutController::class,'get_acounts']);
+ 
+      
+});
+Route::group([
+    'prefix'=>'v1',
+    'middleware'=>['web']],function(){
+    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
+Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
+Route::get('/cancel/payment/{cancel}',[checkoutController::class,'cancelPay'])->name('cancelPay');
+});
 
 
 // ----------------------------- testApi routes ------------------------------//

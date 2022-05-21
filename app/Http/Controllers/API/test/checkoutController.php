@@ -79,10 +79,12 @@ class checkoutController extends Controller
         $merchant_data=User::where('private_key',$private_key)->first();
         $feedback=array("invoice_referance"=>$this->generate_string(10),"expires_on"=>date("h:i:s a m/d/Y",strtotime('+24 hours')));
         $order_invoice_url=
-        array("next_url"=>"http://localhost:8000/api/test/merchant/do_payment_order/".
+        array("next_url"=>"http://localhost:8000/api/v1/merchant/do_payment_order/".
         $feedback['invoice_referance'],
-        "cancel_next_url"=>"http://localhost:8000/api/test/merchant/cancel_payment_order/".
-        $feedback['invoice_referance']);
+        "cancel_next_url"=>"http://localhost:8000/api/v1/merchant/cancel_payment_order/".
+        $feedback['invoice_referance']
+    
+    );
        
         $orders=array_merge($feedback,$order_details,$order_invoice_url);
 
@@ -128,7 +130,7 @@ class checkoutController extends Controller
             }
            
             
-            return $this->returnData('invoice',$invoice,'invoice created successfuly');
+            return $this->returnData('invoice',['next_url'=>$invoice->next_url],'invoice created successfuly');
 
         }
         
@@ -146,25 +148,44 @@ class checkoutController extends Controller
          
     //  return $invoice_data;
 
-        return view('paymentView.pay_card' ,compact('invoice_data','products'));
+        return view('paymentView.pay_card' ,compact('invoice_data','products','invoice_referance'));
 
     }
-    public function cancel_payment($invoice_referance){
+    public function cancel_payment($invoice_referance=null){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->first();
-         
+        
+       
+
         if(!$invoice_data){
             // return $this->returnData('delete sone',$data->id,"delete");
-             return $this->returnError('4070','هذا الطلب قد تم حذفة من قبل');
+             return $this->returnError('4070','This order is deleted before');
         }
-        else
+        else 
         {
-            $data=Orders_invoice::find($invoice_data->id);
+         $this->cancelPay($invoice_referance);
+            
+            
+
+        }     
+        
+
+        
+
+    }
+    
+       public function cancelPay($invoice_referance){
+            $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->first();
+           $data=Orders_invoice::find($invoice_data->id);
+             
+              DB::table('products')->where('invoice_id', $invoice_data->id)->delete();
+          
             $cancel_url=$invoice_data->cancel_url;
             $data->delete();
-            $success_deleted_msg= $this->returnSuccess('تم حذف الطلب بنجاح');
-            return Redirect::away($cancel_url);
-        }
-        }     
+            $success_deleted_msg= "Cancelled Sucessfully";
+            $response=urlencode($success_deleted_msg);
+             $response=$cancel_url.'/'.$success_deleted_msg;
+            return Redirect::away($response);
+    }
         public function payment_response(Request $request)
         {
             $invoice_referance=$request->input('invoice_referance');
@@ -180,16 +201,16 @@ class checkoutController extends Controller
             $current_time=Carbon::now();
             $response_info=
             array('status'=>'success','order_reference'=>$invoice_data->order_reference,'products'=>str_replace('\\','',$invoice_data->products),'customer_account_info'=>
-            array('paid_amount'=>$invoice_data->total_amout,'card_holder'=> $card_holder,'card_type'=>"visa Card",
+            array('invoice_reference_id'=>$invoice_data->invoice_referance,'paid_amount'=>$invoice_data->total_amout,'card_holder'=> $card_holder,'card_type'=>"visa Card",
             'created_at'=>$invoice_data->created_at
             ,'updated_at'=>
             $invoice_data->updated_at,
             ),'meta_data'=>$invoice_data->metadata);
            
-        //   $response_info= base64_encode(json_encode($response_info));
-          return $response_info;
+          $response_info= base64_encode(json_encode($response_info));
+          
            $response= $success_url.'/'.$response_info;
-        //   return  $response;
+  
         return  Redirect::away($response);
         }
 
@@ -197,13 +218,27 @@ class checkoutController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'card_number' => ['required'],
+            'card_number' => ['required',''],
             'card_holder' => ['required', 'string', 'min:6'],
             'expiration_yy' => ['required'],
             'cvv' => ['required', 'string:3'],
 
 
-        ]);
+        ],
+
+        [
+            'card_number.required'=>'هذا الحقل مطلوب',
+            'card_number.numeric'=>'يجب ان تكون قيمة رقمية',
+            'card_holder.required'=>'هذا الحقل مطلوب',
+            'card_holder.string'=>'يجب ان يكون من نوع نص',
+            'expiration_yy.required'=>'هذا الحقل مطلوب',
+            'cvv.required'=>'هذا الحقل مطلوب',
+
+
+
+        ]
+    
+    );
         if ($validator->fails()) {
             return Redirect::back()->withInput()->withErrors($validator);
         }
@@ -229,11 +264,11 @@ class checkoutController extends Controller
         $expiration_date=$request->input('expiration_yy');
         $Payment_confirmation_data = $request->all();
         $client_card_data = Credit_cards::where('card_number', $card_number)->first();
-        if ($client_card_data == null || $client_card_data->card_holder!=$card_holder || strval($expiration_date) != date_format($client_card_data->created_at,'m/y')) {
-            notify()->error('Make sure you type your payment information correctly', 'wrong information');
-
-            return Redirect::back();
+        if ($client_card_data == null || $client_card_data->card_holder!=$card_holder ) {
+            notify()->error('تأكد من كتابتك لبيانات بطاقتك بشكل صحيح', 'خطأ ');
+            return Redirect::back()->withInput();
         }
+        
         $client_banck_acount_id = $client_card_data->bank_accounts_id;
 
         $client_account_data = bank_account::where('id', $client_banck_acount_id)->first();
@@ -334,7 +369,8 @@ class checkoutController extends Controller
 
             $transactionoverview->save();
 
-            $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id)->first();
+            $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id ? $paymentinvoice->order_invoice_id : '')->first();
+
 
             $invoice_id =  $order_invoice_data["id"];
             $invoice_ids=$invoice_sender->id;
@@ -349,16 +385,11 @@ class checkoutController extends Controller
             ]);
             
 
-            // return $invoice_information;
 
 
-            return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_information]);
+            return $this->payment_response($request);
             return $this->returnData('الرصيد المتبقي', $invoice_sender, 'تمت عملية الدفع بنجاح');
-            // $success_uri='https://localhost:8080/test/invoice';
-            //  return redirect::away($success_uri)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);    
-            // return Redirect::away($success_url)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);
-            // return $this->returnData('Balance Left',$invoice_sender,'Payment Process Completed Successfully');
-
+      
 
         } else {
             return $this->returnError('4011', 'You do not Have enough balance');

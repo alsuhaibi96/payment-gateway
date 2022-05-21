@@ -17,7 +17,7 @@ class="active"
     @csrf
     <div class="mt-5" style="margin-top: 120px ;margin-bottom: 90px;">
         <div class="up-card my-0 mt-5 my-sm-30 border-2  m-auto" data-v-e9c818fa="">
-            <div class="text-center card mt-5 col-5 m-auto pt-5" data-v-e9c818fa="" style="border-radius: 15px; padding:30px 60px; width:80%;background:#eee;">
+            <div class="text-center card mt-5 col-5 m-auto pt-5" data-v-e9c818fa="" style="border-radius: 15px; padding:30px 60px; width:55%;background:#eee;">
                 <h2 class="display-rebrand fw-bold" data-v-e9c818fa="">انضم كحساب شخصي او حساب تجاري</h2>
                 <div class="up-button-box-radio-group pb-10" data-v-e9c818fa="">
                     <fieldset data-v-e9c818fa="">
@@ -25,7 +25,7 @@ class="active"
                             <div class="col-12 col-md-5 mt-10 col-md-offset-1 card mx-4 p-3 " data-v-e9c818fa="" style="border-radius: 10px;">
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
-                                            <input id="client_radio" type="radio" checked value="1" name="radio1" style="width: 30px; height: 30px; line-height: 30px;" aria-labelledby="button-box-1" value="hire"> <span class="up-checkbox-replacement-helper">
+                                            <input id="client_radio" type="radio" checked value="1" name="radio1" style="width: 18px; height: 18px; line-height: 18px;" aria-labelledby="button-box-1" value="hire"> <span class="up-checkbox-replacement-helper">
                                                 <!---->
                                                 <!---->
                                             </span> </label></div>
@@ -53,7 +53,7 @@ class="active"
                             <div class="col-12 col-md-5 mt-10 card mx-2  p-3" data-v-e9c818fa="" style="border-radius: 10px;">
                                 <div data-cy="button-box" class="up-button-box up-button-box-radio" data-v-e9c818fa="">
                                     <div class="up-radio"><label class="up-checkbox-label">
-                                            <input name="radio1" style="width: 30px; height: 30px; line-height:30px;" value="2" id="freelancer_radio" type="radio" aria-labelledby="button-box-2" value="work"> <span class="up-checkbox-replacement-helper">
+                                            <input name="radio1" style="width: 18px; height: 18px; line-height:18px;" value="2" id="freelancer_radio" type="radio" aria-labelledby="button-box-2" value="work"> <span class="up-checkbox-replacement-helper">
                                                 <!---->
                                                 <!---->
                                             </span> </label></div>
@@ -79,7 +79,7 @@ class="active"
                     </fieldset>
                 </div>
                 <div class="mt-30" data-v-e9c818fa="" style="padding: .5rem 3rem;">
-                    <button type="submit" type="button" style="width: 100%; padding:0.5rem!important; border-radius:5px!important;outline: none;border:none;" id="register_btn" class=" col-4 p-1 up-btn  rounded-3 m-auto mt-3 up-btn-primary width-md btn btn-primary" data-v-e9c818fa="">انشاء حساب </button>
+                    <button type="submit" type="button" style=" padding:0.5rem!important; border-radius:5px!important;outline: none;border:none;" id="register_btn" class=" col-4 p-1 up-btn  rounded-3 m-auto mt-3 up-btn-primary width-md btn btn-primary" data-v-e9c818fa="">انشاء حساب </button>
                     <p class="mb-0 mt-3 mb-2 fs-3" data-v-e9c818fa="" style="padding: 10px 30px; font-size:2rem!important;">Already have an account? <a href="{{ route('login') }}" style="color: var(--green); font-size:26px;" data-v-e9c818fa="">
                             Log In
                         </a></p>

@@ -15,7 +15,7 @@
     <section class="login-form container justify-content-center pt-4 pb-4  " style="    margin: 50px; border-radius: 10px;">
       <div class="row section-header text-center p-4">
         <div class="col-12">
-            <h2 class="display-3  fw-bold">إنشاء حساب مؤسسي </h2>
+            <h2 class="display-3  fw-bold" style="font-size: 2.4rem;">إنشاء حساب مؤسسي </h2>
         </div>
       </div>
       <form class="login-form row container g-3s" action="{{ route('register_merchant') }}" method="POST" enctype="multipart/form-data" >

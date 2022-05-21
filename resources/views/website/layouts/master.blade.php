@@ -54,7 +54,7 @@
 
 
     <!--start footer section -->
-    <section class="foot" id="contact" style="max-height: 400px; height: 400px; background:#eee;">
+    <section class="foot" id="contact" style=" background:#eee;">
 
         <div class="box-container">
 

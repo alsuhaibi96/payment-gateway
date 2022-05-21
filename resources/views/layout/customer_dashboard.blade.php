@@ -247,7 +247,7 @@
                              <li class="@yield('active') nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                                   </li>
                       
-                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                                  <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                   </li>
                                    <li class="@yield('addBalance') nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
@@ -276,7 +276,20 @@
             </p>
         </footer>
         <!-- END: Footer-->
-
+ <!-- jquery -->
+ <script
+ src="https://code.jquery.com/jquery-3.6.0.min.js"
+ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+ crossorigin="anonymous"></script>
+<!-- publisher for notification -->
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+   // Enable pusher logging - don't include this in production
+   Pusher.logToConsole = true;
+   var pusher = new Pusher('7e80e29bb28840bff098', {
+      cluster: 'ap2'
+   });
+</script>
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{url('assets/app-assets/vendors/js/vendors.min.js')}}"></script>

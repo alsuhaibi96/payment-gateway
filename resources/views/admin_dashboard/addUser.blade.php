@@ -37,34 +37,39 @@
                                     <div class="row">
                                         <div class="col-6 py-20">
                                              <label class="text-dark"> الاسم الاول </label>
-                                             <input type="text" class="form-control" placeholder="الاسم الاول" >
+                                             <input type="text" name="first_name" class="form-control" placeholder="الاسم الاول" >
                                         </div>
                                         <div class="col-6 py-20">
                                             <label class="text-dark"> الاسم الثاني </label>
-                                            <input type="text" class="form-control" placeholder="الاسم الثاني" >
+                                            <input type="text" name="middle_name" class="form-control" placeholder="الاسم الثاني" >
                                        </div>
                                        <div class="col-6 py-20">
                                         <label class="text-dark"> اللقب </label>
-                                        <input type="text" class="form-control" placeholder="اللقب" >
+                                        <input type="text" name="last_name" class="form-control" placeholder="اللقب" >
                                    </div>
                                         <div class="col-6 py-20">
-                                            <label class="text-dark"> البريد الالكتروني أو الid </label>
-                                            <input type="text" class="form-control" placeholder="البريد الالكتروني" >
+                                            <label class="text-dark"> البريد الالكتروني  </label>
+                                            <input type="text" name="email" class="form-control" placeholder="البريد الالكتروني" >
                                        </div>
+                                       <div class="col-6 py-20">
+                                        <label class="text-dark"> كلمة السر </label>
+                                        <input type="text" name="password" class="form-control" placeholder="كلمة السر" >
+                                   </div>
 
                                        
                                         <div class="col-6">
                                             <label>الصلاحيات</label>
-                                            <select class="form-control">
-                                                <option>super admin</option>
+                                            <select class="form-control" name="admin">
+                                                <option value="Super Admin">super admin</option>
+                                                <option value="Contnet Admin">Contnet Admin</option>
                                                
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <label>status</label>
-                                            <select class="form-control">
-                                                <option>active</option>
-                                                <option>unActive</option>
+                                            <label>الحالة</label>
+                                            <select class="form-control" name="is_active">
+                                                <option value="1">مفعل</option>
+                                                <option value="0">غير مفعل</option>
                                             </select>
                                         </div>
                                       

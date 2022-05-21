@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Mail;
@@ -238,18 +239,15 @@ Route::get('/admin/dashboard/addBalance', function(){
     return view('admin_dashboard/addBalance');
 })->name('admin_dashboard/addBalance');
 
-Route::get('/admin/dashboard/users', function(){
-    return view('admin_dashboard/users');
-})->name('admin_dashboard/users');
-Route::get('/admin/dashboard/add_user', function(){
-    return view('admin_dashboard/addUser');
-})->name('addUser');
-Route::get('/admin/dashboard/editUser', function(){
-    return view('admin_dashboard/editUser');
-})->name('editUser');
-Route::get('/admin/dashboard/transactions',function(){
-    return view('admin_dashboard.transactions');
-})->name('transactions');
+Route::get('/admin/dashboard/users',[AdminDashController::class,'show_user'] )->name('admin_dashboard/users');
+Route::get('/admin/dashboard/add_user',[AdminDashController::class,'addUser'])->name('addUser');
+Route::post('/amin/save_user',[AdminDashController::class,'save'])->name('save_user');
+Route::get('/admin/dashboard/editUser',[AdminDashController::class,'edit'])->name('editUser');
+Route::post('/Admin/update_user/{user_id}',[AdminDashController::class,'update'])->name('update_user');
+Route::get('/admin/dashboard/transactions',[AdminDashController::class,'Transactions'])->name('transactions');
+Route::get('/admin/dashboard/settings',function(){
+    return view('admin_dashboard.settings');
+})->name('admin/settings');
 
 
 

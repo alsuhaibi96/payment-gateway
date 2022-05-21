@@ -75,90 +75,11 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>الشركة</label>
-                                                    <input type="text" class="form-control" placeholder="Company name">
+                                                    <label>كلمة السر</label>
+                                                    <input type="text" class="form-control" placeholder="كلمة السر">
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="table-responsive">
-                                                    <table class="table mt-1">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Module Permission</th>
-                                                                <th>Read</th>
-                                                                <th>Write</th>
-                                                                <th>Create</th>
-                                                                <th>Delete</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>المستخدمين</td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox1" class="checkbox-input" checked>
-                                                                        <label for="users-checkbox1"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox2" class="checkbox-input"><label for="users-checkbox2"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox3" class="checkbox-input"><label for="users-checkbox3"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox4" class="checkbox-input" checked>
-                                                                        <label for="users-checkbox4"></label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>التجار</td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox5" class="checkbox-input"><label for="users-checkbox5"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox6" class="checkbox-input" checked>
-                                                                        <label for="users-checkbox6"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox7" class="checkbox-input"><label for="users-checkbox7"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox8" class="checkbox-input" checked>
-                                                                        <label for="users-checkbox8"></label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>المشرفين</td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox9" class="checkbox-input" checked>
-                                                                        <label for="users-checkbox9"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox10" class="checkbox-input" checked>
-                                                                        <label for="users-checkbox10"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox11" class="checkbox-input"><label for="users-checkbox11"></label>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="checkbox"><input type="checkbox" id="users-checkbox12" class="checkbox-input"><label for="users-checkbox12"></label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                           
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                                                 <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">حفظ التغييرات</button>
                                                 <button type="reset" class="btn btn-light">الغاء</button>

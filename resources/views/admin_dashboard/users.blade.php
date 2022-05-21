@@ -22,16 +22,7 @@
                 <div class="users-list-filter px-1">
                     <form>
                         <div class="row border rounded py-2 mb-2">
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <label for="users-list-verified">Verified</label>
-                                <fieldset class="form-group">
-                                    <select class="form-control" id="users-list-verified">
-                                        <option value="">Any</option>
-                                        <option value="Yes">نعم</option>
-                                        <option value="No">لا</option>
-                                    </select>
-                                </fieldset>
-                            </div>
+                           
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <label for="users-list-role">الصلاحيات</label>
                                 <fieldset class="form-group">
@@ -39,6 +30,7 @@
                                         <option value="">Any</option>
                                         <option value="User">مستخدم</option>
                                         <option value="Staff">تاجر</option>
+                                        <option value="Staff">admin</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -68,59 +60,55 @@
                                     <thead>
                                         <tr>
                                             <th>id</th>
-                                            <th>البريد الالكتروني</th>
-                                            <th>الاسم</th>
-                                            <th>النشاطات الاخيرة</th>
-                                            <th>verified</th>
+                                            <th>الاسم </th>
+                                            <th>اللقب</th>
+                                            <th>البريد الاكتروني</th>
+                                            <th>تاريخ التسجيل</th>
                                             <th>الصلاحيات</th>
                                             <th>الحالة</th>
-                                            <th>edit</th>
+                                            <th>تعديل</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
-                                     
-                                       
-                                      
-                                       
-                                         
-                                       
-                                       
-                                       
-                                       
+                                        @foreach($allUsers as $user) 
                                         <tr>
-                                            <td>320</td>
-                                            <td><a href="../../../html/ltr/vertical-menu-template/app-users-view.html">hoyt0305</a>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->first_name }}</td>
+                                            <td>{{ $user->last_name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->created_at }}</td>
+                                            <td>
+                                                <ul>
+                                                    @foreach ($user->getRoles() as $role)
+                                                    @if(count($user->getRoles())>1)
+                                                        <span>{{ $role.' ,' }}</span>
+                                                        @else
+                                                        <span>{{ $role }}</span>
+                                                  
+                                                      @endif
+                                                    @endforeach
+                                                      
+                                                    
+                                                      
+                                                    </ul>
                                             </td>
-                                            <td>Hoyt Ellison</td>
-                                            <td>03/05/2020</td>
-                                            <td>Yes</td>
-                                            <td>User </td>
-                                            <td><span class="badge badge-light-success">Active</span></td>
+                                            <td>  @if($user->is_active==1)  
+          
+                                                <span class="badge bg-label-primary me-1">
+                                                  مفعل
+                                                </span>
+                                                @else
+                                               
+                                                <span class="badge btn btn-danger me-1">
+                                                  غير مفعل
+                                                </span>
+                                                @endif </td>
+                                            
                                             <td><a href="{{ route('editUser') }}"><i class="bx bx-edit-alt"></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>321</td>
-                                            <td><a href="../../../html/ltr/vertical-menu-template/app-users-view.html">damon0209</a>
-                                            </td>
-                                            <td>Damon Berry</td>
-                                            <td>02/09/2019</td>
-                                            <td>No</td>
-                                            <td>Staff</td>
-                                            <td><span class="badge badge-light-danger">Banned</span></td>
-                                            <td><a href="../../../html/ltr/vertical-menu-template/app-users-edit.html"><i class="bx bx-edit-alt"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>322</td>
-                                            <td><a href="../../../html/ltr/vertical-menu-template/app-users-view.html">kelsie0511</a>
-                                            </td>
-                                            <td>Kelsie Dunlap</td>
-                                            <td>05/11/2019</td>
-                                            <td>Yes</td>
-                                            <td>User </td>
-                                            <td><span class="badge badge-light-warning">Close</span></td>
-                                            <td><a href="../../../html/ltr/vertical-menu-template/app-users-edit.html"><i class="bx bx-edit-alt"></i></a></td>
-                                        </tr>
+                                        @endforeach
+                                      
+                                       
                                     
                                     </tbody>
                                 </table>

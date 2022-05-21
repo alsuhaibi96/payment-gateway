@@ -27,7 +27,7 @@
                                 </h4>
                             </div>
                             <div class="card-body card-dashboard">
-                                <div class="table-responsive">
+                                <div class="">
                                     <table class="table  dataex-html5-selectors">
                                         <thead>
                                             <tr>
@@ -44,8 +44,9 @@
                                         <tbody>
                                             @if ($Invoices->count() == 0)
                                             <tr>
-                                                <td colspan="8">No products to display.</td>
+                                                <td colspan="8" style="text-align: center;">لا يوجد فواتير الى حد الان</td>
                                             </tr>
+                                            @endif
 
                                             @foreach($Invoices as $invoice)
                                             <tr>

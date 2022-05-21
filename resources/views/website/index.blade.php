@@ -47,7 +47,7 @@
     <a href="#" class="logo">وصل!<i class="fas fa-wallet"></i></a>
     <div class="row">
         <div class="image ">
-            <img src="{{url('assets/web/images/pexels-karolina-grabowska-5632371-removebg-preview.png')}}" alt="">
+            <img src="{{url('assets/web/images/monstera.png')}}" alt="">
             {{-- <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a> --}}
         </div>
         <div class="content">
@@ -84,9 +84,15 @@
 
 <!--end our menu-->
 <!--start review customers-->
-<section class="review py-5" id="customer">
+<section class="review" id="customer">
     <!-- <h3 class="sub-heading">العملاء</h3> -->
-    <h1 class="heading"> من عملائنا</h1>
+    <h1 class="heading">  عملائنا</h1>
+    <p class="product__description">
+        لم يعد يخفى على أحد مدى أهمية حلول الدفع الالكتروني في عالم اليوم، مع الانتشار الواسع للأعمال عبر الانترنت وطغيانها على الأعمال التجارية التقليدية. فما من منتج أو خدمة إلا وبات متاحاً على أكناف الانترنت، سواء أكان معروضاً على مواقع التجارة الالكترونية المتزايدة باستمرار أو مواقع الشركات المزودة للخدمة. ومن هذا المنطلق، شهد فضاء الانترنت طلباً متزايداً على بوابات الدفع الالكتروني في العالم أجمع
+        تشتمل حلول الدفع الالكتروني على باقة من المزايا للتجار وأصحاب الأعمال تمكّنهم من قبول المدفوعات ومضاعفة أرقام المبيعات لديهم،
+
+        من خلال تسهيل عملية الدفع الالكتروني لزوّار الموقع وعملاءه المحتملين. نعم، فلكم أن تتخيّلوا كم تزيد احتمالية الشراء، وكم تتضاعف فرص تحويل الزائر إلى عميل بمجرّد توفير وسيلة دفع الكترونية سهلة وآمنة وموثوقة في نفس الوقت!
+    </p>
     <div class="swiper review-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide slide">
@@ -159,36 +165,7 @@
     </div>
 </section>
 <!--end review customers-->
-<!--start order section-->
 
-<!--end order section-->
-<!--start footer section -->
-<section class="footer" id="contact">
-    <div class="fotterBox">
-        <div class="Box">
-            <h3>اقسام الموقع</h3>
-            <a href="#home">لوحة التحكم</a>
-            <a href="#menus">الرئيسية</a>
-            <a href="#dishes">من نحن</a>
-            <a href="#order">عملائنا</a>
-            <a href="#about"> التواصل</a>
-        </div>
-        <div class="Box">
-            <h3 class="">معلومات التواصل</h3>
-            <a>00967-777604785</a>
-            <a> - صنعاءاليمن -</a>
-            <a>www.yemenpay.com</a>
-        </div>
-        <div class="Box">
-            <h3>يمكن ايجادنا عبر منصات التواصل</h3>
-            <a href="www.facebook.com"> FaceBook</a>
-            <a href="www.twitter.com">Twitter</a>
-            <a href="#">Telegram</a>
-            <a href="#">Instagram</a>
-        </div>
-    </div>
-    </div>
 
-</section>
 
 @endsection

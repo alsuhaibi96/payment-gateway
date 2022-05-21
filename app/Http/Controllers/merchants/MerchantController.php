@@ -38,7 +38,7 @@ class MerchantController extends Controller
     public function listInvoice(){
         $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
         $Invoices=PaymentInvoice::with('Orders_invoice')->where('user_id',Auth::user()->id)->get();
-        $Invoice_product=json_decode($Invoices[0]->orders_invoice->products);
+        
         // return $Invoices[0];
         // return $Invoice_product;
 
@@ -47,7 +47,7 @@ class MerchantController extends Controller
     }
 
     //
-    public function financial_movement($id){
+    public function financial_movement(){
         $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
         $customer_account_pro = DB::table('transactions')
         ->select(
@@ -65,7 +65,7 @@ class MerchantController extends Controller
             ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
             ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
             ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-26'])
-            ->where('transactions.user_id', $id)
+            ->where('transactions.user_id', Auth()->user()->id)
             ->orderBy('Reference', 'asc')
             ;
         $customer_account = DB::table('transactions')
@@ -74,13 +74,51 @@ class MerchantController extends Controller
         ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
         ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
         ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-26'])
-        ->where('transactions.user_id', $id)
+        ->where('transactions.user_id', Auth()->user()->id)
         ->union($customer_account_pro)
             ->get();
         $movements = $customer_account;
         // return $movements;
         // // // return $customer_account_pro;
         return view('merchant_dashboard/financial_movement', compact('data', 'movements'));
+
+    }
+    public function filter_financial_movement(Request $request){
+        $from=$request->from;
+        $to=$request->to;
+        $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
+        $customer_account_pro = DB::table('transactions')
+        ->select(
+            DB::raw('null as transaction_date'),
+
+            DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN bank_accounts.account_number ELSE CONCAT("-",bank_accounts.account_number) END) AS account_number'),
+            DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+            DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+            'transactions.id AS Reference',
+            DB::raw(
+                '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine'
+            )
+        )
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
+            ->whereBetween('transactions.transaction_date', [$from, $to])
+            ->where('transactions.user_id', Auth()->user()->id)
+            ->orderBy('Reference', 'asc');
+        $customer_account = DB::table('transactions')
+        ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
+        ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+        ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+        ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
+        ->whereBetween('transactions.transaction_date', [$from, $to])
+        ->where('transactions.user_id', Auth()->user()->id)
+        ->union($customer_account_pro)
+            ->get();
+        $movements = $customer_account;
+        // return $movements;
+        // // // return $customer_account_pro;
+        
+       return view('merchant_dashboard/financial_movement', compact('data', 'movements'));
 
     }
     public function bank_account(){

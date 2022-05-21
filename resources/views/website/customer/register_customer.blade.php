@@ -12,10 +12,10 @@
 @section('content')
 <section ></section>
     <!--start signIn form-->
-    <section class="login-form container justify-content-center pt-4 pb-4  ">
+    <section class="login-form container justify-content-center pt-4 pb-4  " style="background:#eee; width:80%;    margin: 50px auto; border-radius: 10px;">
       <div class="row section-header text-center p-4">
         <div class="col-12">
-            <h2 class="display-3  fw-bold">  إنشاء حساب شخصي</h2>
+            <h2 class="display-3  fw-bold" style="font-size: 2.4rem;">  إنشاء حساب شخصي</h2>
         </div>
       </div>
       <form class="login-form row container g-3s" action="{{ route('register_customer') }}" method="POST" enctype="multipart/form-data" >

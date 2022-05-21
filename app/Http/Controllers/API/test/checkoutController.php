@@ -237,7 +237,7 @@ class checkoutController extends Controller
         $client_banck_acount_id = $client_card_data->bank_accounts_id;
 
         $client_account_data = bank_account::where('id', $client_banck_acount_id)->first();
-
+        
         $client_account_number = $client_account_data->account_number;
 
 
@@ -281,38 +281,38 @@ class checkoutController extends Controller
             $sales_transaction->save();
 
             $journal_entries_merchant_right = new FinancialTransaction();
-            $journal_entries_merchant_right->transaction_id = $transaction->id;
+            $journal_entries_merchant_right->transaction_id = $sales_transaction->id;
             $journal_entries_merchant_right->financial_acount_id = 3;
             $journal_entries_merchant_right->bank_acount_id = $merchant_data->id;
-            $journal_entries_merchant_right->account_number = $merchant_data->account_number;
+            $journal_entries_merchant_right->account_number = $merchant_account_number ;
             $journal_entries_merchant_right->entry_type = "Debit";
             $journal_entries_merchant_right->amount = $total_amout;
             $journal_entries_merchant_right->save();
 
             $journal_entries_merchant_left = new FinancialTransaction();
-            $journal_entries_merchant_left->transaction_id = $transaction->id;
+            $journal_entries_merchant_left->transaction_id = $sales_transaction->id;
             $journal_entries_merchant_left->financial_acount_id = 1;
             $journal_entries_merchant_left->bank_acount_id = $client_account_data->id;
-            $journal_entries_merchant_left->account_number = $client_account_data->account_number;
+            $journal_entries_merchant_left->account_number = $client_account_number;
             $journal_entries_merchant_left->entry_type = "Cred";
             $journal_entries_merchant_left->amount = $total_amout;
             $journal_entries_merchant_left->save();
 
             $journal_entries_customer_right = new FinancialTransaction();
-            $journal_entries_customer_right->transaction_id = $sales_transaction->id;
+            $journal_entries_customer_right->transaction_id = $transaction->id;
             $journal_entries_customer_right->financial_acount_id = 2;
             $journal_entries_customer_right->bank_acount_id = $client_account_data->id;
-            $journal_entries_customer_right->bank_acount_id = $client_account_data->account_number;
+            $journal_entries_customer_right->account_number = $merchant_account_number;
             $journal_entries_customer_right->entry_type = "Debit";
             $journal_entries_customer_right->amount = $total_amout;
             $journal_entries_customer_right->save();
 
 
             $journal_entries_customer_left = new FinancialTransaction();
-            $journal_entries_customer_left->transaction_id = $sales_transaction->id;
+            $journal_entries_customer_left->transaction_id = $transaction->id;
             $journal_entries_customer_left->financial_acount_id = 3;
             $journal_entries_customer_right->bank_acount_id = $merchant_data->id;
-            $journal_entries_customer_right->bank_acount_id = $merchant_data->account_number;
+            $journal_entries_customer_right->account_number = $client_account_number;
             $journal_entries_customer_left->entry_type = "Cred";
             $journal_entries_customer_left->amount = $total_amout;
             $journal_entries_customer_left->save();
@@ -428,14 +428,14 @@ class checkoutController extends Controller
                 )
                 ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
                 ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-                ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-15'])
+                ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
                 ->where('transactions.user_id', $id)
                 ->orderBy('Reference', 'Desc');
             $customer_account = DB::table('transactions')
                 ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
                 ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
                 ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-                ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-15'])
+                ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
                 ->where('transactions.user_id', $id)
                 ->union($customer_account_pro)
                 ->get();

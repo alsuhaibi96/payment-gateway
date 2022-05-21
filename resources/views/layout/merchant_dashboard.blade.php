@@ -120,7 +120,10 @@
                                 <ul class="search-list"></ul>
                             </div>
                         </li>
-                        <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
+                        <li class="dropdown dropdown-notification nav-item">
+                            {{-- <a class="nav-link nav-link-label" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i>
+                            <span class="badge badge-pill badge-danger badge-up">5</span>
+                        </a> --}}
                             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header px-1 py-75 d-flex justify-content-between"><span class="notification-title"> <b>7 إشعارات جديدة</b> </span><span class="text-bold-400 cursor-pointer">تحديد الكل كمقروء </span></div>
@@ -214,7 +217,8 @@
                 <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                     <ul class="menu-content">
                         <li>
-                            <a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span> <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto">
+                            <a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>
+                                 <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto">
                                     {{ Auth::user()->bank_accounts->balance; }}
 
 
@@ -248,8 +252,7 @@
             </li>
             <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> الإبلاغ عن مشكلة</span></a>
             </li>
-            <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
-            </li>
+           
         </ul>
         </div>
     </div>

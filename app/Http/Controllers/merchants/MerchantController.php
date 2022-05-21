@@ -38,9 +38,7 @@ class MerchantController extends Controller
     public function listInvoice(){
         $data=bank_account::select('balance')->where('id',Auth::user()->id)->get();
         $Invoices=PaymentInvoice::with('Orders_invoice')->where('user_id',Auth::user()->id)->get();
-        
-        // return $Invoices[0];
-        // return $Invoice_product;
+      
 
         return view('merchant_dashboard/listInvoice',compact('data','Invoices'));
 

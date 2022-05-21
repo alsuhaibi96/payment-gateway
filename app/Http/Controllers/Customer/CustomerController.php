@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Models\User;
 use App\Models\bank_account;
+use App\Models\credit_cards;
+
 use App\Models\MoneyTransfer;
 
 use Carbon\Carbon as Carbon;
@@ -179,6 +181,29 @@ return view('customer_dashboard.transfer_details',compact('items'));
 
   return redirect()->route('transfer')->with(['error'=>'فشل في عملية التحويل']);
 
+}
+
+
+public function bank_account(){
+  $customer=Auth::user();
+  $bank_acount=bank_account::where('user_id',$customer->id)->first();
+  $account_num=$bank_acount->account_number;
+  $card_info=credit_cards::where('bank_accounts_id',$bank_acount->id)->first();
+  $card_num=$card_info->card_number;
+  $card_holder=$card_info->card_holder;
+  $cvv=$card_info->cvv;
+  $expiration_yy=$card_info->expiration_yy;
+  $expiration_mm=$card_info->expiration_mm;
+  return view('customer_dashboard.customer_bank_account_details',compact('bank_acount','card_info'));
+}
+
+public function update_account(Request $request){
+  $validator = Validator::make($request->all(), [
+      'cvv' => ['required','max:3'],
+  ]);
+  $cvv=$request->input('cvv');
+  Credit_cards::where('id',$request->id)->update(array('cvv'=>$cvv));
+  return redirect()->back();
 }
 
 }

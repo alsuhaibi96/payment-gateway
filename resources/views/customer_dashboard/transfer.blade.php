@@ -173,7 +173,7 @@
                                 </form>
                             </div>
                             <!-- invoice action  -->
-                            <div class="col-xl-3 col-md-4 col-12">
+                            {{-- <div class="col-xl-3 col-md-4 col-12">
                                 <div class="card invoice-action-wrapper shadow-none border">
                                     <div class="card-body">
                                         <div class="invoice-action-btn mb-1">
@@ -196,7 +196,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> --}}
                         </div>
                     </section>
 

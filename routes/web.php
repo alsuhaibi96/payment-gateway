@@ -153,7 +153,7 @@ Route::get('/buisness-info', function (){
         return view('customer_dashboard/home');
     })->name('home');
     
-    Route::get('/customer_dashboard', [UserProfileController::class,'Profile']
+    Route::get('/customer/dashboard', [UserProfileController::class,'Profile']
     )->name('customer_dashboard');
 
     /*profile edit */
@@ -192,7 +192,8 @@ Route::get('/customer_dashboard/settings', [CustomerDashController::class,'setti
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 Route::get('customer/transfer/details', [CustomerController::class,'transferredMoneyDetails'])->name('tansfer_details');
 Route::get('customer/transfer/transactions', [CustomerController::class,'showTransferDetails'])->name('show_transfer_details');
-
+Route::get('/bank/acccount', [CustomerController::class,'bank_account'])->name('view_bank_account');
+Route::post('/update/account', [CustomerController::class,'update_account'])->name('update_customer_account');
 
 
 /***************change password****************/

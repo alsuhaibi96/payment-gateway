@@ -45,7 +45,15 @@ class checkoutController extends Controller
         $meta_data=$data['metadata'];
         $sucess_url=$data['success_url'];
         $cancel_url=$data['cancel_url'];
-        $merchant_key_info=User::where('private_key',$private_key)->first();
+
+    if(User::where('public_key',$public_key)->first()==null)
+     return $this->returnError('408',"public-key  تاكد من ادخال  ");
+      if($merchant_key_info=User::where('private_key',$private_key)->first()==null)
+      return $this->returnError('408',"private-key  تاكد من ادخال  ");
+  
+  
+      $merchant_key_info=User::where('private_key',$private_key)->first();
+     
 
         if(!is_array($products))
         return $this->errors(300,5100,'invalid products array format');
@@ -53,15 +61,9 @@ class checkoutController extends Controller
         return $this->errors(500,5200,'invalid credintical keys');
 
         if($private_key==$merchant_key_info->private_key && $public_key==$merchant_key_info->public_key )
-        {
-           // return $this->create_order($order_details,$products,$public_key,$private_key);
             return $this->create_order($data,$products,$public_key,$private_key);
-        }
-        else
-        {
             return $this->returnError('408',"تاكد من كتابة البيانات بشكل صحيح");
-        }
-        //  return response($this->create_order($info),200);
+
 
     }
     public function generate_string($strength = 16) {
@@ -264,9 +266,9 @@ class checkoutController extends Controller
         $expiration_date=$request->input('expiration_yy');
         $Payment_confirmation_data = $request->all();
         $client_card_data = Credit_cards::where('card_number', $card_number)->first();
-        if ($client_card_data == null || $client_card_data->card_holder!=$card_holder ) {
+        if ($client_card_data == null  ) {
             notify()->error('تأكد من كتابتك لبيانات بطاقتك بشكل صحيح', 'خطأ ');
-            return Redirect::back()->withInput();
+            return Redirect::back();
         }
         
         $client_banck_acount_id = $client_card_data->bank_accounts_id;
@@ -369,20 +371,20 @@ class checkoutController extends Controller
 
             $transactionoverview->save();
 
-            $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id ? $paymentinvoice->order_invoice_id : '')->first();
+            // $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id ? $paymentinvoice->order_invoice_id : '')->first();
 
 
-            $invoice_id =  $order_invoice_data["id"];
-            $invoice_ids=$invoice_sender->id;
-            $invoice_information=response()->json([
-                "Invoice_id"=>$invoice_sender->id,
-                "order_invoice_id"=>$invoice_sender->order_invoice_id,
-                "amount_paid"=>$invoice_sender->amount_paid,
-                "currency"=>$invoice_sender->orders_invoice->currency,
-                "order_"=>$invoice_sender->orders_invoice->products,
-                "status"=>$invoice_sender->status,
-                "meta_data"=>"any data you want",
-            ]);
+            // $invoice_id =  $order_invoice_data["id"];
+            // $invoice_ids=$invoice_sender->id;
+            // $invoice_information=response()->json([
+            //     "Invoice_id"=>$invoice_sender->id,
+            //     "order_invoice_id"=>$invoice_sender->order_invoice_id,
+            //     "amount_paid"=>$invoice_sender->amount_paid,
+            //     "currency"=>$invoice_sender->orders_invoice->currency,
+            //     "order_"=>$invoice_sender->orders_invoice->products,
+            //     "status"=>$invoice_sender->status,
+            //     "meta_data"=>"any data you want",
+            // ]);
             
 
 

@@ -26,11 +26,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{url('assets/app-assets/images/ico/wallet-solid.svg')}}">
 </head>
 
-<body>
+<body style="background: #fff;">
     <!--start header section-->
     <header>
         <a href="#" class="logo">WASL PAYMENT <i class="fas fa-wallet"></i></a>
-        <nav class="navbar" id="menu">
+        <nav class="navbar" id="menu" style="display: block;">
 
 
             <a class="active" href="#home">الرئيسية</a>
@@ -54,7 +54,7 @@
 
 
     <!--start footer section -->
-    <section class="foot" id="contact" style="max-height: 400px; height: 400px;">
+    <section class="foot" id="contact" style="max-height: 400px; height: 400px; background:#eee;">
 
         <div class="box-container">
 
@@ -86,7 +86,7 @@
             </div>
 
         </div>
-        <div class="credit">created by <span>Was Team</span> | جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT</div>
+        <div class="credit"> | جميع الحقوق محفوظة &copy; 2022 WASL PAYMENT</div>
 
 
     </section>

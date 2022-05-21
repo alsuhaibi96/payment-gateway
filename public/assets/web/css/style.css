@@ -29,6 +29,7 @@ body
 {
     background-color: var(--main-color);
     font-family: 'Cairo', sans-serif;
+    background: #eee;
 }
 section
 {
@@ -482,11 +483,14 @@ section.home
 /*end review customers section*/
 
 /*start footer section*/
+.foo
+{
+    background-color: #eee;
+}
 .foot .box-container {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
-        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 1.5rem;
   }
   

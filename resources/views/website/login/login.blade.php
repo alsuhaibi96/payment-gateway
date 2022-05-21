@@ -13,7 +13,7 @@ class="active"
 @section('content')
 <!--start signIn form-->
 <section></section>
-<section class="login-form container  mt-5 justify-content-center pt-4 pb-4 col-6" style="height: 100%; border-radius:10px; margin:20px auto;">
+<section class="login-form container  mt-5 justify-content-center pt-4 pb-4 col-6" style="background:#fff; height: 100%; border-radius:10px; margin:20px auto;">
 
   <div class="row section-header text-center mt-5 p-4">
     <div class="col-12">

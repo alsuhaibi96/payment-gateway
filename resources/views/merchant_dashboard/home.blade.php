@@ -1,7 +1,6 @@
 @extends('layout.merchant_dashboard')
-@section('home')
-    active
-@endsection
+
+
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
@@ -33,18 +32,18 @@
                                     <div class="d-flex justify-content-around align-items-center flex-wrap">
                                         <div class="user-analytics ">
                                             <i class="fas fa-circle-minus"></i>
-                                            <span class="align-middle text-muted"> سحب مبلغ</span>
+                                            <span class="align-middle text-muted">  اجمالي المبيعات</span>
                                             <div class="d-flex">
                                                 <div id="radial-success-chart"></div>
-                                                <h5 class="mt-1 ml-25">50K Y.R ≈ $95</h5>
+                                                <h5 class="mt-1 ml-25">{{$Total_sales}}≈ $</h5>
                                             </div>
                                         </div>
                                         <div class="sessions-analytics ">
                                             <i class="bx bx-trending-up align-middle mr-25"></i>
-                                            <span class="align-middle text-muted">تحويل رصيد</span>
+                                            <span class="align-middle text-muted">اجمالي الرصيد البنكي</span>
                                             <div class="d-flex">
                                                 <div id="radial-warning-chart"></div>
-                                                <h5 class="mt-1 ml-25"> 109K Y.R ≈ $105</h5>
+                                                <h5 class="mt-1 ml-25"> {{ Auth::user()->bank_accounts->balance; }} ≈ $</h5>
                                             </div>
                                         </div>
                                         <div class="bounce-rate-analytics">

@@ -1,8 +1,11 @@
 @extends('layout.merchant_dashboard')
+@section('key_genrator')
+active
+@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
-        عرض الإحصائيات
+         مفاتيح الامان
     </b>
 </span>
 @endsection

@@ -33,6 +33,16 @@
                                         <span class="text-dark"><b> إضافة مستخدم  </b> </span>
                                     </div>
                                 </div>
+                                @if ($errors->any())
+                                
+                                    @foreach ($errors->all() as $err )
+                                        <p class="alert alert-danger">{{ $err }}</p>
+                                    @endforeach
+                                
+                                    
+                                @endif
+                                <form action="{{ route('save_user') }}" method="POST">
+                                    @csrf
                                 <div class=" order-2 order-sm-1">
                                     <div class="row">
                                         <div class="col-6 py-20">
@@ -55,13 +65,18 @@
                                         <label class="text-dark"> كلمة السر </label>
                                         <input type="text" name="password" class="form-control" placeholder="كلمة السر" >
                                    </div>
+                                   <div class="col-6 py-20">
+                                    <label class="text-dark">  تاكيد كلمة السر </label>
+                                    <input type="text" name="confirm_password" class="form-control" placeholder=" تاكيد كلمة السر" >
+                               </div>
 
                                        
                                         <div class="col-6">
                                             <label>الصلاحيات</label>
-                                            <select class="form-control" name="admin">
-                                                <option value="Super Admin">super admin</option>
-                                                <option value="Contnet Admin">Contnet Admin</option>
+                                            <select class="form-control" name="roles">
+                                               <option value="Super Admin">Super admin</option>
+                                               <option value="Contnet Admin">Content Admin</option>
+                                           
                                                
                                             </select>
                                         </div>
@@ -94,13 +109,14 @@
                                            
 
                                                 <li class="list-group-item border-0 pb-0">
-                                                    <button class="btn btn-primary btn-block subtotal-preview-btn">إضافة مستخدم</button>
+                                                    <input type="submit" name="submit" class="btn btn-primary btn-block subtotal-preview-btn" value="إضافة مستخدم">
                                                 </li>
                                            
                                     </div>
                                 </div>
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                  

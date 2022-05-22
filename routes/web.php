@@ -241,7 +241,7 @@ Route::get('/admin/dashboard/addBalance', function(){
 
 Route::get('/admin/dashboard/users',[AdminDashController::class,'show_user'] )->name('admin_dashboard/users');
 Route::get('/admin/dashboard/add_user',[AdminDashController::class,'addUser'])->name('addUser');
-Route::post('/amin/save_user',[AdminDashController::class,'save'])->name('save_user');
+Route::post('/admin/save_user',[AdminDashController::class,'save'])->name('save_user');
 Route::get('/admin/dashboard/editUser',[AdminDashController::class,'edit'])->name('editUser');
 Route::post('/Admin/update_user/{user_id}',[AdminDashController::class,'update'])->name('update_user');
 Route::get('/admin/dashboard/transactions',[AdminDashController::class,'Transactions'])->name('transactions');

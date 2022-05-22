@@ -31,7 +31,10 @@ class checkoutController extends Controller
     use general_trait;
     public function payment_order(Request $request)
     {
-        $data = json_decode($request->getContent(), true);
+        $data=json_decode($request->getContent(),true);
+        $private_key=$request->header('private-key');
+        $public_key=$request->header('public-key');
+        $products=$data['products'];
 
         $order_reference=$data['order_reference'];
         $total_amount=$data['total_amount'];
@@ -39,10 +42,11 @@ class checkoutController extends Controller
         $meta_data=$data['metadata'];
         $sucess_url=$data['success_url'];
         $cancel_url=$data['cancel_url'];
-
-    if(User::where('public_key',$public_key)->first()==null)
-     return $this->returnError('408',"public-key  تاكد من ادخال  ");
-      if($merchant_key_info=User::where('private_key',$private_key)->first()==null)
+      
+  
+      if(User::where('public_key',$public_key)->first()==null)
+        return $this->returnError('408',"public-key  تاكد من ادخال  ");
+      if(User::where('private_key',$private_key)->first()==null)
       return $this->returnError('408',"private-key  تاكد من ادخال  ");
   
   
@@ -139,8 +143,12 @@ class checkoutController extends Controller
     }
     public function do_payment($invoice_referance)
     {
-        $invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->get();
-        $invoice_id = $invoice_data[0]["id"];
+   
+       $invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->get();
+       if( Orders_invoice::where('invoice_referance', $invoice_referance)->first()==[]){
+        return $this->returnError('408',"There is no invoice !");
+       }
+       $invoice_id = $invoice_data[0]["id"];
         $products = $this->getProducts($invoice_id);
 
 
@@ -290,9 +298,16 @@ class checkoutController extends Controller
             $merchant_data->save();
             $client_account_data->balance = $remaining_balance;
             $client_account_data->save();
-
+            // if(Orders_invoice::where('invoice_referance', $invoice_referance)->first()==null){
+            //     return 'wrong';
+            //    }
             $paymentinvoice = new PaymentInvoice();
             $order_invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->first();
+            // if($paymentinvoice->order_invoice_id==null)
+            // {
+            //     notify()->error('تأكد من كتابتك لبيانات بطاقتك بشكل صحيح', 'خطأ ');
+            //     return Redirect::back();
+            // } 
             $paymentinvoice->order_invoice_id = $order_invoice_data->id;
             $paymentinvoice->user_id = $order_invoice_data->user_id;
             $paymentinvoice->amount_due = $total_amout;

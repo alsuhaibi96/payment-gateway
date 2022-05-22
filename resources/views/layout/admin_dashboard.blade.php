@@ -111,7 +111,7 @@
                                                 <div class="avatar mr-1 m-0"><img src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="39" width="39"></div>
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك Mo'khtar Ghaleb</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
+                                                <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{Auth::user()->first_name ." ".Auth::user()->last_name}}</span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
                                             </div>
                                         </div>
                                     </a><a class="d-flex justify-content-between cursor-pointer" href="javascript:void(0);">
@@ -155,11 +155,16 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name">Mo'khtar Ghaleb</span><span class="user-status text-muted"> 😊 Welcome  </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"> <span class="user-name">{{Auth::user()->first_name ." ".Auth::user()->last_name}}</span></div><span>
+                                    @if(isset(Auth::user()->profile->avatar))
+                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}"alt="users avatar" class="rounded-circle" style="width: 40px;height: 40px;"> 
+                                    @else
+                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">  
+                                    @endif
+                                </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
-                                {{-- <a class="dropdown-item" href="#"><i class="bx bx-user mr-50"></i> تعديل الملف الشخصي</a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-envelope mr-50"></i> البريد والرسائل</a> --}}
+  
                                 <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{ route('logout'); }}"><i class="bx bx-power-off mr-50"></i> تسجيل الخروج </a>
                             </div>
                         </li>
@@ -199,26 +204,26 @@
                     </li>
 
                       
-                                    <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
+                                    <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-users"> </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
                                      </li>
                     
-                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
+                                    {{-- <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
                                     </li>
-                                    
+                                     --}}
 
                                
-                                    <li class=" nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
+                                    <li class=" nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-exchange-alt">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
                                     </li>
 
                                     
-                                    <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
-                                    </li>
+                                    {{-- <li class=" nav-item"><a href="{{ route('admin_dashboard/deposit') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> سحب رصيد</span></a>
+                                    </li> --}}
 
                          
                     
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
-                                    <li class=" nav-item"><a href=""><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
+                                    <li class=" nav-item"><a href="{{ route('admin/settings') }}"><i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإعدادات</span></a>
                                     </li>
                                     <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                                     </li>

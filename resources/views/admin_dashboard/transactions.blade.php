@@ -56,57 +56,54 @@
                                 <table id="users-list-datatable" class="table">
                                     <thead>
                                         <tr>
-                                            <th>الاسم</th>
-                                            <th>العملية</th>
-                                            <th>التاريخ</th>
+                                            <th>ID</th>
+                                            <th>النوع</th>
                                             <th>المبلغ</th>
-                                            <th>المتبقي</th>
-                                            <th>الصلاحيات</th>
+                                            <th>العملة</th>
+                                            <th>من حساب</th>
+                                            <th>الى حساب</th>
+                                            <th>التاريخ</th>
                                             <th>الحالة</th>
                                             
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                      
-                                     
-                                       
-                                      
-                                       
-                                         
-                                       
-                                       
-                                       
-                                       
-                                        <tr>
-                                            <td>320</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>Hoyt Ellison</td>
-                                            <td>03/05/2020</td>
-                                            <td>User </td>
-                                            <td><span class="badge badge-light-success">Active</span></td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>321</td>
-                                            <td></td>
-                                            <td>Damon Berry</td>
-                                            <td>02/09/2019</td>                                            
-                                            <td>Staff</td>
-                                            <td><span class="badge badge-light-danger">Banned</span></td>     
-                                        <td></td>                                   </tr>
-                                        <tr>
-                                            <td>322</td>
-                                            <td>Kelsie Dunlap</td>
-                                            <td>05/11/2019</td>
-                                            <td>Yes</td>
-                                            <td>User </td>
-                                            <td></td>
-                                            <td></td>
-                                           
-                                        </tr>
-                                    
-                                    </tbody>
+                                        <tbody>
+
+                                            @foreach($transactions as $transaction)
+                                            <tr>
+                                                <td>{{$transaction->trans_id}}</td>
+                                                <td>{{$transaction->type}}</td>
+                                                <td>{{$transaction->amount}}</td>
+                                                <td>{{$transaction->currency}}</td>
+                                                @if(Auth::user()->hasRole('Customer'))
+                                                <td>to my account</td>
+                                                @else
+                                                <td>{{$transaction->client_name}}</td>
+                                                @endif
+    
+                                                @if(Auth::user()->hasRole('Merchant'))
+                                                <td>to my account</td>
+                                                @else
+                                                <td>{{$transaction->merchant_name}}</td>
+                                                @endif
+                                                <td>{{ $transaction->created_at }}</td>
+                                                <td><span class="badge badge-light-danger">{{$transaction->status}}</span></td>
+   
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Type</th>
+                                                <th>Amount</th>
+                                                <th>Currency</th>
+                                                <th>From Acount</th>
+                                                <th>To Acount</th>
+                                                <th>date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </tfoot>
                                 </table>
                             </div>
                             <!-- datatable ends -->

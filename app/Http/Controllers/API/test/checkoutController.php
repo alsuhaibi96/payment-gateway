@@ -26,18 +26,12 @@ use Illuminate\Support\Facades\Validator;
 
 class checkoutController extends Controller
 
-{    
-    
+{
+
     use general_trait;
-    public function payment_order(Request $request){
-        $data=json_decode($request->getContent(),true);
-       
-    //$req->input()
-        
-        $info=array('refrence_id'=>1,'products'=>[array('id'=>1,'name'=>'laptop','quantity'=>2,'unint_amount'=>3000),array('id'=>3,'name'=>'laptop','quantity'=>5,'unint_amount'=>100)]);
-        $private_key=$request->header('private-key');
-        $public_key=$request->header('public-key');
-        $products=$data['products'];
+    public function payment_order(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
 
         $order_reference=$data['order_reference'];
         $total_amount=$data['total_amount'];
@@ -55,10 +49,10 @@ class checkoutController extends Controller
       $merchant_key_info=User::where('private_key',$private_key)->first();
      
 
-        if(!is_array($products))
-        return $this->errors(300,5100,'invalid products array format');
-        if($private_key==null|| $public_key==null)
-        return $this->errors(500,5200,'invalid credintical keys');
+        $info = array('refrence_id' => 1, 'products' => [array('id' => 1, 'name' => 'laptop', 'quantity' => 2, 'unint_amount' => 3000), array('id' => 3, 'name' => 'laptop', 'quantity' => 5, 'unint_amount' => 100)]);
+        $private_key = $request->header('private-key');
+        $public_key = $request->header('public-key');
+        $products = $data['products'];
 
         if($private_key==$merchant_key_info->private_key && $public_key==$merchant_key_info->public_key )
             return $this->create_order($data,$products,$public_key,$private_key);
@@ -66,17 +60,19 @@ class checkoutController extends Controller
 
 
     }
-    public function generate_string($strength = 16) {
+    public function generate_string($strength = 16)
+    {
         $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $input_length = strlen($input);
         $random_string = '';
-        for($i = 0; $i < $strength; $i++) {
+        for ($i = 0; $i < $strength; $i++) {
             $random_character = $input[mt_rand(0, $input_length - 1)];
             $random_string .= $random_character;
         }
-     
+
         return $random_string;
     }
+
     public function create_order($order_details,$products,$public_key,$private_key){
         $merchant_data=User::where('private_key',$private_key)->first();
         $feedback=array("invoice_referance"=>$this->generate_string(10),"expires_on"=>date("h:i:s a m/d/Y",strtotime('+24 hours')));
@@ -119,41 +115,41 @@ class checkoutController extends Controller
             for($i=0;$i<count($products_ids);$i++){
     
                 $productsArr = array(
-                    'product_id' =>$products_ids[$i],
-                    'product_name'=> $products_names[$i],
-                    'quantity'=> $products_quantity[$i],
-                    'unit_amount'=> $products_unit_amounts[$i],
-                    'invoice_id'=>  $invoice->id,
+                    'product_id' => $products_ids[$i],
+                    'product_name' => $products_names[$i],
+                    'quantity' => $products_quantity[$i],
+                    'unit_amount' => $products_unit_amounts[$i],
+                    'invoice_id' =>  $invoice->id,
 
                 );
-            
+
                 Products::insert($productsArr);
-    
             }
            
             
             return $this->returnData('invoice',['next_url'=>$invoice->next_url],'invoice created successfuly');
 
-        }
-        
-        
 
-    }
-    public function errors($response_code,$code,$message){
-        return response()->json(array('code'=>$code,'message'=>$message),$response_code);
-    }
-    public function do_payment($invoice_referance){
-        $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->get();
-     $invoice_id= $invoice_data[0]["id"];
-       $products=$this->getProducts($invoice_id);
-      
          
-    //  return $invoice_data;
+        }
+    }
+    public function errors($response_code, $code, $message)
+    {
+        return response()->json(array('code' => $code, 'message' => $message), $response_code);
+    }
+    public function do_payment($invoice_referance)
+    {
+        $invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->get();
+        $invoice_id = $invoice_data[0]["id"];
+        $products = $this->getProducts($invoice_id);
+
 
         return view('paymentView.pay_card' ,compact('invoice_data','products','invoice_referance'));
 
+
+ 
     }
-    public function cancel_payment($invoice_referance=null){
+      public function cancel_payment($invoice_referance=null){
         $invoice_data=Orders_invoice::where('invoice_referance',$invoice_referance)->first();
         
        
@@ -214,7 +210,7 @@ class checkoutController extends Controller
            $response= $success_url.'/'.$response_info;
   
         return  Redirect::away($response);
-        }
+    }
 
     public function Financial_processing(Request $request)
     {
@@ -262,8 +258,8 @@ class checkoutController extends Controller
 
         $success_url = $request->input('success_url');
         $cvv = $request->input('cvv');
-        $card_holder=$request->input('card_holder');
-        $expiration_date=$request->input('expiration_yy');
+        $card_holder = $request->input('card_holder');
+        $expiration_date = $request->input('expiration_yy');
         $Payment_confirmation_data = $request->all();
         $client_card_data = Credit_cards::where('card_number', $card_number)->first();
         if ($client_card_data == null  ) {
@@ -274,7 +270,7 @@ class checkoutController extends Controller
         $client_banck_acount_id = $client_card_data->bank_accounts_id;
 
         $client_account_data = bank_account::where('id', $client_banck_acount_id)->first();
-        
+
         $client_account_number = $client_account_data->account_number;
 
 
@@ -321,7 +317,7 @@ class checkoutController extends Controller
             $journal_entries_merchant_right->transaction_id = $sales_transaction->id;
             $journal_entries_merchant_right->financial_acount_id = 3;
             $journal_entries_merchant_right->bank_acount_id = $merchant_data->id;
-            $journal_entries_merchant_right->account_number = $merchant_account_number ;
+            $journal_entries_merchant_right->account_number = $merchant_account_number;
             $journal_entries_merchant_right->entry_type = "Debit";
             $journal_entries_merchant_right->amount = $total_amout;
             $journal_entries_merchant_right->save();
@@ -399,123 +395,124 @@ class checkoutController extends Controller
         $products = $this->getProducts(4);
         return $this->returnData('success', $client_account_number, array("Products:" => $products), 'Done Payment Successfully');
     }
-        public function get_acounts()
-        {
-            return bank_account::find(1)->Credit_cards;
-        }
-        public function getProducts($invoice_id)
-        {
-    
-            $products = DB::table('products')->where('invoice_id', $invoice_id)->get();
-            return $products;
-        }
-        public function getinvoice($id)
-        {
-            $invoice = Transaction::with(['user', 'FinancialTransaction'])->where('id', $id)->get();
-            $invoice_data = array('القيود' => $invoice);
-            $item = User::with(['PaymentInvoice'])->get();
-            return response()->json($invoice_data);
-    
-    
-    
-    
-            return $invoice;
-        }
-        public function finanical_accounts()
-        {
-            $invoice = User::with(['Transaction', 'Transaction.FinancialTransaction', 'Transaction.FinancialTransaction.FinancialAcount'])->get();
-            $invoice_data = array('القيود' => $invoice);
-            $item = User::with(['PaymentInvoice'])->get();
-            return response()->json($invoice_data);
-    
-    
-    
-    
-            return $invoice;
-        }
-        public function userWithTransaction($id)
-        {
-            $invoice = User::with(['transactionOverView'])->where('id', $id)->get();
-            $invoice_data = array('usertransaction' => $invoice);
-            $item = User::with(['PaymentInvoice'])->get();
-            return response()->json($invoice_data);
-    
-    
-    
-    
-            return $invoice;
-        }
-        public function customer_account_statement($id)
-        {
-    
-            $customer_account_pro = DB::table('transactions')
-                ->select(
-                    DB::raw('null as transaction_date'),
-                    DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_acounts.acount_name ELSE CONCAT("-",financial_acounts.acount_name) END) AS DescriptionOrAccountTitle'),
-                    DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
-                    DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
-                    'transactions.id AS Reference',
-                    DB::raw(
-                        '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine'
-                    )
+    public function get_acounts()
+    {
+        return bank_account::find(1)->Credit_cards;
+    }
+    public function getProducts($invoice_id)
+    {
+
+        $products = DB::table('products')->where('invoice_id', $invoice_id)->get();
+        return $products;
+    }
+    public function getinvoice($id)
+    {
+        $invoice = Transaction::with(['user', 'FinancialTransaction'])->where('id', $id)->get();
+        $invoice_data = array('القيود' => $invoice);
+        $item = User::with(['PaymentInvoice'])->get();
+        return response()->json($invoice_data);
+
+
+
+
+        return $invoice;
+    }
+    public function finanical_accounts()
+    {
+        $invoice = User::with(['Transaction', 'Transaction.FinancialTransaction', 'Transaction.FinancialTransaction.FinancialAcount'])->get();
+        $invoice_data = array('القيود' => $invoice);
+        $item = User::with(['PaymentInvoice'])->get();
+        return response()->json($invoice_data);
+
+
+
+
+        return $invoice;
+    }
+    public function userWithTransaction($id)
+    {
+        $invoice = User::with(['transactionOverView'])->where('id', $id)->get();
+        $invoice_data = array('usertransaction' => $invoice);
+        $item = User::with(['PaymentInvoice'])->get();
+        return response()->json($invoice_data);
+
+
+
+
+        return $invoice;
+    }
+    public function customer_account_statement($id)
+    {
+
+        $customer_account_pro = DB::table('transactions')
+            ->select(
+                DB::raw('null as transaction_date'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_acounts.acount_name ELSE CONCAT("-",financial_acounts.acount_name) END) AS DescriptionOrAccountTitle'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+                'transactions.id AS Reference',
+                DB::raw(
+                    '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine'
                 )
-                ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
-                ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-                ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
-                ->where('transactions.user_id', $id)
-                ->orderBy('Reference', 'Desc');
-            $customer_account = DB::table('transactions')
-                ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
-                ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
-                ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-                ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
-                ->where('transactions.user_id', $id)
-                ->union($customer_account_pro)
-                ->get();
-    
-    
-    
-    
-    
-    
-    
-            return response()->json($customer_account);;
-        }
-        public function Ledger_account()
-        {
-            $accounts = DB::table('transactions')
-                ->select(
-                    'financial_transactions.financial_acount_id',
-                    'financial_acounts.acount_name',
-                    DB::raw('count(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE -financial_transactions.amount END) AS Balance')
-                )
-                ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
-                ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-                ->where('transactions.transaction_date', '=', '2022-05-13')
-                ->groupBy('financial_transactions.financial_acount_id')
-                ->orderBy('financial_transactions.financial_acount_id', 'asc')
-                ->get();
-        }
-        public function Ledger_accounts($id)
-        {
-            $accounts = DB::table('transactions')
-                ->select(
-                    'financial_transactions.financial_acount_id',
-                    'financial_acounts.acount_name',
-                    DB::raw('SUM(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE -financial_transactions.amount END) AS Balance')
-                )
-                ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
-                ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-                ->where('transactions.user_id', '=', $id)
-                ->groupBy('financial_transactions.financial_acount_id')
-                ->orderBy('financial_transactions.financial_acount_id', 'asc')
-                ->get();
+            )
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
+            ->where('transactions.user_id', $id)
+            ->orderBy('Reference', 'Desc');
+        $customer_account = DB::table('transactions')
+            ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
+            ->where('transactions.user_id', $id)
+            ->union($customer_account_pro)
+            ->get();
+
+
+
+
+
+
+
+        return response()->json($customer_account);;
+    }
+    public function Ledger_account()
+    {
+        $accounts = DB::table('transactions')
+        ->select(
+            'financial_transactions.financial_acount_id',
+            'financial_acounts.acount_name',
+            DB::raw('count(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE -financial_transactions.amount END) AS Balance')
+        )
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->where('transactions.transaction_date', '=', '2022-05-21')
+            ->groupBy('financial_transactions.financial_acount_id')
+            ->orderBy('financial_transactions.financial_acount_id', 'asc')
+            ->get();
             return $accounts;
-        }
-    
-    
-        public function seprateDate($date)
-        {
-            return  $dates = explode('/', $date);
-        }
+    }
+    public function Ledger_accounts($id)
+    {
+        $accounts = DB::table('transactions')
+        ->select(
+            'financial_transactions.financial_acount_id',
+            'financial_acounts.acount_name',
+            DB::raw('SUM(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE -financial_transactions.amount END) AS Balance')
+        )
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->where('transactions.user_id', '=', $id)
+            ->groupBy('financial_transactions.financial_acount_id')
+            ->orderBy('financial_transactions.financial_acount_id', 'asc')
+            ->first();
+        return $accounts->Balance;
+    }
+
+
+    public function seprateDate($date)
+    {
+        return  $dates = explode('/', $date);
+    }
 }

@@ -27,7 +27,7 @@
                                 </h4>
                             </div>
                             <div class="card-body card-dashboard">
-                                <div class="">
+                                <div class="table-responsive mt-2">
                                     <table class="table  dataex-html5-selectors">
                                         <thead>
                                             <tr>

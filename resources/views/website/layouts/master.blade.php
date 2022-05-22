@@ -42,64 +42,59 @@
         </nav>
     
         <div class="icon">
+
             <i class="fas fa-bars toogle" id="menu-bars"></i>
-            
-        @if (!Auth::check())
-
+            @if (!Auth::check())
             <i class="fas fa-right-to-bracket" style="color: #192a56;">
-
-                         <a class="fas fa-user" href="{{ route('registeration') }}"> </a>
-             
-
+                <a class="fas fa-user" href="{{ route('registeration') }}"> </a>
             </i>
-        @endif
+            @endif
+            @if (Auth::check())
 
-           
-        </div>
-        @if (Auth::check())
+            <nav class="navbar navbar-expand-lg  ">
+                <div>
 
-        <nav class="navbar navbar-expand-lg  ">
-            <div >
-             
-            
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-lg-0">
-                
-                  <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle bg-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="media-left pr-0">
-                                                <div class="avatar m-0">
-                                                    @if(isset(Auth::user()->profile->avatar))
-                                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" class="rounded-circle" style="height: 50px;width: 50px;">
-                                                    @else
-                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
-                                                   
-                                                   
-                                                    @endif        
-                                                      </div>
-                                            </div>
-                                        </button>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @if(Auth::user()->hasRole('Customer'))
-                      <li><a class="" href="{{ route('customer_dashboard') }}" style="font-size: 12px">لوحة التحكم</a></li>
-                      @else
-                      <li><a class="" href="{{ route('merchant_dashboard') }}" style="font-size: 12px">لوحة التحكم</a></li>
-                      @endif
 
-                      
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="" href="{{ route('logout') }}" style="font-size: 12px">تسجيل الخروج</a></li>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-lg-0">
 
-                    
-                    </ul>
-                  </li>
-               
-                </ul>
-               
-              </div>
-            </div>
-          </nav>
-          @endif
+                            <li class="nav-item dropdown">
+                                <button class="nav-link dropdown-toggle bg-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="media-left pr-0">
+                                        <div class="avatar m-0">
+                                            @if(isset(Auth::user()->profile->avatar))
+                                            <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar" height="20" width="20" class="rounded-circle" style="height: 50px;width: 50px;">
+                                            @else
+                                            <img src="{{ url('assets/web/images/avatar.jpg') }}" alt="users avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">
+
+
+                                            @endif
+                                        </div>
+                                    </div>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->hasRole('Customer'))
+                                    <li><a class="" href="{{ route('customer_dashboard') }}" style="font-size: 12px">لوحة التحكم</a></li>
+                                    @else
+                                    <li><a class="" href="{{ route('merchant_dashboard') }}" style="font-size: 12px">لوحة التحكم</a></li>
+                                    @endif
+
+
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="" href="{{ route('logout') }}" style="font-size: 12px">تسجيل الخروج</a></li>
+
+
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+            @endif
     </header>
     <!--end header section-->
 
@@ -147,7 +142,7 @@
 
     </section>
     <!--end footer section -->
-  
+
 
 
 

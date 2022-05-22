@@ -1,8 +1,11 @@
 @extends('layout.merchant_dashboard')
+@section('bank_account')
+active
+@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
-        عرض الإحصائيات
+         الحساب البنكي
     </b>
 </span>
 @endsection

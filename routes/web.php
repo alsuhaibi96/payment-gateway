@@ -120,7 +120,7 @@ Route::get('/test-card', function () {
 
 
 
-
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 Route::group(['middleware'=>['auth']],function(){
 
     
@@ -128,7 +128,7 @@ Route::group(['middleware'=>['auth']],function(){
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
-Route::get('/generate_roles',[SettingController::class,'generateRoles']);
+
 
 
     
@@ -204,24 +204,23 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
 
 
  /********** Merchant Dashboard Routes *************/
- Route::get('/merchant_dashboard', [MerchantController::class,'index'])->name('merchant_dashboard');
-Route::get('/Transactions', [MerchantController::class,'Transactions'])->name('Transactions');
-Route::get('/listInvoice', [MerchantController::class,'listInvoice'])->name('listInvoice');
-Route::get('/financial_movement', [MerchantController::class,'financial_movement'])->name('financial_movement'); 
-Route::post('/filter_financial_movement', [MerchantController::class,'filter_financial_movement'])->name('filter_financial_movement');
-Route::get('/bank_account', [MerchantController::class,'bank_account'])->name('bank_account');
-Route::post('/update_acount', [MerchantController::class,'update_acount'])->name('update_acount');
-Route::get('/key_genrator', [MerchantController::class,'key_genrator'])->name('key_genrator');
-Route::post('/key_generat', [MerchantController::class,'key_generat'])->name('key_generat');
- Route::get('/merchant_dashboard', function(){
-    return view('merchant_dashboard/home');
-})->name('merchant_dashboard');
-
- Route::get('/merchant_dashboard/invoice' , function(){
-     return view('merchant_dashboard/invoice');
- })->name('invoice');
 
 
+
+
+
+    Route::group(['middleware' => 'DisableBackBtn'], function () {
+        Route::get('/merchant_dashboard', [MerchantController::class, 'index'])->name('merchant_dashboard');
+        Route::get('/Transactions', [MerchantController::class, 'Transactions'])->name('Transactions');
+        Route::get('/listInvoice', [MerchantController::class, 'listInvoice'])->name('listInvoice');
+        Route::get('/financial_movement', [MerchantController::class, 'financial_movement'])->name('financial_movement');
+        Route::post('/filter_financial_movement', [MerchantController::class, 'filter_financial_movement'])->name('filter_financial_movement');
+        Route::get('/bank_account', [MerchantController::class, 'bank_account'])->name('bank_account');
+        Route::post('/update_acount', [MerchantController::class, 'update_acount'])->name('update_acount');
+        Route::get('/key_genrator', [MerchantController::class, 'key_genrator'])->name('key_genrator');
+        Route::post('/key_generat', [MerchantController::class, 'key_generat'])->name('key_generat');
+        
+    });
 
 
 

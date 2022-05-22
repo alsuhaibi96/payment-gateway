@@ -244,9 +244,9 @@
                     
             </li>
  
-            <li class=" nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
+            <li class="@yield('bank_account') nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>
             </li>
-            <li class=" nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-key"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
+            <li class="@yield('key_genrator') nav-item"><a href="{{ route('key_genrator') }}"> <i class="fas fa-key"></i> <span class="menu-title text-truncate" data-i18n="Email">public/private Key</span></a>
             </li>
             <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
             </li>

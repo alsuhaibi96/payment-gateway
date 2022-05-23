@@ -47,7 +47,7 @@ use App\Http\Controllers\Auth\ForgotPasswordCustomController;
 Route::post('/customer/register', [UserController::class,'createCustomer'])->name('register_customer');
 Route::post('/merchant/register', [UserController::class,'createMerchant'])->name('register_merchant');
 
-Route::get('/user/login',[UserController::class,'viewLogin'])->name('login');
+Route::get('/user/login',[UserController::class,'viewLogin'])->name('login')->middleware('backToDashboard');
 
 Route::post('/login',[UserController::class,'customLogin'])->name('customLogin');
 
@@ -220,7 +220,9 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
         Route::post('/update_acount', [MerchantController::class, 'update_acount'])->name('update_acount');
         Route::get('/key_genrator', [MerchantController::class, 'key_genrator'])->name('key_genrator');
         Route::post('/key_generat', [MerchantController::class, 'key_generat'])->name('key_generat');
-        
+        Route::get('/transferMony', [MerchantController::class, 'transferMony'])->name('transferMony');
+        //This route is calling the method transfering money
+        Route::post('transfer', [MerchantController::class, 'transfer'])->name('transfer');
     });
 
 

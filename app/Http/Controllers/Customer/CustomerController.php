@@ -206,4 +206,3 @@ public function update_account(Request $request){
   return redirect()->back();
 }
 
-}

@@ -241,7 +241,8 @@
             </li>
             <li class="@yield('listInvoice') nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
             </li>
-                    
+            <li class="@yield('transferMony') nav-item"><a href="{{ route('transferMony') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> تحويل اموال </span></a>
+            </li>      
             </li>
  
             <li class="@yield('bank_account') nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>

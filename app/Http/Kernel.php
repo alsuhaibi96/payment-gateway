@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'checkadmintoken' => \App\Http\Middleware\checkAdminToken::class,
         'is_verify_email' => \App\Http\Middleware\IsVerifyEmail::class,
         'DisableBackBtn' => \App\Http\Middleware\DisableBackBtn::class,
+        'backToDashboard' => \App\Http\Middleware\backToDashboard::class,
     ];
 }

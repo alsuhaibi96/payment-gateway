@@ -54,17 +54,9 @@
                                             <td>{{$transaction->type}}</td>
                                             <td>{{$transaction->amount}}</td>
                                             <td>{{$transaction->currency}}</td>
-                                            @if(Auth::user()->hasRole('Customer'))
-                                            <td>to my account</td>
-                                            @else
+                                            
                                             <td>{{$transaction->client_name}}</td>
-                                            @endif
-
-                                            @if(Auth::user()->hasRole('Merchant'))
-                                            <td>to my account</td>
-                                            @else
                                             <td>{{$transaction->merchant_name}}</td>
-                                            @endif
                                             <td>{{$transaction->status}}</td>
 
                                             </td>

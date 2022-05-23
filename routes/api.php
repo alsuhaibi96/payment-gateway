@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\API\APIPaymentController;
 use App\Http\Controllers\api\test\checkoutController;
+use App\Http\Controllers\api\v1\checkoutController as V1CheckoutController;
+use App\Http\Controllers\api\v1\checkoutControllerv1;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,19 +29,19 @@ Route::group([
 ], function () {
         Route::get('/merchant/allPayments' , [APIPaymentController::class,'allPayments']);
 
-        Route::post('/merchant/payment_order', [checkoutController::class, 'payment_order'])->name('payment_order');
+        Route::post('/merchant/payment_order', [checkoutControllerv1::class, 'payment_order'])->name('payment_order');
 
-    Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
-    Route::get('acounts',[checkoutController::class,'get_acounts']);
+    Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutControllerv1::class,'cancel_payment'])->name('cancel_payment');
+    Route::get('acounts',[checkoutControllerv1::class,'get_acounts']);
  
       
 });
 Route::group([
     'prefix'=>'v1',
     'middleware'=>['web']],function(){
-    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
-Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
-Route::get('/cancel/payment/{cancel}',[checkoutController::class,'cancelPay'])->name('cancelPay');
+    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutControllerv1::class,'do_payment'])->name('do_payment');
+Route::post('Payment_confirmation',[checkoutControllerv1::class,'Financial_processing'])->name('Payment_confirmation');
+Route::get('/cancel/payment/{cancel}',[checkoutControllerv1::class,'cancelPay'])->name('cancelPay');
 });
 
 
@@ -49,27 +51,27 @@ Route::get('/cancel/payment/{cancel}',[checkoutController::class,'cancelPay'])->
 // ----------------------------- testApi routes ------------------------------//
 Route::group([
     'prefix' => 'test',
-    
+
 ], function () {
-   
+
     Route::post('/merchant/payment_order', [checkoutController::class, 'payment_order'])->name('payment_order');
-   
-    Route::get('/merchant/cancel_payment_order/{invoice_referance}',[checkoutController::class,'cancel_payment'])->name('cancel_payment');
-    Route::get('acounts',[checkoutController::class,'get_acounts']);
-    Route::get('/getinvoice/{id}',[checkoutController::class,'getinvoice'])->name('getinvoice');
-    Route::get('/userWithTransaction/{id}',[checkoutController::class,'userWithTransaction'])->name('userWithTransaction');
-    Route::get('/finanical_accounts',[checkoutController::class,'finanical_accounts'])->name('finanical_accounts');
-    Route::get('/account_statement/{id}',[checkoutController::class,'customer_account_statement'])->name('customer_account_statement');
-    Route::get('/Ledger_account/{id}',[checkoutController::class,'Ledger_account'])->name('Ledger_account');
-    Route::get('/Ledger_accounts/{id}',[checkoutController::class,'Ledger_accounts'])->name('Ledger_accounts');
+
+    Route::get('/merchant/cancel_payment_order/{invoice_referance}', [checkoutController::class, 'cancel_payment'])->name('cancel_payment');
+    Route::get('acounts', [checkoutController::class, 'get_acounts']);
+    Route::get('/getinvoice/{id}', [checkoutController::class, 'getinvoice'])->name('getinvoice');
+    Route::get('/userWithTransaction/{id}', [checkoutController::class, 'userWithTransaction'])->name('userWithTransaction');
+    Route::get('/finanical_accounts', [checkoutController::class, 'finanical_accounts'])->name('finanical_accounts');
+    Route::get('/account_statement/{id}', [checkoutController::class, 'customer_account_statement'])->name('customer_account_statement');
+    Route::get('/Ledger_account/{id}', [checkoutController::class, 'Ledger_account'])->name('Ledger_account');
+    Route::get('/Ledger_accounts/{id}', [checkoutController::class, 'Ledger_accounts'])->name('Ledger_accounts');
 });
 
 Route::group([
-    'prefix'=>'test',
-    'middleware'=>['web']],function(){
-    Route::get('/merchant/do_payment_order/{invoice_referance}',[checkoutController::class,'do_payment'])->name('do_payment');
-Route::post('Payment_confirmation',[checkoutController::class,'Financial_processing'])->name('Payment_confirmation');
-
+    'prefix' => 'test',
+    'middleware' => ['web']
+], function () {
+    Route::get('/merchant/do_payment_order/{invoice_referance}', [checkoutController::class, 'do_payment'])->name('do_payment');
+    Route::post('Payment_confirmation', [checkoutController::class, 'Financial_processing'])->name('Payment_confirmation');
 });
 // Route::group([
 //     'middleware' => 'api',

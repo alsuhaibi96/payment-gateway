@@ -8,10 +8,12 @@ use App\Models\Credit_cards;
 use App\Models\PaymentInvoice;
 use App\Models\TransactionOverView;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use PDF;
 
 class MerchantController extends Controller
@@ -26,11 +28,15 @@ class MerchantController extends Controller
     {
 
         $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
-        $Total_sales=$this->Ledger_accounts(4);
+        $Total_sales = $this->Ledger_accounts();
+        $Total_transaction=$this->customer_account_statement();
+        $Total_Invoice=$this->getinvoice();
+        // return $Total_sales[0]->Balance;
+        
         // etc.
-        
-        
-        return view('merchant_dashboard/home', compact('data','Total_sales'));
+
+
+        return view('merchant_dashboard/home', compact('data', 'Total_sales','Total_transaction','Total_Invoice'));
     }
     // transactions function that show finanicial transaction
     public function Transactions()
@@ -40,7 +46,6 @@ class MerchantController extends Controller
         return view('merchant_dashboard/Transactions', compact('data', 'transactions'));
     }
     //list function to show all invoice transaction
-
     public function listInvoice()
     {
         $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
@@ -57,32 +62,30 @@ class MerchantController extends Controller
     {
         $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
         $customer_account_pro = DB::table('transactions')
-            ->select(
-                DB::raw('null as transaction_date'),
+        ->select(
+            DB::raw('null as transaction_date'),
 
-                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN bank_accounts.account_number ELSE CONCAT("-",bank_accounts.account_number) END) AS account_number'),
-                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
-                DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
-                'transactions.id AS Reference',
-                DB::raw(
-                    '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine'
-                )
+            DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN credit_cards.card_holder ELSE CONCAT("-",credit_cards.card_holder) END) AS account_number'),
+            DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+            DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+            'transactions.id AS Reference',
+            DB::raw(
+                '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine'
             )
+        )
             ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
             ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-            ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
-            ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-26'])
+            ->leftJoin('credit_cards', 'credit_cards.id', '=', 'financial_transactions.bank_acount_id')
             ->where('transactions.user_id', Auth()->user()->id)
             ->orderBy('Reference', 'asc');
         $customer_account = DB::table('transactions')
-            ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
-            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
-            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-            ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
-            ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-26'])
-            ->where('transactions.user_id', Auth()->user()->id)
-            ->union($customer_account_pro)
-            ->get();
+        ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
+        ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+        ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+        ->leftJoin('credit_cards', 'credit_cards.id', '=', 'financial_transactions.bank_acount_id')
+        ->where('transactions.user_id', Auth()->user()->id)
+        ->union($customer_account_pro)
+        ->get();
         $movements = $customer_account;
         // return $movements;
         // // // return $customer_account_pro;
@@ -97,7 +100,7 @@ class MerchantController extends Controller
             ->select(
                 DB::raw('null as transaction_date'),
 
-                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN bank_accounts.account_number ELSE CONCAT("-",bank_accounts.account_number) END) AS account_number'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN credit_cards.card_holder ELSE CONCAT("-",credit_cards.card_holder) END) AS account_number'),
                 DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
                 DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
                 'transactions.id AS Reference',
@@ -107,7 +110,7 @@ class MerchantController extends Controller
             )
             ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
             ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-            ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
+            ->leftJoin('credit_cards', 'credit_cards.id', '=', 'financial_transactions.bank_acount_id')
             ->whereBetween('transactions.transaction_date', [$from, $to])
             ->where('transactions.user_id', Auth()->user()->id)
             ->orderBy('Reference', 'asc');
@@ -115,7 +118,7 @@ class MerchantController extends Controller
             ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
             ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
             ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-            ->leftJoin('bank_accounts', 'bank_accounts.id', '=', 'financial_transactions.bank_acount_id')
+            ->leftJoin('credit_cards', 'credit_cards.id', '=', 'financial_transactions.bank_acount_id')
             ->whereBetween('transactions.transaction_date', [$from, $to])
             ->where('transactions.user_id', Auth()->user()->id)
             ->union($customer_account_pro)
@@ -184,7 +187,7 @@ class MerchantController extends Controller
 
         return $random_string;
     }
-    public function Ledger_accounts($id)
+    public function Ledger_accounts()
     {
         $accounts = DB::table('transactions')
         ->select(
@@ -194,10 +197,139 @@ class MerchantController extends Controller
         )
             ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
             ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
-            ->where('transactions.user_id', '=', $id)
+            ->where('transactions.user_id', '=', Auth::user()->id)
             ->groupBy('financial_transactions.financial_acount_id')
             ->orderBy('financial_transactions.financial_acount_id', 'asc')
-            ->first();
-        return $accounts->Balance;
+            ->get();
+        return $accounts;
     }
+    public function customer_account_statement()
+    {
+
+        $customer_account_pro = DB::table('transactions')
+            ->select(
+                DB::raw('null as transaction_date'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_acounts.acount_name ELSE CONCAT("-",financial_acounts.acount_name) END) AS DescriptionOrAccountTitle'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Cred" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+                DB::raw('(CASE WHEN financial_transactions.entry_type = "Debit" THEN financial_transactions.amount ELSE null END) AS AmountDebit'),
+                'transactions.id AS Reference',
+                DB::raw(
+                    '(CASE WHEN financial_transactions.entry_type = "Debit" THEN 1 ELSE 2 END) AS IsLine'
+                )
+            )
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
+            ->where('transactions.user_id', Auth::user()->id)
+            ->orderBy('Reference', 'Desc');
+        $customer_account = DB::table('transactions')
+            ->select('transactions.transaction_date', 'transactions.description AS DescriptionOrAccountTitle', DB::raw('null as AmountDebit'), DB::raw('null as AmountCredit'), 'transactions.id AS Reference', DB::raw('null as IsLine'))
+            ->leftJoin('financial_transactions', 'financial_transactions.transaction_id', '=', 'transactions.id')
+            ->leftJoin('financial_acounts', 'financial_acounts.id', '=', 'financial_transactions.financial_acount_id')
+            ->whereBetween('transactions.transaction_date', ['2022-05-09', '2022-05-30'])
+            ->where('transactions.user_id', Auth::user()->id)
+            ->union($customer_account_pro)
+            ->get();
+
+
+
+
+
+
+
+        return count($customer_account);
+    }
+    public function getinvoice()
+    {
+        $item = PaymentInvoice::get()->where('user_id', Auth::user()->id);
+        return count($item);
+    }
+    public function transferMony(){
+        return view('merchant_dashboard/transferMony');
+    }
+
+
+    //transfer mony by merchant
+    public function transfer(Request $request){
+        $userId = $this->getUserId();
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'email' => ['required', 'min:3', 'email', 'not_in:' . auth::user()->email],
+                'transfer_money' => ['required', 'numeric', 'max:600000', 'min:1000'],
+                'transfer_desc' => ['required', 'min:10']
+            ],
+            [
+                'email.required' => ' الحقل مطلوب',
+                'email.not_in' => 'هذا ايميلك المسجل به الآن !',
+                'transfer_money.required' => ' الحقل مطلوب',
+                'transfer_money.numberic' => 'قيمة رقمية',
+                'transfer_money.max' => 'ادخل مبلغ اقل من 600000',
+                'transfer_money.min' => 'ادخل مبلغ اكبر من 100',
+                'transfer_desc.required' => 'الحقل مطلوب',
+                'transfer_desc.min' => 'يجب ادخال اكثر من عشرة احرف',
+
+            ]
+        );
+
+        $email = $request->input('email');
+        $money = $request->input('transfer_money');
+        $description = $request->input('transfer_desc');
+        $tax = 200;
+
+        if ($this->currentBalance() <= 100) {
+            $balanecError = "رصيدك غير كافي";
+            $validator->errors()->add('customError', $balanecError);
+            return Redirect::back()->withInput()->withErrors($validator);
+        } elseif ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
+
+
+        $value = $this->getAnotherBalance($email);
+        $total_balance = $value += $money;
+        $valuee=$this->currentBalance();
+        $total_balancee=$valuee -=$money;
+        
+        
+        $recieverID = $this->getAnotherUsersId($email);
+
+        $date = Carbon::now();
+        $date = $date->toDateTimeString();
+        bank_account::where('user_id', $recieverID)->update(array('balance' => $total_balance));
+        bank_account::where('user_id',Auth::user()->id)->update(array('balance' => $total_balancee));
+        notify()->success('تم تحويل المبلغ شكرا لك ', 'معلومات');
+        return Redirect::back();
+    }
+    public function getUserId()
+    {
+        return    $userId = Auth::user()->id;
+    }
+    public function currentBalance()
+    {
+        $value = DB::select('SELECT balance from bank_accounts where user_id=?', [$this->getUserId()]);
+
+        foreach ($value as $val) {
+            $val = $val->balance;
+        }
+        return $val;
+    }
+    public function getAnotherBalance($email)
+    {
+        $value = DB::select('SELECT s.balance FROM users u inner join bank_accounts s on u.id = s.user_id WHERE u.email =?', [$email]);
+        foreach ($value as $val) {
+            $val = $val->balance;
+        }
+        return $val;
+    }
+    public function getAnotherUsersId($email)
+    {
+        $value = DB::select('SELECT id from users where email=?', [$email]);
+        foreach ($value as $val) {
+            $val = $val->id;
+        }
+        return $val;
+    }
+    
 }

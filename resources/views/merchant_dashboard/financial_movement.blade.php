@@ -49,11 +49,11 @@ active
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body card-dashboard ">
-                            <div class=" table-responsive p-25">
-                                <table class="table table-bordered  dataex-html5-selectors" >
-                                    <thead >
-                                        <tr >
+                        <div class="card-body card-dashboard">
+                            <div class="table-responsive mt-2 ">
+                                <table class="table table-bordered  dataex-html5-selectors">
+                                    <thead>
+                                        <tr>
                                             <th data-orderable="false">transaction_date</th>
                                             <th data-orderable="false">DescriptionOrAccountTitle</th>
                                             <th>AmountDebit</th>
@@ -62,7 +62,7 @@ active
                                             <th>IsLine</th>
                                         </tr>
                                     </thead>
-                                    <tbody >
+                                    <tbody>
                                         @if ($movements->count() == 0)
                                         <tr>
                                             <td colspan="6" style="text-align: center;">لا يوجد اي حركة الى حد الان</td>
@@ -71,7 +71,7 @@ active
                                         @foreach($movements->sortBy('Reference') as $movement)
                                         <tr>
                                             @if($movement->transaction_date !=null)
-                                            <td rowspan="2  ">{{$movement->transaction_date}}</td>
+                                            <td rowspan="3">{{$movement->transaction_date}}</td>
                                             @endif
 
                                             @if($movement->DescriptionOrAccountTitle ==null)

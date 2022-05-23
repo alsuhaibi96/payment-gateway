@@ -147,11 +147,11 @@ class UserController extends Controller
           $bank_account->account_number=$this->generate_string(10);
           $bank_account->save();
           $credit_cards=new Credit_cards();
-          $credit_cards->card_number=$this->generate_string(10);
+          $credit_cards->card_number='4111'.$this->generate_num(12);
           $credit_cards->card_holder=$user->first_name.' '.$user->middle_name.' '.$user->last_name;
           $credit_cards->expiration_mm=date('n');
           $credit_cards->expiration_yy=date('Y');
-          $credit_cards->cvv=$this->generate_string(3);
+          $credit_cards->cvv=$this->generate_num(3);
           $credit_cards->bank_accounts_id=$bank_account->id;
           $credit_cards->save();
          
@@ -333,6 +333,17 @@ class UserController extends Controller
     
     public function generate_string($strength = 16) {
         $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $input_length = strlen($input);
+        $random_string = '';
+        for($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+     
+        return $random_string;
+    }
+    public function generate_num($strength = 12) {
+        $input = '0123456789';
         $input_length = strlen($input);
         $random_string = '';
         for($i = 0; $i < $strength; $i++) {

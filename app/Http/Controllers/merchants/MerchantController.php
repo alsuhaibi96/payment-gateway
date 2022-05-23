@@ -5,6 +5,7 @@ namespace App\Http\Controllers\merchants;
 use App\Http\Controllers\Controller;
 use App\Models\bank_account;
 use App\Models\Credit_cards;
+use App\Models\MoneyTransfer;
 use App\Models\PaymentInvoice;
 use App\Models\TransactionOverView;
 use App\Models\User;
@@ -299,8 +300,8 @@ class MerchantController extends Controller
         $date = $date->toDateTimeString();
         bank_account::where('user_id', $recieverID)->update(array('balance' => $total_balance));
         bank_account::where('user_id',Auth::user()->id)->update(array('balance' => $total_balancee));
-        notify()->success('تم تحويل المبلغ شكرا لك ', 'معلومات');
-        return Redirect::back();
+        
+        return $this->transferredMoneyDetails($email,$money,$description,$date,$tax);
     }
     public function getUserId()
     {
@@ -330,6 +331,64 @@ class MerchantController extends Controller
             $val = $val->id;
         }
         return $val;
+    }
+
+    public function transferredMoneyDetails($email, $money, $description, $date, $tax)
+    {
+        $userId = $this->getUserId();
+
+        $receiver_id = $this->getAnotherUsersId($email);
+        $sender = User::with(['profile'])->find($userId);
+        $receiver = User::with(['profile'])->find($receiver_id);
+
+
+        //insert transaction of money transfers
+        $moneyTransferred = new MoneyTransfer();
+
+        $moneyTransferred->user_id = $userId;
+        $moneyTransferred->sender_name = $sender['first_name'] . ' ' .
+        $sender['middle_name'] . ' ' . $sender['last_name'];
+        $moneyTransferred->sender_phone_number = $sender['profile']['phone'];
+        $moneyTransferred->receiver_name = $receiver['first_name'] . ' ' .
+        $receiver['middle_name'] . ' ' . $receiver['last_name'];
+        $moneyTransferred->receiver_email = $receiver['email'];
+        $moneyTransferred->receiver_phone_number = $receiver['profile']['phone'];
+        $moneyTransferred->money_transferred = $money;
+        $moneyTransferred->transferring_date = $date;
+        $moneyTransferred->description = $description;
+        $moneyTransferred->tax = $tax;
+        $moneyTransferred->currency = "dollar";
+
+
+
+        if ($moneyTransferred->save()){
+            $sender_data = bank_account::where('user_id', $userId)->first();
+            $reciver_data = bank_account::where('user_id', $receiver_id)->first();
+            $transactionoverview = new TransactionOverView();
+            $transactionoverview->trans_id = $this->generate_string(15);
+            $transactionoverview->user_id = $userId;
+            $transactionoverview->bank_account_id = $sender_data->id;
+            $transactionoverview->type = 'transfer mony';
+            $transactionoverview->amount = $money;
+            $transactionoverview->currency = 'USD';
+            $transactionoverview->fee = '0';
+            $transactionoverview->fromAccount = $sender_data->account_number;
+            $transactionoverview->client_name =$sender['first_name'] . ' ' .
+            $sender['middle_name'] . ' ' . $sender['last_name'];
+            $transactionoverview->toAccount = $reciver_data->account_number;
+            $transactionoverview->merchant_name = $receiver['first_name'] . ' ' .
+            $receiver['middle_name'] . ' ' . $receiver['last_name'];
+            $transactionoverview->status = 'done transfer mony';
+
+            $transactionoverview->save();
+            $items = json_decode($moneyTransferred, true);
+
+            notify()->success('تم تحويل المبلغ شكرا لك ', 'معلومات');
+            return Redirect::back();
+        }
+
+
+        return redirect()->route('transfer')->with(['error' => 'فشل في عملية التحويل']);
     }
     
 }

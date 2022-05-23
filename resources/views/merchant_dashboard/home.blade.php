@@ -49,12 +49,9 @@
                                         <div class="d-flex">
                                             <div id="radial-warning-chart"></div>
                                             
-                                            @foreach($Total_sales as $item)
-                                                @if($item->acount_name =='bank_exchange')
-                                                <h5 class="mt-1 ml-25">{{$item->Balance}}≈ $</h5>
-                                                @endif
-
-                                            @endforeach
+                                            
+                                                <h5 class="mt-1 ml-25">{{ Auth::user()->bank_accounts->balance; }}≈ $</h5>
+                                                
                                         </div>
                                     </div>
                                     <div class="bounce-rate-analytics">

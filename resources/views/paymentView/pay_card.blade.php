@@ -606,7 +606,7 @@
                                             </button>
                                         </span>
                                     </div>
-                                    <div class="text-center mt-6 md:mb-0"><button class="text-sm focus:outline-none border-none text-red-500">الغاء</button></div>
+                                    <div class="text-center mt-6 md:mb-0"><a href="{{route('cancelPay',$invoice_referance)}}" class="text-sm focus:outline-none border-none text-red-500"  >الغاء</a></div>
                                 </form>
                             </span>
                             <div class="lg:hidden block">

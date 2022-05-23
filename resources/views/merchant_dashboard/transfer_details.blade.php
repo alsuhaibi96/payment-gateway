@@ -1,13 +1,13 @@
 
-@extends('layout.customer_dashboard')
-@section('transfer')
+@extends('layout.merchant_dashboard')
+@section('transfer_details')
     active
 @endsection
 
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
-فاتورة التحويل
+بيانات التحويل
     </b>
 </span>
 @endsection
@@ -60,27 +60,32 @@
                                         </tr>
                                     </thead>
                                     <tbody style="font-size: 12px">
-                                        
-                                @foreach ($items as $data)
-    
+                                      @if(count($moneyTransfers)>=0)
+                                      @foreach ($moneyTransfers as $data)
+                                      <tr>
+                                      <td>{{ $data->sender_name }}</td>
+                                      <td>{{ $data->receiver_name }}</td>
+                                      <td>{{ $data->receiver_email }}</td>
+                                      <td>{{ $data->receiver_phone_number }}</td>
+                                      <td>{{ $data->money_transferred }}</td>
+                                      <td>{{ $data->currency  }}</td>
+                                      <td>{{ $data->transferring_date  }}</td>
+                                      <td>{{ $data->description  }}</td>
+                                      <td>{{ $data->tax  }}</td>
+
                                    
-                                        <tr>
-                                        <td>{{ $items['sender_name'] }}</td>
-                                        <td>{{ $items['receiver_name'] }}</td>
-                                        <td>{{ $items['receiver_email'] }}</td>
-                                        <td>{{ $items['receiver_phone_number'] }}</td>
-                                        <td>{{ $items['money_transferred'] }}</td>
-                                        <td>{{ $items['currency'] }}</td>
-                                        <td>{{ $items['transferring_date'] }}</td>
-                                        <td>{{ $items['description'] }}</td>
-                                        <td>{{ $items['tax'] }}</td>
-
-                                     
 
 
-                                            
-                                        </tr>
-                                   @endforeach
+                                          
+                                      </tr>
+                                 @endforeach
+                                
+                                      @else
+                                      <tr>
+                                          <td colspan="9" style="font-size: 20px;text-align: center">لايوجد عمليات تحويل !</td>
+                                      </tr>
+                                      @endif
+                             
 
                                     </tbody>
                                   

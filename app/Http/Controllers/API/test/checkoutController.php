@@ -32,20 +32,23 @@ class checkoutController extends Controller
     public function payment_order(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-
-        //$req->input()
-
-        $info = array('refrence_id' => 1, 'products' => [array('id' => 1, 'name' => 'laptop', 'quantity' => 2, 'unint_amount' => 3000), array('id' => 3, 'name' => 'laptop', 'quantity' => 5, 'unint_amount' => 100)]);
+    
         $private_key = $request->header('private-key');
         $public_key = $request->header('public-key');
         $products = $data['products'];
-
         $order_reference = $data['order_reference'];
         $total_amount = $data['total_amount'];
         $currency = $data['currency'];
         $meta_data = $data['metadata'];
         $sucess_url = $data['success_url'];
         $cancel_url = $data['cancel_url'];
+        $metadata = $data['metadata'];
+        if(User::where('public_key',$public_key)->first()==null)
+        return $this->returnError('408',"public-key is not valid ");
+      if(User::where('private_key',$private_key)->first()==null)
+      return $this->returnError('408',"private-key is not valid ");
+  
+
         $merchant_key_info = User::where('private_key', $private_key)->first();
 
         if (!is_array($products))
@@ -145,7 +148,7 @@ class checkoutController extends Controller
 
         //  return $invoice_data;
 
-        return view('paymentView.pay_card', compact('invoice_data', 'products'));
+        return view('paymentView.pay_card', compact('invoice_data', 'products','invoice_referance'));
     }
     public function cancel_payment($invoice_referance)
     {
@@ -174,7 +177,6 @@ class checkoutController extends Controller
 
         $invoice_data = Orders_invoice::where('invoice_referance', $invoice_referance)->first();
 
-        $current_time = Carbon::now();
         $response_info =
             array('status' => 'success', 'order_reference' => $invoice_data->order_reference, 'products' => str_replace('\\', '', $invoice_data->products), 'customer_account_info' =>
             array(
@@ -183,10 +185,9 @@ class checkoutController extends Controller
                 $invoice_data->updated_at,
             ), 'meta_data' => $invoice_data->metadata);
 
-        //   $response_info= base64_encode(json_encode($response_info));
-        return $response_info;
+          $response_info= base64_encode(json_encode($response_info));
+    
         $response = $success_url . '/' . $response_info;
-        //   return  $response;
         return  Redirect::away($response);
     }
 
@@ -225,7 +226,7 @@ class checkoutController extends Controller
         $card_holder = $request->input('card_holder');
         $expiration_date = $request->input('expiration_yy');
         $Payment_confirmation_data = $request->all();
-        $client_card_data = Credit_cards::where('card_number', $card_number)->first();
+         $client_card_data = Credit_cards::where('card_number', $card_number)->first();
         if ($client_card_data == null || $client_card_data->card_holder != $card_holder || strval($expiration_date) != date_format($client_card_data->created_at, 'm/y')) {
             notify()->error('Make sure you type your payment information correctly', 'wrong information');
 
@@ -331,31 +332,12 @@ class checkoutController extends Controller
 
             $transactionoverview->save();
 
-            $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id)->first();
-
-            $invoice_id =  $order_invoice_data["id"];
-            $invoice_ids = $invoice_sender->id;
-            $invoice_information = response()->json([
-                "Invoice_id" => $invoice_sender->id,
-                "order_invoice_id" => $invoice_sender->order_invoice_id,
-                "amount_paid" => $invoice_sender->amount_paid,
-                "currency" => $invoice_sender->orders_invoice->currency,
-                "order_" => $invoice_sender->orders_invoice->products,
-                "status" => $invoice_sender->status,
-                "meta_data" => "any data you want",
-            ]);
+           
 
 
-            // return $invoice_information;
-
-
-            return Redirect::away($success_url)->with(['PaymentInvoice' => $invoice_information]);
+            return $this->payment_response($request);
             return $this->returnData('الرصيد المتبقي', $invoice_sender, 'تمت عملية الدفع بنجاح');
-            // $success_uri='https://localhost:8080/test/invoice';
-            //  return redirect::away($success_uri)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);    
-            // return Redirect::away($success_url)->with(['PaymentInvoice' => $this->payment_response($total_amout)]);
-            // return $this->returnData('Balance Left',$invoice_sender,'Payment Process Completed Successfully');
-
+          
 
         } else {
             return $this->returnError('4011', 'You do not Have enough balance');

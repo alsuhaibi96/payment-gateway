@@ -121,7 +121,6 @@ Route::get('/test-card', function () {
 
 
 
-Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 Route::group(['middleware'=>['auth']],function(){
 
     
@@ -129,12 +128,13 @@ Route::group(['middleware'=>['auth']],function(){
  * Adding roles for the authentication and users
  * You should go to this route every time the database data are lost
  */
+Route::get('/generate_roles',[SettingController::class,'generateRoles']);
 
 
 
     
 //This route is calling the method transfering money
-Route::post('money/transfer',[CustomerController::class,'transferMoney'])->name('transfer_money');
+Route::post('money/transfer',[CustomerController::class,'transferMoney'])->name('transfer_money_post');
 
 
 Route::get('/moblie-conf', function (){
@@ -148,7 +148,8 @@ Route::get('/buisness-info', function (){
     return view('website/merchant/buisness_info');
 });
 
-
+Route::group(['middleware'=>'role:Customer'],function()
+{
 
     Route::get('/customer/dashboard', function(){
         return view('customer_dashboard/home');
@@ -177,8 +178,8 @@ Route::get('/customer_dashboard/transaction', [CustomerDashController::class,'tr
 )->name('transaction');
 
 /*   funds transfer */
-Route::get('/customer_dashboard/transfer', [CustomerDashController::class,'transfer']
-)->name('transfer');
+Route::get('/customer/dashboard/transfer', [CustomerDashController::class,'transfer']
+)->name('transfer_money');
 
 /*FAQ page route*/
 Route::get('/customer_dashboard/report', [CustomerDashController::class,'report']
@@ -192,10 +193,16 @@ Route::get('/customer_dashboard/settings', [CustomerDashController::class,'setti
 /**************edit image***************/
 Route::post('/customer_dashboard/editImage', [UserProfileController::class,'editImage'])->name('editImage');
 Route::get('customer/transfer/details', [CustomerController::class,'transferredMoneyDetails'])->name('tansfer_details');
-Route::get('customer/transfer/transactions', [CustomerController::class,'showTransferDetails'])->name('show_transfer_details');
+Route::get('customer/transfer/detail', [CustomerController::class,'showTransferCustomerMoney'])->name('customer_tansfer_details');
+
+
 Route::get('/bank/acccount', [CustomerController::class,'bank_account'])->name('view_bank_account');
 Route::post('/update/account', [CustomerController::class,'update_account'])->name('update_customer_account');
 
+Route::get('/inoice/all', [CustomerController::class,'listInvoices'])->name('list_invoices');
+
+}
+);
 
 /***************change password****************/
 Route::get('/change-password', [App\Http\Controllers\user\ChangePasswordController::class, 'changePassword'])->name('change-password');
@@ -211,6 +218,7 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
 
 
     Route::group(['middleware' => 'DisableBackBtn'], function () {
+        Route::get('merchant/transfer/transactions', [MerchantController::class,'showTransferMerchantDetails'])->name('merchant_show_transfer');
         Route::get('/merchant_dashboard', [MerchantController::class, 'index'])->name('merchant_dashboard');
         Route::get('/Transactions', [MerchantController::class, 'Transactions'])->name('Transactions');
         Route::get('/listInvoice', [MerchantController::class, 'listInvoice'])->name('listInvoice');

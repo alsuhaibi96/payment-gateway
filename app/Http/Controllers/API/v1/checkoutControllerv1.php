@@ -382,21 +382,7 @@ class checkoutControllerv1 extends Controller
 
             $transactionoverview->save();
 
-            // $invoice_sender = PaymentInvoice::with('Orders_invoice')->where('id', $paymentinvoice->order_invoice_id ? $paymentinvoice->order_invoice_id : '')->first();
-
-
-            // $invoice_id =  $order_invoice_data["id"];
-            // $invoice_ids=$invoice_sender->id;
-            // $invoice_information=response()->json([
-            //     "Invoice_id"=>$invoice_sender->id,
-            //     "order_invoice_id"=>$invoice_sender->order_invoice_id,
-            //     "amount_paid"=>$invoice_sender->amount_paid,
-            //     "currency"=>$invoice_sender->orders_invoice->currency,
-            //     "order_"=>$invoice_sender->orders_invoice->products,
-            //     "status"=>$invoice_sender->status,
-            //     "meta_data"=>"any data you want",
-            // ]);
-            
+       
 
 
 
@@ -405,7 +391,8 @@ class checkoutControllerv1 extends Controller
       
 
         } else {
-            return $this->returnError('4011', 'You do not Have enough balance');
+            notify()->error('ليس لديك رصيد كافي !', 'خطأ ');
+            return Redirect::back();
         }
         $products = $this->getProducts(4);
         return $this->returnData('success', $client_account_number, array("Products:" => $products), 'Done Payment Successfully');

@@ -74,16 +74,16 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->hasRole('Customer'))
-                                    <li><a class="" href="{{ route('customer_dashboard') }}" style="font-size: 12px">لوحة التحكم</a></li>
+                                    <li><a class="" href="{{ route('customer_dashboard') }}" style="font-size: 10px">لوحة التحكم</a></li>
                                     @else
-                                    <li><a class="" href="{{ route('merchant_dashboard') }}" style="font-size: 12px">لوحة التحكم</a></li>
+                                    <li><a class="" href="{{ route('merchant_dashboard') }}" style="font-size: 10px">لوحة التحكم</a></li>
                                     @endif
 
 
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="" href="{{ route('logout') }}" style="font-size: 12px">تسجيل الخروج</a></li>
+                                    <li><a class="" href="{{ route('logout') }}" style="font-size: 10px">تسجيل الخروج</a></li>
 
 
                                 </ul>

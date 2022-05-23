@@ -214,10 +214,10 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main menu" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
+                <li class=" nav-item open"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                     <ul class="menu-content">
                         <li>
-                            <a class="d-flex align-items-center" href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>
+                            <a class="d-flex align-items-center " href="#"><span class="menu-item text-truncate" data-i18n="eCommerce"> رصيدك الحالي</span>
                                  <span class="badge badge-light-success badge-pill badge-round float-right mr-50 ml-auto">
                                     {{ Auth::user()->bank_accounts->balance; }}
 
@@ -233,16 +233,20 @@
             </li>
             <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('merchant_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
             </li>
-            <li class="@yield('financial') nav-item"><a href="{{ route('financial_movement',Auth::user()->id) }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> الحركة المالية</span></a>
-            </li>
-           
-           
-            <li class="@yield('Transactions') nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">أحدث المعاملات</span></a>
-            </li>
+
             <li class="@yield('listInvoice') nav-item"><a href="{{ route('listInvoice') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> فواتير العمليات</span></a>
             </li>
             <li class="@yield('transferMony') nav-item"><a href="{{ route('transferMony') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> تحويل اموال </span></a>
-            </li>      
+            </li> 
+            <li class="@yield('transfer_details') nav-item"><a href="{{ route('merchant_show_transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تقارير تحويل الاموال </span></a>
+            </li> 
+            <li class="@yield('financial') nav-item"><a href="{{ route('financial_movement',Auth::user()->id) }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> تقارير الحركة المالية</span></a>
+            </li>
+           
+           
+            <li class="@yield('Transactions') nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">تقارير أحدث المعاملات</span></a>
+            </li>
+                
             </li>
  
             <li class="@yield('bank_account') nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>

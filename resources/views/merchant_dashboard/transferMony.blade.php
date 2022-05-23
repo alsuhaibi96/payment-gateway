@@ -148,7 +148,7 @@
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                             <span class="invoice-subtotal-title">ضريبة التحويل</span>
-                                                            <h6 class="invoice-subtotal-value mb-0"> 50 $</h6>
+                                                            <h6 class="invoice-subtotal-value mb-0"> 5 $</h6>
                                                         </li>
 
                                                        

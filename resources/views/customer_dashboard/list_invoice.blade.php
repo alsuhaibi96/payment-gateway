@@ -71,7 +71,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00956</a>
+                                                    <a href="">INV-00956</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$459.30</span></td>
                                                 <td><small class="text-muted">12-08-19</small></td>
@@ -87,7 +87,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00349</a>
+                                                    <a href="">INV-00349</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$125.00</span></td>
                                                 <td><small class="text-muted">08-08-19</small></td>
@@ -103,7 +103,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00853</a>
+                                                    <a href="  ">INV-00853</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$10,503</span></td>
                                                 <td><small class="text-muted">02-08-19</small></td>
@@ -119,7 +119,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00452</a>
+                                                    <a href="  ">INV-00452</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$90</span></td>
                                                 <td><small class="text-muted">28-07-19</small></td>
@@ -135,7 +135,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00123</a>
+                                                    <a href="  ">INV-00123</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$15,900</span></td>
                                                 <td><small class="text-muted">23-07-19</small></td>
@@ -151,7 +151,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00853</a>
+                                                    <a href="  ">INV-00853</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$115.06</span></td>
                                                 <td><small class="text-muted">24-06-19</small></td>
@@ -167,7 +167,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00153</a>
+                                                    <a href="  ">INV-00153</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$1,090</span></td>
                                                 <td><small class="text-muted">23-05-19</small></td>
@@ -183,7 +183,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00788</a>
+                                                    <a href="  ">INV-00788</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$555.50</span></td>
                                                 <td><small class="text-muted">10-06-19</small></td>
@@ -199,7 +199,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00326</a>
+                                                    <a href="  ">INV-00326</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$8,563</span></td>
                                                 <td><small class="text-muted">06-01-19</small></td>
@@ -215,7 +215,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00759</a>
+                                                    <a href="  ">INV-00759</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$10,960.20</span></td>
                                                 <td><small class="text-muted">22-05-19</small></td>
@@ -231,7 +231,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00999</a>
+                                                    <a href="  ">INV-00999</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$886.90</span></td>
                                                 <td><small class="text-muted">12-05-19</small></td>
@@ -247,7 +247,7 @@
 
 
                                                 <td>
-                                                    <a href="{{ route('show_customer_invoice')}}">INV-00223</a>
+                                                    <a href="  ">INV-00223</a>
                                                 </td>
                                                 <td><span class="invoice-amount">$459.30</span></td>
                                                 <td><small class="text-muted">28-04-19</small></td>

@@ -247,12 +247,16 @@
                       
                                   <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                   </li>
-                                   <li class="@yield('addBalance') nav-item"><a href="{{ route('addBalance') }}"> <i class="fas fa-plus"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
-                                    </li>
-                                    <li class="@yield('transaction') nav-item"><a href="{{ route('transaction') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">العمليات</span></a>
-                                    </li>
+                                  
+                                    {{-- <li class="@yield('list_invoice') nav-item"><a href="{{ route('list_invoices') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفوارتير المدفوعة</span></a>
+                                    </li> --}}
                                     
-                                    <li class="@yield('transfer') nav-item"><a href="{{ route('transfer') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
+                                    <li class="@yield('transfer') nav-item"><a href="{{ route('transfer_money') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
+                                    </li>
+                                    {{-- <li class="@yield('transfer_customer_details') nav-item"><a href="{{ route('show_customer_transfers_money') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> تقارير التحويلات المالية</span></a>
+                                    </li> --}}
+
+                                    <li class="@yield('transfer_customer_details') nav-item"><a href="{{ route('customer_tansfer_details') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> تقارير تحويلات الاموال</span></a>
                                     </li>
                                     <li class="@yield('settings') nav-item"><a href="{{ route('settings') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>
                                     </li>
@@ -260,7 +264,11 @@
                                     </li>
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
-                                    <li class="@yield('report') nav-item"><a href="{{ route('report') }}"><i class="fas fa-bug"></i> <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإبلاغ عن مشكلة</span></a>
+                                    <li class="@yield('report') nav-item">
+                                        <a href="{{ route('report') }}"><i class="fas fa-bug"></i> 
+                                            <span class="menu-title text-truncate" data-i18n="Form Layout">
+                                                 <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > 
+                                                    الاسئلة المتكررة </span></a>
                                     </li>
                                   
                             </div>

@@ -23,7 +23,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">
-                                    last Invoice
+                                  الفواتير
                                 </h4>
                             </div>
                             <div class="card-body card-dashboard">
@@ -31,14 +31,14 @@
                                     <table class="table  dataex-html5-selectors">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>order_reference</th>
-                                                <th>Total Amount</th>
-                                                <th>Currency</th>
-                                                <th>Description</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                                <th class="text-right">Action</th>
+                                                <th>المعرف</th>
+                                                <th>رقم الطلب</th>
+                                                <th>المبلغ الكلي</th>
+                                                <th>العملة</th>
+                                                <th>الوصف</th>
+                                                <th>التاريخ</th>
+                                                <th>الحالة</th>
+                                                <th class="text-right">تحكم</th>
                                             </tr>
                                         </thead>
                                         <tbody>

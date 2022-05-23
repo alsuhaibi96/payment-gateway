@@ -8,6 +8,8 @@ use App\Models\Credit_cards;
 use App\Models\PaymentInvoice;
 use App\Models\TransactionOverView;
 use App\Models\User;
+use App\Models\MoneyTransfer;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -45,14 +47,10 @@ class MerchantController extends Controller
         $transactions = TransactionOverView::where('user_id', Auth::user()->id)->paginate(8);
         return view('merchant_dashboard/Transactions', compact('data', 'transactions'));
     }
-    //list function to show all invoice transaction
     public function listInvoice()
     {
         $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
         $Invoices = PaymentInvoice::with('Orders_invoice')->where('user_id', Auth::user()->id)->get();
-
-        // return $Invoices[0];
-        // return $Invoice_product;
 
         return view('merchant_dashboard/listInvoice', compact('data', 'Invoices'));
     }
@@ -257,7 +255,7 @@ class MerchantController extends Controller
             $request->all(),
             [
                 'email' => ['required', 'min:3', 'email', 'not_in:' . auth::user()->email],
-                'transfer_money' => ['required', 'numeric', 'max:600000', 'min:1000'],
+                'transfer_money' => ['required', 'numeric', 'max:600000', 'min:10'],
                 'transfer_desc' => ['required', 'min:10']
             ],
             [
@@ -266,7 +264,7 @@ class MerchantController extends Controller
                 'transfer_money.required' => ' الحقل مطلوب',
                 'transfer_money.numberic' => 'قيمة رقمية',
                 'transfer_money.max' => 'ادخل مبلغ اقل من 600000',
-                'transfer_money.min' => 'ادخل مبلغ اكبر من 100',
+                'transfer_money.min' => 'ادخل مبلغ اكبر من 20',
                 'transfer_desc.required' => 'الحقل مطلوب',
                 'transfer_desc.min' => 'يجب ادخال اكثر من عشرة احرف',
 
@@ -276,9 +274,9 @@ class MerchantController extends Controller
         $email = $request->input('email');
         $money = $request->input('transfer_money');
         $description = $request->input('transfer_desc');
-        $tax = 200;
+        $tax = 5;
 
-        if ($this->currentBalance() <= 100) {
+        if ($this->currentBalance() <= 15) {
             $balanecError = "رصيدك غير كافي";
             $validator->errors()->add('customError', $balanecError);
             return Redirect::back()->withInput()->withErrors($validator);
@@ -300,7 +298,7 @@ class MerchantController extends Controller
         bank_account::where('user_id', $recieverID)->update(array('balance' => $total_balance));
         bank_account::where('user_id',Auth::user()->id)->update(array('balance' => $total_balancee));
         notify()->success('تم تحويل المبلغ شكرا لك ', 'معلومات');
-        return Redirect::back();
+        return $this->transferredMoneyDetails($email,$money,$description,$date,$tax);
     }
     public function getUserId()
     {
@@ -331,5 +329,61 @@ class MerchantController extends Controller
         }
         return $val;
     }
+      /**
+       * Get transfers view 
+       */
+      public function showTransferMerchantDetails(){
+ 
+        $moneyTransfers=$this->getAllMoneyTransfers();
+       
+        return view('merchant_dashboard.transfer_details',compact('moneyTransfers'));
+    }
+
+     /**
+     * 
+     * Get all transfers
+     */
+    public function getAllMoneyTransfers(){
+
+        $userId=$this->getUserId();
+        return $moneyTransfers= MoneyTransfer::where('user_id',$userId)->get()->all();
+      }
+    /**
+     * Get the details of the transferred money (bill shape)
+     */
+public function transferredMoneyDetails($email,$money,$description,$date,$tax){
+    $userId= $this->getUserId();
     
+    $receiver_id=$this->getAnotherUsersId($email);
+    $sender=User::with(['profile'])->find($userId);
+    $receiver=User::with(['profile'])->find($receiver_id);
+    
+     
+     //insert transaction of money transfers
+     $moneyTransferred =new MoneyTransfer();
+    
+     $moneyTransferred->user_id=$userId;
+     $moneyTransferred->sender_name=$sender['first_name'].' '.
+     $sender['middle_name'].' '.$sender['last_name'];
+     $moneyTransferred->sender_phone_number=$sender['profile']['phone'];
+     $moneyTransferred->receiver_name=$receiver['first_name'].' '.
+     $receiver['middle_name'].' '.$receiver['last_name'];
+     $moneyTransferred->receiver_email=$receiver['email'];
+     $moneyTransferred->receiver_phone_number=$receiver['profile']['phone'];
+     $moneyTransferred->money_transferred=$money;
+     $moneyTransferred->transferring_date=$date;
+     $moneyTransferred->description=$description;
+     $moneyTransferred->tax=$tax;
+     $moneyTransferred->currency="dollar";
+    
+    
+     
+    if($moneyTransferred->save())
+      return back();
+    
+    
+    
+      return redirect()->route('transfer')->with(['error'=>'فشل في عملية التحويل']);
+    
+    }
 }

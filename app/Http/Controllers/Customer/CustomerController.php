@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Redirect;
 
 
 use App\Models\User;
+use App\Models\PaymentInvoice;
+
 use App\Models\bank_account;
 use App\Models\credit_cards;
+use App\Models\Orders_invoice;
+
 
 use App\Models\MoneyTransfer;
 
@@ -33,8 +37,22 @@ class CustomerController extends Controller
         return view('customer_dashboard.home');
     }
 
-    public function showTransferDetails(){
-      return view('customer_dashboard.transfer_details');
+    /**
+     * 
+     * Get all transfers
+     */
+    public function getAllMoneyTransfers(){
+
+      $userId=$this->getUserId();
+      return $moneyTransfers= MoneyTransfer::where('user_id',$userId)->get()->all();
+    }
+
+
+    public function showTransferCustomerMoney(){
+ 
+      $moneyTransfers=$this->getAllMoneyTransfers();
+     
+      return view('customer_dashboard.transfer_customer_details',compact('moneyTransfers'));
   }
 
     public function getUserId() {
@@ -96,7 +114,7 @@ public function getAnotherBalance($email){
 
       $validator=Validator::make($request->all(),
         [ 'email'=>['required','min:3','email','not_in:'.auth::user()->email],
-         'transfer_money'=>['required','numeric','max:600000','min:1000' ],
+         'transfer_money'=>['required','numeric','max:600000','min:10' ],
          'transfer_desc'=>['required','min:10']
         ],
         [
@@ -105,7 +123,7 @@ public function getAnotherBalance($email){
         'transfer_money.required'=>' الحقل مطلوب',
         'transfer_money.numberic'=>'قيمة رقمية',
         'transfer_money.max'=>'ادخل مبلغ اقل من 600000',
-        'transfer_money.min'=>'ادخل مبلغ اكبر من 1000',
+        'transfer_money.min'=>'ادخل مبلغ اكبر من 10',
         'transfer_desc.required'=>'الحقل مطلوب',
         'transfer_desc.min'=>'يجب ادخال اكثر من عشرة احرف',
 
@@ -115,9 +133,9 @@ public function getAnotherBalance($email){
     $email=$request->input('email');
     $money=$request->input('transfer_money');
     $description=$request->input('transfer_desc');
-    $tax=200;
+    $tax=5;
 
-   if($this->currentBalance()<=1000){
+   if($this->currentBalance()<=11){
      $balanecError="رصيدك غير كافي";
     $validator->errors()->add('customError',$balanecError);
     return Redirect::back()->withInput()->withErrors($validator);
@@ -129,12 +147,14 @@ public function getAnotherBalance($email){
 
    $value= $this->getAnotherBalance($email);
    $total_balance=$value+=$money;
+   $left_balance=$this->currentBalance()-$money;
    $recieverID=$this->getAnotherUsersId($email);
 
    $date=Carbon::now();
    $date=$date->toDateTimeString();
    bank_account::where('user_id',$recieverID)->update(array('balance'=>$total_balance));
-
+   bank_account::where('user_id',$this->getUserId())->update(array('balance'=>$left_balance));
+   notify()->success('تم التحويل بنجاح','نجاح');
   return $this->transferredMoneyDetails($email,$money,$description,$date,$tax);
  
  
@@ -173,9 +193,7 @@ $receiver=User::with(['profile'])->find($receiver_id);
 
  
 if($moneyTransferred->save())
-$items=json_decode($moneyTransferred,true);
-
-return view('customer_dashboard.transfer_details',compact('items'));
+  return back();
 
 
 
@@ -194,6 +212,7 @@ public function bank_account(){
   $cvv=$card_info->cvv;
   $expiration_yy=$card_info->expiration_yy;
   $expiration_mm=$card_info->expiration_mm;
+  
   return view('customer_dashboard.customer_bank_account_details',compact('bank_acount','card_info'));
 }
 
@@ -204,5 +223,16 @@ public function update_account(Request $request){
   $cvv=$request->input('cvv');
   Credit_cards::where('id',$request->id)->update(array('cvv'=>$cvv));
   return redirect()->back();
+}
+
+/**
+ * Get all invoices for the current user
+ */
+// public function listInvoices(){
+//   return  $data = bank_account::select('balance')->where('id', Auth::user()->id)->get();
+//       $Invoices = PaymentInvoice::with('Orders_invoice')->where('user_id', Auth::user()->id)->get();
+
+//     return view('customer_dashboard.list_invoice', compact('data', 'Invoices'));
+// }
 }
 

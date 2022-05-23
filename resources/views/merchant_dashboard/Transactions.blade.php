@@ -28,7 +28,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">
-                                last Transaction
+                          تقارير احدث المعاملات
                             </h4>
                         </div>
                         <div class="card-body card-dashboard">
@@ -37,13 +37,13 @@
 
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Type</th>
-                                            <th>Amount</th>
-                                            <th>Currency</th>
-                                            <th>From Acount</th>
-                                            <th>To Acount</th>
-                                            <th>Status</th>
+                                            <th>المعرف</th>
+                                            <th>النوع</th>
+                                            <th>الاجمالي</th>
+                                            <th>العملة</th>
+                                            <th>من حساب</th>
+                                            <th>الى حساب</th>
+                                            <th>الحالة</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,7 +71,7 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
+                                    {{-- <tfoot>
                                         <tr>
                                             <th>ID</th>
                                             <th>Type</th>
@@ -81,7 +81,7 @@
                                             <th>To Acount</th>
                                             <th>Status</th>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> --}}
                                 </table>
                             </div>
                         </div>

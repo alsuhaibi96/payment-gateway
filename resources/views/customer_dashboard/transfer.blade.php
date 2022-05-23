@@ -28,7 +28,7 @@
                         <div class="row">
                             <!-- invoice view page -->
                             <div class="col-xl-9 col-md-8 col-sm-12 ">
-                                <form action="{{ route('transfer_money') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('transfer_money_post') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 @if(session()->has('success'))
 
@@ -156,7 +156,7 @@
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between border-0 pb-0">
                                                             <span class="invoice-subtotal-title">ضريبة التحويل</span>
-                                                            <h6 class="invoice-subtotal-value mb-0"> 50 $</h6>
+                                                            <h6 class="invoice-subtotal-value mb-0"> 5 $</h6>
                                                         </li>
 
                                                        

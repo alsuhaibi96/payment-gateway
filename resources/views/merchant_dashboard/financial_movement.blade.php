@@ -54,18 +54,18 @@ active
                                 <table class="table table-bordered  dataex-html5-selectors">
                                     <thead>
                                         <tr>
-                                            <th data-orderable="false">transaction_date</th>
-                                            <th data-orderable="false">DescriptionOrAccountTitle</th>
-                                            <th>AmountDebit</th>
-                                            <th>AmountCredit</th>
-                                            <th>Reference</th>
+                                            <th data-orderable="false">التاريخ</th>
+                                            <th data-orderable="false">الوصف/عنوان الحساب</th>
+                                            <th>مدين</th>
+                                            <th>دائن</th>
+                                            <th>الرقم</th>
                                             <th>IsLine</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($movements->count() == 0)
                                         <tr>
-                                            <td colspan="6" style="text-align: center;">لا يوجد اي حركة الى حد الان</td>
+                                            <td colspan="6" style="text-align: center;font-size: 20px">لا يوجد اي حركة الى حد الان</td>
                                         </tr>
                                         @endif
                                         @foreach($movements->sortBy('Reference') as $movement)

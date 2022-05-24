@@ -200,11 +200,11 @@
                     <li class=" nav-item"><a href="#"> <i class="fas fa-desktop"> </i><span class="menu-title text-truncate" data-i18n="Dashboard">لوحة التحكم</span></a>
                        
                     </li>
-                    <li ><a  href="{{ route('admin_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
+                    <li class="@yield('admin')" ><a  href="{{ route('admin_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                     </li>
 
                       
-                                    <li class="active nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-users"> </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
+                                    <li class="@yield('users') nav-item"><a href="{{ route('admin_dashboard/users') }}"> <i class="fas fa-users"> </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  المستخدمين</span></a>
                                      </li>
                     
                                     {{-- <li class=" nav-item"><a href="{{ route('admin_dashboard/addBalance') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">إضافة رصيد</span></a>
@@ -212,7 +212,7 @@
                                      --}}
 
                                
-                                    <li class=" nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-exchange-alt">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
+                                    <li class="@yield('trans') nav-item"><a href="{{ route('transactions') }}"> <i class="fas fa-exchange-alt">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">العمليات</span></a>
                                     </li>
 
                                     
@@ -223,9 +223,9 @@
                     
                                     <li class=" navigation-header text-truncat divider"><span data-i18n="Forms &amp; Tables"> </span>
                                     </li>
-                                    <li class=" nav-item"><a href="{{ route('admin/settings') }}"><i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإعدادات</span></a>
+                                    <li class="@yield('setting') nav-item"><a href="{{ route('admin/settings') }}"><i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Form Layout"> <button> </button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" > الإعدادات</span></a>
                                     </li>
-                                    <li class=" nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
+                                    <li class="@yield('index') nav-item"><a href="{{ route('index') }}"> <i class="fas fa-house"></i> <span class="menu-title text-truncate" data-i18n="Email"> الرئيسية - Home</span></a>
                                     </li>
                             </div>
                         </div>

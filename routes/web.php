@@ -259,7 +259,15 @@ Route::get('/admin/dashboard/transactions',[AdminDashController::class,'Transact
 Route::get('/admin/dashboard/settings',function(){
     return view('admin_dashboard.settings');
 })->name('admin/settings');
+Route::get('/admin/dashboard/settings', [AdminDashController::class,'Profile']
+)->name('admin/settings');
+Route::post('/admin/dashboard/editProfile', [AdminDashController::class,'editProfile'])->name('editProfil');
+ /*profile edit */
 
+//  Route::post('/admin/dashboard/settings', [AdminDashController::class,'addProfile']
+//  )->name('addProfile');
+ Route::post('/admin/dashboard/edit', [AdminDashController::class,'editAccount']
+ )->name('editAccount');
 
 
 /*logout route*/

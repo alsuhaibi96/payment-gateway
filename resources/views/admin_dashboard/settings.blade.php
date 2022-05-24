@@ -1,5 +1,7 @@
 @extends('layout.admin_dashboard')
-
+@section('setting')
+    active
+@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>
@@ -81,7 +83,7 @@
                                                       </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route("editImage") }}" method="post" enctype="multipart/form-data">
+                                                        <form action="{{ route("editProfil") }}" method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="card-body">
                                                                
@@ -112,7 +114,7 @@
                                     </div>
 
 
-                                        <form action="{{ route('editProfile') }}" method="post">
+                                        <form action="{{ route('editAccount') }}" method="post">
                                             @csrf
                                         <div class=" order-2 order-sm-1">
                                             <div class="row">

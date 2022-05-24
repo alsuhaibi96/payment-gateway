@@ -1,6 +1,8 @@
 @extends('layout.admin_dashboard')
 
-
+@section('admin')
+    active
+@endsection
 @section('header')
 <span class="nav navbar-nav float-left">
     <b>

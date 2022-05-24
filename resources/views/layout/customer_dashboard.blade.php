@@ -248,14 +248,10 @@
                                   <li class="@yield('home')"><a class="d-flex align-items-center" href="{{ route('customer_dashboard') }}"><i class="fas fa-chart-line"></i><span class="menu-item text-truncate" data-i18n="Analytics">عرض الإحصائيات</span></a>
                                   </li>
                                   
-                                    {{-- <li class="@yield('list_invoice') nav-item"><a href="{{ route('list_invoices') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">الفوارتير المدفوعة</span></a>
-                                    </li> --}}
-                                    
+                                   
                                     <li class="@yield('transfer') nav-item"><a href="{{ route('transfer_money') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card">تحويل رصيد</span></a>
                                     </li>
-                                    {{-- <li class="@yield('transfer_customer_details') nav-item"><a href="{{ route('show_customer_transfers_money') }}"> <i class="fas fa-exchange-alt"></i> <span class="menu-title text-truncate" data-i18n="Card"> تقارير التحويلات المالية</span></a>
-                                    </li> --}}
-
+                                    
                                     <li class="@yield('transfer_customer_details') nav-item"><a href="{{ route('customer_tansfer_details') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets"> تقارير تحويلات الاموال</span></a>
                                     </li>
                                     <li class="@yield('settings') nav-item"><a href="{{ route('settings') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  إعدادات الحساب</span></a>

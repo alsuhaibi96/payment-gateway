@@ -131,8 +131,15 @@
                                 <li class="scrollable-container media-list"><a class="d-flex justify-content-between" href="javascript:void(0);">
                                         <div class="media d-flex align-items-center">
                                             <div class="media-left pr-0">
-                                                <div class="avatar mr-1 m-0"><img src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="39" width="39"></div>
-                                            </div>
+                                                <div class="avatar mr-1 m-0">
+                                                    @if(isset(Auth::user()->profile->avatar))
+                                                    <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar"  style="border-radius: 50%;width: 50px;height:50px" >
+                                                    @else
+                                                    <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
+                                                   
+                                                   
+                                                    @endif        
+                                                      </div>
                                             <div class="media-body">
                                                 <h6 class="media-heading"><span class="text-bold-500">مرحبًا بك {{ Auth::user()->first_name }} </span> في بوابة الدفع الأولى في اليمن Wasl Pay &#127881 !</h6><small class="notification-text">Mar 15 12:32pm</small>
                                             </div>
@@ -178,7 +185,16 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name">{{Auth::user()->first_name ." ".Auth::user()->last_name}}</span><span class="user-status text-muted"> 😊 Welcome </span></div><span><img class="round" src="{{url('assets/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name">{{Auth::user()->first_name ." ".Auth::user()->last_name}}</span><span class="user-status text-muted"> 😊 Welcome </span></div><span>
+                                    <div class="avatar mr-1 m-0">
+                                        @if(isset(Auth::user()->profile->avatar))
+                                        <img src="{{ asset('images/'. Auth::user()->profile->avatar) }}" alt="avatar"  style="border-radius: 50%;width: 50px;height:50px" >
+                                        @else
+                                        <img src="{{ url('assets/web/images/avatar.jpg') }}"alt="avatar" class="users-avatar-shadow rounded-circle" style="width: 40px; height:auto;">                                          
+                                       
+                                       
+                                        @endif        
+                                          </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
                                
@@ -247,6 +263,9 @@
             <li class="@yield('Transactions') nav-item"><a href="{{ route('Transactions') }}"> <i class="fas fa-file-invoice-dollar"></i> <span class="menu-title text-truncate" data-i18n="Colors">تقارير أحدث المعاملات</span></a>
             </li>
                 
+            </li>
+
+            <li class="@yield('settings') nav-item"><a href="{{ route('merchant_settings') }}"> <i class="fas fa-gear">  </i>  <span class="menu-title text-truncate" data-i18n="Widgets">  اعدادات الحساب</span></a>
             </li>
  
             <li class="@yield('bank_account') nav-item"><a href="{{ route('bank_account') }}"> <i class="fas fa-landmark"></i> <span class="menu-title text-truncate" data-i18n="Email"> الحساب البنكي</span></a>

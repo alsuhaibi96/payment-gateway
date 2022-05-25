@@ -226,9 +226,9 @@ class checkoutController extends Controller
         $card_holder = $request->input('card_holder');
         $expiration_date = $request->input('expiration_yy');
         $Payment_confirmation_data = $request->all();
-         $client_card_data = Credit_cards::where('card_number', $card_number)->first();
-        if ($client_card_data == null || $client_card_data->card_holder != $card_holder || strval($expiration_date) != date_format($client_card_data->created_at, 'm/y')) {
-            notify()->error('Make sure you type your payment information correctly', 'wrong information');
+         $client_card_data = Credit_cards::where('card_number',3425452464524534)->first();
+        if ( $client_card_data->card_holder != "Test Test Test" && $client_card_data->card_number!=3425452464524534 &&$client_card_data->cvv!=123) {
+            notify()->error('يجب ادخال بيانات حساب  الاختبار', 'خطأ 408');
 
             return Redirect::back();
         }

@@ -40,7 +40,7 @@
                                     <label class="col-form-label" for="basic-icon-default-fullname">الاسم</label>
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                        <input type="text" value="{{$card_info->card_holder}}" name="card_holder" class="form-control" id="basic-icon-default-fullname" disabled placeholder="أسم العميل" disabled aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" style="text-transform: lowercase" />
+                                        <input type="text" value="{{$card_info->card_holder}}" name="card_holder" class="form-control" id="basic-icon-default-fullname" disabled placeholder="أسم العميل" disabled aria-label="John Doe" aria-describedby="basic-icon-default-fullname2"     />
                                     </div>
                                 </div>
 
@@ -63,7 +63,7 @@
                                     <label class="col-form-label" for="basic-icon-default-fullname">اسم حامل البطاقة</label>
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                        <input  style="text-transform: lowercase" type="text" value="{{$card_info->card_holder}}" name="card_holder_name" disabled class="form-control" id="basic-icon-default-fullname" placeholder="اسم حامل البطاقة" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                        <input      style="text-transform: none" type="text" value="{{$card_info->card_holder}}" name="card_holder_name" disabled class="form-control" id="basic-icon-default-fullname" placeholder="اسم حامل البطاقة" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                     </div>
                                 </div>
 
@@ -71,7 +71,7 @@
                                     <label class="col-form-label" for="basic-icon-default-company">رقم البطاقة</label>
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-                                        <input type="text" value="{{$card_info->card_number}}" name="card_number" id="basic-icon-default-company" disabled class="form-control" placeholder="Ex:0101 0101 0101 1011" aria-label="ACME Inc." aria-describedby="basic-icon-default-company2" />
+                                        <input  style="text-transform: none" type="text" value="{{$card_info->card_number}}" name="card_number" id="basic-icon-default-company" disabled class="form-control" placeholder="Ex:0101 0101 0101 1011" aria-label="ACME Inc." aria-describedby="basic-icon-default-company2" />
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                     <label class="col-form-label" for="basic-icon-default-fullname">cvv</label>
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                                        <input type="text" value="{{$card_info->cvv}}" name="cvv" class="form-control" id="basic-icon-default-fullname" placeholder="Ex:123" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                        <input  style="text-transform: none" type="text" value="{{$card_info->cvv}}" name="cvv" class="form-control" id="basic-icon-default-fullname" placeholder="Ex:123" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                                     </div>
                                 </div>
 

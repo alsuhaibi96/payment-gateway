@@ -63,12 +63,12 @@ class="active"
 
     <div class="col-md-6 fs-3">
       <label for="inputPassword4" class="form-label"> البريد الالكتروني</label>
-      <input name="email" placeholder="البريد الالكتروني" type="email" class="form-control fs-3" id="inputEmail4">
+      <input style="text-transform: none"  name="email" placeholder="البريد الالكتروني" type="email" class="form-control fs-3" id="inputEmail4">
     </div>
 
     <div class="mb-3 col-md-6 fs-3">
       <label for="inputEmail4" class="form-label">كلمة المرور</label>
-      <input name="password" placeholder="كلمة المرور " type="password" class="form-control mb-3 fs-3" id="inputEmail4">
+      <input style="text-transform: none"  name="password" placeholder="كلمة المرور " type="password" class="form-control mb-3 fs-3" id="inputEmail4">
       <a href="{{ route('forget.password.get') }}" style="font-size: 15px"> نسيت كلمة المرور ؟ </a>
     </div>
     <div class="col-12 mt-5" >

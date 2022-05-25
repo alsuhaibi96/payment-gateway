@@ -69,11 +69,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="padding:30px;background-color:#ffffff;">
-                                <h1 style="margin-top:0;margin-bottom:16px;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em;">مرحبا بك في خدمة وصل للدفع الالكتروني!</h1>
+                            <td style="padding:30px;background-color:#ffffff;" dir="rtl">
+                                <div style="display: flex;justify-content: center;">
+                                     <img src="{{ asset('assets/web/images/WhatsApp Image 2022-05-24 at 10.33.38 PM.jpeg') }}" height="50px" width="50px" style="border-radius: 50px"> 
+                                    <h1 style="margin-right: 10px;margin-top: 20px;display: inline;margin-top:0;;font-size:26px;line-height:32px;font-weight:bold;letter-spacing:-0.02em;">مرحبا بك في خدمة وصل للدفع الالكتروني!</h1>
+                                </div>
+                             
 
 
-                                <p style="margin:0;">
+                                <p style="margin:0;margin-top: 20px;">
                                     منصتنا توفر خدمات الدفع الالكتروني على مسوى الجمهورية اليمني قم بتحويل اموالك من والى جميع المتاجر الالكترونية بكل سهولة. <br> يمكنك مراسلتنا عبر <a href="mail@waslpayment.com" style="color:#0073bc;text-decoration:underline;">
                                        الايميل الالكتروني </a>
                                 </p>

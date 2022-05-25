@@ -327,7 +327,12 @@ class UserController extends Controller
     }
  public function checkVerification($request){
        $val=User::select('is_email_verified')->where('email',$request->email)->first();
-     return $val['is_email_verified'];
+      $email =User::select('email')->where('email',$request->email)->first();
+     if(!isset($email))
+     return redirect()->route('login')->with(['message'=>'الايميل ليس مسجل لدينا من قبل ! !']);
+
+     
+      return $val['is_email_verified'];
        
  }
     
@@ -384,5 +389,10 @@ class UserController extends Controller
         });
 
         return redirect()->route('login')->with('success', 'لقد أرسلنا رابط التفعيل الى البريد الإلكتروني!');
+    }
+
+
+    public function viewEmailVerfication(){
+        return view('website.auth.email.emailVerificationEmail');
     }
 }

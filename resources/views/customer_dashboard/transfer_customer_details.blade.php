@@ -1,6 +1,6 @@
 
 @extends('layout.customer_dashboard')
-@section('transfer_details')
+@section('transfer_customer_details')
     active
 @endsection
 

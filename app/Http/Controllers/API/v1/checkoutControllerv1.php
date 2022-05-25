@@ -270,7 +270,8 @@ class checkoutControllerv1 extends Controller
         $expiration_date = $request->input('expiration_yy');
         $Payment_confirmation_data = $request->all();
         $client_card_data = Credit_cards::where('card_number', $card_number)->first();
-        if ($client_card_data == null  ) {
+        if ($client_card_data == null || $client_card_data->card_holder != $card_holder || strval($expiration_date) != date_format($client_card_data->created_at, 'm/y')) {
+        
             notify()->error('تأكد من كتابتك لبيانات بطاقتك بشكل صحيح', 'خطأ ');
             return Redirect::back();
         }

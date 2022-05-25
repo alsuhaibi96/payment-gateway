@@ -25,6 +25,10 @@ class MerchantController extends Controller
     {
         $this->middleware('auth');
     }
+    //view merchant settings page 
+    public function viewMerchantSettings(){
+        return view('merchant_dashboard.settings');
+    }
     // the main function to log to merchant dashboard
     public function index()
     {

@@ -151,7 +151,7 @@ Route::get('/buisness-info', function (){
 Route::group(['middleware'=>'role:Customer'],function()
 {
 
-    Route::get('/customer/dashboard', function(){
+    Route::get('/customer/dashboard/home', function(){
         return view('customer_dashboard/home');
     })->name('home');
     
@@ -216,7 +216,8 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
 
 
 
-
+ Route::group(['middleware'=>'role:Merchant'],function()
+ {
     Route::group(['middleware' => 'DisableBackBtn'], function () {
         Route::get('merchant/transfer/transactions', [MerchantController::class,'showTransferMerchantDetails'])->name('merchant_show_transfer');
         Route::get('/merchant_dashboard', [MerchantController::class, 'index'])->name('merchant_dashboard');
@@ -231,10 +232,19 @@ Route::post('/change-password', [App\Http\Controllers\user\ChangePasswordControl
         Route::get('/transferMony', [MerchantController::class, 'transferMony'])->name('transferMony');
         //This route is calling the method transfering money
         Route::post('transfer', [MerchantController::class, 'transfer'])->name('transfer');
+        Route::get('merchant/dashboard/settings', [MerchantController::class, 'viewMerchantSettings'])->name('merchant_settings');
+        Route::post('/merchant/dashboard/editImage', [UserProfileController::class,'editImage'])->name('merchant_edit_image');
+        Route::post('/merchant/dashboard/edit', [UserProfileController::class,'editProfile']
+        )->name('edit_merchant_profile');
+        
+        
     });
 
+ });
 
 
+ Route::group(['middleware'=>'role:Super Admin'],function()
+ {
 // admin dashboard
 Route::get('/admin_dashboard', function(){
 
@@ -260,7 +270,7 @@ Route::get('/admin/dashboard/settings',function(){
     return view('admin_dashboard.settings');
 })->name('admin/settings');
 
-
+ });
 
 /*logout route*/
  Route::get('logout', [UserController::class, 'logout'])->name('logout');
@@ -273,3 +283,5 @@ Route::get('profile', [UserProfileController::class, 'profile'])->name('profile'
 
 
 });
+Route::get('email/get{fadf}', [UserController::class, 'viewEmailVerfication'])->name('email');
+

@@ -36,6 +36,8 @@ class UserProfileController extends Controller
         $phone = $req->phone;
         $first_address = $req->first_address;
         $second_address = $req->second_address;
+        $merchant_name = $req->merchant_name;
+
 
         $id = Auth::id();
         $user = User::where('id', Auth::id())->update([
@@ -48,7 +50,9 @@ class UserProfileController extends Controller
         $user_profile = user_profile::where('user_id', Auth::id())->update([
             'first_address' => $first_address,
             'second_address' => $second_address,
-            'phone' => $phone
+            'phone' => $phone,
+            'merchant_name'=>$merchant_name,
+
         ]);
         if ($user || $user_profile) {
             return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);

@@ -24,20 +24,20 @@
 
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">الاسم الاول</label>
-            <input name="firstName" placeholder="الاسم الاول" type="text" class="form-control fs-3 mb-3 @error('firstName') is-invalid @enderror" id="" value="{{ old('firstName') }}">
+            <input style="text-transform: none" name="firstName" placeholder="الاسم الاول" type="text" class="form-control fs-3 mb-3 @error('firstName') is-invalid @enderror" id="" value="{{ old('firstName') }}">
                                             @error('firstName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
 
           <div class="col-md-6">
             <label for="name" class="form-label fs-3">الاسم الاوسط</label>
-            <input name="middleName" placeholder="الاسم الاوسط" type="text" class="form-control fs-3 mb-3 @error('middleName') is-invalid @enderror" id="" value="{{ old('middleName') }}">
+            <input style="text-transform: none" name="middleName" placeholder="الاسم الاوسط" type="text" class="form-control fs-3 mb-3 @error('middleName') is-invalid @enderror" id="" value="{{ old('middleName') }}">
             @error('middleName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
-            <label for="name" class="form-label fs-3">اللقب</label>
-            <input name="lastName" placeholder="اللقب" type="text" class="form-control fs-3 mb-3 @error('lastName') is-invalid @enderror" id="" value="{{ old('lastName') }}">
+            <label  for="name" class="form-label fs-3">اللقب</label>
+            <input  style="text-transform: none" name="lastName" placeholder="اللقب" type="text" class="form-control fs-3 mb-3 @error('lastName') is-invalid @enderror" id="" value="{{ old('lastName') }}">
             @error('lastName') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
          
@@ -45,7 +45,7 @@
          
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label fs-3"> البريد الالكتروني</label>
-            <input name="email" placeholder="البريد الالكتروني" type="email" class="form-control fs-3 mb-3 @error('email') is-invalid @enderror" id="inputEmail4" value="{{ old('email') }}">
+            <input style="text-transform: none" name="email" placeholder="البريد الالكتروني" type="email" class="form-control fs-3 mb-3 @error('email') is-invalid @enderror" id="inputEmail4" value="{{ old('email') }}">
             @error('email') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
          </div>
@@ -53,12 +53,12 @@
         <div class="row">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label fs-3">كلمة المرور</label>
-            <input name="password" placeholder="كلمة المرور " type="password" class="form-control fs-3 mb-3 @error('password') is-invalid @enderror" id="inputEmail4" >
+            <input style="text-transform: none" name="password" placeholder="كلمة المرور " type="password" class="form-control fs-3 mb-3 @error('password') is-invalid @enderror" id="inputEmail4" >
             @error('password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label fs-3">تاكيد كلمة المرور</label>
-            <input name="confirm_password" placeholder="تاكيد كلمة المرور" type="password" class="form-control fs-3 mb-3 @error('confirm_password') is-invalid @enderror" id="inputEmail4" >
+            <input style="text-transform: none"name="confirm_password" placeholder="تاكيد كلمة المرور" type="password" class="form-control fs-3 mb-3 @error('confirm_password') is-invalid @enderror" id="inputEmail4" >
             @error('confirm_password') <span id="exampleInputEmail1-error" class="error invalid-feedback ">{{ $message }}</span> @enderror
           </div>
         </div>
